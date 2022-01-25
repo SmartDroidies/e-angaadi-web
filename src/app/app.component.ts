@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,26 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'E-Angaadi';
+  user: CognitoUserInterface | undefined;
+  authState: AuthState | undefined;
+  loggedIn: Observable<boolean> = of(false);
+  constructor(private ref: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    onAuthUIStateChange((authState, authData) => {
+      this.authState = authState;
+
+      this.user = authData as CognitoUserInterface;
+      if (this.authState === AuthState.SignedIn) {
+        // console.log("User Logged in : ", this.authState);
+        this.loggedIn = of(true);
+        // console.log("User Data : ", this.user);
+        this.ref.detectChanges();
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    return onAuthUIStateChange;
+  }
 }
