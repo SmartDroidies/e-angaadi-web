@@ -1,13 +1,15 @@
 <amplify-authenticator *ngIf="authState !== 'signedin'"></amplify-authenticator>
 
-<div *ngIf="loggedIn">
-  <amplify-sign-out></amplify-sign-out>
-  <article>
-    <header>
-      <app-header></app-header>
-    </header>
-    <main>
-      'E-Angaadi app is running!'
-    </main>
-  </article>
+<div *ngIf="authState === 'signedin' " class="App">
+    <div>
+      <article>
+        <header>
+          <app-header></app-header>
+        </header>
+        <main>
+          'E-Angaadi app is running!'
+        </main>
+      </article>
+    </div>  
+    <amplify-sign-out></amplify-sign-out>
 </div>
