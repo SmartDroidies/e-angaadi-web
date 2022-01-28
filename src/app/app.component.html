@@ -1,10 +1,14 @@
-<div>
-  <article>
-    <header>
-      <app-header></app-header>
-    </header>
-    <main>
-      'E-Angaadi app is running!'
-    </main>
-  </article>
+<amplify-authenticator *ngIf="authState !== 'signedin'"></amplify-authenticator>
+
+<div *ngIf="authState === 'signedin' " class="App">
+    <div>
+      <article>
+        <header>
+          <app-header></app-header>
+        </header>
+        <main>
+          <router-outlet></router-outlet>
+        </main>
+      </article>
+    </div>  
 </div>
