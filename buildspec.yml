@@ -14,5 +14,9 @@ phases:
       - ng build --prod --aot
   post_build:
      commands:
+<<<<<<< HEAD
       - aws s3 cp dist/e-angaadi-web s3://eangaadiweb --recursive
+=======
+      - aws s3 cp dist/e-angaadi-web s3://eangaadi --recursive
+>>>>>>> main
       - echo Build completed on `date`      
