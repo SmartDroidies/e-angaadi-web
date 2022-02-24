@@ -1,3 +1,34 @@
-.mat-toolbar{
-    height: 80px;
+.header-logo {
+  width: 2rem;
+}
+
+.header-logo-text {
+  font-size: 1rem;
+}
+
+.header-icon-text {
+  font-size: 1rem;
+  margin: 1rem;
+}
+
+:host {
+  display: flex;
+}
+
+.header-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.header-left-buttons {
+  margin: 1rem;
+}
+
+.header-search-box {
+  display: flex;
+  margin: 1rem;
+}
+
+.search-form {
+  margin: 1rem;
 }

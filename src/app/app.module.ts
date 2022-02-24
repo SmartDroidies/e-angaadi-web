@@ -8,7 +8,11 @@ import { HomeComponent } from './core/home/home.component';
 import { NavmenuComponent } from './core/navmenu/navmenu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { MatIconModule } from '@angular/material/icon';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import Amplify from 'aws-amplify';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 Amplify.configure({
   Auth: {
@@ -26,7 +30,18 @@ Amplify.configure({
 });
 @NgModule({
   declarations: [AppComponent, HeaderComponent, HomeComponent, NavmenuComponent],
-  imports: [BrowserModule, AppRoutingModule, MatToolbarModule, BrowserAnimationsModule, AmplifyUIAngularModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatToolbarModule,
+    BrowserAnimationsModule,
+    AmplifyUIAngularModule,
+    MatIconModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
