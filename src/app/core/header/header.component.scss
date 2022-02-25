@@ -6,29 +6,21 @@
   font-size: 1rem;
 }
 
-.header-icon-text {
-  font-size: 1rem;
-  margin: 1rem;
-}
-
 :host {
   display: flex;
 }
 
-.header-buttons {
+.header-icons {
   display: flex;
   flex-direction: row;
 }
 
-.header-left-buttons {
+.header-right-buttons {
   margin: 1rem;
 }
 
-.header-search-box {
+.search-bar-align {
   display: flex;
-  margin: 1rem;
-}
-
-.search-form {
+  justify-content: center;
   margin: 1rem;
 }

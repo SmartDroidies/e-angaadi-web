@@ -5,26 +5,13 @@
         <span class="header-logo-text">E-Angaadi</span>
     </div>
     <div>
-        <form class="search-form">
-            <input type="text" placeholder="Search for a products" [matAutocomplete]="auto" [formControl]="myControl">
-            <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let products of filteredProducts | async" [value]="products">
-                    {{products}}
-                </mat-option>
-            </mat-autocomplete>
-        </form>
+        <app-search class="search-bar-align"></app-search>
     </div>
-    <div class="header-buttons">
-        <div class="header-icon-text">
-            <mat-icon>location_on</mat-icon>
-            <span > Your Club</span>
-        </div>
-        <div class="header-icon-text">
-            <mat-icon>account_circle</mat-icon>
-            <span  class="header-logo">Your Account</span>
-        </div>
-        <div class="header-icon-text">
-            <mat-icon  class="header-logo">add_shopping_cart</mat-icon>
+    <div>
+        <div class="header-icons">
+            <app-location class="header-right-buttons"></app-location>
+            <app-user class="header-right-buttons"></app-user>
+            <app-cart class="header-right-buttons"></app-cart>
         </div>
     </div>
 </mat-toolbar>

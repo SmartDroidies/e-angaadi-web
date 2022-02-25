@@ -13,6 +13,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import Amplify from 'aws-amplify';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CartComponent } from './core/header/cart/cart.component';
+import { UserComponent } from './core/header/user/user.component';
+import { LocationComponent } from './core/header/location/location.component';
+import { SearchComponent } from './core/header/search/search.component';
 
 Amplify.configure({
   Auth: {
@@ -29,7 +33,16 @@ Amplify.configure({
   },
 });
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, HomeComponent, NavmenuComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    HomeComponent,
+    NavmenuComponent,
+    CartComponent,
+    UserComponent,
+    LocationComponent,
+    SearchComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

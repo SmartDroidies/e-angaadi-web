@@ -1,0 +1,10 @@
+<div>
+    <form>
+        <input type="text" placeholder="Search for a products" [matAutocomplete]="auto" [formControl]="myControl">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let products of filteredProducts | async" [value]="products">
+                {{products}}
+            </mat-option>
+        </mat-autocomplete>
+    </form>
+</div>
