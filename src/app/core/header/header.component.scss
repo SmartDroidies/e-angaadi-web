@@ -1,17 +1,25 @@
+:host {
+  display: flex;
+}
+
 .mat-toolbar {
   height: 6rem;
+  right: 0px;
 }
 
 .header-logo {
   width: 2rem;
+  float: left;
 }
 
 .header-logo-text {
   font-size: 1rem;
 }
 
-:host {
+.header-spacer {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .header-icons {
@@ -21,10 +29,4 @@
 
 .header-right-buttons {
   margin: 1.3rem;
-}
-
-.search-bar-align {
-  display: flex;
-  justify-content: center;
-  margin: 1rem;
 }
