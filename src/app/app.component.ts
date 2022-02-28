@@ -6,22 +6,22 @@ import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-ampli
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   title = 'E-Angaadi';
-  user: CognitoUserInterface | undefined;
-  authState!: AuthState;
+  // user: CognitoUserInterface | undefined;
+  // authState!: AuthState;
 
-  constructor(private ref: ChangeDetectorRef) {}
+  constructor() {}
 
   ngOnInit() {
-    onAuthUIStateChange((authState, authData) => {
-      this.authState = authState;
-      this.user = authData as CognitoUserInterface;
-      this.ref.detectChanges();
-    });
+    // onAuthUIStateChange((authState, authData) => {
+    //   this.authState = authState;
+    //   this.user = authData as CognitoUserInterface;
+    //   this.ref.detectChanges();
+    // });
   }
 
-  ngOnDestroy() {
-    return onAuthUIStateChange;
-  }
+  // ngOnDestroy() {
+  //   return onAuthUIStateChange;
+  // }
 }
