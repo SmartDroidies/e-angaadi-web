@@ -10,6 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
 
+import { MatIconModule } from '@angular/material/icon';
+import { ProfileComponent } from './core/header/profile/profile.component';
+import { SigninComponent } from './core/component/signin/signin.component';
+
 Amplify.configure({
   Auth: {
     userPoolId: 'ap-south-1_Rqzfipat9',
@@ -25,8 +29,8 @@ Amplify.configure({
   },
 });
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, HomeComponent, NavmenuComponent],
-  imports: [BrowserModule, AppRoutingModule, MatToolbarModule, BrowserAnimationsModule, AmplifyUIAngularModule],
+  declarations: [AppComponent, HeaderComponent, HomeComponent, NavmenuComponent, ProfileComponent,SigninComponent],
+  imports: [BrowserModule, AppRoutingModule, MatToolbarModule, BrowserAnimationsModule, AmplifyUIAngularModule,MatIconModule],
   providers: [],
   bootstrap: [AppComponent],
 })
