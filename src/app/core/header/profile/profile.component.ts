@@ -10,6 +10,7 @@ import { Auth } from 'aws-amplify';
 export class ProfileComponent implements OnInit {
   mail = '';
   name = '';
+  
 
   constructor(private router: Router) { }
 
@@ -19,8 +20,11 @@ export class ProfileComponent implements OnInit {
   initUser() {
     Auth.currentAuthenticatedUser()
       .then(user => {
+        this.name = user.attributes.name;
         this.mail = user.attributes.email;
-        this.name = user.attributes.user_name;
       })
+  }
+  signIn() {
+    this.router.navigate(['/signin'])
   }
 }

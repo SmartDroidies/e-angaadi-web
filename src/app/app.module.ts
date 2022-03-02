@@ -29,7 +29,7 @@ Amplify.configure({
   },
 });
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, HomeComponent, NavmenuComponent, ProfileComponent,SigninComponent],
+  declarations: [AppComponent, HeaderComponent, HomeComponent, NavmenuComponent, ProfileComponent,SigninComponent, ],
   imports: [BrowserModule, AppRoutingModule, MatToolbarModule, BrowserAnimationsModule, AmplifyUIAngularModule,MatIconModule],
   providers: [],
   bootstrap: [AppComponent],
