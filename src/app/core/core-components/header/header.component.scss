@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+}
+
+.mat-toolbar {
+  height: 6rem;
+}
+
+.header-logo {
+  width: 2rem;
+  float: left;
+}
+
+.header-logo-text {
+  font-size: 1rem;
+}
+
+.header-spacer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.header-icons {
+  display: flex;
+  flex-direction: row;
+}
+
+.header-right-buttons {
+  margin: 1.3rem;
+}
