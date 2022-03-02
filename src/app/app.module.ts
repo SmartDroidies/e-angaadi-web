@@ -10,6 +10,7 @@ import { HomeModule } from './home/home-module/home.module';
 import { SharedRoutingModule } from './shared/shared-module/shared-routing.module';
 import { CoreRoutingModule } from './core/core-module/core-routing.module';
 import { HomeRoutingModule } from './home/home-module/home-routing.module';
+import { HeaderComponent } from './core/core-components/header/header.component';
 
 Amplify.configure({
   Auth: {
@@ -26,7 +27,7 @@ Amplify.configure({
   },
 });
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     CoreModule,
     SharedModule,
