@@ -49,3 +49,9 @@ body {
   --amplify-primary-shade: #e03ed8;
   --amplify-background-color: skyblue;
 }
+
+:host {
+  display: flex;
+}
+
+@import 'src/styles/header/header.scss';
