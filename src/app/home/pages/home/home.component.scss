@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+.column-listing {
+  padding: 5px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.category-listing {
+  flex-basis: 30%;
+}
+.product-listing {
+  flex-basis: 70%;
+}
