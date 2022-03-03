@@ -4,10 +4,10 @@
   <div>
     <article>
       <header>
-        <app-header></app-header>
+        <app-header *ngIf="isShow"></app-header>
       </header>
       <main>
-        <router-outlet></router-outlet>
+        <router-outlet (activate)="showHideNav($event)"></router-outlet>
       </main>
     </article>
   </div>  
