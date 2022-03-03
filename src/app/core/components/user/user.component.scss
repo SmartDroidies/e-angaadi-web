@@ -1,0 +1,36 @@
+.dropdown-content {
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    text-align: left;
+    max-height: 0;
+    transition: max-height 0.15s ease-out;
+    overflow: hidden;
+  }
+  .dropdown-content a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+  }
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  .dropdown:hover .dropdown-content {
+    max-height: 500px;
+    transition: max-height 1.5s ease-in;
+  }
+  .dropdown {
+    float: left;
+    overflow: hidden;
+    margin: 4px 12px;
+  }
+
+  .submenu-link {
+    padding: 5px 10px;
+    background-color: blue;
+    color: white;
+  }
