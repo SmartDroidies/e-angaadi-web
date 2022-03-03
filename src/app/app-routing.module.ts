@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SigninComponent } from './core/component/signin/signin.component';
-import { ProfileComponent } from './core/header/profile/profile.component';
+import { SigninComponent } from './auth/pages/signin/signin.component';
+import { ProfileComponent } from './shared/components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

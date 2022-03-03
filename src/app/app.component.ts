@@ -1,8 +1,6 @@
 import { Component, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
-import { SigninComponent } from './core/component/signin/signin.component';
-import { ProfileComponent } from './core/header/profile/profile.component';
-import { HomeComponent } from './core/home/home.component';
+import { SigninComponent } from './auth/pages/signin/signin.component';
 
 @Component({
   selector: 'app-root',

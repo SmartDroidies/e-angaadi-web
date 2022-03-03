@@ -7,9 +7,6 @@ import Amplify from 'aws-amplify';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 
-import { ProfileComponent } from './core/header/profile/profile.component';
-import { SigninComponent } from './core/component/signin/signin.component';
-
 Amplify.configure({
   Auth: {
     userPoolId: 'ap-south-1_Rqzfipat9',
@@ -25,7 +22,7 @@ Amplify.configure({
   },
 });
 @NgModule({
-  declarations: [AppComponent, ProfileComponent, SigninComponent],
+  declarations: [AppComponent],
   imports: [
     CoreModule,
     HomeModule,
