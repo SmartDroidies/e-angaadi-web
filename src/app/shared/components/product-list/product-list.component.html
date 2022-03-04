@@ -1,0 +1,8 @@
+<h2>Products</h2>
+
+    <div *ngFor="let product of products" class="menubar" routerLinkActive="active-nav-link" (click)="onProductItem(product.code)">{{ product.title }}
+
+    <p *ngIf="product.group">
+        {{ product.group }}
+    </p>
+</div>

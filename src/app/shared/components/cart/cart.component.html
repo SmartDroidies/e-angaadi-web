@@ -1,4 +1,27 @@
-<div>
+<!-- <div>
     <mat-icon class="cart-icon">add_shopping_cart</mat-icon>
     <span class="cart-icon-text">Cart</span>
+</div> -->
+<div>
+    <ul class="dropdown">
+        <li class="addcart">
+            <a routerLinkActive="active-nav-link">
+                <mat-icon class="cart-icon">add_shopping_cart</mat-icon>
+                <span class="cart-icon-text">Cart</span>
+            </a>
+            <ul class="dropdown-content">
+                <li>
+                    <a class="submenu-link1" href="#">Products</a>
+                </li>
+                <li>
+                    <a class="submenu-link2">
+                        <span class="total">subtotal:</span>
+                        <br>
+                        <button class="button" mat-raised-button color="primary" (click)="onCart()">View
+                            Cart & Checkout</button>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
 </div>
