@@ -11,18 +11,21 @@ export class ProductService {
       title: 'pluse',
       price: 100,
       group: 'spices',
+      qty: 1,
     },
     {
       code: 'apple',
       title: 'apple',
       price: 200,
       group: 'fruit',
+      qty: 1,
     },
     {
       code: 'mango',
       title: 'mango',
       price: 150,
       group: 'fruit',
+      qty: 1,
     },
   ];
   constructor() {}

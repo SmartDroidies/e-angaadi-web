@@ -1,6 +1,6 @@
 <h3>Cart</h3>
 
-<div class="cart-item" *ngFor="let item of cartItems">
+<div class="cart-item"  *ngFor="let item of items" >
   <span>{{ item.title }}</span>
-  <span>{{ item.price | currency }}</span>
+  <span>{{ item.group }}</span>
 </div>

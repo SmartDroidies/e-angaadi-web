@@ -9,31 +9,31 @@ import { Product } from '../models/product.model';
 export class CartService {
   placeholder = [];
   cartItems = new BehaviorSubject([]);
-  constructor() {
-    const ls = this.getCart();
-    if (ls) this.cartItems.next(ls);
-  }
+  items: Product[] = [];
+  constructor() {}
 
   addToCart(product: Product) {
-    const ls = this.getCart();
+    // const ls = this.getCart();
 
-    if (ls) {
-      const newData = [...ls, product];
-      localStorage.setItem('cart', JSON.stringify(newData));
-      this.cartItems.next(this.getCart());
-    } else {
-      this.setCart(this.placeholder);
-      this.cartItems.next(this.getCart());
-    }
+    // if (ls) {
+    //   const newData = [...ls, product];
+    //   localStorage.setItem('cart', JSON.stringify(newData));
+    //   this.cartItems.next(this.getCart());
+    // } else {
+    //   this.setCart(this.placeholder);
+    //   this.cartItems.next(this.getCart());
+    // }
+    const result = this.items.push(product);
+    localStorage.setItem('cart', JSON.stringify(this.items));
   }
-  setCart(data: any) {
-    localStorage.setItem('cart', JSON.stringify(data));
-    this.cartItems.next(this.getCart());
-  }
+  // setCart() {
+
+  //   this.cartItems.next(this.getCart());
+  // }
   getCart() {
     return JSON.parse(localStorage.getItem('cart') || '{}');
   }
   getItems() {
-    return this.cartItems;
+    return this.items;
   }
 }

@@ -11,4 +11,5 @@ export interface Product {
   // metric: string;
   // status: string;
   price: number;
+  qty: number;
 }
