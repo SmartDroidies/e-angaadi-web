@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  constructor() {}
+  productGroupCode: string = '';
+
+  setProductGroup(groupCode: string) {
+    this.productGroupCode = groupCode;
+  }
 }

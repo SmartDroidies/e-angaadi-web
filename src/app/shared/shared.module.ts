@@ -10,5 +10,3 @@ import { CartComponent } from './components/cart/cart.component';
   exports: [CartComponent],
 })
 export class SharedModule {}
-
-//FIXME - (Jagan) Is there a need for module for sharedModule

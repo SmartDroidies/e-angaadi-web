@@ -1,1 +1,4 @@
-<p style="background-color:orange;height: 1000px;">category works!</p>
+<mat-card class="product-group" role="listitem" *ngFor="let productGroup of productGroups"
+    (click)="onGroupChange(productGroup.code)">
+    <button mat-stroked-button color="primary">{{productGroup.title}}</button>
+</mat-card>

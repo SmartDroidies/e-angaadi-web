@@ -1,5 +1,5 @@
 <div class="column-listing">
-<app-category class="category-listing"></app-category>
-<app-product-listing class="product-listing"></app-product-listing>
+<app-category class="category-listing"(productGroupEvent)="setProductGroup($event)"></app-category>
+<app-product-listing class="product-listing" [productGroupCode]="productGroupCode"></app-product-listing>
 </div>
 
