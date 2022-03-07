@@ -1,5 +1,4 @@
 .products {
-  margin: 4px 8px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -12,13 +11,4 @@
   width: 200px;
   height: 120px;
   object-fit: contain;
-}
-
-.content-head {
-  display: flex;
-  margin: 10px 40px;
-}
-
-.title-spacer {
-  flex: 1;
 }

@@ -6,10 +6,10 @@ import { CategoryComponent } from './components/category/category.component';
 import { ProductListingComponent } from './components/product-listing/product-listing.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [HomeComponent, CategoryComponent, ProductListingComponent],
-  imports: [CommonModule, HomeRoutingModule, MatCardModule, MatButtonModule, MatSlideToggleModule],
+  imports: [CommonModule, HomeRoutingModule, MatCardModule, MatButtonModule, MatChipsModule],
 })
 export class HomeModule {}
