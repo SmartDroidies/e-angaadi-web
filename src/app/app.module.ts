@@ -7,24 +7,26 @@ import Amplify from 'aws-amplify';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 import { SigninComponent } from './auth/pages/signin/signin.component';
+import { AuthModule } from './auth/auth.module';
 
-Amplify.configure({
-  Auth: {
-    userPoolId: 'ap-south-1_Rqzfipat9',
-    userPoolWebClientId: '2r7gu5kr5lbqm7d136v5il5m7f',
-    oauth: {
-      region: 'ap-south-1',
-      domain: 'shopperapp',
-      scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
-      redirectSignIn: 'http://localhost:4200/',
-      redirectSignOut: 'http://localhost:4200/',
-      responseType: 'code',
-    },
-  },
-});
+// Amplify.configure({
+//   Auth: {
+//     userPoolId: 'ap-south-1_Rqzfipat9',
+//     userPoolWebClientId: '2r7gu5kr5lbqm7d136v5il5m7f',
+//     oauth: {
+//       region: 'ap-south-1',
+//       domain: 'shopperapp',
+//       scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
+//       redirectSignIn: 'http://localhost:4200/',
+//       redirectSignOut: 'http://localhost:4200/',
+//       responseType: 'code',
+//     },
+//   },
+// });
 @NgModule({
-  declarations: [AppComponent,SigninComponent],
+  declarations: [AppComponent],
   imports: [
+    AuthModule,
     CoreModule,
     HomeModule,
     BrowserModule,

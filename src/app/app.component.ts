@@ -9,24 +9,15 @@ import { SigninComponent } from './auth/pages/signin/signin.component';
 })
 export class AppComponent implements OnInit {
   title = 'E-Angaadi';
-  // user: CognitoUserInterface | undefined;
-  // authState!: AuthState;
+ 
   isShow=true;
-  showHideNav(event: any){
-        this.isShow= !(event instanceof SigninComponent);                                        
-                               
-  } 
+
   constructor() {}
 
   ngOnInit() {
-    // onAuthUIStateChange((authState, authData) => {
-    //   this.authState = authState;
-    //   this.user = authData as CognitoUserInterface;
-    //   this.ref.detectChanges();
-    // });
+    
   }
 
-  // ngOnDestroy() {
-  //   return onAuthUIStateChange;
-  // }
+  
+
 }

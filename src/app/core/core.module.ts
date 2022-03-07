@@ -8,10 +8,11 @@ import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { SearchComponent } from './components/search/search.component';
 import { UserComponent } from './components/user/user.component';
 import { SharedModule } from '../shared/shared.module';
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 
 @NgModule({
   declarations: [NavMenuComponent, UserComponent, SearchComponent, LocationComponent, HeaderComponent],
-  imports: [CommonModule, SharedModule, MatToolbarModule, MatIconModule],
+  imports: [CommonModule, SharedModule, MatToolbarModule, MatIconModule,AmplifyUIAngularModule],
   exports: [HeaderComponent],
 })
 export class CoreModule {}
