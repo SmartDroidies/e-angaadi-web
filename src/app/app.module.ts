@@ -6,6 +6,7 @@ import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
+import { MatCardModule } from '@angular/material/card';
 
 Amplify.configure({
   Auth: {
@@ -29,6 +30,7 @@ Amplify.configure({
     BrowserModule,
     AppRoutingModule,
     AmplifyUIAngularModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],
