@@ -1,0 +1,14 @@
+.products {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product {
+  margin: 4px;
+}
+
+.product-image {
+  width: 200px;
+  height: 120px;
+  object-fit: contain;
+}

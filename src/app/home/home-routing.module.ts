@@ -6,11 +6,10 @@ import { HomeComponent } from './pages/home/home.component';
 const routes: Routes = [
   {
     //FIXME - Use Auth Guard for FullLayout
-    path: 'home', component: FullLayoutComponent,
-    children: [
-      { path: '', component: HomeComponent }
-    ]
-  }
+    path: 'home',
+    component: FullLayoutComponent,
+    children: [{ path: '', component: HomeComponent }],
+  },
 ];
 
 @NgModule({

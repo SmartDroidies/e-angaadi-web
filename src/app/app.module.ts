@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
 import { HomeModule } from './home/home.module';
+import { ProductModule } from './product/product.module';
 import { CartModule } from './cart/cart.module';
 
 Amplify.configure({
@@ -24,18 +25,8 @@ Amplify.configure({
   },
 });
 @NgModule({
-  declarations: [
-    AppComponent,     
-    FullLayoutComponent
-  ],
-  imports: [
-    CoreModule,
-    HomeModule,
-    CartModule,
-    BrowserModule,
-    AppRoutingModule,
-    AmplifyUIAngularModule,
-  ],
+  declarations: [AppComponent, FullLayoutComponent],
+  imports: [ProductModule, CoreModule, HomeModule, CartModule, BrowserModule, AppRoutingModule, AmplifyUIAngularModule],
   providers: [],
   bootstrap: [AppComponent],
 })

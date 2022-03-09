@@ -8,9 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [CartComponent, CartSummaryComponent],
-  imports: [CommonModule, MatIconModule,MatCardModule],
+  imports: [CommonModule, MatIconModule, MatCardModule],
   exports: [CartComponent, CartSummaryComponent],
 })
 export class SharedModule {}
-
-//FIXME - (Jagan) Is there a need for module for sharedModule
