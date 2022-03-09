@@ -1,13 +1,13 @@
+import { CoreModule } from './core/core.module';
+import { FullLayoutComponent } from './layouts/full-layout.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
-import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
-import { SigninComponent } from './auth/pages/signin/signin.component';
-import { AuthModule } from './auth/auth.module';
+import { CartModule } from './cart/cart.module';
 
 // Amplify.configure({
 //   Auth: {
@@ -24,11 +24,15 @@ import { AuthModule } from './auth/auth.module';
 //   },
 // });
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,     
+    FullLayoutComponent
+  ],
   imports: [
     AuthModule,
     CoreModule,
     HomeModule,
+    CartModule,
     BrowserModule,
     AppRoutingModule,
     AmplifyUIAngularModule,
