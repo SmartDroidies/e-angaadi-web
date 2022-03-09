@@ -9,9 +9,10 @@
 //   padding-right: 0.5rem;
 //   float: left;
 // }
+
+// FIXME - Create one mixin for Cart styling 
 .dropdown-content {
   position: absolute;
-  background-color: #f1f1f1;
   min-width: 80px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 9999;
@@ -20,6 +21,7 @@
   transition: max-height 0.15s ease-out;
   overflow: hidden;
 }
+
 .dropdown-content a {
   color: black;
   text-decoration: none;
@@ -34,35 +36,30 @@
   max-height: 500px;
   transition: max-height 1.5s ease-in;
 }
+
 ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.active-nav-link {
-  border-bottom: 3px Solid orange;
-  opacity: 0.8;
-}
+
 .addcart {
-  color: white;
   text-decoration: none;
   padding: 0.6rem;
 }
-.addcart:hover {
-  border-bottom: 3px Solid orange;
-  opacity: 0.8;
-}
+
 .submenu-link1 {
   padding: 5px 5px;
 }
+
 .submenu-link2 {
   padding: 5px 5px;
 }
+
 .button {
   padding: 5px 2px;
-  background-color: blue;
-  color: white;
 }
+
 .total {
   padding: 2px 2px;
 }

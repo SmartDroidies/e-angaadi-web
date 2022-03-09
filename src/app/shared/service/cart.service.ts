@@ -10,7 +10,7 @@ export class CartService {
   placeholder = [];
   cartItems = new BehaviorSubject([]);
   items: Product[] = [];
-  constructor() {}
+  constructor() { }
 
   addToCart(product: Product) {
     // const ls = this.getCart();
@@ -31,9 +31,12 @@ export class CartService {
   //   this.cartItems.next(this.getCart());
   // }
   getCart() {
+    //FIXME - Return the json here and display the screen
     return JSON.parse(localStorage.getItem('cart') || '{}');
   }
+
   getItems() {
     return this.items;
   }
+
 }
