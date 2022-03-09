@@ -1,0 +1,16 @@
+.product-image {
+  width: 200px; /* adjust as needed */
+  height: 120px;
+  object-fit: contain;
+}
+.cart-item {
+  margin: 4px;
+}
+.cart {
+  margin: 4px 8px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.title {
+  flex: 1;
+}
