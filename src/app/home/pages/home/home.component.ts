@@ -5,10 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
-  productGroupCode: string = '';
-
-  setProductGroup(groupCode: string) {
-    this.productGroupCode = groupCode;
-  }
-}
+export class HomeComponent {}

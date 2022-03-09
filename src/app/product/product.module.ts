@@ -5,10 +5,11 @@ import { ProductListingComponent } from '../product/components/product-listing/p
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { ManageProductComponent } from './components/manage-product/manage-product.component';
 
 @NgModule({
-  declarations: [CategoryComponent, ProductListingComponent],
+  declarations: [CategoryComponent, ProductListingComponent, ManageProductComponent],
   imports: [CommonModule, MatCardModule, MatButtonModule, MatChipsModule],
-  exports: [CategoryComponent, ProductListingComponent],
+  exports: [ManageProductComponent],
 })
 export class ProductModule {}
