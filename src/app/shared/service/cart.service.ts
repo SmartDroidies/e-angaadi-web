@@ -31,7 +31,8 @@ export class CartService {
   //   this.cartItems.next(this.getCart());
   // }
   getCart() {
-    //FIXME - Return the json here and display the screen
+    //FIXME - Return the json here and display the screen  
+    // 5 Products (Image Url, Description, Unit,  Quantity, Price)
     return JSON.parse(localStorage.getItem('cart') || '{}');
   }
 
