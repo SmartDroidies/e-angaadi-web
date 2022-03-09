@@ -2,11 +2,11 @@ import { Component, OnInit,OnDestroy,ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  selector: 'app-sign-in',
+  templateUrl: './sign-in.component.html',
+  styleUrls: ['./sign-in.component.scss']
 })
-export class SigninComponent implements OnInit,OnDestroy {
+export class SignInComponent implements OnInit,OnDestroy {
   user: CognitoUserInterface | undefined;
   authState!: AuthState;
 

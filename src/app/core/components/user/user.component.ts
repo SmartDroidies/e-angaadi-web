@@ -25,6 +25,6 @@ export class UserComponent {
   }
 
   signIn() {
-    this.router.navigate(['/signin'])
+    this.router.navigate(['/auth/sign-in'])
   }
 }

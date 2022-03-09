@@ -1,10 +1,11 @@
+import { AuthRoutingModule } from './auth-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SigninComponent } from './pages/signin/signin.component';
+import {  SignInComponent } from './pages/sign-in/sign-in.component';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { Amplify } from 'aws-amplify';
 
-
+//FIXME - This has to be configure in the App Module
 Amplify.configure({
   Auth: {
     userPoolId: 'ap-south-1_Rqzfipat9',
@@ -22,7 +23,7 @@ Amplify.configure({
 
 
 @NgModule({
-  declarations: [SigninComponent],
-  imports: [CommonModule,AmplifyUIAngularModule],
+  declarations: [SignInComponent],
+  imports: [CommonModule,AmplifyUIAngularModule, AuthRoutingModule],
 })
 export class AuthModule { }

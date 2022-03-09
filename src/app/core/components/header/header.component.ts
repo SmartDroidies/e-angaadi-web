@@ -11,6 +11,7 @@ export class HeaderComponent {
   authState!: AuthState;
   constructor(private ref: ChangeDetectorRef,private router: Router) {}
   ngOnInit(): void {
+    //FIXME - Use Auth.currentAuthenticatedUser()
     onAuthUIStateChange((authState, authData) => {
       this.authState = authState;
       this.user = authData as CognitoUserInterface;
