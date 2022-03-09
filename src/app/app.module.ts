@@ -6,6 +6,7 @@ import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
+import { ProductModule } from './product/product.module';
 
 Amplify.configure({
   Auth: {
@@ -23,13 +24,7 @@ Amplify.configure({
 });
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    CoreModule,
-    HomeModule,
-    BrowserModule,
-    AppRoutingModule,
-    AmplifyUIAngularModule,
-  ],
+  imports: [CoreModule, ProductModule, HomeModule, BrowserModule, AppRoutingModule, AmplifyUIAngularModule],
   providers: [],
   bootstrap: [AppComponent],
 })
