@@ -8,8 +8,4 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   constructor(private router: Router) {}
-
-  onProduct() {
-    this.router.navigate(['/products']);
-  }
 }
