@@ -5,10 +5,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
-import Amplify from 'aws-amplify';
 import { HomeModule } from './home/home.module';
-import { ProductModule } from './product/product.module';
 import { CartModule } from './cart/cart.module';
+import { AuthModule } from './auth/auth.module';
+import { ProductModule } from './product/product.module';
+import { Amplify } from 'aws-amplify';
 
 Amplify.configure({
   Auth: {
@@ -26,8 +27,8 @@ Amplify.configure({
 });
 @NgModule({
   declarations: [AppComponent, FullLayoutComponent],
-  imports: [ProductModule, CoreModule, HomeModule, CartModule, BrowserModule, AppRoutingModule, AmplifyUIAngularModule],
+  imports: [AuthModule,ProductModule, CoreModule, HomeModule, CartModule, BrowserModule, AppRoutingModule, AmplifyUIAngularModule],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

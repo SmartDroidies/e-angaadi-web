@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class UserComponent {
-
+export class ProfileComponent implements OnInit {
   mail = '';
   name = '';
+  
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
+
   ngOnInit(): void {
     this.initUser();
   }
@@ -23,8 +24,7 @@ export class UserComponent {
         this.mail = user.attributes.email;
       })
   }
-
   signIn() {
-    this.router.navigate(['/auth/sign-in'])
+    this.router.navigate(['/signin'])
   }
 }

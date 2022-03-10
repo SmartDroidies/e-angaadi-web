@@ -23,12 +23,29 @@
     max-height: 500px;
     transition: max-height 1.5s ease-in;
   }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .active-nav-link {
+    border-bottom: 3px Solid orange;
+    opacity: 0.8;
+  }
+  .menubar {
+    color: white;
+    text-decoration: none;
+  }
+  .menubar:hover {
+    border-bottom: 3px Solid orange;
+    opacity: 0.8;
+  }
   .dropdown {
     float: left;
     overflow: hidden;
     margin: 4px 12px;
   }
-
+  
   .submenu-link {
     padding: 5px 20px;
     background-color: blue;

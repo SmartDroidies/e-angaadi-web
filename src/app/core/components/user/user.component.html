@@ -1,5 +1,15 @@
-<div>
+<div class="dropdown">
     <mat-icon class="user-icon">account_circle</mat-icon>
     <span class="user-icon-text">Your Account</span>
     <span class="user-icon-text">Sign in</span>
+    <div class="dropdown-content">
+        <button mat-button class="submenu-link"  (click)="signIn()" href="#">Signin</button>
+        <div class="name">
+            <p class="name">{{name}}</p>
+            <p class="mail">{{mail}}</p>
+        </div>
+        <div >
+            <amplify-sign-out></amplify-sign-out>
+        </div> 
+    </div>
 </div>
