@@ -9,14 +9,14 @@ import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-ampli
 export class HeaderComponent {
   user: CognitoUserInterface | undefined;
   authState!: AuthState;
-  constructor(private ref: ChangeDetectorRef,private router: Router) {}
+  constructor(private ref: ChangeDetectorRef, private router: Router) { }
   ngOnInit(): void {
     //FIXME - Use Auth.currentAuthenticatedUser()
     onAuthUIStateChange((authState, authData) => {
       this.authState = authState;
       this.user = authData as CognitoUserInterface;
       this.ref.detectChanges();
-      if(this.authState == 'signedin') {
+      if (this.authState == 'signedin') {
         this.router.navigate(['/home'])
       }
       console.log(this.authState)
