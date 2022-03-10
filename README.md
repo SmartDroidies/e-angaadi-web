@@ -91,3 +91,5 @@ After the conflicts are fixed manually commit and push the changes to the featur
 - No commented piece of code
 - No console logs
 - Only known file changes are committed
+- Routing is at module level
+- Page and Component name stratgery is followed 
