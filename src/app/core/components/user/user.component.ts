@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 
@@ -7,8 +7,7 @@ import { Auth } from 'aws-amplify';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
 })
-export class UserComponent {
-
+export class UserComponent implements OnInit {
   mail = '';
   name = '';
 
@@ -17,14 +16,13 @@ export class UserComponent {
     this.initUser();
   }
   initUser() {
-    Auth.currentAuthenticatedUser()
-      .then(user => {
-        this.name = user.attributes.name;
-        this.mail = user.attributes.email;
-      })
+    Auth.currentAuthenticatedUser().then((user) => {
+      this.name = user.attributes.name;
+      this.mail = user.attributes.email;
+    });
   }
 
   signIn() {
-    this.router.navigate(['/auth/sign-in'])
+    this.router.navigate(['/auth/sign-in']);
   }
 }
