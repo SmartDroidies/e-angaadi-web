@@ -30,7 +30,6 @@ export class UserComponent implements OnInit {
       this.mail = user.attributes.email;
       this.signedin = true;
     });
-    console.log(this.name, this.mail);
   }
 
   signIn() {
