@@ -14,7 +14,6 @@ export class CartSummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCartItem();
-    console.log(this.Items);
   }
 
   getCartItem(): void {

@@ -10,6 +10,6 @@ export class CartComponent {
   constructor(private router: Router) {}
 
   onCart() {
-    this.router.navigate(['/cart']);
+  this.router.navigate(['/cart']);
   }
 }
