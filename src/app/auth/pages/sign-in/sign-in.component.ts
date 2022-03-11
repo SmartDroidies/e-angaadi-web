@@ -21,8 +21,6 @@ export class SignInComponent implements OnInit,OnDestroy {
       if(this.authState == 'signedin') {
         this.router.navigate(['/home'])
       }
-      console.log(this.authState)
-      
     });
   }
 

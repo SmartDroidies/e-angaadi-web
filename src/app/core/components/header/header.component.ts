@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
+import { Auth } from 'aws-amplify';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,15 +12,10 @@ export class HeaderComponent implements OnInit {
   authState!: AuthState;
   constructor(private ref: ChangeDetectorRef, private router: Router) {}
   ngOnInit(): void {
-    //FIXME - Use Auth.currentAuthenticatedUser()
-    onAuthUIStateChange((authState, authData) => {
-      this.authState = authState;
-      this.user = authData as CognitoUserInterface;
-      this.ref.detectChanges();
-      if (this.authState == 'signedin') {
-        this.router.navigate(['/home']);
-      }
-      console.log(this.authState);
+
+    Auth.currentAuthenticatedUser().then((user) => {
+      console.log("Auth User state :" , user);  
     });
+
   }
 }

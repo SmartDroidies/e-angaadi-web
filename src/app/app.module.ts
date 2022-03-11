@@ -1,5 +1,6 @@
+import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
+import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 import { CoreModule } from './core/core.module';
-import { FullLayoutComponent } from './layouts/full-layout.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -26,7 +27,7 @@ Amplify.configure({
   },
 });
 @NgModule({
-  declarations: [AppComponent, FullLayoutComponent],
+  declarations: [AppComponent, FullLayoutComponent, BlankLayoutComponent],
   imports: [AuthModule,ProductModule, CoreModule, HomeModule, CartModule, BrowserModule, AppRoutingModule, AmplifyUIAngularModule],
   providers: [],
   bootstrap: [AppComponent],
