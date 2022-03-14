@@ -9,15 +9,3 @@
   flex-direction: row;
   line-height: 1.3;
 }
-
-.cart-icon-text,
-.location-icon-text,
-.user-icon-text {
-  @include icon-text();
-}
-
-.cart-icon,
-.user-icon,
-.location-icon {
-  @include icons-spacing();
-}
