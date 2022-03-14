@@ -11,16 +11,9 @@ export class UserComponent implements OnInit {
   signedin: boolean = false;
   mail = '';
   name = '';
-  @Input() authState: any;
 
   constructor(private router: Router) {}
-  ngOnChanges(simplechanges: SimpleChanges) {
-    console.log('simpleChanges', simplechanges['authState'].currentValue);
-    if (simplechanges['authState'].currentValue == 'signedOut') {
-      this.initUser();
-      this.signedin = true;
-    }
-  }
+
   ngOnInit(): void {
     this.initUser();
   }
