@@ -53,4 +53,24 @@ body {
   display: flex;
 }
 
-@import 'src/styles/header/header.scss';
+//abstracts
+@import 'scss/abstracts/functions', 'scss/abstracts/mixins', 'scss/abstracts/placeholders', 'scss/abstracts/variables';
+
+//base
+@import 'scss/base/animations', 'scss/base/reset', 'scss/base/typography';
+
+//components
+@import 'scss/components/buttons', 'scss/components/carousel', 'scss/components/cover', 'scss/components/dropdown';
+
+//layout
+@import 'scss/layout/footer', 'scss/layout/forms', 'scss/layout/grid', 'scss/layout/header', 'scss/layout/navbar',
+  'scss/layout/sidebar';
+
+//pages
+@import 'scss/pages/home';
+
+//themes
+@import 'scss/themes/theme';
+
+//vendors
+@import 'scss/vendors/bootstrap';
