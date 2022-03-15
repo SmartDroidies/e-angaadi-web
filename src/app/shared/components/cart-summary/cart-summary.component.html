@@ -9,11 +9,8 @@
       <div class="box">
     <img mat-card-image src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" class="product-image"/>
     <span class="title">{{ item.title }}({{ item.unit }})</span>
-    <!-- <span class="unit">({{ item.unit }})</span>  -->
-    <div class="row">
     <span class="qty">qty:{{ item.qty }}</span> 
     <span class="price">{{ item.price | currency }}</span> 
-  </div>
   </div>
     </div>
   </cdk-virtual-scroll-viewport>
