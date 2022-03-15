@@ -1,8 +1,10 @@
+@import 'src/styles/abstracts/_variables.scss';
+
 .search-text {
   width: 25rem;
   height: 1.5rem;
   border-radius: 2rem;
-  font-size: 0.8rem;
+  font-size: $font;
   padding: 0.4rem;
   margin: 1rem;
 }
