@@ -1,5 +1,5 @@
 //abstracts
-@import 'abstracts/functions', '/abstracts/mixins', 'abstracts/placeholders', 'abstracts/variables';
+@import 'abstracts/functions', 'abstracts/mixins', 'abstracts/placeholders', 'abstracts/variables';
 
 //base
 @import 'base/animations', 'base/reset', 'base/typography';
@@ -8,8 +8,7 @@
 @import 'components/buttons';
 
 //layout
-@import 'layout/footer', 'layout/forms', 'layout/grid', 'layout/header', 'layout/navbar',
-  'layout/sidebar';
+@import 'layout/footer', 'layout/forms', 'layout/grid', 'layout/header', 'layout/navbar', 'layout/sidebar';
 
 //pages
 //  @import 'pages/home';
