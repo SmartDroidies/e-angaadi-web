@@ -37,15 +37,8 @@ $E-Angaadi-theme: mat.define-light-theme(
 // that you are using.
 @include mat.all-component-themes($E-Angaadi-theme);
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-}
 
+//FIXME - This has to go into vendors or themes
 :root {
   --amplify-primary-color: #c749ee;
   --amplify-primary-tint: black;

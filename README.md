@@ -93,3 +93,7 @@ After the conflicts are fixed manually commit and push the changes to the featur
 - Only known file changes are committed
 - Routing is at module level
 - Page and Component name stratgery is followed 
+
+## Styling Review Checklist
+
+- Always use variables for color and size
