@@ -1,3 +1,4 @@
+@import 'src/styles/abstracts/_mixins.scss';
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -8,7 +9,5 @@
 }
 
 .product-image {
-  width: 200px;
-  height: 120px;
-  object-fit: contain;
+  @include img-style();
 }
