@@ -1,0 +1,6 @@
+.location-icon {
+  @include icons-spacing();
+}
+.location-icon-text {
+  @include icon-text();
+}
