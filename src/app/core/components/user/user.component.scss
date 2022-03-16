@@ -43,3 +43,13 @@
 .signout {
   padding: 5px 15px;
 }
+
+@import 'src/styles/abstracts/_mixins.scss';
+
+.user-icon {
+  @include icons-spacing();
+}
+
+.user-icon-text {
+  @include icon-text();
+}

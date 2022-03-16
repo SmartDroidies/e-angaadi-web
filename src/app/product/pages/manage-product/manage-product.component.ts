@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-product.component.scss'],
 })
 export class ManageProductComponent {
-  productGroupCode: string = '';
+  productGroupCode = '';
 
   setProductGroup(groupCode: string) {
     this.productGroupCode = groupCode;

@@ -1,14 +1,4 @@
-// .cart-icon-text {
-//   font-size: 0.8rem;
-//   display: flex;
-//   flex-direction: row;
-//   line-height: 1.3;
-// }
-
-//  .cart-icon {
-//   padding-right: 0.5rem;
-//   float: left;
-// }
+@import 'src/styles/abstracts/_mixins.scss';
 
 // FIXME - Create one mixin for Cart styling
 .dropdown-content {
@@ -23,11 +13,11 @@
 }
 
 .dropdown-content a {
-  color: black;
+  color: $primary;
   text-decoration: none;
   display: block;
   text-align: center;
-  font-size: 14px;
+  font-size: $fontsize;
 }
 .dropdown-content a:hover {
   background-color: #ddd;
@@ -57,9 +47,17 @@ ul {
 }
 
 .button {
-  padding: 5px 2px;
+  @include button;
 }
 
 .total {
   padding: 2px 2px;
+  float: left;
+}
+
+.cart-icon {
+  @include icons-spacing();
+}
+.cart-icon-text {
+  @include icon-text();
 }

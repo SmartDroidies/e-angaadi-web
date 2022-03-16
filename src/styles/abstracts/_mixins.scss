@@ -1,0 +1,27 @@
+@import 'src/styles/abstracts/_variables.scss';
+
+@mixin icons-spacing {
+  padding-right: 0.5rem;
+  float: left;
+}
+
+@mixin icon-text {
+  font-size: $font;
+  display: flex;
+  flex-direction: row;
+  line-height: 1.3;
+}
+
+@mixin img-style {
+  width: 12rem;
+  height: 8rem;
+  object-fit: contain;
+}
+@mixin button {
+  padding: 0.5rem 0.2rem;
+}
+
+//FIXME - Barani - Create mixins
+
+// NavLink
+// Hyperlink
