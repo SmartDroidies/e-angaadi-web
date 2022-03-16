@@ -4,12 +4,11 @@ import { CategoryComponent } from '../product/components/category/category.compo
 import { ProductListingComponent } from '../product/components/product-listing/product-listing.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
 import { ManageProductComponent } from './pages/manage-product/manage-product.component';
 
 @NgModule({
   declarations: [CategoryComponent, ProductListingComponent, ManageProductComponent],
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatChipsModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule],
   exports: [ManageProductComponent],
 })
 export class ProductModule {}
