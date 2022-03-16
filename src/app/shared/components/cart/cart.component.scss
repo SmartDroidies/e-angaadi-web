@@ -3,7 +3,7 @@
 // FIXME - Create one mixin for Cart styling
 .dropdown-content {
   position: absolute;
-  min-width: 300px;
+  min-width: 80px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 9999;
   text-align: left;
@@ -13,11 +13,11 @@
 }
 
 .dropdown-content a {
-  color: black;
+  color: $primary;
   text-decoration: none;
   display: block;
   text-align: center;
-  font-size: 14px;
+  font-size: $fontsize;
 }
 .dropdown-content a:hover {
   background-color: #ddd;
@@ -39,7 +39,7 @@ ul {
 }
 
 .submenu-link1 {
-  scroll-margin-bottom: 20px;
+  padding: 5px 5px;
 }
 
 .submenu-link2 {
