@@ -1,18 +1,20 @@
+@import 'src/styles/abstracts/_variables.scss';
+
 .product-image {
-  width: 80px; /* adjust as needed */
-  height: 80px;
+  width: 5rem; /* adjust as needed */
+  height: 5rem;
   object-fit: contain;
   margin-left: 1%;
-  margin-right: 12px;
+  margin-right: 0.5rem;
   float: left;
   display: flex;
 }
 .cart {
-  height: 250px;
-  width: 300px;
+  height: 14rem;
+  width: 19rem;
   border: 1px solid black;
-  padding-top: 20px;
-  margin-bottom: 18px;
+  padding-top: 0.8rem;
+  margin-bottom: 0.7rem;
   background-color: white;
 }
 
@@ -20,7 +22,7 @@
   height: 70px;
   margin: 4px;
   color: black;
-  font-size: 15px;
+  font-size: $font;
 }
 .title {
   margin: 0px 20px;

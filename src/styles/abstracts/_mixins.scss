@@ -13,9 +13,12 @@
 }
 
 @mixin img-style {
-  width: 200px;
-  height: 120px;
+  width: 12rem;
+  height: 8rem;
   object-fit: contain;
+}
+@mixin button {
+  padding: 0.5rem 0.2rem;
 }
 
 //FIXME - Barani - Create mixins
