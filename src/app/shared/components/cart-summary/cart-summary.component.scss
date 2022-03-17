@@ -9,26 +9,30 @@
   float: left;
   display: flex;
 }
+
 .cart {
   height: 14rem;
   width: 19rem;
-  border: 1px solid black;
   padding-top: 0.8rem;
   margin-bottom: 0.7rem;
   background-color: white;
+  //FIXME - Use from variable named as popup background
 }
+
 .cart-item {
-  height: 70px;
-  margin: 4px;
+  height: 4.5rem;
+  margin: 0.3rem;
   color: black;
+  //FIXME - Use from variable named fontColor
   font-size: $font;
 }
+
 .title {
-  margin: 0px 20px;
   display: block;
 }
+
 .price {
-  margin: 0px 90px;
+  margin: 0rem 5rem;
 }
 
 .box {
