@@ -6,7 +6,7 @@
         <span class="user-icon-text" *ngIf="signedin" >{{name}}</span>
     </span>
     <div class="dropdown-content">
-        <button mat-button class="submenu-link" *ngIf="!signedin" (click)="signIn()" href="#">Signin</button>
+        <button mat-raised-button class="submenu-link" *ngIf="!signedin" (click)="signIn()" color="primary" href="#">Signin</button>
         <div class="name">
             <p class="mail">{{mail}}</p>
         </div>

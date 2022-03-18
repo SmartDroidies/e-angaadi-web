@@ -9,10 +9,11 @@ import { SearchComponent } from './components/search/search.component';
 import { UserComponent } from './components/user/user.component';
 import { SharedModule } from '../shared/shared.module';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [NavMenuComponent, UserComponent, SearchComponent, LocationComponent, HeaderComponent],
-  imports: [CommonModule, SharedModule, MatToolbarModule, MatIconModule,AmplifyUIAngularModule],
+  imports: [CommonModule, SharedModule, MatToolbarModule, MatIconModule, AmplifyUIAngularModule, MatButtonModule],
   exports: [HeaderComponent],
 })
 export class CoreModule {}
