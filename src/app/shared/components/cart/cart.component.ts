@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class CartComponent {
   constructor(private router: Router) {}
 
-  onCart() {
-    this.router.navigate(['/cart']);
+  async onCart() {
+    await this.router.navigate(['/cart']);
   }
 }
