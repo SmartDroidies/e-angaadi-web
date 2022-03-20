@@ -8,10 +8,11 @@ import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { SearchComponent } from './components/search/search.component';
 import { UserComponent } from './components/user/user.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { MatInputModule } from '@angular/material/input';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [NavMenuComponent, UserComponent, SearchComponent, LocationComponent, HeaderComponent],
-  imports: [CommonModule, SharedModule, MatToolbarModule, MatIconModule],
+  imports: [CommonModule, SharedModule, MatToolbarModule, MatIconModule, MatInputModule, RouterModule],
   exports: [HeaderComponent],
 })
 export class CoreModule {}
