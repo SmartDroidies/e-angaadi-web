@@ -10,10 +10,19 @@ import { UserComponent } from './components/user/user.component';
 import { SharedModule } from '../shared/shared.module';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [NavMenuComponent, UserComponent, SearchComponent, LocationComponent, HeaderComponent],
-  imports: [CommonModule, SharedModule, MatToolbarModule, MatIconModule, AmplifyUIAngularModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MatToolbarModule,
+    MatIconModule,
+    AmplifyUIAngularModule,
+    MatButtonModule,
+    MatMenuModule,
+  ],
   exports: [HeaderComponent],
 })
 export class CoreModule {}
