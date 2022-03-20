@@ -16,9 +16,14 @@
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "eslint:recommended",
+        "plugin:@angular-eslint/recommended--extra",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@typescript-eslint/recommended"
       ],
       "rules": {
+        "no-console":"error",
         "@angular-eslint/directive-selector": [
           "error",
           {

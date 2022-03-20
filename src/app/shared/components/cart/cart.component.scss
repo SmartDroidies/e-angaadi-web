@@ -15,11 +15,13 @@
   text-decoration: none;
   display: block;
   text-align: center;
-  font-size: $font;
+  font-size: $font-size-875;
 }
+
 .dropdown-content a:hover {
   background-color: #ddd;
 }
+
 .dropdown:hover .dropdown-content {
   max-height: 22rem;
   transition: max-height 1.5s ease-in;
@@ -52,6 +54,7 @@ ul {
 .cart-icon {
   @include icons-spacing();
 }
+
 .cart-icon-text {
   @include icon-text();
 }
