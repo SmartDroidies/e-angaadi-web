@@ -20,3 +20,7 @@ export class CartSummaryComponent implements OnInit {
     this.cartService.getCart().subscribe((products) => (this.Items = products));
   }
 }
+
+//FIXME - Horizontal line after each cart item
+//FIXME - SubTotal (Total items and cost)
+//FIXME - Button Style

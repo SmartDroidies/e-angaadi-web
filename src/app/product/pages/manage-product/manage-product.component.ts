@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-manage-product',
@@ -6,7 +6,7 @@ import { Component} from '@angular/core';
   styleUrls: ['./manage-product.component.scss'],
 })
 export class ManageProductComponent {
-  productGroupCode = " ";
+  productGroupCode = ' ';
 
   setProductGroup(groupCode: string) {
     this.productGroupCode = groupCode;

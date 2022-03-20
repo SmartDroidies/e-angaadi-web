@@ -1,0 +1,5 @@
+@import '../abstracts/_variables.scss';
+
+:host {
+  font-family: $font-roboto, $font-helvetica, $font-sans;
+}

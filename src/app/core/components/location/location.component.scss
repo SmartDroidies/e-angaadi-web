@@ -1,0 +1,8 @@
+@import 'src/styles/abstracts/_mixins.scss';
+
+.location-icon {
+  @include icons-spacing();
+}
+.location-icon-text {
+  @include icon-text();
+}
