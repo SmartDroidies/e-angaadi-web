@@ -1,3 +1,7 @@
+.menubar {
+  font-size: 10px;
+}
+
 .mat-toolbar {
   height: 6rem;
 }
@@ -5,10 +9,6 @@
 .header-logo {
   width: 3rem;
   float: left;
-}
-
-.header-logo-text {
-  font-size: 1rem;
 }
 
 .header-spacer {
@@ -22,7 +22,4 @@
 
 .header-right-buttons {
   margin: 1rem;
-}
-.menubar {
-  font-size: 10px;
 }

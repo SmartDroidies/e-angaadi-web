@@ -8,7 +8,6 @@ import { CART_PRODUCTS } from './mock.cart';
   providedIn: 'root',
 })
 export class CartService {
-
   getCart(): Observable<Cart[]> {
     return of(CART_PRODUCTS);
   }

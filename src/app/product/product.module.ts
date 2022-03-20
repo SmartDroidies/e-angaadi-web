@@ -5,8 +5,8 @@ import { ProductListingComponent } from '../product/components/product-listing/p
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
-import { ManageProductComponent } from './components/manage-product/manage-product.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ManageProductComponent } from './pages/manage-product/manage-product.component';
 
 @NgModule({
   declarations: [CategoryComponent, ProductListingComponent, ManageProductComponent],

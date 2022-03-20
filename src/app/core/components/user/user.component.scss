@@ -1,0 +1,9 @@
+@import 'src/styles/abstracts/_mixins.scss';
+
+.user-icon {
+  @include icons-spacing();
+}
+
+.user-icon-text {
+  @include icon-text();
+}
