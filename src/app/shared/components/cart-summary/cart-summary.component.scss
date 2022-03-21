@@ -4,29 +4,28 @@
   width: 5rem; /* adjust as needed */
   height: 5rem;
   object-fit: contain;
-  margin-left: 1%;
+  // margin-left: 1%;
   margin-right: 0.5rem;
   float: left;
   display: flex;
 }
 
 .cart {
-  height: 14rem;
-  width: 19rem;
+  height: 15rem;
+  width: 18rem;
   padding-top: 0.8rem;
   margin-bottom: 0.7rem;
   background-color: white;
-  //FIXME - Use from variable named as popup background   
+  //FIXME - Use from variable named as popup background
 }
 
 .cart-item {
   height: 4.5rem;
   margin: 0.3rem;
-  color: black; 
-    //FIXME - Use from variable named fontColor 
+  color: black;
+  //FIXME - Use from variable named fontColor
   font-size: $font-size-875;
 }
-
 .title {
   display: block;
 }
