@@ -1,3 +1,4 @@
+@import 'src/styles/abstracts/_variables.scss';
 .menubar {
   font-size: 10px;
 }
@@ -21,5 +22,9 @@
 }
 
 .header-right-buttons {
-  margin: 1rem;
+  margin: $margin-rem-150;
+  padding: $pad-rem-50;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }

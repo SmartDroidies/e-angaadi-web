@@ -1,4 +1,4 @@
-// @import 'src/styles/abstracts/_variables.scss';
+@import 'src/styles/abstracts/_variables.scss';
 
 // .dropdown-content {
 //   position: absolute;
@@ -31,19 +31,27 @@
 //   margin: 0.2rem 0.7rem;
 // }
 
-// .submenu-link {
-//   left: 0.3rem;
-//   top: 0.3rem;
-// }
-// .name {
-//   color: black;
-//   text-align: center;
-//   font-size: 0.6rem;
-//   margin: 0.3rem;
-// }
-// .signout {
-//   padding: 0.3rem 0.9rem;
-// }
+.signin {
+  left: 0.3rem;
+  top: 0.3rem;
+  display: flex;
+}
+.name {
+  color: black;
+  text-align: center;
+  font-size: $font-size-625;
+}
+.signout {
+  display: flex;
+  padding: $pad-rem-25;
+  margin: $margin-rem-25;
+}
+.cdk-overlay-pane {
+  width: 100%;
+}
+.mat-menu-panel {
+  width: 100%;
+}
 
 @import 'src/styles/abstracts/_mixins.scss';
 
@@ -54,3 +62,5 @@
 .user-icon-text {
   @include icon-text();
 }
+
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
