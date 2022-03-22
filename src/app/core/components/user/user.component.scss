@@ -1,4 +1,5 @@
 @import 'src/styles/abstracts/_variables.scss';
+@import 'src/styles/abstracts/_mixins.scss';
 
 // .dropdown-content {
 //   position: absolute;
@@ -31,29 +32,25 @@
 //   margin: 0.2rem 0.7rem;
 // }
 
-.signin {
+.sign-in {
   left: 0.3rem;
   top: 0.3rem;
   display: flex;
 }
-.name {
-  color: black;
-  text-align: center;
-  font-size: $font-size-625;
-}
-.signout {
+
+.sign-out {
   display: flex;
   padding: $pad-rem-25;
   margin: $margin-rem-25;
 }
+
 .cdk-overlay-pane {
   width: 100%;
 }
+
 .mat-menu-panel {
   width: 100%;
 }
-
-@import 'src/styles/abstracts/_mixins.scss';
 
 .user-icon {
   @include icons-spacing();
@@ -63,4 +60,6 @@
   @include icon-text();
 }
 
-// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.mat-divider {
+  margin: $margin-rem-50 $margin-rem-25;
+}

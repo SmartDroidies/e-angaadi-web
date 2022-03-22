@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [NavMenuComponent, UserComponent, SearchComponent, LocationComponent, HeaderComponent],
@@ -22,6 +23,7 @@ import { MatMenuModule } from '@angular/material/menu';
     AmplifyUIAngularModule,
     MatButtonModule,
     MatMenuModule,
+    MatDividerModule,
   ],
   exports: [HeaderComponent],
 })
