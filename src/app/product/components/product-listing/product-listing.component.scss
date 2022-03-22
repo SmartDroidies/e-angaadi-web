@@ -1,14 +1,33 @@
+@import '/src/styles/abstracts/variables';
 .products {
   display: flex;
   flex-wrap: wrap;
 }
 
 .product {
-  margin: 4px;
+  margin: $margin-rem-25;
 }
 
 .product-image {
-  width: 200px;
-  height: 120px;
+  width: 16rem;
   object-fit: contain;
+}
+
+mat-card-title,
+mat-card-subtitle {
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  margin-bottom: $margin-rem-0;
+}
+
+mat-card-actions {
+  margin: $margin-rem-0;
+}
+
+.Add-cart-button {
+  background-color: lightcoral;
+}
+
+.list-cart-button {
+  background-color: orange;
 }

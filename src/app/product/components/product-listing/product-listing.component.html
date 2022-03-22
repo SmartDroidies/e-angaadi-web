@@ -1,9 +1,17 @@
-<div class="products" >
+<div class="products">
     <mat-card class="product" role="listitem" *ngFor="let product of productsByGroup">
-        <mat-card-header>
-            <mat-card-title class="product-title">{{product.title}}</mat-card-title>
-            <mat-card-subtitle>{{product.code}} :: {{product.key}} </mat-card-subtitle> 
-        </mat-card-header>
-        <img mat-card-image src="https://images.unsplash.com/photo-1502234665511-5745ea0a6a29?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" class="product-image"/>
+            <img mat-card-image
+                src="https://images.unsplash.com/photo-1502234665511-5745ea0a6a29?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                class="product-image" />
+                <mat-card-content>
+            <mat-card-title>{{product.title}}</mat-card-title>
+            <mat-card-title>{{product.title}}</mat-card-title>
+            <mat-card-subtitle>1kg</mat-card-subtitle>
+            <mat-card-subtitle>50rs</mat-card-subtitle>
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="Add-cart-button" mat-button>Add To Cart</button>
+            <button class="list-cart-button" mat-button>Add to List</button>
+          </mat-card-actions>
     </mat-card>
 </div>
