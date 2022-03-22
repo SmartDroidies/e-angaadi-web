@@ -25,11 +25,7 @@
 //   font-size: $font-size-875;
 // }
 
-:host ::ng-deep .title {
-  display: block;
-}
-
-:host ::ng-deep .price {
+.price {
   margin: 0rem 3rem;
 }
 
