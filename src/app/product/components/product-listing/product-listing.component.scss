@@ -1,4 +1,6 @@
 @import '/src/styles/abstracts/variables';
+@import '/src/styles/abstracts/mixins';
+
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -14,7 +16,7 @@
 }
 
 mat-card-title {
-  font-size: $font-size-base;
+  font-size: $font-size-875;
   font-weight: $font-weight-bold;
 }
 
@@ -22,10 +24,24 @@ mat-card-title {
   float: right;
 }
 
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  padding: $pad-rem-0;
+}
+
 .Add-cart-button {
   background-color: lightcoral;
+  flex-basis: 75%;
 }
 
 .list-cart-button {
   background-color: orange;
+  flex-basis: 25%;
+  font-size: 10px;
+}
+
+.list-icon-text {
+  @include icon-text();
+  justify-content: center;
 }
