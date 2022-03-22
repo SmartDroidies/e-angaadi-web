@@ -13,15 +13,13 @@
   object-fit: contain;
 }
 
-mat-card-title,
-mat-card-subtitle {
+mat-card-title {
   font-size: $font-size-base;
   font-weight: $font-weight-bold;
-  margin-bottom: $margin-rem-0;
 }
 
-mat-card-actions {
-  margin: $margin-rem-0;
+.price-cart-right {
+  float: right;
 }
 
 .Add-cart-button {
