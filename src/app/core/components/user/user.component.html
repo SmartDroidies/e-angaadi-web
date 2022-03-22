@@ -18,28 +18,26 @@
     </div>
 </div> -->
 <div>
-    
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon class="user-icon">account_circle</mat-icon>
-            <span class="user-icon-text"><span class="mat-small">Your Account</span></span>
-            
-                <span class="user-icon-text" *ngIf="!signedin"><span class="mat-small">Sign in</span></span>
-                <span class="user-icon-text" *ngIf="signedin"><span class="mat-small">{{name}}</span></span>
-            
-        </button>
-        <mat-menu #menu="matMenu" [overlapTrigger]="false">
 
-            <button mat-raised-button class="signin" *ngIf="!signedin" (click)="signIn()"
-                color="primary">Signin</button>
-            <span class="name">
-                <p class="mail">{{mail}}</p>
-            </span>
-            <hr *ngIf="signedin">
-            <span class="signout">
-                <amplify-sign-out *ngIf="signedin"></amplify-sign-out>
-            </span>
-            <hr *ngIf="signedin">
+    <button mat-icon-button [matMenuTriggerFor]="menu"
+    #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+        <mat-icon class="user-icon">account_circle</mat-icon>
+        <span class="user-icon-text"><span class="mat-small">Your Account</span></span>
+        <span class="user-icon-text" *ngIf="!signedin"><span class="mat-small">Sign in</span></span>
+        <span class="user-icon-text" *ngIf="signedin"><span class="mat-small">{{name}}</span></span>
+    </button>
+    <mat-menu #menu="matMenu"  class="hover-display" [overlapTrigger]="false">
+        <span (mouseleave)="menuTrigger.closeMenu()">
+        <button mat-raised-button class="signin" *ngIf="!signedin" (click)="signIn()" color="primary">Signin</button>
+        <span class="name">
+            <p class="mail">{{mail}}</p>
+        </span>
+        <hr *ngIf="signedin">
+        <span class="signout">
+            <amplify-sign-out *ngIf="signedin"></amplify-sign-out>
+        </span>
+        <hr *ngIf="signedin">
+        </span>
+    </mat-menu>
 
-        </mat-menu>
-    
 </div>
