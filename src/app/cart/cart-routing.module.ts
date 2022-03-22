@@ -1,7 +1,7 @@
 import { CartDetailComponent } from './pages/cart-detail/cart-detail.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FullLayoutComponent } from '../layouts/full-layout.component';
+import { FullLayoutComponent } from '../layouts/full-layout/full-layout.component';
 
 const routes: Routes = [
   {
