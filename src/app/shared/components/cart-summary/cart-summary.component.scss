@@ -4,38 +4,35 @@
   width: 5rem; /* adjust as needed */
   height: 5rem;
   object-fit: contain;
-  // margin-left: 1%;
   margin-right: 0.5rem;
   float: left;
   display: flex;
 }
 
-.cart {
-  height: 15rem;
-  width: 18rem;
-  padding-top: 0.8rem;
-  margin-bottom: 0.7rem;
-  background-color: white;
-  //FIXME - Use from variable named as popup background
-}
+// :host ::ng-deep .cart {
+//   height: 15rem;
+//   width: 18rem;
+//   // padding-top: 0.8rem;
+//   // margin-bottom: 0.7rem;
+//   background-color: $backgroud-color;
+//   //FIXME - Use from variable named as popup background
+// }
 
-.cart-item {
-  height: 4.5rem;
-  margin: 0.3rem;
-  color: black;
-  //FIXME - Use from variable named fontColor
-  font-size: $font-size-875;
-}
-.title {
+// :host ::ng-deep .cart-item {
+//   height: rem;
+//   // color: $font-color;
+//   //FIXME - Use from variable named fontColor
+//   font-size: $font-size-875;
+// }
+
+:host ::ng-deep .title {
   display: block;
 }
 
-.price {
-  margin: 0rem 5rem;
+:host ::ng-deep .price {
+  margin: 0rem 3rem;
 }
 
-.box {
-  content: '';
-  display: table;
-  clear: both;
+.mat-list .mat-list-item {
+  height: 4rem;
 }

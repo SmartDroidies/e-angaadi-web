@@ -1,23 +1,17 @@
-<div>
-    <ul class="dropdown">
-        <li class="addcart">
-            <a routerLinkActive="active-nav-link">
-                <mat-icon class="cart-icon">add_shopping_cart</mat-icon>
-                <span class="cart-icon-text"><span class="mat-small">Cart</span></span>
-            </a>
-            <ul class="dropdown-content">
-                <li>
-                    <app-cart-summary class="submenu-link1"></app-cart-summary>
-                </li>
-                <li>
-                    <a class="submenu-link2">
-                        <span class="total">Subtotal:</span>
-                        <br>
-                        <button class="button" mat-raised-button color="primary" (click)="onCart()">View
-                            Cart & Checkout</button>
-                    </a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</div>
+<button mat-button [matMenuTriggerFor]="menu"  #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+    <mat-icon class="cart-icon">add_shopping_cart</mat-icon>
+    <span class="cart-icon-text"><span class="mat-small">Cart</span></span>
+</button>
+    <mat-menu #menu="matMenu" class="submenu" [overlapTrigger]="false">
+        <span (mouseleave)="menuTrigger.closeMenu()">
+            
+            <app-cart-summary class="submenu-link1"></app-cart-summary>
+            
+            <span class="total">Subtotal:</span>
+            <br>
+            <button class="button" mat-raised-button color="primary" (click)="onCart()">View
+                Cart & Checkout</button>
+            </span> 
+        
+    </mat-menu>
+

@@ -9,6 +9,7 @@ import Amplify from 'aws-amplify';
 import { HomeModule } from './home/home.module';
 import { ProductModule } from './product/product.module';
 import { CartModule } from './cart/cart.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 Amplify.configure({
   Auth: {
@@ -26,7 +27,16 @@ Amplify.configure({
 });
 @NgModule({
   declarations: [AppComponent, FullLayoutComponent],
-  imports: [ProductModule, CoreModule, HomeModule, CartModule, BrowserModule, AppRoutingModule, AmplifyUIAngularModule],
+  imports: [
+    ProductModule,
+    CoreModule,
+    HomeModule,
+    CartModule,
+    BrowserModule,
+    AppRoutingModule,
+    AmplifyUIAngularModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
