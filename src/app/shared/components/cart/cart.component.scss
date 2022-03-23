@@ -4,7 +4,8 @@
 
 .total {
   float: left;
-  color: black;
+  color: $font-color;
+  margin-bottom: 1rem;
 }
 
 .cart-icon {
@@ -16,7 +17,8 @@
 }
 
 // .submenu{
-//   height: 25rem;
+//   height: 5rem;
+//   width: 12rem
 // }
 
 .button {

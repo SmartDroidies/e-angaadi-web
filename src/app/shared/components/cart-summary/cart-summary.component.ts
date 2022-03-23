@@ -8,7 +8,7 @@ import { CartService } from '../../service/cart.service';
   styleUrls: ['./cart-summary.component.scss'],
 })
 export class CartSummaryComponent implements OnInit {
-  Items: Cart[] = [];
+  items: Cart[] = [];
 
   constructor(private cartService: CartService) {}
 
@@ -17,7 +17,7 @@ export class CartSummaryComponent implements OnInit {
   }
 
   getCartItem(): void {
-    this.cartService.getCart().subscribe((products) => (this.Items = products));
+    this.cartService.getCart().subscribe((products) => (this.items = products));
   }
 }
 

@@ -6,13 +6,14 @@
         <span (mouseleave)="menuTrigger.closeMenu()">
             
             <app-cart-summary class="submenu-link1"></app-cart-summary>
+      
       <footer>
-            <span class="total">Subtotal:</span>
-            <br>
+            <span class="total" >Subtotal:{{cartTotal | currency:'INR'}}</span>
+            
             <button class="button" mat-raised-button color="primary" (click)="onCart()">View
                 Cart & Checkout</button>
             </footer>
-            </span> 
-        
+            
+        </span>
     </mat-menu>
 
