@@ -7,6 +7,9 @@
   color: $font-color;
   margin-bottom: 1rem;
 }
+.cart-total {
+  float: right;
+}
 
 .cart-icon {
   @include icons-spacing();

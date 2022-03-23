@@ -11,12 +11,13 @@ import { CartService } from '../../service/cart.service';
 export class CartComponent implements OnInit {
   items: Cart[] = [];
   cartTotal = 0;
-
+  qtyTotal = 0;
   constructor(private router: Router, private cartService: CartService) {}
 
   ngOnInit(): void {
     this.getCartItem();
     this.getCartTotal();
+    this.getTotalQty();
   }
 
   getCartItem(): void {
@@ -30,6 +31,12 @@ export class CartComponent implements OnInit {
   getCartTotal() {
     this.items.forEach((item) => {
       this.cartTotal += item.price;
+    });
+  }
+
+  getTotalQty() {
+    this.items.forEach((item) => {
+      this.qtyTotal += item.qty;
     });
   }
 }
