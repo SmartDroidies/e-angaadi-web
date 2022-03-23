@@ -38,18 +38,12 @@
   display: flex;
 }
 
-.sign-out {
-  display: flex;
-  padding: $pad-rem-25;
-  margin: $margin-rem-25;
+.mat-menu-item:hover {
+  color: skyblue;
 }
 
-.cdk-overlay-pane {
-  width: 100%;
-}
-
-.mat-menu-panel {
-  width: 100%;
+::ng-deep.mat-menu-content:not(:empty) {
+  padding: 0 !important;
 }
 
 .user-icon {

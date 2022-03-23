@@ -29,12 +29,10 @@
         <button mat-raised-button class="sign-in" *ngIf="!signedIn" (click)="signIn()" color="primary">SignIn</button>
         <span mat-menu-item>{{mail}}</span>
         <mat-divider *ngIf="signedIn"></mat-divider>
-        <span class="sign-out">
-            <amplify-sign-out *ngIf="signedIn"></amplify-sign-out>
+        <span >
+            <a  mat-menu-item *ngIf="signedIn" (click)="signOut()">Signout</a>
         </span>
-        <span class="sign-out">
-            <button mat-raised-button class="sign-in" (click)="signOut()">Sign out</button>
-        </span>
+        
         <mat-divider *ngIf="signedIn"></mat-divider>
     </mat-menu>
 

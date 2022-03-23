@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -19,8 +20,8 @@ export class UserComponent implements OnInit {
     void this.initUser();
   }
 
-  async initUser() {
-    await Auth.currentAuthenticatedUser().then((user) => {
+  initUser() {
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
       if (user && user.attributes) {
         this.name = user.attributes.name as string;
         this.mail = user.attributes.email as string;
