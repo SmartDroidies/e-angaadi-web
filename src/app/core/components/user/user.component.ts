@@ -34,6 +34,8 @@ export class UserComponent implements OnInit {
   }
 
   async signOut() {
-    await Auth.signOut();
+    await Auth.signOut().then(() => {
+      window.location.reload();
+    });
   }
 }
