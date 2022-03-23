@@ -32,4 +32,8 @@ export class UserComponent implements OnInit {
   async signIn() {
     await this.router.navigate(['/auth/sign-in']);
   }
+
+  async signOut() {
+    await Auth.signOut();
+  }
 }

@@ -32,6 +32,9 @@
         <span class="sign-out">
             <amplify-sign-out *ngIf="signedIn"></amplify-sign-out>
         </span>
+        <span class="sign-out">
+            <button mat-raised-button class="sign-in" (click)="signOut()">Sign out</button>
+        </span>
         <mat-divider *ngIf="signedIn"></mat-divider>
     </mat-menu>
 
