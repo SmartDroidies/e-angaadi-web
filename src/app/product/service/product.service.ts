@@ -8,8 +8,6 @@ import { Product } from '../models/product';
   providedIn: 'root',
 })
 export class ProductService {
-  type_live = 'live';
-  type_draft = 'draft';
 
   constructor(private http: HttpClient) {}
 
@@ -21,5 +19,12 @@ export class ProductService {
     let params = new HttpParams();
     params = params.append('type', type);
     return this.http.get<Product[]>(environment.productBaseUrl + '/item', { params: params });
+  }
+
+  getProduct(code: string, type: string): Observable<Product> {
+    let params = new HttpParams();
+    params = params.append('code', code);
+    params = params.append('type', type);
+    return this.http.get<Product>(environment.productBaseUrl + '/item', { params: params });
   }
 }
