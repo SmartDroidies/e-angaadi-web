@@ -8,7 +8,7 @@
 }
 
 .mat-menu-item:hover {
-  color: skyblue;
+  color: $hover-color;
 }
 
 ::ng-deep.mat-menu-content:not(:empty) {
@@ -32,5 +32,5 @@
 }
 
 .user-nav-item:hover {
-  color: aqua; //FIXME - This has to be a variable
+  color: $hover-color;
 }
