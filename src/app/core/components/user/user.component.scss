@@ -2,17 +2,24 @@
 @import 'src/styles/abstracts/_mixins.scss';
 
 .sign-in {
-  left: 0.3rem;
   top: 0.3rem;
   display: flex;
+  right: 0.5rem;
 }
-
+.sign-up {
+  align-self: center;
+  font-weight: 400;
+  padding: 0.5rem;
+}
+.sign-up:hover {
+  color: $hover-color;
+}
 .mat-menu-item:hover {
   color: $hover-color;
 }
 
-::ng-deep.mat-menu-content:not(:empty) {
-  padding: 0 !important;
+::ng-deep.mat-menu-content {
+  padding: 1.5rem;
 }
 
 .user-icon {
@@ -33,4 +40,14 @@
 
 .user-nav-item:hover {
   color: $hover-color;
+}
+
+// ::ng-deep .mat-menu-panel {
+//   max-width: none !important;
+//   padding: 0 2rem 0 2rem!important;
+// }
+
+.actions {
+  display: flex;
+  flex-direction: row;
 }
