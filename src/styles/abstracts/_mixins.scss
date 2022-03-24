@@ -12,14 +12,13 @@
 }
 
 @mixin img-style {
-  width: 12rem;
-  height: 8rem;
+  width: $width-rem-1200;
+  height: $height-rem-800;
   object-fit: contain;
 }
 
-@mixin button {
-  padding: 0.5rem 0.2rem;
+@mixin thumbnail-img {
+  width: $width-rem-500;
+  height: $height-rem-300;
+  margin: $margin-rem-25 $margin-rem-50;
 }
-
-// NavLink
-// Hyperlink

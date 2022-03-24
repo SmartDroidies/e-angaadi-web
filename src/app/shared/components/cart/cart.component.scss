@@ -1,54 +1,19 @@
 @import 'src/styles/abstracts/_mixins.scss';
 
-// FIXME - Create one mixin for Cart styling
-.dropdown-content {
-  position: absolute;
-  min-width: 19rem;
-  text-align: left;
-  max-height: 0;
-  transition: max-height 0.15s ease-out;
-  overflow: hidden;
-}
-
-.dropdown-content a {
-  // color: $primary;
-  text-decoration: none;
-  display: block;
-  text-align: center;
-  font-size: $font-size-875;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-  max-height: 22rem;
-  transition: max-height 1.5s ease-in;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.addcart {
-  text-decoration: none;
-  padding: 0.6rem;
-}
-
-.submenu-link2 {
-  padding: 0.5rem 0.5rem;
-}
-
-.button {
-  @include button;
-}
-
 .total {
-  float: left;
-  color: black;
+  margin-left: $margin-rem-50;
+  margin-bottom: $margin-rem-100;
+  font-weight: bold;
+}
+
+.quantity {
+  margin-left: $margin-rem-25;
+}
+
+.cart-total {
+  float: right;
+  margin-right: $margin-rem-100;
+  font-weight: bold;
 }
 
 .cart-icon {
@@ -57,4 +22,14 @@ ul {
 
 .cart-icon-text {
   @include icon-text();
+}
+
+.button {
+  margin: $margin-rem-50;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  margin-top: $margin-rem-50;
 }
