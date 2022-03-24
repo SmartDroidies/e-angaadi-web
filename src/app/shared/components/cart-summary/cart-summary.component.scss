@@ -5,19 +5,20 @@
   height: 5rem;
   object-fit: contain;
   margin-right: 0.5rem;
-  float: right;
+  float: left;
   margin-left: 0.01rem;
+  margin-top: 1rem;
 }
 
 .price {
-  margin: 0rem 3rem;
+  margin: 0rem 5rem;
+  font-weight: bold;
 }
 
-.mat-list .mat-list-item {
-  height: 5rem;
-  // width:9rem;
+.text {
+  float: right;
 }
 
-// .mat-list-base{
-//   height: 25rem;
-// }
+.line2 {
+  margin-top: 0.5rem;
+}
