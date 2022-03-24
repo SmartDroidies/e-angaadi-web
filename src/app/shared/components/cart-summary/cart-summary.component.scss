@@ -1,42 +1,14 @@
-@import 'src/styles/abstracts/_variables.scss';
+@import 'src/styles/abstracts/_mixins.scss';
 
 .product-image {
-  width: 5rem; /* adjust as needed */
-  height: 5rem;
-  object-fit: contain;
-  margin-left: 1%;
-  margin-right: 0.5rem;
-  float: left;
-  display: flex;
-}
-
-.cart {
-  height: 14rem;
-  width: 19rem;
-  padding-top: 0.8rem;
-  margin-bottom: 0.7rem;
-  background-color: white;
-  //FIXME - Use from variable named as popup background
-}
-
-.cart-item {
-  height: 4.5rem;
-  margin: 0.3rem;
-  color: black;
-  //FIXME - Use from variable named fontColor
-  font-size: $font-size-875;
-}
-
-.title {
-  display: block;
+  @include thumbnail-img;
 }
 
 .price {
-  margin: 0rem 5rem;
+  //FIXME - Use flex layout and align right
+  font-weight: bold;
 }
 
-.box {
-  content: '';
-  display: table;
-  clear: both;
+mat-list {
+  overflow: auto;
 }
