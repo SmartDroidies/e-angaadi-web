@@ -1,14 +1,15 @@
-<mat-list  class="cart" >
-  <mat-list-item  *ngFor="let item of items" class="cart-item" >
-  <img mat-card-image src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" class="product-image"/>
-  <span class="text">
-  <span mat-line class="title">{{ item.title }}({{ item.unit }}{{item.submetric}})</span>
-  
-  <span mat-line class="line2">
-  <span class="qty">qty:{{ item.qty }}</span> 
-  <span class="price">{{ item.price | currency:'INR'}}</span>
-</span>
-</span>
-  <mat-divider></mat-divider> 
-</mat-list-item>
+<mat-list>
+  <mat-list-item *ngFor="let item of items">
+    <img mat-card-image
+      src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+      class="product-image" />
+    <span>
+      <span mat-line class="title">{{ item.title }} ({{ item.unit }} {{item.submetric}})</span>
+      <span mat-line>
+        <span>Qty: {{ item.qty }}</span>
+        <span class="price">{{ item.price | currency:'INR'}}</span>
+      </span>
+    </span>
+    <mat-divider></mat-divider>
+  </mat-list-item>
 </mat-list>

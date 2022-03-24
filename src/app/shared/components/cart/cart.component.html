@@ -1,22 +1,22 @@
-<button mat-button [matMenuTriggerFor]="menu"  #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
-    <mat-icon class="cart-icon">add_shopping_cart</mat-icon>
+<button mat-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+    <mat-icon matBadge="15" class="cart-icon">add_shopping_cart</mat-icon>
     <span class="cart-icon-badge">{{qtyTotal}}</span>
     <span class="cart-icon-text"><span class="mat-small">Cart</span></span>
 </button>
-    <mat-menu #menu="matMenu" class="submenu" [overlapTrigger]="false">
-        <span (mouseleave)="menuTrigger.closeMenu()">
-            
-            <app-cart-summary class="submenu1"></app-cart-summary>
-      
-      <footer class="footer">
-            <span class="total" >Subtotal </span>
-            <span class="totqty" >({{qtyTotal}} items)</span>
-            <span class="cart-total">{{cartTotal | currency:'INR'}}</span>
-            
+<mat-menu #menu="matMenu" class="submenu" [overlapTrigger]="false">
+    <span (mouseleave)="menuTrigger.closeMenu()">
+
+        <app-cart-summary></app-cart-summary>
+
+        <footer class="footer">
+            <div>
+                <span class="total">Subtotal </span>
+                <span class="quantity">({{qtyTotal}} items)</span>
+                <span class="cart-total">{{cartTotal | currency:'INR'}}</span>
+            </div>
             <button class="button" mat-raised-button color="primary" (click)="onCart()">View
                 Cart & Checkout</button>
-            </footer>
-            
-        </span>
-    </mat-menu>
+        </footer>
 
+    </span>
+</mat-menu>
