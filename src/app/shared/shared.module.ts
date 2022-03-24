@@ -9,10 +9,20 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [CartComponent, CartSummaryComponent],
-  imports: [CommonModule, MatIconModule, MatCardModule, ScrollingModule, MatListModule, MatButtonModule, MatMenuModule],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatCardModule,
+    ScrollingModule,
+    MatListModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatBadgeModule,
+  ],
   exports: [CartComponent, CartSummaryComponent],
 })
 export class SharedModule {}

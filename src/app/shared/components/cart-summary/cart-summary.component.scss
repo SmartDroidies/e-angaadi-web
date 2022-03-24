@@ -1,15 +1,14 @@
-@import 'src/styles/abstracts/_variables.scss';
+@import 'src/styles/abstracts/_mixins.scss';
 
-//FIXME - Mixin for Product Thumbnail Image 
 .product-image {
-  width: 80px;
-  height: 50px;
-  margin: $margin-rem-25 $margin-rem-50;
+  @include thumbnail-img;
 }
 
 .price {
   //FIXME - Use flex layout and align right
-  margin: 0rem 5rem;
   font-weight: bold;
 }
 
+mat-list {
+  overflow: auto;
+}

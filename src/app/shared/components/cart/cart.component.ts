@@ -40,6 +40,3 @@ export class CartComponent implements OnInit {
     });
   }
 }
-
-//FIXME - Barani use Mat Dialog
-//FIXME - Barani use Mat List

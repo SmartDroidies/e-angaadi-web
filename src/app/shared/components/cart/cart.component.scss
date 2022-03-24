@@ -1,7 +1,5 @@
 @import 'src/styles/abstracts/_mixins.scss';
 
-// FIXME - Create one mixin for Cart styling
-
 .total {
   margin-left: $margin-rem-50;
   margin-bottom: $margin-rem-100;
@@ -14,7 +12,7 @@
 
 .cart-total {
   float: right;
-  margin-right: 1rem;
+  margin-right: $margin-rem-100;
   font-weight: bold;
 }
 
@@ -24,18 +22,6 @@
 
 .cart-icon-text {
   @include icon-text();
-}
-
-//FIXME - Use the material badge
-.cart-icon-badge {
-  position: absolute;
-  top: -1.188rem;
-  right: 0.875rem;
-  border-radius: 50%;
-  background: $background-color-red;
-  //FIXME - User material design ascent style attribute
-  height: 1.8rem;
-  width: 1.8rem;
 }
 
 .button {
