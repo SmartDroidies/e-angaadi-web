@@ -1,55 +1,18 @@
 @import 'src/styles/abstracts/_variables.scss';
 @import 'src/styles/abstracts/_mixins.scss';
 
-// .dropdown-content {
-//   position: absolute;
-//   background-color: #f1f1f1;
-//   min-width: 5rem;
-//   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-//   z-index: 9999;
-//   text-align: left;
-//   max-height: 0;
-//   transition: max-height 0.15s ease-out;
-//   overflow: hidden;
-// }
-// .dropdown-content a {
-//   color: black;
-//   text-decoration: none;
-//   display: block;
-//   text-align: center;
-//   font-size: $font-size-75;
-// }
-// .dropdown-content a:hover {
-//   background-color: #ddd;
-// }
-// .dropdown:hover .dropdown-content {
-//   max-height: 31rem;
-//   transition: max-height 1.5s ease-in;
-// }
-// .dropdown {
-//   float: left;
-//   overflow: hidden;
-//   margin: 0.2rem 0.7rem;
-// }
-
 .sign-in {
   left: 0.3rem;
   top: 0.3rem;
   display: flex;
 }
 
-.sign-out {
-  display: flex;
-  padding: $pad-rem-25;
-  margin: $margin-rem-25;
+.mat-menu-item:hover {
+  color: $hover-color;
 }
 
-.cdk-overlay-pane {
-  width: 100%;
-}
-
-.mat-menu-panel {
-  width: 100%;
+::ng-deep.mat-menu-content:not(:empty) {
+  padding: 0 !important;
 }
 
 .user-icon {
@@ -61,5 +24,13 @@
 }
 
 .mat-divider {
-  margin: $margin-rem-50 $margin-rem-25;
+  margin: $margin-rem-25 $margin-rem-100;
+}
+
+.user-nav-item {
+  margin: $margin-rem-25 $margin-rem-100;
+}
+
+.user-nav-item:hover {
+  color: $hover-color;
 }
