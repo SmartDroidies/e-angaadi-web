@@ -30,13 +30,13 @@ mat-card-actions {
   padding: $pad-rem-0;
 }
 
-.Add-cart-button {
+.add-cart-button {
   flex-basis: 75%;
 }
 
 .list-cart-button {
   flex-basis: 25%;
-  font-size: 10px;
+  font-size: $font-size-625;
 }
 
 .list-icon-text {
