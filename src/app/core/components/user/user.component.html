@@ -1,5 +1,17 @@
 <div>
-    <mat-icon class="user-icon">account_circle</mat-icon>
-    <span class="user-icon-text"><span class="mat-small">Your Account</span></span>
-    <span class="user-icon-text"><span class="mat-small">Sign in</span></span>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger">
+        <mat-icon class="user-icon">account_circle</mat-icon>
+        <span class="user-icon-text mat-small">Your Account</span>
+        <span class="user-icon-text mat-small" *ngIf="!signedIn">Sign in</span>
+        <span class="user-icon-text mat-small" *ngIf="signedIn">{{name}}</span>
+    </button>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+        <button mat-raised-button class="sign-in" *ngIf="!signedIn" (click)="signIn()" color="primary">SignIn</button>
+        <span mat-menu-item>{{mail}}</span>
+        <mat-divider *ngIf="signedIn"></mat-divider>
+        <a *ngIf="signedIn" class="user-nav-item" (click)="signOut()">Sign out</a>
+        <mat-divider *ngIf="signedIn"></mat-divider>
+    </mat-menu>
+
 </div>

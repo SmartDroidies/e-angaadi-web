@@ -1,4 +1,19 @@
+@import 'src/styles/abstracts/_variables.scss';
 @import 'src/styles/abstracts/_mixins.scss';
+
+.sign-in {
+  left: 0.3rem;
+  top: 0.3rem;
+  display: flex;
+}
+
+.mat-menu-item:hover {
+  color: $hover-color;
+}
+
+::ng-deep.mat-menu-content:not(:empty) {
+  padding: 0 !important;
+}
 
 .user-icon {
   @include icons-spacing();
@@ -6,4 +21,16 @@
 
 .user-icon-text {
   @include icon-text();
+}
+
+.mat-divider {
+  margin: $margin-rem-25 $margin-rem-100;
+}
+
+.user-nav-item {
+  margin: $margin-rem-25 $margin-rem-100;
+}
+
+.user-nav-item:hover {
+  color: $hover-color;
 }
