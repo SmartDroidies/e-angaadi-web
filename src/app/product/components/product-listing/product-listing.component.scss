@@ -10,6 +10,7 @@
   margin: $margin-rem-25;
 }
 
+::ng-deep .mat-chip-list-wrapper,
 .product-image {
   width: 16rem;
   object-fit: contain;
