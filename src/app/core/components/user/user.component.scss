@@ -24,5 +24,13 @@
 }
 
 .mat-divider {
-  margin: $margin-rem-50 $margin-rem-25;
+  margin: $margin-rem-25 $margin-rem-100;
+}
+
+.user-nav-item {
+  margin: $margin-rem-25 $margin-rem-100;
+}
+
+.user-nav-item:hover {
+  color: aqua; //FIXME - This has to be a variable
 }
