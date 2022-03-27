@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { CartService } from 'src/app/shared/service/cart.service';
 import { Product } from '../../models/product';
-import { MockProductService } from '../../service/mock-product.service';
+import { ProductService } from '../../service/product.service';
 
 @Component({
   selector: 'app-product-listing',
@@ -12,7 +13,9 @@ export class ProductListingComponent implements OnInit, OnChanges {
   products: Product[] = [];
   productsByGroup: Product[] = [];
   product!: Product;
-  constructor(private productService: MockProductService) {}
+  liveVersion: Product = new Product();
+
+  constructor(private productService: ProductService,private cart:CartService) {}
 
   ngOnInit(): void {
     this.getProducts();
@@ -27,6 +30,15 @@ export class ProductListingComponent implements OnInit, OnChanges {
   }
 
   getProducts(): void {
-    this.productService.getProducts().subscribe((products) => (this.products = products));
+    this.productService.getProducts('live').subscribe((products) => (this.products = products));
+  }
+
+  addCart(code:string){
+    this.productService.getProduct(code, 'live').subscribe((data: Product) => {
+      if (data) {
+        this.liveVersion = data;
+        this.cart.addToCart(this.liveVersion);
+      }
+    });
   }
 }

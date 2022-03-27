@@ -1,9 +1,30 @@
 @import 'src/styles/abstracts/_variables.scss';
 
-.search-text {
+mat-form-field {
   width: 25rem;
-  height: 1.5rem;
-  border-radius: 1.5rem;
-  padding: $pad-rem-25;
-  margin: $margin-rem-100;
+}
+
+::ng-deep .mat-form-field-outline-start {
+  border-radius: $border-radius-350 $border-radius-0 $border-radius-0 $border-radius-350 !important;
+  min-width: $border-radius-350 !important;
+}
+
+::ng-deep .mat-form-field-outline-end {
+  border-radius: $border-radius-0 $border-radius-350 $border-radius-350 $border-radius-0 !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0.4rem $pad-rem-0 0.4rem $pad-rem-0;
+}
+
+::ng-deep.mat-form-field-infix {
+  border-top: $border-radius-25 solid transparent;
+}
+
+::ng-deep.mat-form-field-wrapper {
+  padding: $pad-rem-0;
+}
+
+::ng-deep.mat-toolbar .mat-input-element {
+  font-size: 1rem;
 }
