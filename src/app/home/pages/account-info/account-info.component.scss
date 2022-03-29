@@ -1,0 +1,43 @@
+@import 'src/styles/abstracts/_variables.scss';
+.example-container {
+  position: absolute;
+  top: 7rem;
+  bottom: 5rem;
+  left: 5rem;
+  right: 5rem;
+  background: #eee;
+}
+mat-sidenav {
+  margin: 16px;
+  width: 200px;
+  border-right: none;
+  background: #002b5c;
+  color: white;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.mat-nav-link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+}
+.mat-nav-link:hover {
+  color: $hover-color;
+}
+.mat-nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  margin: 2rem;
+}
+.mat-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: bold;
+  margin: 2rem;
+}

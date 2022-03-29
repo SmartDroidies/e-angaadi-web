@@ -1,0 +1,14 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened>
+        <a>Orders</a>
+        <a class="mat-nav-link">History</a>
+        <a class="mat-nav-link">Favourite-List</a>
+        <a>Account-info</a>
+        <a class="mat-nav-link" (click)="personalInformation()">Personal Information</a>
+        <a class="mat-nav-link">Payment Information</a>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <a class="mat-nav">Personal Information</a>
+        <span class="mat-nav-content">{{mail}}</span>
+    </mat-sidenav-content>
+</mat-sidenav-container>

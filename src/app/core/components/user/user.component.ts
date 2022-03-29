@@ -39,4 +39,8 @@ export class UserComponent implements OnInit {
       window.location.reload();
     });
   }
+
+  async accountinfo() {
+    await this.router.navigate(['/home/account-info']);
+  }
 }
