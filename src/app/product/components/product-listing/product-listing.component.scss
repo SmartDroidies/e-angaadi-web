@@ -10,10 +10,16 @@
   margin: $margin-rem-25;
 }
 
-::ng-deep .mat-chip-list-wrapper,
+
 .product-image {
-  width: 16rem;
+  width: 10rem;
   object-fit: contain;
+  margin: $margin-rem-25;
+  height: 15rem;
+}
+
+::ng-deep .mat-chip-list-wrapper{
+  width: 10rem;
 }
 
 mat-card-title {
@@ -32,15 +38,12 @@ mat-card-actions {
 }
 
 .add-cart-button {
-  flex-basis: 75%;
+  flex-basis: 85%;
 }
 
 .list-cart-button {
-  flex-basis: 25%;
-  font-size: $font-size-625;
+  flex-basis: 15%;
 }
 
-.list-icon-text {
-  @include icon-text();
-  justify-content: center;
-}
+
+

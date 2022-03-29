@@ -1,7 +1,7 @@
 <div class="products">
     <mat-card class="product" role="listitem" *ngFor="let product of productsByGroup">
             <img mat-card-image
-                src="https://images.unsplash.com/photo-1502234665511-5745ea0a6a29?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                src="https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
                 class="product-image" />
                 <mat-card-content>
             <mat-card-title>{{product.key}}<span class="price-cart-right">₹50</span></mat-card-title>
@@ -13,7 +13,7 @@
         </mat-card-content>
         <mat-card-actions>
             <button class="add-cart-button" mat-raised-button (click)="addCart(product.code)">Add To Cart</button>
-            <button class="list-cart-button" mat-raised-button><span class="list-icon-text">Add To</span> <span class="list-icon-text">List</span></button>
+            <button class="list-cart-button" mat-raised-button><mat-icon>playlist_add</mat-icon></button>
           </mat-card-actions>
     </mat-card>
 </div>

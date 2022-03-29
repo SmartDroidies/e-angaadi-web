@@ -37,6 +37,7 @@ export class ProductListingComponent implements OnInit, OnChanges {
   selectChip(item: MatChip) {
     item.selected = !item.selected;
  }
+ 
   getProducts(): void {
     this.productService.getProducts('live').subscribe((products) => (this.products = products));
   }
