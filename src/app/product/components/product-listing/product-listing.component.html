@@ -8,12 +8,12 @@
             <mat-card-title>{{product.title}}</mat-card-title>
             <mat-chip-list>
                 <!-- <mat-chip  #lbl="matChip" (click)="selectChip(lbl)" *ngFor="let item of priceLiveVersion.prices">{{item.unit+' '+product.submetric}}</mat-chip> -->
-                <mat-chip *ngFor="let item of product.units" #lbl="matChip" (click)="selectChip(lbl)">{{item+' '+product.submetric}}</mat-chip>
+                <mat-chip *ngFor="let item of product.units">{{item+' '+product.submetric}}</mat-chip>
               </mat-chip-list>
         </mat-card-content>
         <mat-card-actions>
             <button class="add-cart-button" mat-raised-button (click)="addCart(product.code)">Add To Cart</button>
-            <button class="list-cart-button" mat-raised-button><mat-icon>playlist_add</mat-icon></button>
+            <button class="list-cart-button" mat-icon-button><mat-icon>playlist_add</mat-icon></button>
           </mat-card-actions>
     </mat-card>
 </div>
