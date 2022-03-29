@@ -19,4 +19,10 @@ export class CartService {
     this.items.push(product);
     localStorage.setItem('cart', JSON.stringify(this.items));
   }
+
+  getCartItems() {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    this.items = JSON.parse(localStorage.getItem('cart') || '');
+    return this.items;
+  }
 }
