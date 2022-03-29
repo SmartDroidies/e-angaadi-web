@@ -8,7 +8,12 @@
     </button>
     <mat-menu #menu="matMenu" [overlapTrigger]="false">
         <button mat-raised-button class="sign-in" *ngIf="!signedIn" (click)="signIn()" color="primary">SignIn</button>
-        <span mat-menu-item>{{mail}}</span>
+        <mat-divider *ngIf="signedIn"></mat-divider>
+        <span mat-menu-item *ngIf="signedIn">{{mail}}</span>
+        <mat-divider></mat-divider>
+        <a class="menu-link">Account Information</a>
+        <a class="menu-link">Change Password</a>
+        <a class="menu-link">Help Center</a>
         <mat-divider *ngIf="signedIn"></mat-divider>
         <a *ngIf="signedIn" class="user-nav-item" (click)="signOut()">Sign out</a>
         <mat-divider *ngIf="signedIn"></mat-divider>
