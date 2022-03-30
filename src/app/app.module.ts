@@ -12,7 +12,6 @@ import { AuthModule } from './auth/auth.module';
 import { ProductModule } from './product/product.module';
 import { Amplify } from 'aws-amplify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
 
 Amplify.configure({
   Auth: {
@@ -35,7 +34,6 @@ Amplify.configure({
     ProductModule,
     CoreModule,
     HomeModule,
-    CommonModule,
     CartModule,
     BrowserModule,
     AppRoutingModule,
