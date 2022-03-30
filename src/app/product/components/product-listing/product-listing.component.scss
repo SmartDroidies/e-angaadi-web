@@ -1,3 +1,6 @@
+
+
+
 @import '/src/styles/abstracts/variables';
 @import '/src/styles/abstracts/mixins';
 
@@ -12,14 +15,14 @@
 
 
 .product-image {
-  width: 10rem;
+  width: 16rem;
   object-fit: contain;
   margin: $margin-rem-25;
   height: 15rem;
 }
 
 ::ng-deep .mat-chip-list-wrapper{
-  width: 10rem;
+  width: 16rem;
 }
 
 mat-card-title {
@@ -45,5 +48,7 @@ mat-card-actions {
   flex-basis: 20%;
 }
 
-
-
+.count-badge{
+  transform: scale(0.7);
+  font-size: 1rem;
+}

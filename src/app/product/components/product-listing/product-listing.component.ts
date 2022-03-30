@@ -1,3 +1,4 @@
+
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatChip } from '@angular/material/chips';
 import { CartService } from 'src/app/shared/service/cart.service';
@@ -17,13 +18,20 @@ export class ProductListingComponent implements OnInit, OnChanges {
   product!: Product;
   liveVersion: Product = new Product();
   priceLiveVersion: ProductPrice = new ProductPrice();
-  code:any;
+  selectedUnit!:number;
+  code!:string;
+  unitBatch=0;
+  addUnit=1;
+  subUnit=1;
+
 
   constructor(private productService: ProductService, private cart: CartService) { }
 
   ngOnInit(): void {
     this.getProducts();
     this.loadPriceLiveVersion(this.code);
+    this.getAddedCart(this.addUnit);
+    this.getSubCart(this.subUnit);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -34,22 +42,10 @@ export class ProductListingComponent implements OnInit, OnChanges {
     }
   }
   
-  selectChip(item: MatChip) {
-    item.selected = !item.selected;
- }
- 
   getProducts(): void {
     this.productService.getProducts('live').subscribe((products) => (this.products = products));
   }
 
-  addCart(code: string) {
-    this.productService.getProduct(code, 'live').subscribe((data: Product) => {
-      if (data) {
-        this.liveVersion = data;
-        this.cart.addToCart(this.liveVersion);
-      }
-    });
-  }
 
   loadPriceLiveVersion(code:any) {
     this.productService.getProductPrice(code, 'live').subscribe((data: ProductPrice) => {
@@ -59,4 +55,38 @@ export class ProductListingComponent implements OnInit, OnChanges {
     });
   }
 
+  selectChip(item: MatChip) {
+    item.selected = !item.selected;
+ }
+
+  changeSelected(unit:any,code:any,item: MatChip){
+    this.productService.getProduct(code, 'live').subscribe((data: Product) => {
+      if (data) {
+        this.liveVersion = data;
+      }
+    });
+    this.selectedUnit=unit;
+    console.log(this.selectedUnit,code);
+  }
+
+  addCart(){
+    this.unitBatch=+1;
+    if(this.unitBatch>1){
+    this.cart.addToCart(this.liveVersion,this.selectedUnit);
+    }
+  }
+
+  getAddedCart(add:any){
+    this.unitBatch=this.unitBatch+add;
+  }
+
+  getSubCart(sub:any){
+    this.unitBatch=this.unitBatch-sub;
+  }
+  
 }
+
+
+
+
+
