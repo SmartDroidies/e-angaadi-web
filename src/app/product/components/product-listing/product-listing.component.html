@@ -17,8 +17,8 @@
         <mat-card-actions>
                 <button  *ngIf="unitBatch==0" class="add-cart-button" mat-raised-button (click)="addCart()">Add To Cart</button>
             <div *ngIf="unitBatch>0">
-                <button mat-icon-button class="add-sub-product" (click)=getAddedCart(addUnit)>+</button>
-                <button mat-icon-button class="add-sub-product" (click)=getSubCart(subUnit)>-</button>
+                <button mat-icon-button class="add-sub-product" (click)=getAddedCart()>+</button>
+                <button mat-icon-button class="add-sub-product" (click)=getSubCart()>-</button>
             </div>
             <button class="list-cart-button" mat-icon-button>
                 <mat-icon>playlist_add</mat-icon>

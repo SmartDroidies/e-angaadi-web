@@ -21,8 +21,7 @@ export class ProductListingComponent implements OnInit, OnChanges {
   selectedUnit!:number;
   code!:string;
   unitBatch=0;
-  addUnit=1;
-  subUnit=1;
+
 
 
   constructor(private productService: ProductService, private cart: CartService) { }
@@ -30,8 +29,8 @@ export class ProductListingComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.getProducts();
     this.loadPriceLiveVersion(this.code);
-    this.getAddedCart(this.addUnit);
-    this.getSubCart(this.subUnit);
+    this.getAddedCart();
+    this.getSubCart();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -76,12 +75,12 @@ export class ProductListingComponent implements OnInit, OnChanges {
     }
   }
 
-  getAddedCart(add:any){
-    this.unitBatch=this.unitBatch+add;
+  getAddedCart(){
+    this.unitBatch=this.unitBatch+1;
   }
 
-  getSubCart(sub:any){
-    this.unitBatch=this.unitBatch-sub;
+  getSubCart(){
+    this.unitBatch=this.unitBatch-1;
   }
   
 }
