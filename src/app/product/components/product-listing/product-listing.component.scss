@@ -12,8 +12,7 @@
 
 ::ng-deep .mat-chip-list-wrapper,
 .product-image {
-  width: 16rem;
-  object-fit: contain;
+  @include img-style;
 }
 
 mat-card-title {
