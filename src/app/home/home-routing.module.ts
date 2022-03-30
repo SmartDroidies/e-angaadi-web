@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FullLayoutComponent } from '../layouts/full-layout/full-layout.component';
 import { AccountInfoComponent } from './pages/account-info/account-info.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -11,7 +12,8 @@ const routes: Routes = [
     component: FullLayoutComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'account-info', component: AccountInfoComponent },
+      { path: 'account-info', component: AccountInfoComponent, children: [{ path: 'profile', component: ProfileComponent }] },
+
     ],
   },
 ];
@@ -20,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HomeRoutingModule {}
+export class HomeRoutingModule { }
