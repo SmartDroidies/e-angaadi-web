@@ -21,6 +21,7 @@ export class ProductListingComponent implements OnInit, OnChanges {
   selectedUnit!:number;
   code!:string;
   unitBatch=0;
+  isUnitSelected=false;
 
 
 
@@ -29,8 +30,6 @@ export class ProductListingComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.getProducts();
     this.loadPriceLiveVersion(this.code);
-    this.getAddedCart();
-    this.getSubCart();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -65,21 +64,23 @@ export class ProductListingComponent implements OnInit, OnChanges {
       }
     });
     this.selectedUnit=unit;
-    console.log(this.selectedUnit,code);
+    this.isUnitSelected=!this.isUnitSelected;
   }
 
   addCart(){
+    if(this.isUnitSelected){
     this.unitBatch=+1;
     if(this.unitBatch>0){
     this.cart.addToCart(this.liveVersion,this.selectedUnit,this.unitBatch);
     }
   }
+  }
 
-  getAddedCart(){
+  addUnit(){
     this.unitBatch=this.unitBatch+1;
   }
 
-  getSubCart(){
+  SubUnit(){
     this.unitBatch=this.unitBatch-1;
   }
   
