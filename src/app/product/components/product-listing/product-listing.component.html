@@ -8,8 +8,8 @@
             <mat-card-title>{{product.title}}</mat-card-title>
             <mat-chip-list>
                 <mat-chip *ngFor="let item of product.units" #lbl="matChip" (click)="selectChip(lbl)"
-                    (click)="changeSelected(item,product.code,lbl)">
-                    <button class="count-badge" min="0" mat-mini-fab>{{unitBatch}}</button>
+                    (click)="unitSelected(item,product.code)">
+                    <button *ngIf="unitBatch>0" class="count-badge" min="0" mat-mini-fab>{{unitBatch}}</button>
                     {{item+' '+product.submetric}}
                 </mat-chip>
             </mat-chip-list>

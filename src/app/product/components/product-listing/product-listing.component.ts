@@ -58,7 +58,7 @@ export class ProductListingComponent implements OnInit, OnChanges {
     item.selected = !item.selected;
  }
 
-  changeSelected(unit:any,code:any,item: MatChip){
+  unitSelected(unit:any,code:any){
     this.productService.getProduct(code, 'live').subscribe((data: Product) => {
       if (data) {
         this.liveVersion = data;
@@ -70,8 +70,8 @@ export class ProductListingComponent implements OnInit, OnChanges {
 
   addCart(){
     this.unitBatch=+1;
-    if(this.unitBatch>1){
-    this.cart.addToCart(this.liveVersion,this.selectedUnit);
+    if(this.unitBatch>0){
+    this.cart.addToCart(this.liveVersion,this.selectedUnit,this.unitBatch);
     }
   }
 

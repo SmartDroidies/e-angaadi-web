@@ -16,8 +16,9 @@ export class CartService {
   }
 
 
-  addToCart(product: Product, selectedUnit: any) {
-    this.items.push(product, selectedUnit);
+  addToCart(product: Product, selectedUnit: any,unitBatch:any) {
+    console.log(unitBatch);
+    this.items.push(product, selectedUnit,unitBatch);
     localStorage.setItem('cart', JSON.stringify(this.items));
   }
 
