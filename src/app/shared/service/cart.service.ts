@@ -15,10 +15,9 @@ export class CartService {
     return of(CART_PRODUCTS);
   }
 
-
-  addToCart(product: Product, selectedUnit: any,unitBatch:any) {
+  addToCart(product: Product, selectedUnit: any, unitBatch: any) {
     console.log(unitBatch);
-    this.items.push(product, selectedUnit,unitBatch);
+    this.items.push(product, selectedUnit, unitBatch);
     localStorage.setItem('cart', JSON.stringify(this.items));
   }
 

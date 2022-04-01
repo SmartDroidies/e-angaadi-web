@@ -18,11 +18,10 @@ export class ProductListingComponent implements OnInit, OnChanges {
   product!: Product;
   liveVersion: Product = new Product();
   priceLiveVersion: ProductPrice = new ProductPrice();
-  selectedUnit!:number;
-  code!:string;
-  unitBatch=0;
-  isUnitSelected=false;
-
+  selectedUnit!: number;
+  code!: string;
+  quantity = 0;
+  isUnitSelected = false;
 
 
   constructor(private productService: ProductService, private cart: CartService) { }
@@ -39,13 +38,13 @@ export class ProductListingComponent implements OnInit, OnChanges {
       );
     }
   }
-  
+
   getProducts(): void {
     this.productService.getProducts('live').subscribe((products) => (this.products = products));
   }
 
 
-  loadPriceLiveVersion(code:any) {
+  loadPriceLiveVersion(code: any) {
     this.productService.getProductPrice(code, 'live').subscribe((data: ProductPrice) => {
       if (data) {
         this.priceLiveVersion = data;
@@ -55,35 +54,36 @@ export class ProductListingComponent implements OnInit, OnChanges {
 
   selectChip(item: MatChip) {
     item.selected = !item.selected;
- }
+    
+  }
 
-  unitSelected(unit:any,code:any){
+  unitSelected(unit: any, code: any) {
     this.productService.getProduct(code, 'live').subscribe((data: Product) => {
       if (data) {
         this.liveVersion = data;
       }
     });
-    this.selectedUnit=unit;
-    this.isUnitSelected=!this.isUnitSelected;
+    this.selectedUnit = unit;
+    this.isUnitSelected = !this.isUnitSelected;
   }
 
-  addCart(){
-    if(this.isUnitSelected){
-    this.unitBatch=+1;
-    if(this.unitBatch>0){
-    this.cart.addToCart(this.liveVersion,this.selectedUnit,this.unitBatch);
+  addCart() {
+    if (this.isUnitSelected) {
+      this.quantity = +1;
+      if (this.quantity > 0) {
+        this.cart.addToCart(this.liveVersion, this.selectedUnit, this.quantity);
+      }
     }
   }
+
+  addUnit() {
+    this.quantity = this.quantity + 1;
   }
 
-  addUnit(){
-    this.unitBatch=this.unitBatch+1;
+  SubUnit() {
+    this.quantity = this.quantity - 1;
   }
 
-  SubUnit(){
-    this.unitBatch=this.unitBatch-1;
-  }
-  
 }
 
 
