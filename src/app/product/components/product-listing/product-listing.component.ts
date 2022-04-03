@@ -28,7 +28,6 @@ export class ProductListingComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getProducts();
-    this.loadPriceLiveVersion(this.code);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -43,14 +42,6 @@ export class ProductListingComponent implements OnInit, OnChanges {
     this.productService.getProducts('live').subscribe((products) => (this.products = products));
   }
 
-
-  loadPriceLiveVersion(code: any) {
-    this.productService.getProductPrice(code, 'live').subscribe((data: ProductPrice) => {
-      if (data) {
-        this.priceLiveVersion = data;
-      }
-    });
-  }
 
   selectChip(item: MatChip) {
     item.selected = !item.selected;
@@ -71,7 +62,7 @@ export class ProductListingComponent implements OnInit, OnChanges {
     if (this.isUnitSelected) {
       this.quantity = +1;
       if (this.quantity > 0) {
-        this.cart.addToCart(this.liveVersion, this.selectedUnit, this.quantity);
+        this.cart.updateCart(this.liveVersion, this.selectedUnit, this.quantity);
       }
     }
   }

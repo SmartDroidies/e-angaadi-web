@@ -28,10 +28,4 @@ export class ProductService {
     return this.http.get<Product>(environment.productBaseUrl + '/item', { params: params });
   }
 
-  getProductPrice(code: string, type: string): Observable<any> {
-    let params = new HttpParams();
-    params = params.append('code', code);
-    params = params.append('type', type);
-    return this.http.get<any>(environment.productBaseUrl + '/price', { params: params });
-  }
 }
