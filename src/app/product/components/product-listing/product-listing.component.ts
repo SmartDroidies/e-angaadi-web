@@ -16,7 +16,6 @@ export class ProductListingComponent implements OnInit, OnChanges {
   products: Product[] = [];
   productsByGroup: Product[] = [];
   product!: Product;
-  liveVersion: Product = new Product();
   priceLiveVersion: ProductPrice = new ProductPrice();
   selectedUnit!: number;
   code!: string;
@@ -45,24 +44,19 @@ export class ProductListingComponent implements OnInit, OnChanges {
 
   selectChip(item: MatChip) {
     item.selected = !item.selected;
-    
+
   }
 
-  unitSelected(unit: any, code: any) {
-    this.productService.getProduct(code, 'live').subscribe((data: Product) => {
-      if (data) {
-        this.liveVersion = data;
-      }
-    });
+  unitSelected(unit: any) {
     this.selectedUnit = unit;
     this.isUnitSelected = !this.isUnitSelected;
   }
 
-  addCart() {
+  addCart(product: any) {
     if (this.isUnitSelected) {
       this.quantity = +1;
       if (this.quantity > 0) {
-        this.cart.updateCart(this.liveVersion, this.selectedUnit, this.quantity);
+        this.cart.updateCart(product, this.selectedUnit, this.quantity);
       }
     }
   }

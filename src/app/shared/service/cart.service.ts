@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/product/models/product';
@@ -15,9 +15,9 @@ export class CartService {
     return of(CART_PRODUCTS);
   }
 
-  updateCart(product: Product, selectedUnit: any, unitBatch: any) {
-    console.log(unitBatch);
-    this.items.push(product, selectedUnit, unitBatch);
+  updateCart(product: Product, selectedUnit: any, quantity: any) {
+    console.log(quantity);
+    this.items.push(product, selectedUnit, quantity);
     localStorage.setItem('cart', JSON.stringify(this.items));
   }
   
