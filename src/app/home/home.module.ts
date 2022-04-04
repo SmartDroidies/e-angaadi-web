@@ -7,9 +7,21 @@ import { AccountInfoComponent } from './pages/account-info/account-info.componen
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { ProfileComponent } from './pages/profile/profile.component';
-
+import { AddressComponent } from './pages/address/address.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [HomeComponent, AccountInfoComponent, ProfileComponent],
-  imports: [CommonModule, HomeRoutingModule, ProductModule, MatSidenavModule, MatDividerModule],
+  declarations: [HomeComponent, AccountInfoComponent, ProfileComponent, AddressComponent],
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    ProductModule,
+    MatSidenavModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+  ],
 })
 export class HomeModule {}
