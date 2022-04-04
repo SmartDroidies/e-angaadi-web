@@ -44,7 +44,6 @@ export class ProductListingComponent implements OnInit, OnChanges {
 
   selectChip(item: MatChip) {
     item.selected = !item.selected;
-
   }
 
   unitSelected(unit: any) {
@@ -57,6 +56,9 @@ export class ProductListingComponent implements OnInit, OnChanges {
       this.quantity = +1;
       if (this.quantity > 0) {
         this.cart.updateCart(product, this.selectedUnit, this.quantity);
+      }
+      else{
+        this.cart.removeCart(product,this.selectedUnit,this.quantity);
       }
     }
   }
