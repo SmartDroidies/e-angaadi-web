@@ -1,4 +1,3 @@
-
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatChip } from '@angular/material/chips';
 import { CartService } from 'src/app/shared/service/cart.service';
@@ -22,8 +21,7 @@ export class ProductListingComponent implements OnInit, OnChanges {
   quantity = 0;
   isUnitSelected = false;
 
-
-  constructor(private productService: ProductService, private cart: CartService) { }
+  constructor(private productService: ProductService, private cart: CartService) {}
 
   ngOnInit(): void {
     this.getProducts();
@@ -41,24 +39,22 @@ export class ProductListingComponent implements OnInit, OnChanges {
     this.productService.getProducts('live').subscribe((products) => (this.products = products));
   }
 
-
   selectChip(item: MatChip) {
     item.selected = !item.selected;
   }
 
-  unitSelected(unit: any) {
+  unitSelected(unit: number) {
     this.selectedUnit = unit;
     this.isUnitSelected = !this.isUnitSelected;
   }
 
-  addCart(product: any) {
+  addCart(product: Product) {
     if (this.isUnitSelected) {
       this.quantity = +1;
       if (this.quantity > 0) {
         this.cart.updateCart(product, this.selectedUnit, this.quantity);
-      }
-      else{
-        this.cart.removeCart(product,this.selectedUnit,this.quantity);
+      } else {
+        this.cart.removeCart(product, this.selectedUnit, this.quantity);
       }
     }
   }
@@ -70,10 +66,4 @@ export class ProductListingComponent implements OnInit, OnChanges {
   SubUnit() {
     this.quantity = this.quantity - 1;
   }
-
 }
-
-
-
-
-
