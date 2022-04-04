@@ -1,3 +1,4 @@
+import { TranslationService } from './service/translation.service';
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,9 +11,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
+import { TranslationPipe } from './pipes/translation.pipe';
 
 @NgModule({
-  declarations: [CartComponent, CartSummaryComponent],
+  declarations: [CartComponent, CartSummaryComponent, TranslationPipe],
   imports: [
     CommonModule,
     MatIconModule,
@@ -23,6 +25,6 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatMenuModule,
     MatBadgeModule,
   ],
-  exports: [CartComponent, CartSummaryComponent],
+  exports: [CartComponent, CartSummaryComponent, TranslationPipe],
 })
 export class SharedModule {}

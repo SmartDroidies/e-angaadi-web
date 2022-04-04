@@ -1,3 +1,4 @@
+import { TranslationService } from './shared/service/translation.service';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 import { CoreModule } from './core/core.module';
@@ -12,9 +13,6 @@ import { AuthModule } from './auth/auth.module';
 import { ProductModule } from './product/product.module';
 import { Amplify } from 'aws-amplify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
 import { ProductService } from './product/service/product.service';
 
 Amplify.configure({
@@ -45,23 +43,14 @@ Amplify.configure({
     BrowserAnimationsModule,
   ],
   providers: [
-    ProductService,
+    TranslationService,
     {
       provide: APP_INITIALIZER,
-      useFactory: (productService: ProductService) => () => productService.saveTranslation(),
-      deps: [ProductService],
+      useFactory: (translationService: TranslationService) => () => translationService.initializeTranslation(),
+      deps: [TranslationService],
       multi: true,
     },
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-// getTranslation(): Observable<any> {
-//   this.translate= this.http.get<any>(environment.productBaseUrl + '/translation');
-//   console.log (this.translate)
-//   return this.translate;
-// }
-
-// savetranslation(){
-//   localStorage.setItem('translate', JSON.stringify(this.translate));
-// }

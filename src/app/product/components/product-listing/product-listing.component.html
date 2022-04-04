@@ -4,8 +4,8 @@
                 src="https://images.unsplash.com/photo-1502234665511-5745ea0a6a29?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
                 class="product-image" />
                 <mat-card-content>
-            <mat-card-title>{{product.key}}<span class="price-cart-right">50rs</span></mat-card-title>
-            <mat-card-title>{{product.title | translation}}</mat-card-title>
+            <mat-card-title>{{product.key | translate}}<span class="price-cart-right">50rs</span></mat-card-title>
+            <mat-card-title>{{product.title}}</mat-card-title>
             <mat-chip-list>
                 <mat-chip *ngFor="let item of product.units">{{item+product.submetric}}</mat-chip>
               </mat-chip-list>

@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryComponent } from '../product/components/category/category.component';
@@ -7,11 +8,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { HttpClientModule } from '@angular/common/http';
 import { ManageProductComponent } from './pages/manage-product/manage-product.component';
-import { TranslationPipe } from './pipe/translation.pipe';
 
 @NgModule({
-  declarations: [CategoryComponent, ProductListingComponent, ManageProductComponent, TranslationPipe],
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatChipsModule, HttpClientModule],
+  declarations: [CategoryComponent, ProductListingComponent, ManageProductComponent],
+  imports: [CommonModule, SharedModule, MatCardModule, MatButtonModule, MatChipsModule, HttpClientModule],
   exports: [ManageProductComponent],
 })
 export class ProductModule {}
