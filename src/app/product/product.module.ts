@@ -7,9 +7,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { HttpClientModule } from '@angular/common/http';
 import { ManageProductComponent } from './pages/manage-product/manage-product.component';
+import { TranslationPipe } from './pipe/translation.pipe';
 
 @NgModule({
-  declarations: [CategoryComponent, ProductListingComponent, ManageProductComponent],
+  declarations: [CategoryComponent, ProductListingComponent, ManageProductComponent, TranslationPipe],
   imports: [CommonModule, MatCardModule, MatButtonModule, MatChipsModule, HttpClientModule],
   exports: [ManageProductComponent],
 })

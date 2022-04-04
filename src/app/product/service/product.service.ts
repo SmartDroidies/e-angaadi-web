@@ -32,7 +32,7 @@ export class ProductService {
       .get<any>(environment.productBaseUrl + '/translation')
       .subscribe((data) => localStorage.setItem('translation-ta', JSON.stringify(data)));
   }
-
-  // localStorage.setItem('translate', JSON.stringify(this.translate));
-  // return JSON.parse(localStorage.getItem('translate') || '');
+  getTranslation(){
+    return JSON.parse(localStorage.getItem('translation-ta')|| '');
+  }
 }
