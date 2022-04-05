@@ -6,13 +6,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { HttpClientModule } from '@angular/common/http';
-import { ManageProductComponent } from './pages/manage-product/manage-product.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
+import { ViewProductComponent } from './pages/view-product/view-product.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [CategoryComponent, ProductListingComponent, ManageProductComponent],
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatChipsModule,MatIconModule, HttpClientModule,MatInputModule],
-  exports: [ManageProductComponent],
+  declarations: [CategoryComponent, ProductListingComponent, ViewProductComponent],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatChipsModule,
+    MatIconModule,
+    HttpClientModule,
+    MatInputModule,
+  ],
+  exports: [ViewProductComponent],
 })
 export class ProductModule {}

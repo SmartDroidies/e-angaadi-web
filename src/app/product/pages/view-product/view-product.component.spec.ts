@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManageProductComponent } from './manage-product.component';
+import { ViewProductComponent } from './view-product.component';
 
-describe('ManageProductComponent', () => {
-  let component: ManageProductComponent;
-  let fixture: ComponentFixture<ManageProductComponent>;
+fdescribe('ManageProductComponent', () => {
+  let component: ViewProductComponent;
+  let fixture: ComponentFixture<ViewProductComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManageProductComponent],
+      declarations: [ViewProductComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManageProductComponent);
+    fixture = TestBed.createComponent(ViewProductComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
