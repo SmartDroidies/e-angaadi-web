@@ -9,11 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ViewProductComponent } from './pages/view-product/view-product.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { ProductDataComponent } from './components/product-data/product-data.component';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
-  declarations: [CategoryComponent, ProductListingComponent, ViewProductComponent, ProductDataComponent],
+  declarations: [CategoryComponent, ProductListingComponent, ViewProductComponent, ViewProductComponent],
   imports: [
     CommonModule,
     MatCardModule,
