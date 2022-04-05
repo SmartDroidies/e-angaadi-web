@@ -15,10 +15,10 @@
             </mat-chip-list>
         </mat-card-content>
         <mat-card-actions>
-            <button *ngIf="quantity==0" class="add-cart-button" mat-raised-button (click)="addCart(product)">Add To
+            <button *ngIf="quantity==0" class="add-cart-button" mat-raised-button (click)="addToCart(product)">Add To
                 Cart</button>
             <div *ngIf="quantity>0">
-                <button mat-icon-button (click)=SubUnit()>-</button>
+                <button mat-icon-button (click)=subUnit()>-</button>
                 <button *ngIf="quantity>0" min="0">{{quantity}} in basket</button>
                 <button mat-icon-button (click)=addUnit()>+</button>
             </div>

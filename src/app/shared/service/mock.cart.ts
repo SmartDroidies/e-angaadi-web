@@ -1,6 +1,6 @@
-import { Cart } from '../models/cart';
+import { CartItem } from '../models/cartItem';
 
-export const CART_PRODUCTS: Cart[] = [
+export const CART_PRODUCTS: CartItem[] = [
   {
     imgUrl: '',
     unit: 2,
@@ -8,6 +8,7 @@ export const CART_PRODUCTS: Cart[] = [
     title: 'Apple',
     qty: 1,
     price: 200,
+    code: 'code1',
   },
   {
     imgUrl: '',
@@ -16,6 +17,7 @@ export const CART_PRODUCTS: Cart[] = [
     title: 'Carrot',
     qty: 4,
     price: 60,
+    code: 'code2',
   },
   {
     imgUrl: '',
@@ -24,6 +26,7 @@ export const CART_PRODUCTS: Cart[] = [
     title: 'Lays',
     qty: 3,
     price: 30,
+    code: 'code3',
   },
   {
     imgUrl: '',
@@ -32,6 +35,7 @@ export const CART_PRODUCTS: Cart[] = [
     title: 'Lizol',
     qty: 1,
     price: 80,
+    code: 'code4',
   },
   {
     imgUrl: '',
@@ -40,5 +44,6 @@ export const CART_PRODUCTS: Cart[] = [
     title: 'Turmeric',
     qty: 2,
     price: 60,
+    code: 'code5',
   },
 ];
