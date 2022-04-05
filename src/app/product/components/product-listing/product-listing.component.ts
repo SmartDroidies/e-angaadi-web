@@ -3,8 +3,8 @@ import { MatChip } from '@angular/material/chips';
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { Product } from '../../models/product';
-import { ProductPrice } from '../../models/product-price';
 import { ProductService } from '../../service/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-listing',
@@ -18,18 +18,21 @@ export class ProductListingComponent implements OnInit, OnChanges {
 
   productsByGroup: Product[] = [];
   product!: Product;
-  priceLiveVersion: ProductPrice = new ProductPrice();
   selectedUnit!: number;
   code!: string;
   quantity = 0;
 
-  constructor(private productService: ProductService, private cartService: CartService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+    private toastr: ToastrService
+  ) {}
 
   //FIXME - Create a component for product
 
   ngOnInit(): void {
     this.getProducts();
-    this.loadCart();
+    // this.loadCart();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -44,10 +47,10 @@ export class ProductListingComponent implements OnInit, OnChanges {
     this.productService.getProducts('live').subscribe((products) => (this.products = products));
   }
 
-  loadCart() {
-    //this.cartService.loadCart().
-    throw new Error('Method not implemented.');
-  }
+  // loadCart() {
+  //   //this.cartService.loadCart().
+  //   throw new Error('Method not implemented.');
+  // }
 
   selectChip(item: MatChip) {
     item.selected = !item.selected;
@@ -62,6 +65,11 @@ export class ProductListingComponent implements OnInit, OnChanges {
       this.cartService.updateCart(product, this.selectedUnit, +1);
     } else {
       // FIXME - Display toaster to select unit
+      () => {
+        this.toastr.error('Select unit before adding', 'Error', {
+          positionClass: 'toast-bottom-center',
+        });
+      };
     }
   }
 

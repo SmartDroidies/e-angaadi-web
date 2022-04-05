@@ -9,9 +9,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ViewProductComponent } from './pages/view-product/view-product.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { ProductDataComponent } from './components/product-data/product-data.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
-  declarations: [CategoryComponent, ProductListingComponent, ViewProductComponent],
+  declarations: [CategoryComponent, ProductListingComponent, ViewProductComponent, ProductDataComponent],
   imports: [
     CommonModule,
     MatCardModule,
@@ -20,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     HttpClientModule,
     MatInputModule,
+    ToastrModule.forRoot(),
   ],
   exports: [ViewProductComponent],
 })

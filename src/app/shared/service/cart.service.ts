@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/product/models/product';
-import { UnitData } from 'src/app/product/models/unit-data';
 import { CartItem } from '../models/cartItem';
 import { CART_PRODUCTS } from './mock.cart';
 
@@ -11,7 +10,6 @@ import { CART_PRODUCTS } from './mock.cart';
 })
 export class CartService {
   items: Product[] = [];
-  unitData!: UnitData;
 
   getCart(): Observable<CartItem[]> {
     return of(CART_PRODUCTS);
