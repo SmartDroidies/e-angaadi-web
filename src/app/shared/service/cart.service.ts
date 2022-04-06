@@ -10,12 +10,20 @@ import { CART_PRODUCTS } from './mock.cart';
 })
 export class CartService {
   items: Product[] = [];
-
+  cartitem!: CartItem;
   getCart(): Observable<CartItem[]> {
     return of(CART_PRODUCTS);
   }
 
   updateCart(product: Product, selectedUnit: number, quantity: number) {
+    // if(product in this.items[product])
+    // {
+    //   this.cartitem=this.cartitem[product()];
+    //   if(this.cartitem.qty&&this.cartitem.unit){
+    //   }
+    // }else{
+    //   this.cartitem=product;
+    // }
     //FIXME - Check for availability of the product/unit in the cart
     //FIXME - If the combination item is found add/subract quantity (CartItem)
     //FIXME - If the count is zero now remove the item from cart
