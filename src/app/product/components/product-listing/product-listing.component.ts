@@ -52,13 +52,13 @@ export class ProductListingComponent implements OnInit, OnChanges {
   //   throw new Error('Method not implemented.');
   // }
 
-  selectChip(item: MatChip) {
-    item.selected = !item.selected;
-  }
+  // selectChip(item: MatChip) {
+  //   item.selected = !item.selected;
+  // }
 
-  unitSelected(unit: number) {
-    this.selectedUnit = unit;
-  }
+  // unitSelected(unit: number) {
+  //   this.selectedUnit = unit;
+  // }
 
   addToCart(product: Product) {
     if (this.selectedUnit) {

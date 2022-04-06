@@ -1,51 +1,51 @@
-@import '/src/styles/abstracts/variables';
-@import '/src/styles/abstracts/mixins';
+// @import '/src/styles/abstracts/variables';
+// @import '/src/styles/abstracts/mixins';
 
 .products {
   display: flex;
   flex-wrap: wrap;
 }
 
-.product {
-  margin: $margin-rem-25;
-}
+// .product {
+//   margin: $margin-rem-25;
+// }
 
-.product-image {
-  width: 16rem;
-  object-fit: contain;
-  margin: $margin-rem-25;
-  height: 15rem;
-}
+// .product-image {
+//   width: 16rem;
+//   object-fit: contain;
+//   margin: $margin-rem-25;
+//   height: 15rem;
+// }
 
-::ng-deep .mat-chip-list-wrapper {
-  width: 16rem;
-  @include img-style;
-}
+// ::ng-deep .mat-chip-list-wrapper {
+//   width: 16rem;
+//   @include img-style;
+// }
 
-mat-card-title {
-  font-size: $font-size-875;
-  font-weight: $font-weight-bold;
-}
+// mat-card-title {
+//   font-size: $font-size-875;
+//   font-weight: $font-weight-bold;
+// }
 
-.price-cart-right {
-  float: right;
-}
+// .price-cart-right {
+//   float: right;
+// }
 
-mat-card-actions {
-  display: flex;
-  justify-content: center;
-  padding: $pad-rem-0;
-}
+// mat-card-actions {
+//   display: flex;
+//   justify-content: center;
+//   padding: $pad-rem-0;
+// }
 
-.add-cart-button {
-  flex-basis: 80%;
-}
+// .add-cart-button {
+//   flex-basis: 80%;
+// }
 
-.list-cart-button {
-  flex-basis: 20%;
-}
+// .list-cart-button {
+//   flex-basis: 20%;
+// }
 
-.count-badge {
-  transform: scale(0.7);
-  font-size: 1rem;
-}
+// .count-badge {
+//   transform: scale(0.7);
+//   font-size: 1rem;
+// }

@@ -5,17 +5,17 @@
     <mat-card-content>
         <mat-card-title>{{product.key}}<span class="price-cart-right">₹50</span></mat-card-title>
         <mat-card-title>{{product.title}}</mat-card-title>
-        <!-- <mat-chip-list>
+        <mat-chip-list>
             <mat-chip *ngFor="let item of product.units" #lbl="matChip" (click)="selectChip(lbl)"
                 (click)="unitSelected(item)">
                 <button *ngIf="quantity>0" class="count-badge" min="0" mat-mini-fab>{{quantity}}</button>
                 {{item+' '+product.submetric}}
             </mat-chip>
-        </mat-chip-list> -->
+        </mat-chip-list>
     </mat-card-content>
     <mat-card-actions>
         <!-- <button *ngIf="quantity==0" class="add-cart-button" mat-raised-button (click)="addToCart(product)">Add To
-            Cart</button>
+            Cart</button> -->
         <div *ngIf="quantity>0">
             <button mat-icon-button (click)=subUnit()>-</button>
             <button *ngIf="quantity>0" min="0">{{quantity}} in basket</button>
@@ -23,6 +23,6 @@
         </div>
         <button class="list-cart-button" mat-icon-button>
             <mat-icon>playlist_add</mat-icon>
-        </button> -->
+        </button>
     </mat-card-actions>
 </mat-card>
