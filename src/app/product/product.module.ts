@@ -10,9 +10,16 @@ import { ViewProductComponent } from './pages/view-product/view-product.componen
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
-
+import { ProductItemComponent } from './components/product-item/product-item.component';
 @NgModule({
-  declarations: [CategoryComponent, ProductListingComponent, ViewProductComponent, ViewProductComponent],
+  declarations: [
+    CategoryComponent,
+    ProductListingComponent,
+    ViewProductComponent,
+    ViewProductComponent,
+    ViewProductComponent,
+    ProductItemComponent,
+  ],
   imports: [
     CommonModule,
     MatCardModule,
