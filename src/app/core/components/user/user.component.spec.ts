@@ -21,9 +21,11 @@ describe('UserComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should trigger inituser()', () => {
     component.ngOnInit();
     fixture.detectChanges();
     expect(component.initUser).toBeTruthy();
   });
+
+
 });

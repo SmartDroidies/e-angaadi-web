@@ -1,6 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 import { ProductService } from '../../service/product.service';
 
 import { CategoryComponent } from './category.component';
@@ -10,11 +12,21 @@ describe('CategoryComponent', () => {
   let fixture: ComponentFixture<CategoryComponent>;
 
   beforeEach(async () => {
+    const spyProductService = jasmine.createSpyObj('ProductService', [
+      'getProductGroups',
+    ]);
+    spyProductService.getProductGroups.and.returnValue(of([{ code: 'product_1' }, { code: 'product_2' }]));
     await TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        RouterTestingModule,
+      ],
       declarations: [CategoryComponent],
-      imports: [RouterTestingModule,HttpClientTestingModule],
+      providers: [{ provide: ProductService, useClass: ProductService, useValue: spyProductService }],
     }).compileComponents();
   });
+
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CategoryComponent);
