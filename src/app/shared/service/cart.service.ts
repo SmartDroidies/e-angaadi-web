@@ -9,29 +9,49 @@ import { CART_PRODUCTS } from './mock.cart';
   providedIn: 'root',
 })
 export class CartService {
-  items: Product[] = [];
-  cartitem!: CartItem;
+
+
+  cartItems: CartItem[] = [];
+
+
   getCart(): Observable<CartItem[]> {
     return of(CART_PRODUCTS);
   }
 
   updateCart(product: Product, selectedUnit: number, quantity: number) {
-    // if(product in this.items[product])
-    // {
-    //   this.cartitem=this.cartitem[product()];
-    //   if(this.cartitem.qty&&this.cartitem.unit){
-    //   }
-    // }else{
-    //   this.cartitem=product;
-    // }
+    let itemInCart = this.getCartItem(product.code, selectedUnit);
+    if (itemInCart) {
+      this.addToCart(this.toCartItem(itemInCart.product,itemInCart.selectedUnit,itemInCart.quantity));
+    } else{
+      this.addToCart(this.toCartItem(product, selectedUnit, quantity));
+    }
     //FIXME - Check for availability of the product/unit in the cart
     //FIXME - If the combination item is found add/subract quantity (CartItem)
     //FIXME - If the count is zero now remove the item from cart
     //FIXME - if the count is greater than zero update the item back in cart
     //FIXME - If the combination item is not there in the cart create a new CartItem object and add it to the cart
-    // this.items.push(product, selectedUnit, quantity);
-    // localStorage.setItem('cart', JSON.stringify(this.items));
     //FIXME - Method to add or update an item into the cart
+  }
+
+  addToCart(cartItem: any) {
+    cartItem.push(this.cartItems);
+    localStorage.setItem('cart', JSON.stringify(cartItem));
+  }
+
+  toCartItem(product: Product, selectedUnit: number, quantity: number): any {
+    let cartItem = new CartItem();
+    cartItem.unit = selectedUnit;
+    cartItem.qty = quantity;
+    cartItem.code = product.code;
+    return cartItem;
+  }
+
+
+  getCartItem(code: string, selectedUnit: number) {
+    let cartItem = JSON.parse(localStorage.getItem('cart') || '');
+    if (cartItem.code == code && cartItem.unit == selectedUnit) {
+      return cartItem;
+    }
   }
 
   removeCart(product: Product, selectedUnit: number, quantity: number) {
@@ -41,7 +61,7 @@ export class CartService {
 
   getCartItems() {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    this.items = JSON.parse(localStorage.getItem('cart') || '');
-    return this.items;
+    let items = JSON.parse(localStorage.getItem('cart') || '');
+    return items
   }
 }
