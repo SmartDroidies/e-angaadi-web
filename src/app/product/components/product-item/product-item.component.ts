@@ -3,7 +3,6 @@ import { MatChip } from '@angular/material/chips';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { Product } from '../../models/product';
-import { ProductService } from '../../service/product.service';
 
 @Component({
   selector: 'app-product-item',
@@ -13,7 +12,7 @@ import { ProductService } from '../../service/product.service';
 export class ProductItemComponent {
   @Input() product!: Product;
   selectedUnit!: number;
-  quantity = 0;
+  quantity = 1;
 
   constructor( private cartService: CartService,
     private toastr: ToastrService) {}
@@ -36,14 +35,19 @@ export class ProductItemComponent {
 
   addToCart(product: Product) {
     if (this.selectedUnit) {
-      this.cartService.updateCart(product, this.selectedUnit, +1);
+      this.cartService.updateCart(product, this.selectedUnit, this.quantity+1);
     } else {
-      // FIXME - Display toaster to select unit
       () => {
         this.toastr.error('Select unit before adding', 'Error', {
           positionClass: 'toast-bottom-center',
         });
       };
     }
+  }
+
+  removeFromCart(product:Product){
+    if (this.selectedUnit) {
+      this.cartService.updateCart(product, this.selectedUnit, this.quantity);
+    } 
   }
 }

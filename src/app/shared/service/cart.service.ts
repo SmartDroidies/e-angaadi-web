@@ -34,8 +34,12 @@ export class CartService {
   }
 
   addToCart(cartItem: any) {
-    cartItem.push(this.cartItems);
-    localStorage.setItem('cart', JSON.stringify(cartItem));
+    if(cartItem.quantity==0){
+      this.removeCart(cartItem.code,cartItem.unit,cartItem.qty)
+    }else{
+    this.cartItems.push(cartItem);
+    localStorage.setItem('cart', JSON.stringify(this.cartItems));
+    }
   }
 
   toCartItem(product: Product, selectedUnit: number, quantity: number): any {
@@ -56,7 +60,7 @@ export class CartService {
 
   removeCart(product: Product, selectedUnit: number, quantity: number) {
     // this.items.push(product, selectedUnit, quantity);
-    localStorage.removeItem('key');
+    // localStorage.removeItem(product,selectedUnit,quantity);
   }
 
   getCartItems() {
