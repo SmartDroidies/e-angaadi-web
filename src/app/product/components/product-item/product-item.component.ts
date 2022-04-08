@@ -12,7 +12,7 @@ import { Product } from '../../models/product';
 export class ProductItemComponent {
   @Input() product!: Product;
   selectedUnit!: number;
-  quantity = 1;
+  quantity = 0;
 
   constructor( private cartService: CartService,
     private toastr: ToastrService) {}
@@ -26,16 +26,16 @@ export class ProductItemComponent {
   }
 
   addUnit() {
-    this.quantity = this.quantity + 1;
+    this.addToCart(this.product);
   }
 
   subUnit() {
-    this.quantity = this.quantity - 1;
+   this.removeFromCart(this.product)
   }
 
   addToCart(product: Product) {
     if (this.selectedUnit) {
-      this.cartService.updateCart(product, this.selectedUnit, this.quantity+1);
+      this.cartService.updateCart(product, this.selectedUnit,this.quantity+1);
     } else {
       () => {
         this.toastr.error('Select unit before adding', 'Error', {
@@ -47,7 +47,7 @@ export class ProductItemComponent {
 
   removeFromCart(product:Product){
     if (this.selectedUnit) {
-      this.cartService.updateCart(product, this.selectedUnit, this.quantity);
+      this.cartService.updateCart(product, this.selectedUnit,this.quantity-1);
     } 
   }
 }
