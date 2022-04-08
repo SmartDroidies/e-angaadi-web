@@ -21,7 +21,7 @@ export class CartService {
   updateCart(product: Product, selectedUnit: number, quantity: number) {
     let itemInCart = this.getCartItem(product.code, selectedUnit);
     if (itemInCart) {
-      this.addToCart(this.toCartItem(itemInCart.product,itemInCart.selectedUnit,itemInCart.quantity));
+      this.addToCart(this.searchCart(this.toCartItem(product,selectedUnit,quantity)));
     } else{
       this.addToCart(this.toCartItem(product, selectedUnit, quantity));
     }
@@ -31,6 +31,10 @@ export class CartService {
     //FIXME - if the count is greater than zero update the item back in cart
     //FIXME - If the combination item is not there in the cart create a new CartItem object and add it to the cart
     //FIXME - Method to add or update an item into the cart
+  }
+  
+  searchCart(searchItem:any) {
+    return searchItem;
   }
 
   addToCart(cartItem: any) {
@@ -49,10 +53,15 @@ export class CartService {
 
 
   getCartItem(code: string, selectedUnit: number) {
-    let cartItem = JSON.parse(localStorage.getItem('cart') || '');
-    if (cartItem.code == code && cartItem.unit == selectedUnit) {
-      return cartItem;
+    // let cartItem = JSON.parse(localStorage.getItem('cart') || '{}');
+    if(this.cartItems.length>0){
+      return this.cartItems[0];
+    }else{
+      return null;
     }
+    // if (cartItem.code == code && cartItem.unit == selectedUnit) {
+    //   return cartItem;
+    // }
   }
 
   removeCart(product: Product, selectedUnit: number, quantity: number) {

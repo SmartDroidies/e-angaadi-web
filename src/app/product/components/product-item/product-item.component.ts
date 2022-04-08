@@ -50,4 +50,13 @@ export class ProductItemComponent {
       this.cartService.updateCart(product, this.selectedUnit,this.quantity-1);
     } 
   }
+
+  isInCart(product:Product){
+    let cartItem=this.cartService.getCartItem(product.code,1);
+    if(cartItem==null){
+      return false;
+    }else{
+      return true;
+    }
+  }
 }
