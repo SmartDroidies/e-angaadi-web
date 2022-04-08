@@ -43,10 +43,7 @@ export class CartService {
   }
 
   toCartItem(product: Product, selectedUnit: number, quantity: number): any {
-    let cartItem = new CartItem();
-    cartItem.unit = selectedUnit;
-    cartItem.qty = quantity;
-    cartItem.code = product.code;
+    let cartItem = new CartItem(product.code,selectedUnit,quantity);
     return cartItem;
   }
 

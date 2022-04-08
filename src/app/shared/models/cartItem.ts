@@ -9,4 +9,10 @@ export class CartItem {
   qty!: number;
   price!: number;
 
+  constructor(code:string,selectedUnit:number,quantity:number){
+    this.code=code;
+    this.unit=selectedUnit;
+    this.qty=quantity;
+  }
+
 }
