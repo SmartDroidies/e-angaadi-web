@@ -10,7 +10,15 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { AddressComponent } from './pages/address/address.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+
+
 @NgModule({
   declarations: [HomeComponent, AccountInfoComponent, ProfileComponent, AddressComponent],
   imports: [
@@ -22,6 +30,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatSelectModule,
     ReactiveFormsModule,
+    FormsModule,
+    MatIconModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    HttpClientModule,
+    ToastrModule.forRoot(),
   ],
 })
 export class HomeModule {}

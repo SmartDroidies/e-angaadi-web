@@ -1,1 +1,92 @@
-<p>address works!</p>
+<div class="container">
+  <form class=form [formGroup]="addressForm">
+    <div>
+      <h2 class="header">Personal Details</h2>
+      <div class="row">
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label for="fullname">Full Name</mat-label>
+            <input matInput placeholder="Placeholder" name="fullname" value="Indumathi" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label for="contact">Mobile number</mat-label>
+            <input matInput placeholder="Placeholder" name="contact" value="9080558903" required>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2 class="header">Address Details</h2>
+      <div class="row">
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>House no.</mat-label>
+            <input matInput placeholder="Placeholder" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Street details to locate you</mat-label>
+            <input matInput id="street" name="street" formControlName="street" class="form-control" />
+            <div *ngIf="f.street.invalid && (f.street.dirty || f.street.touched)" class="alert">
+              <div *ngIf="f.street.errors?.required">
+                street name is required.
+              </div>
+              <div *ngIf="f.street.errors?.minlength">
+                street name must be at least 4 characters long.
+              </div>
+              <div *ngIf="f.street.errors?.pattern">
+                Only A-Z or a-z is allowed.
+              </div>
+            </div>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Landmark for easy reach out</mat-label>
+            <input matInput id="landmark" name="landmark" formControlName="landmark" class="form-control" />
+            <div *ngIf="f.landmark.invalid && (f.landmark.dirty || f.landmark.touched)" class="alert">
+              <div *ngIf="f.landmark.errors?.required">
+                landmark is required.
+              </div>
+              <div *ngIf="f.landmark.errors?.minlength">
+                landmark must be at least 4 characters long.
+              </div>
+              <div *ngIf="f.landmark.errors?.pattern">
+                Only A-Z or a-z is allowed.
+              </div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>city</mat-label>
+            <mat-select name="city" formControlName="city" required>
+              <mat-option value="arakkonam ">Arakkonam</mat-option>
+              <mat-option value="bangalore">Bangalore</mat-option>
+              <mat-option value="chennai">Chennai</mat-option>
+              <mat-option value="delhi">Delhi</mat-option>
+              <mat-option value="erode">Erode</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="pincode">
+        <mat-form-field appearance="fill">
+          <mat-label>Pincode</mat-label>
+          <input matInput placeholder="Placeholder" required>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row actions">
+      <button class="button" mat-raised-button color="primary">Cancel</button>
+      <button class="button" (click)="onSave()" mat-raised-button color="primary">Save</button>
+    </div>
+
+  </form>
+</div>
