@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductGroup } from '../../models/product-group';
-import { MockProductService } from '../../service/mock-product.service';
+import { ProductService } from '../../service/product.service';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -11,7 +11,7 @@ export class CategoryComponent implements OnInit {
 
   productGroups: ProductGroup[] = [];
 
-  constructor(private productService: MockProductService) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.getProductGroups();

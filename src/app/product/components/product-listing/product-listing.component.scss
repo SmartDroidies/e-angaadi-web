@@ -1,14 +1,45 @@
+@import '/src/styles/abstracts/variables';
+@import '/src/styles/abstracts/mixins';
+
 .products {
   display: flex;
   flex-wrap: wrap;
 }
 
 .product {
-  margin: 4px;
+  margin: $margin-rem-25;
 }
 
+::ng-deep .mat-chip-list-wrapper,
 .product-image {
-  width: 200px;
-  height: 120px;
-  object-fit: contain;
+  @include img-style;
+}
+
+mat-card-title {
+  font-size: $font-size-875;
+  font-weight: $font-weight-bold;
+}
+
+.price-cart-right {
+  float: right;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  padding: $pad-rem-0;
+}
+
+.add-cart-button {
+  flex-basis: 75%;
+}
+
+.list-cart-button {
+  flex-basis: 25%;
+  font-size: $font-size-625;
+}
+
+.list-icon-text {
+  @include icon-text();
+  justify-content: center;
 }
