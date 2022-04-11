@@ -17,7 +17,9 @@ describe('CartdetailComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should populate cart items', () => {
+    component.ngOnInit();
+    fixture.detectChanges();
+    expect(component.getCart).toBeTruthy();
   });
 });

@@ -21,8 +21,7 @@ export class CartService {
   }
 
   getCartItems() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    this.items = JSON.parse(localStorage.getItem('cart') || '');
+    this.items = JSON.parse(localStorage.getItem('cart') || '[{}]');
     return this.items;
   }
 }
