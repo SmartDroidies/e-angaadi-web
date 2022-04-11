@@ -19,7 +19,7 @@ export class CartService {
   }
 
   updateCart(product: Product, selectedUnit: number, quantity: number) {
-    let itemInCart = this.getCartItem(product.code, selectedUnit);
+    let itemInCart = this.getCartItem(product.code, selectedUnit,quantity);
     if (itemInCart) {
       this.addToCart(this.searchCart(this.toCartItem(product,selectedUnit,quantity)));
     } else{
@@ -52,13 +52,13 @@ export class CartService {
   }
 
 
-  getCartItem(code: string, selectedUnit: number) {
+  getCartItem(code: string, selectedUnit: number,quantity:number) {
     // let cartItem = JSON.parse(localStorage.getItem('cart') || '{}');
     if(this.cartItems.length>0){
       return this.cartItems[0];
     }else{
       return null;
-    }
+    } 
     // if (cartItem.code == code && cartItem.unit == selectedUnit) {
     //   return cartItem;
     // }

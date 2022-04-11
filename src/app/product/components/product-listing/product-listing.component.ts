@@ -21,14 +21,11 @@ export class ProductListingComponent implements OnInit, OnChanges {
 
   constructor(
     private productService: ProductService,
- 
-  ) {}
+  ) { }
 
-  //FIXME - Create a component for product
 
   ngOnInit(): void {
     this.getProducts();
-    // this.loadCart();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -43,26 +40,4 @@ export class ProductListingComponent implements OnInit, OnChanges {
     this.productService.getProducts('live').subscribe((products) => (this.products = products));
   }
 
-  // loadCart() {
-  //   //this.cartService.loadCart().
-  //   throw new Error('Method not implemented.');
-  // }
-
-  // selectChip(item: MatChip) {
-  //   item.selected = !item.selected;
-  // }
-
-  // unitSelected(unit: number) {
-  //   this.selectedUnit = unit;
-  // }
-
-  
-
-  addUnit() {
-    this.quantity = this.quantity + 1;
-  }
-
-  subUnit() {
-    this.quantity = this.quantity - 1;
-  }
 }
