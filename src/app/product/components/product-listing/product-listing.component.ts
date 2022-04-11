@@ -15,7 +15,7 @@ export class ProductListingComponent implements OnInit, OnChanges {
   product!: Product;
   liveVersion: Product = new Product();
 
-  constructor(private productService: ProductService,private cart:CartService) {}
+  constructor(private productService: ProductService, private cart: CartService) {}
 
   ngOnInit(): void {
     this.getProducts();
@@ -33,7 +33,7 @@ export class ProductListingComponent implements OnInit, OnChanges {
     this.productService.getProducts('live').subscribe((products) => (this.products = products));
   }
 
-  addCart(code:string){
+  addCart(code: string) {
     this.productService.getProduct(code, 'live').subscribe((data: Product) => {
       if (data) {
         this.liveVersion = data;

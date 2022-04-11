@@ -8,7 +8,6 @@ import { Product } from '../models/product';
   providedIn: 'root',
 })
 export class ProductService {
-
   constructor(private http: HttpClient) {}
 
   getProductGroups(): Observable<ProductGroup[]> {
