@@ -13,10 +13,10 @@ export class CartSummaryComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.getCartItem();
+    this.getCartData();
   }
 
-  getCartItem(): void {
-    this.cartService.getCart().subscribe((products) => (this.items = products));
+  getCartData(): void {
+    this.items = this.cartService.getCartItems();
   }
 }
