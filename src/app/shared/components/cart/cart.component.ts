@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
   }
 
   getCartItem(): void {
-   this.items= this.cartService.getCartItems();
+    this.items = this.cartService.getCartItems();
   }
 
   async onCart() {
@@ -36,7 +36,7 @@ export class CartComponent implements OnInit {
 
   getTotalQty() {
     this.items.forEach((items) => {
-     this.qtyTotal+=items.qty;
+      this.qtyTotal += items.quantity;
     });
   }
 }

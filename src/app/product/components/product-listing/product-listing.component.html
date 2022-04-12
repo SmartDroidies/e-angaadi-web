@@ -1,3 +1,6 @@
-<div class="products"  *ngFor="let product of productsByGroup">
-    <app-product-item [product]="product"></app-product-item>
+<div> {{cartItems | json }} </div>
+<div class="products">
+    <div class="product-container" *ngFor="let product of productsByGroup">
+        <app-product-item [product]="product"></app-product-item>
+    </div>
 </div>

@@ -10,33 +10,29 @@ import { Product } from '../../models/product';
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.scss'],
 })
-export class ProductItemComponent implements OnInit{
+export class ProductItemComponent implements OnInit {
   @Input() product!: Product;
   selectedUnit!: number;
-  quantity = 0;
-  cartItem!:CartItem;
+  cartProductItems!: CartItem[];
+  cartProductItem: CartItem | undefined;
+
+  // cartItem!: CartItem;
 
   //FixME-declare an cart item array
   //FixME-on ngonit method initilze/load cart items array
   // declare a array ,get cart item pani ng onit la ,andha product already irka nu check pani ,already irundha adhoda units edukanam by using method called load cart items.
 
-
-  constructor( private cartService: CartService,
-    private toastr: ToastrService) {}
-
+  constructor(private cartService: CartService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    this.loadCart();
+    this.loadProductsFromCart();
   }
 
-  loadCart() {
-    let cartItems=this.cartService.getCartItem(this.product.code,this.selectedUnit,this.quantity);
-    if(cartItems){
-      cartItems.code=this.product.code;
-      cartItems.unit=this.selectedUnit;
-      cartItems.qty=this.quantity;
+  loadProductsFromCart() {
+    this.cartProductItems = this.cartService.getCartProductItems(this.product.code);
+    if (this.selectedUnit) {
+      this.loadProductUnitFromCart();
     }
-
   }
 
   selectChip(item: MatChip) {
@@ -45,6 +41,11 @@ export class ProductItemComponent implements OnInit{
 
   unitSelected(unit: number) {
     this.selectedUnit = unit;
+    this.loadProductUnitFromCart();
+  }
+
+  loadProductUnitFromCart() {
+    this.cartProductItem = this.cartProductItems.find((item) => item.unit == this.selectedUnit);
   }
 
   addUnit() {
@@ -52,12 +53,13 @@ export class ProductItemComponent implements OnInit{
   }
 
   subUnit() {
-   this.removeFromCart(this.product)
+    this.removeFromCart(this.product);
   }
 
   addToCart(product: Product) {
     if (this.selectedUnit) {
-      this.cartService.updateCart(product, this.selectedUnit,+1);
+      this.cartService.updateCart(product, this.selectedUnit, +1);
+      this.loadProductsFromCart();
     } else {
       () => {
         this.toastr.error('Select unit before adding', 'Error', {
@@ -67,19 +69,21 @@ export class ProductItemComponent implements OnInit{
     }
   }
 
-  removeFromCart(product:Product){
+  removeFromCart(product: Product) {
     if (this.selectedUnit) {
-      this.cartService.updateCart(product, this.selectedUnit,-1);
-    } 
-  }
-
-  isInCart(product:Product){
-    let cartItem=this.cartService.getCartItem(product.code,1,1);
-    if(cartItem==null){
-      return false;
-    }else{
-      return true;
+      this.cartService.updateCart(product, this.selectedUnit, -1);
     }
   }
 
+  isInCart() {
+    const cartProductUnitItem = this.cartProductItems.find((item) => (item.unit = this.selectedUnit));
+    return cartProductUnitItem != null ? true : false;
+  }
+
+  selectedProductUnitQuantity() {
+    return this.cartProductItem ? this.cartProductItem.quantity : 0;
+  }
+}
+function loadSelectedUnitFromCart() {
+  throw new Error('Function not implemented.');
 }

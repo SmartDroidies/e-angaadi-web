@@ -9,20 +9,17 @@ import { CART_PRODUCTS } from './mock.cart';
   providedIn: 'root',
 })
 export class CartService {
-
-
   cartItems: CartItem[] = [];
-
 
   getCart(): Observable<CartItem[]> {
     return of(CART_PRODUCTS);
   }
 
   updateCart(product: Product, selectedUnit: number, quantity: number) {
-    let itemInCart = this.getCartItem(product.code, selectedUnit,quantity);
+    const itemInCart = this.getCartItem(product.code, selectedUnit, quantity);
     if (itemInCart) {
-      this.addToCart(this.searchCart(this.toCartItem(product,selectedUnit,quantity)));
-    } else{
+      this.addToCart(this.searchCart(this.toCartItem(product, selectedUnit, quantity)));
+    } else {
       this.addToCart(this.toCartItem(product, selectedUnit, quantity));
     }
     //FIXME - Check for availability of the product/unit in the cart
@@ -32,33 +29,31 @@ export class CartService {
     //FIXME - If the combination item is not there in the cart create a new CartItem object and add it to the cart
     //FIXME - Method to add or update an item into the cart
   }
-  
-  searchCart(searchItem:any) {
+
+  searchCart(searchItem: CartItem): CartItem {
     return searchItem;
   }
 
-  addToCart(cartItem: any) {
-    if(cartItem.quantity==0){
-      this.removeCart(cartItem.code,cartItem.unit,cartItem.qty)
-    }else{
-    this.cartItems.push(cartItem);
-    localStorage.setItem('cart', JSON.stringify(this.cartItems));
+  addToCart(cartItem: CartItem) {
+    if (cartItem.quantity == 0) {
+      // this.removeCart(cartItem.code, cartItem.unit, cartItem.qty)
+    } else {
+      this.cartItems.push(cartItem);
+      localStorage.setItem('cart', JSON.stringify(this.cartItems));
     }
   }
 
-  toCartItem(product: Product, selectedUnit: number, quantity: number): any {
-    let cartItem = new CartItem(product.code,selectedUnit,quantity);
+  toCartItem(product: Product, selectedUnit: number, quantity: number): CartItem {
+    const cartItem = new CartItem(product.code, selectedUnit, quantity);
     return cartItem;
   }
 
-
-  getCartItem(code: string, selectedUnit: number,quantity:number) {
-    // let cartItem = JSON.parse(localStorage.getItem('cart') || '{}');
-    if(this.cartItems.length>0){
+  getCartItem(code: string, selectedUnit: number, quantity: number) {
+    if (this.cartItems.length > 0) {
       return this.cartItems[0];
-    }else{
-      return null;
-    } 
+    } else {
+      return this.cartItems.find((item) => item.code == code);
+    }
     // if (cartItem.code == code && cartItem.unit == selectedUnit) {
     //   return cartItem;
     // }
@@ -69,9 +64,11 @@ export class CartService {
     // localStorage.removeItem(product,selectedUnit,quantity);
   }
 
-  getCartItems() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    let items = JSON.parse(localStorage.getItem('cart') || '[{}]');
-    return items
+  getCartProductItems(code: string): CartItem[] {
+    return this.cartItems.filter((item) => item.code == code);
+  }
+
+  getCartItems(): CartItem[] {
+    return this.cartItems;
   }
 }

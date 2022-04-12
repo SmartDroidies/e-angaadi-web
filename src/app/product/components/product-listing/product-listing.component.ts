@@ -1,3 +1,4 @@
+import { CartService } from './../../../shared/service/cart.service';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { Product } from '../../models/product';
@@ -19,13 +20,15 @@ export class ProductListingComponent implements OnInit, OnChanges {
   code!: string;
   quantity = 0;
 
-  constructor(
-    private productService: ProductService,
-  ) { }
-
+  constructor(private productService: ProductService, private cartService: CartService) {}
 
   ngOnInit(): void {
     this.getProducts();
+    this.loadCartItems();
+  }
+
+  loadCartItems() {
+    this.cartItems = this.cartService.getCartItems();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -39,5 +42,4 @@ export class ProductListingComponent implements OnInit, OnChanges {
   getProducts(): void {
     this.productService.getProducts('live').subscribe((products) => (this.products = products));
   }
-
 }
