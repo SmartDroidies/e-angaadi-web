@@ -3,6 +3,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { UserComponent } from './user.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { SignInComponent } from 'src/app/auth/pages/sign-in/sign-in.component';
 
 describe('UserComponent', () => {
   let component: UserComponent;
@@ -11,8 +14,8 @@ describe('UserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserComponent],
-      imports: [RouterTestingModule,MatMenuModule],
+      declarations: [UserComponent,SignInComponent],
+      imports: [RouterTestingModule,MatIconModule,MatDividerModule,MatMenuModule],
       providers: [
         { provide: Router, useValue: routerSpy },
       ]

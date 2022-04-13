@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductService } from '../../service/product.service';
 import { SimpleChange } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 
 describe('ProductListingComponent', () => {
   let component: ProductListingComponent;
@@ -19,7 +20,7 @@ describe('ProductListingComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,MatCardModule
       ],
       declarations: [ProductListingComponent],
       providers: [{ provide: ProductService, useClass: ProductService, useValue: spyProductService }],

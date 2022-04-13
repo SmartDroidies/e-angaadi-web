@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CategoryComponent } from '../../components/category/category.component';
+import { ProductListingComponent } from '../../components/product-listing/product-listing.component';
 
 import { ManageProductComponent } from './manage-product.component';
 
@@ -8,7 +11,8 @@ describe('ManageProductComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManageProductComponent],
+      declarations: [ManageProductComponent,CategoryComponent,ProductListingComponent],
+      imports:[HttpClientModule]
     }).compileComponents();
   });
 
@@ -18,9 +22,6 @@ describe('ManageProductComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
   
   it('setProductGroup ', () => {
     component.setProductGroup("dummy");

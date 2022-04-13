@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ManageProductComponent } from 'src/app/product/pages/manage-product/manage-product.component';
 
 import { HomeComponent } from './home.component';
 
@@ -9,6 +10,7 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HomeComponent],
+      imports:[ManageProductComponent]
     }).compileComponents();
   });
 
@@ -18,7 +20,4 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });
