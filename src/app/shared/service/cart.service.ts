@@ -18,30 +18,15 @@ export class CartService {
   updateCart(product: Product, selectedUnit: number, quantity: number) {
     const itemInCart = this.getCartItem(product.code, selectedUnit, quantity);
     if (itemInCart) {
-      this.addToCart(this.searchCart(this.toCartItem(product, selectedUnit, quantity)));
+      itemInCart.quantity = itemInCart.quantity + quantity;
     } else {
       this.addToCart(this.toCartItem(product, selectedUnit, quantity));
-    }
-    //FIXME - Check for availability of the product/unit in the cart
-    //FIXME - If the combination item is found add/subract quantity (CartItem)
-    //FIXME - If the count is zero now remove the item from cart
-    //FIXME - if the count is greater than zero update the item back in cart
-    //FIXME - If the combination item is not there in the cart create a new CartItem object and add it to the cart
-    //FIXME - Method to add or update an item into the cart
-  }
-
-  searchCart(searchItem: CartItem) :CartItem {
-    const items=JSON.parse(localStorage.getItem('cart') || '[{}]');
-    if(searchItem.code &&searchItem.unit &&searchItem.quantity in items ){
-    return items;
-    }else{
-     return searchItem;
     }
   }
 
   addToCart(cartItem: CartItem) {
     if (cartItem.quantity == 0) {
-      this.removeCart(cartItem.code)
+      this.removeCart(cartItem.code);
     } else {
       this.cartItems.push(cartItem);
       localStorage.setItem('cart', JSON.stringify(this.cartItems));
@@ -54,14 +39,10 @@ export class CartService {
   }
 
   getCartItem(code: string, selectedUnit: number, quantity: number) {
-    if (this.cartItems.length > 0) {
-      return this.cartItems[0];
-    } else {
-      return this.cartItems.find((item) => item.code == code);
-    }
+    return this.cartItems.find((item) => item.code == code && item.unit == selectedUnit);
   }
 
-  removeCart(product:string) {
+  removeCart(product: string) {
     localStorage.removeItem(product);
   }
 
@@ -73,3 +54,9 @@ export class CartService {
     return this.cartItems;
   }
 }
+
+//FIXME - Check for availability of the product/unit in the cart
+//FIXME - If the combination item is found add/subract quantity (CartItem)
+//FIXME - If the count is zero now remove the item from cart
+//FIXME - if the count is greater than zero update the item back in cart
+//FIXME - If the combination item is not there in the cart create a new CartItem object and add it to the cart
