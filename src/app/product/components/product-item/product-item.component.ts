@@ -16,12 +16,6 @@ export class ProductItemComponent implements OnInit {
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
 
-  // cartItem!: CartItem;
-
-  //FixME-declare an cart item array
-  //FixME-on ngonit method initilze/load cart items array
-  // declare a array ,get cart item pani ng onit la ,andha product already irka nu check pani ,already irundha adhoda units edukanam by using method called load cart items.
-
   constructor(private cartService: CartService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
@@ -84,6 +78,4 @@ export class ProductItemComponent implements OnInit {
     return this.cartProductItem ? this.cartProductItem.quantity : 0;
   }
 }
-function loadSelectedUnitFromCart() {
-  throw new Error('Function not implemented.');
-}
+

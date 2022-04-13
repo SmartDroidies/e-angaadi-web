@@ -30,13 +30,18 @@ export class CartService {
     //FIXME - Method to add or update an item into the cart
   }
 
-  searchCart(searchItem: CartItem): CartItem {
-    return searchItem;
+  searchCart(searchItem: CartItem) :CartItem {
+    const items=JSON.parse(localStorage.getItem('cart') || '[{}]');
+    if(searchItem.code &&searchItem.unit &&searchItem.quantity in items ){
+    return items;
+    }else{
+     return searchItem;
+    }
   }
 
   addToCart(cartItem: CartItem) {
     if (cartItem.quantity == 0) {
-      // this.removeCart(cartItem.code, cartItem.unit, cartItem.qty)
+      this.removeCart(cartItem.code)
     } else {
       this.cartItems.push(cartItem);
       localStorage.setItem('cart', JSON.stringify(this.cartItems));
@@ -54,14 +59,10 @@ export class CartService {
     } else {
       return this.cartItems.find((item) => item.code == code);
     }
-    // if (cartItem.code == code && cartItem.unit == selectedUnit) {
-    //   return cartItem;
-    // }
   }
 
-  removeCart(product: Product, selectedUnit: number, quantity: number) {
-    // this.items.push(product, selectedUnit, quantity);
-    // localStorage.removeItem(product,selectedUnit,quantity);
+  removeCart(product:string) {
+    localStorage.removeItem(product);
   }
 
   getCartProductItems(code: string): CartItem[] {
