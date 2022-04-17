@@ -10,9 +10,9 @@ export class AccountInfoComponent {
   constructor(private router: Router) {}
 
   async personalInformation() {
-    await this.router.navigate(['/home/account-info/profile']);
+    await this.router.navigate(['/account/account-info/profile']);
   }
   async address() {
-    await this.router.navigate(['/home/account-info/address']);
+    await this.router.navigate(['/account/account-info/address']);
   }
 }

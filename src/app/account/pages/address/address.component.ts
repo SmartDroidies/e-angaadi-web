@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder,  FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService, } from 'ngx-toastr';
-import { UserdataService } from '../../../shared/service/userdata.service'
+import { UserdataService } from '../../service/userdata.service'
 
 @Component({
   selector: 'app-address',

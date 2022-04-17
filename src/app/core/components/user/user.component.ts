@@ -41,6 +41,6 @@ export class UserComponent implements OnInit {
   }
 
   async accountinfo() {
-    await this.router.navigate(['/home/account-info']);
+    await this.router.navigate(['/account/account-info']);
   }
 }
