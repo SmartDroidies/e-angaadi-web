@@ -19,6 +19,7 @@ export class CartService {
     const itemInCart = this.getCartItem(product.code, selectedUnit, quantity);
     if (itemInCart) {
       itemInCart.quantity = itemInCart.quantity + quantity;
+      this.addToCart(itemInCart);
     } else {
       this.addToCart(this.toCartItem(product, selectedUnit, quantity));
     }
@@ -34,7 +35,7 @@ export class CartService {
   }
 
   toCartItem(product: Product, selectedUnit: number, quantity: number): CartItem {
-    const cartItem = new CartItem(product.code, selectedUnit, quantity);
+    const cartItem = new CartItem(product.code, selectedUnit, quantity,product.title,product.submetric);
     return cartItem;
   }
 
@@ -43,7 +44,7 @@ export class CartService {
   }
 
   removeCart(product: string) {
-    localStorage.removeItem(product);
+    localStorage.clear();
   }
 
   getCartProductItems(code: string): CartItem[] {

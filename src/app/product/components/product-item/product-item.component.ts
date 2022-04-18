@@ -44,10 +44,12 @@ export class ProductItemComponent implements OnInit {
 
   addUnit() {
     this.addToCart(this.product);
+    this.isInCart();
   }
 
   subUnit() {
     this.removeFromCart(this.product);
+    this.isInCart();
   }
 
   addToCart(product: Product) {
