@@ -16,7 +16,7 @@ export class CartService {
   }
 
   updateCart(product: Product, selectedUnit: number, quantity: number) {
-    const itemInCart = this.getCartItem(product.code, selectedUnit, quantity);
+    const itemInCart = this.getCartItem(product.code, selectedUnit);
     if (itemInCart) {
       itemInCart.quantity = itemInCart.quantity + quantity;
     } else {
@@ -34,16 +34,16 @@ export class CartService {
   }
 
   toCartItem(product: Product, selectedUnit: number, quantity: number): CartItem {
-    const cartItem = new CartItem(product.code, selectedUnit, quantity,product.title,product.submetric);
+    const cartItem = new CartItem(product.code, selectedUnit, quantity, product.title, product.submetric);
     return cartItem;
   }
 
-  getCartItem(code: string, selectedUnit: number, quantity: number) {
+  getCartItem(code: string, selectedUnit: number) {
     return this.cartItems.find((item) => item.code == code && item.unit == selectedUnit);
   }
 
-  removeCart(product: string) {
-    localStorage.clear();
+  removeCart(code: string) {
+    localStorage.removeItem(code);
   }
 
   getCartProductItems(code: string): CartItem[] {
