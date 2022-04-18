@@ -5,7 +5,7 @@
         class="product-image" />
     <mat-card-content>
         <mat-card-title>{{product.key}}<span class="price-cart-right">₹50</span></mat-card-title>
-        <mat-card-title>{{product.title}}</mat-card-title>
+        <mat-card-title>{{product.title | titlecase}}</mat-card-title>
         <mat-chip-list>
             <mat-chip *ngFor="let item of product.units" #lbl="matChip" (click)="selectChip(lbl)"
                 (click)="unitSelected(item)">
