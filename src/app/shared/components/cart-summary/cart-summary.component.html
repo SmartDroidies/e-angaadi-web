@@ -1,10 +1,10 @@
 <mat-list>
   <mat-list-item *ngFor="let item of items">
     <img mat-card-image
-      src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+      src="https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
       class="product-image" />
     <span>
-      <span mat-line>{{ item.title }} ( {{item.submetric}})</span>
+      <span mat-line>{{ item.title| titlecase }} ( {{item.unit+" "+item.submetric}})</span>
       <span mat-line class="quantity">
         <span>Qty: {{ item.quantity }}</span>
         <span class="price">50₹</span>
