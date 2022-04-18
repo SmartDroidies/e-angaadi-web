@@ -42,16 +42,4 @@ export class ProductListingComponent implements OnInit, OnChanges {
   getProducts(): void {
     this.productService.getProducts('live').subscribe((products) => (this.products = products));
   }
-<<<<<<< HEAD
-=======
-
-  addCart(code: string) {
-    this.productService.getProduct(code, 'live').subscribe((data: Product) => {
-      if (data) {
-        this.liveVersion = data;
-        this.cart.addToCart(this.liveVersion);
-      }
-    });
-  }
->>>>>>> feature-header
 }
