@@ -39,4 +39,8 @@ export class UserComponent implements OnInit {
       window.location.reload();
     });
   }
+
+  async signUp() {
+    await this.router.navigate(['/auth/sign-in']);
+  }
 }
