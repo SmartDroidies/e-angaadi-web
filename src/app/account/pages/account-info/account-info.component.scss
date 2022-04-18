@@ -1,54 +1,25 @@
 @import 'src/styles/abstracts/_variables.scss';
 
-//FIXME - Cannot be an example container
-.example-container {
-  position: absolute; //FIXME - No absolute positioning
+.sidenav-container {
+  position: absolute;
+  width: 100%;
   top: 7rem;
   bottom: 5rem;
-  left: 5rem;
-  right: 5rem;
-  background: #eee; //FIXME - should not have a background
+  left: 1rem;
+  cursor: pointer;
 }
 
-//FIXME - DOnt apply direct styling on components. Apply it through a call
-mat-sidenav {
-  margin: 16px;
-  width: 200px;
-  border-right: none;
-  color: black;
-  border-radius: 10px;
-  padding: $pad-rem-100;
-  text-align: center;
-}
-
-//FIXME - Remove the mat prefix
-.mat-nav-link {
-  width: 100%;
+.nav-link {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
   font-size: $font-size-base;
+  margin: $margin-rem-50;
 }
 
-//FIXME - Remove the mat prefix
-.mat-nav-link:hover {
+.nav-link:hover {
   color: $hover-color;
 }
 
-//FIXME - Class is not used
-.mat-nav-content {
+.header {
+  font-weight: bold;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: $font-size-base;
-  margin: $margin-rem-200;
-}
-
-//FIXME - Class is not used
-.mat-nav {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: bold;
-  margin: $margin-rem-200;
 }
