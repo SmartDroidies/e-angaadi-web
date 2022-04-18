@@ -19,7 +19,6 @@ export class CartService {
     const itemInCart = this.getCartItem(product.code, selectedUnit, quantity);
     if (itemInCart) {
       itemInCart.quantity = itemInCart.quantity + quantity;
-      this.addToCart(itemInCart);
     } else {
       this.addToCart(this.toCartItem(product, selectedUnit, quantity));
     }
