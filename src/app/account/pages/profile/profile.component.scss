@@ -1,18 +1,18 @@
 @import 'src/styles/abstracts/_variables.scss';
 .nav-header {
   font-size: 1.5rem;
-  margin: $margin-rem-100;
+  margin: $margin-rem-25;
   font-weight: bold;
 }
 .nav-item-header {
   font-size: $font-size-base;
-  margin: $margin-rem-100;
+  margin: $margin-rem-25;
   font-weight: 600;
   padding: $pad-rem-50;
 }
 .nav-item {
   font-size: $font-size-base;
-  margin: $margin-rem-100;
+  margin: $margin-rem-25;
   padding: $pad-rem-50;
 }
 .mat-divider {
