@@ -6,11 +6,30 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { HttpClientModule } from '@angular/common/http';
-import { ManageProductComponent } from './pages/manage-product/manage-product.component';
-
+import { ViewProductComponent } from './pages/view-product/view-product.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { ToastrModule } from 'ngx-toastr';
+import { ProductItemComponent } from './components/product-item/product-item.component';
 @NgModule({
-  declarations: [CategoryComponent, ProductListingComponent, ManageProductComponent],
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatChipsModule, HttpClientModule],
-  exports: [ManageProductComponent],
+  declarations: [
+    CategoryComponent,
+    ProductListingComponent,
+    ViewProductComponent,
+    ViewProductComponent,
+    ViewProductComponent,
+    ProductItemComponent,
+  ],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatChipsModule,
+    MatIconModule,
+    HttpClientModule,
+    MatInputModule,
+    ToastrModule.forRoot(),
+  ],
+  exports: [ViewProductComponent],
 })
 export class ProductModule {}
