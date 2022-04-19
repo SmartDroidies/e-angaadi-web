@@ -73,7 +73,7 @@ export class ProductItemComponent implements OnInit {
 
   isInCart() {
     const cartProductUnitItem = this.cartProductItems.find((item) => (item.unit = this.selectedUnit));
-    return cartProductUnitItem != null && cartProductUnitItem.quantity > 0 ? true : false && cartProductUnitItem == null;
+    return cartProductUnitItem != null && cartProductUnitItem.quantity > 0 ? true : false;
   }
 
   selectedProductUnitQuantity() {

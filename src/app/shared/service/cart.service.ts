@@ -1,36 +1,50 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { Observable } from 'rxjs';
 import { Product } from 'src/app/product/models/product';
 import { CartItem } from '../models/cartItem';
-import { CART_PRODUCTS } from './mock.cart';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CartService {
-  cartItems: CartItem[] = [];
 
-  getCart(): Observable<CartItem[]> {
-    return of(CART_PRODUCTS);
-  }
+export class CartService {
+
+  cartItems: CartItem[] = [];
 
   updateCart(product: Product, selectedUnit: number, quantity: number) {
     const itemInCart = this.getCartItem(product.code, selectedUnit);
     if (itemInCart) {
       itemInCart.quantity = itemInCart.quantity + quantity;
+      if (itemInCart.quantity == 0) {
+        this.removeItemInCart(itemInCart);
+      }
     } else {
       this.addToCart(this.toCartItem(product, selectedUnit, quantity));
     }
   }
 
+  removeItemInCart(itemInCart: CartItem) {
+
+    // for(var i=0;i<this.cartItems.length;i++){
+    //   if(this.cartItems[i].code=itemInCart.code){
+    //     this.cartItems.splice(i,1);
+    //     console.log(this.cartItems);
+    //     break;
+    //   }
+    // }
+
+    // this.cartItems.splice(0);
+    // console.log(this.cartItems);
+    // return itemInCart;
+
+    // this.cartItems = this.cartItems.filter(item => item.code != itemInCart.code);
+    // console.log(this.cartItems);
+    // return this.cartItems;
+
+  }
+
   addToCart(cartItem: CartItem) {
-    if (cartItem.quantity == 0) {
-      this.removeCart(cartItem.code);
-    } else {
-      this.cartItems.push(cartItem);
-      localStorage.setItem('cart', JSON.stringify(this.cartItems));
-    }
+    this.cartItems.push(cartItem);
+    localStorage.setItem('cart', JSON.stringify(this.cartItems));
   }
 
   toCartItem(product: Product, selectedUnit: number, quantity: number): CartItem {
@@ -42,9 +56,6 @@ export class CartService {
     return this.cartItems.find((item) => item.code == code && item.unit == selectedUnit);
   }
 
-  removeCart(code: string) {
-    localStorage.removeItem(code);
-  }
 
   getCartProductItems(code: string): CartItem[] {
     return this.cartItems.filter((item) => item.code == code);
