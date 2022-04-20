@@ -47,9 +47,4 @@ describe('ProductListingComponent', () => {
     expect(component.productsByGroup).toBeTruthy();
   });
 
-  it('checking live data', () => {
-    component.addCart;
-    fixture.detectChanges();
-    expect(component.liveVersion).toBeTruthy();
-  });
 });
