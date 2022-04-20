@@ -1,0 +1,14 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav  mode="side" opened>
+        <a class="header">Orders</a>
+        <a class="nav-link">History</a>
+        <a class="nav-link">Favourite-List</a>
+        <a class="header">Account-info</a>
+        <a class="nav-link" (click)="personalInformation()">Personal Information</a>
+        <a class="nav-link">Payment Information</a>
+        <a class="nav-link" (click)="address()">Address</a>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

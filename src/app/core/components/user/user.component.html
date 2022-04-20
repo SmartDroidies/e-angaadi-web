@@ -17,6 +17,10 @@
             </div>
         </div>
         <span mat-menu-item *ngIf="signedIn">{{mail}}</span>
+        <mat-divider></mat-divider>
+        <a class="menu-link" (click)="accountinfo()">Account Information</a>
+        <a class="menu-link">Change Password</a>
+        <a class="menu-link">Help Center</a>
         <mat-divider *ngIf="signedIn"></mat-divider>
         <a *ngIf="signedIn" class="user-nav-item" (click)="signOut()">Sign out</a>
         <mat-divider *ngIf="signedIn"></mat-divider>

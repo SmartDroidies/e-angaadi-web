@@ -26,5 +26,4 @@ export class ProductService {
     params = params.append('type', type);
     return this.http.get<Product>(environment.productBaseUrl + '/item', { params: params });
   }
-
 }
