@@ -9,4 +9,6 @@ export class Product {
   names!: string;
   brand!: string;
   metric!: string;
+  status?: string;
+  units?: number[];
 }

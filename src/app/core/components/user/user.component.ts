@@ -43,4 +43,8 @@ export class UserComponent implements OnInit {
   async accountinfo() {
     await this.router.navigate(['/account/account-info']);
   }
+
+  async signUp() {
+    await this.router.navigate(['/auth/sign-in']);
+  }
 }

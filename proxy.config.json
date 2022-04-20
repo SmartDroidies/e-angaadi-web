@@ -1,0 +1,11 @@
+{
+    "/api": {
+        "target": "https://hf8y35g47j.execute-api.ap-south-1.amazonaws.com/Prod",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug",
+        "pathRewrite": {
+            "^/api": ""
+        }
+    }
+}
