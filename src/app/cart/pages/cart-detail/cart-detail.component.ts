@@ -1,5 +1,5 @@
+import { CartItem } from './../../../shared/models/cartItem';
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/product/models/product';
 import { CartService } from 'src/app/shared/service/cart.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { CartService } from 'src/app/shared/service/cart.service';
   styleUrls: ['./cart-detail.component.scss'],
 })
 export class CartDetailComponent implements OnInit {
-  items: Product[] = [];
+  items: CartItem[] = [];
 
   constructor(private cartService: CartService) {}
 
