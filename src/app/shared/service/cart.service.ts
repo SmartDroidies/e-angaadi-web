@@ -24,8 +24,8 @@ export class CartService {
 
   removeItemInCart(itemInCart: CartItem) {
 
-    for (var i = 0; i < this.cartItems.length; i++) {
-      if (this.cartItems[i].code = itemInCart.code) {
+    for (let i = 0; i < this.cartItems.length; i++) {
+      if (this.cartItems[i].code == itemInCart.code) {
         this.cartItems.splice(i, 1);
         break;
       }
