@@ -16,7 +16,7 @@ export class ProductItemComponent implements OnInit {
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
 
-  constructor(private cartService: CartService, private toastr: ToastrService) { }
+  constructor(private cartService: CartService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.loadProductsFromCart();
@@ -79,4 +79,3 @@ export class ProductItemComponent implements OnInit {
     return this.cartProductItem ? this.cartProductItem.quantity : 0;
   }
 }
-
