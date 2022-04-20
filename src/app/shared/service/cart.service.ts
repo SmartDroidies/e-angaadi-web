@@ -24,21 +24,12 @@ export class CartService {
 
   removeItemInCart(itemInCart: CartItem) {
 
-    // for(var i=0;i<this.cartItems.length;i++){
-    //   if(this.cartItems[i].code=itemInCart.code){
-    //     this.cartItems.splice(i,1);
-    //     console.log(this.cartItems);
-    //     break;
-    //   }
-    // }
-
-    // this.cartItems.splice(0);
-    // console.log(this.cartItems);
-    // return itemInCart;
-
-    // this.cartItems = this.cartItems.filter(item => item.code != itemInCart.code);
-    // console.log(this.cartItems);
-    // return this.cartItems;
+    for (var i = 0; i < this.cartItems.length; i++) {
+      if (this.cartItems[i].code = itemInCart.code) {
+        this.cartItems.splice(i, 1);
+        break;
+      }
+    }
 
   }
 

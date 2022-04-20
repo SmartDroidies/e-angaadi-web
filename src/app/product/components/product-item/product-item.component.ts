@@ -44,12 +44,10 @@ export class ProductItemComponent implements OnInit {
 
   addUnit() {
     this.addToCart(this.product);
-    this.isInCart();
   }
 
   subUnit() {
     this.removeFromCart(this.product);
-    this.isInCart();
   }
 
   addToCart(product: Product) {
@@ -68,6 +66,7 @@ export class ProductItemComponent implements OnInit {
   removeFromCart(product: Product) {
     if (this.selectedUnit) {
       this.cartService.updateCart(product, this.selectedUnit, -1);
+      this.loadProductsFromCart();
     }
   }
 
