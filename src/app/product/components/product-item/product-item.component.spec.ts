@@ -2,31 +2,25 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CategoryComponent } from '../../components/category/category.component';
 import { ProductListingComponent } from '../../components/product-listing/product-listing.component';
+import { ViewProductComponent } from '../../pages/view-product/view-product.component';
 
-import { ManageProductComponent } from './manage-product.component';
+import { ProductItemComponent } from './product-item.component';
 
-describe('ManageProductComponent', () => {
-  let component: ManageProductComponent;
-  let fixture: ComponentFixture<ManageProductComponent>;
+describe('ProductItemComponent', () => {
+  let component: ProductItemComponent;
+  let fixture: ComponentFixture<ProductItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManageProductComponent,CategoryComponent,ProductListingComponent],
+      declarations: [ViewProductComponent,CategoryComponent,ProductListingComponent],
       imports:[HttpClientModule]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManageProductComponent);
+    fixture = TestBed.createComponent(ProductItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  
-  it('setProductGroup ', () => {
-    component.setProductGroup("dummy");
-    fixture.detectChanges();
-    expect(component.productGroupCode).toBe("dummy");
   });
 
 });

@@ -12,7 +12,10 @@
 
 .product-image {
   @include img-style;
+  margin: $margin-rem-25;
+  height: 15rem;
 }
+
 mat-card-title {
   font-size: $font-size-875;
   font-weight: $font-weight-bold;

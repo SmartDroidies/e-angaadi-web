@@ -7,13 +7,16 @@
         <span class="user-icon-text mat-small" *ngIf="signedIn">{{name}}</span>
     </button>
     <mat-menu #menu="matMenu" [overlapTrigger]="false">
-        <button mat-raised-button class="sign-in" *ngIf="!signedIn" (click)="signIn()" color="primary">SignIn</button>
-        <mat-divider *ngIf="signedIn"></mat-divider>
+        <div *ngIf="!signedIn" class="row actions">
+            <button mat-raised-button class="sign-in" *ngIf="!signedIn" (click)="signIn()"
+                color="primary">SignIn</button>
+            <div>
+                <a class="not-yet-registered" *ngIf="!signedIn" (click)="signUp()">Not yet registered?</a>
+                <br>
+                <a class="sign-up" *ngIf="!signedIn" (click)="signUp()">SignUp</a>
+            </div>
+        </div>
         <span mat-menu-item *ngIf="signedIn">{{mail}}</span>
-        <mat-divider></mat-divider>
-        <a class="menu-link">Account Information</a>
-        <a class="menu-link">Change Password</a>
-        <a class="menu-link">Help Center</a>
         <mat-divider *ngIf="signedIn"></mat-divider>
         <a *ngIf="signedIn" class="user-nav-item" (click)="signOut()">Sign out</a>
         <mat-divider *ngIf="signedIn"></mat-divider>

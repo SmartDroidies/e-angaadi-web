@@ -8,7 +8,6 @@ import { Product } from '../models/product';
   providedIn: 'root',
 })
 export class ProductService {
-
   constructor(private http: HttpClient) {}
 
   getProductGroups(): Observable<ProductGroup[]> {
@@ -27,4 +26,5 @@ export class ProductService {
     params = params.append('type', type);
     return this.http.get<Product>(environment.productBaseUrl + '/item', { params: params });
   }
+
 }
