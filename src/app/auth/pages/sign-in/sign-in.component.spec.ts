@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { SignInComponent } from './sign-in.component';
 
 describe('SigninComponent', () => {
@@ -8,6 +10,7 @@ describe('SigninComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SignInComponent],
+      imports: [RouterTestingModule,AmplifyUIAngularModule],
     }).compileComponents();
   });
 
@@ -17,7 +20,4 @@ describe('SigninComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });

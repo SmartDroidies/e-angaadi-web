@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 
 import { LocationComponent } from './location.component';
 
@@ -9,6 +10,7 @@ describe('LocationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LocationComponent],
+      imports:[MatIconModule]
     }).compileComponents();
   });
 

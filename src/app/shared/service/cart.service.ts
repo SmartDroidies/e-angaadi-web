@@ -54,9 +54,3 @@ export class CartService {
     return this.cartItems;
   }
 }
-
-//FIXME - Check for availability of the product/unit in the cart
-//FIXME - If the combination item is found add/subract quantity (CartItem)
-//FIXME - If the count is zero now remove the item from cart
-//FIXME - if the count is greater than zero update the item back in cart
-//FIXME - If the combination item is not there in the cart create a new CartItem object and add it to the cart

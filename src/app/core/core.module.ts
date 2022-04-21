@@ -14,6 +14,7 @@ import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [NavMenuComponent, UserComponent, SearchComponent, LocationComponent, HeaderComponent],
   imports: [
@@ -27,6 +28,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     MatInputModule,
     RouterModule,
+    MatFormFieldModule
   ],
   exports: [HeaderComponent],
 })
