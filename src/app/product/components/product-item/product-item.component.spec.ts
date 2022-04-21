@@ -1,4 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CategoryComponent } from '../../components/category/category.component';
+import { ProductListingComponent } from '../../components/product-listing/product-listing.component';
+import { ViewProductComponent } from '../../pages/view-product/view-product.component';
 
 import { ProductItemComponent } from './product-item.component';
 
@@ -8,7 +12,8 @@ describe('ProductItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProductItemComponent],
+      declarations: [ViewProductComponent,CategoryComponent,ProductListingComponent],
+      imports:[HttpClientModule]
     }).compileComponents();
   });
 
@@ -18,7 +23,4 @@ describe('ProductItemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });
