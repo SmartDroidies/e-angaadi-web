@@ -1,0 +1,16 @@
+@import 'src/styles/abstracts/_mixins.scss';
+
+.product-image {
+  @include thumbnail-img;
+}
+
+.price {
+  //FIXME - Use flex layout and align right
+  font-weight: bold;
+  display: flex;
+  align-content: space-between;
+}
+
+mat-list {
+  overflow: auto;
+}

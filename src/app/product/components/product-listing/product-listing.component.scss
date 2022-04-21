@@ -1,0 +1,11 @@
+@import '/src/styles/abstracts/variables';
+
+.products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.product-container {
+  margin: $margin-rem-25;
+}

@@ -1,0 +1,35 @@
+@import 'src/styles/abstracts/_mixins.scss';
+
+.total {
+  margin-left: $margin-rem-50;
+  margin-bottom: $margin-rem-100;
+  font-weight: bold;
+}
+
+.quantity {
+  margin-left: $margin-rem-25;
+}
+
+.cart-total {
+  float: right;
+  margin-right: $margin-rem-100;
+  font-weight: bold;
+}
+
+.cart-icon {
+  @include icons-spacing();
+}
+
+.cart-icon-text {
+  @include icon-text();
+}
+
+.button {
+  margin: $margin-rem-50;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  margin-top: $margin-rem-50;
+}

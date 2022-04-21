@@ -1,0 +1,13 @@
+<h3>Cart</h3>
+<div class="cart">
+<mat-card class="cart-item" *ngFor="let item of items">
+  <img mat-card-image
+  src="https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
+  class="product-image" />
+  <mat-card-content>
+<mat-card-title>{{item.title}}<span class="price-cart-right">50rs</span></mat-card-title>
+<mat-card-title>{{item.title}}</mat-card-title>
+</mat-card-content>
+</mat-card> 
+</div>
+

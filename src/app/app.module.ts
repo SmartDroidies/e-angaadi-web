@@ -1,14 +1,19 @@
+import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
+import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
+import { CoreModule } from './core/core.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './core/header/header.component';
-import { HomeComponent } from './core/home/home.component';
-import { NavmenuComponent } from './core/navmenu/navmenu.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
-import Amplify from 'aws-amplify';
+import { HomeModule } from './home/home.module';
+import { CartModule } from './cart/cart.module';
+import { AuthModule } from './auth/auth.module';
+import { ProductModule } from './product/product.module';
+import { Amplify } from 'aws-amplify';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccountModule } from './account/account.module';
+
 
 Amplify.configure({
   Auth: {
@@ -25,8 +30,19 @@ Amplify.configure({
   },
 });
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, HomeComponent, NavmenuComponent],
-  imports: [BrowserModule, AppRoutingModule, MatToolbarModule, BrowserAnimationsModule, AmplifyUIAngularModule],
+  declarations: [AppComponent, FullLayoutComponent, BlankLayoutComponent],
+  imports: [
+    AuthModule,
+    ProductModule,
+    CoreModule,
+    HomeModule,
+    CartModule,
+    BrowserModule,
+    AppRoutingModule,
+    AmplifyUIAngularModule,
+    BrowserAnimationsModule,
+    AccountModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.config.json",
     "build": "ng build",
     "test": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage",
     "lint": "ng lint --fix",
@@ -27,6 +27,7 @@
     "@commitlint/cli": "^16.0.2",
     "@commitlint/config-conventional": "^16.0.0",
     "aws-amplify": "^4.3.12",
+    "ngx-toastr": "^14.2.3",
     "prettier": "^2.5.1",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",

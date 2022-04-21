@@ -1,0 +1,23 @@
+@import 'src/styles/abstracts/_variables.scss';
+
+@mixin icons-spacing {
+  padding-right: 0.5rem;
+  float: left;
+}
+
+@mixin icon-text {
+  display: flex;
+  flex-direction: row;
+  line-height: 1.3;
+}
+
+@mixin img-style {
+  width: $width-rem-1600;
+  object-fit: contain;
+}
+
+@mixin thumbnail-img {
+  width: $width-rem-300;
+  height: $height-rem-400;
+  margin: $margin-rem-25 $margin-rem-50;
+}
