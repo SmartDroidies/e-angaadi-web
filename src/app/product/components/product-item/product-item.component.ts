@@ -29,6 +29,14 @@ export class ProductItemComponent implements OnInit {
     }
   }
 
+  getCartItemQuantity(item :number){
+    console.log(item);
+    let allItems=this.cartService.getCartItems();
+    allItems.forEach((item) => {
+     item.unit=item.quantity;
+    });
+  }
+
   selectChip(item: MatChip) {
     item.selected = !item.selected;
   }
