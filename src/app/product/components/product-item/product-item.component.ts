@@ -44,12 +44,10 @@ export class ProductItemComponent implements OnInit {
 
   addUnit() {
     this.addToCart(this.product);
-    this.isInCart();
   }
 
   subUnit() {
     this.removeFromCart(this.product);
-    this.isInCart();
   }
 
   addToCart(product: Product) {
@@ -68,14 +66,13 @@ export class ProductItemComponent implements OnInit {
   removeFromCart(product: Product) {
     if (this.selectedUnit) {
       this.cartService.updateCart(product, this.selectedUnit, -1);
+      this.loadProductsFromCart();
     }
   }
 
   isInCart() {
     const cartProductUnitItem = this.cartProductItems.find((item) => (item.unit = this.selectedUnit));
-    return cartProductUnitItem != null && cartProductUnitItem.quantity > 0
-      ? true
-      : false && cartProductUnitItem == null;
+    return cartProductUnitItem != null && cartProductUnitItem.quantity > 0 ? true : false;
   }
 
   selectedProductUnitQuantity() {
