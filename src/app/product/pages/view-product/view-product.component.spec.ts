@@ -21,7 +21,10 @@ fdescribe('ViewProductComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('setProductGroup ', () => {
+    component.setProductGroup("dummy");
+    fixture.detectChanges();
+    expect(component.productGroupCode).toBe("dummy");
   });
+
 });
