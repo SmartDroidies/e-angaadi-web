@@ -97,3 +97,4 @@ After the conflicts are fixed manually commit and push the changes to the featur
 ## Styling Review Checklist
 
 - Always use variables for color and size
+- Reuse styles

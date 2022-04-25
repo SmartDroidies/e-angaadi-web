@@ -12,13 +12,12 @@
 }
 
 @mixin img-style {
-  width: $width-rem-1200;
-  height: $height-rem-800;
+  width: $width-rem-1600;
   object-fit: contain;
 }
 
 @mixin thumbnail-img {
-  width: $width-rem-500;
-  height: $height-rem-300;
+  width: $width-rem-300;
+  height: $height-rem-400;
   margin: $margin-rem-25 $margin-rem-50;
 }

@@ -14,6 +14,8 @@ import { ProductModule } from './product/product.module';
 import { Amplify } from 'aws-amplify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductService } from './product/service/product.service';
+import { AccountModule } from './account/account.module';
+
 
 Amplify.configure({
   Auth: {
@@ -41,6 +43,7 @@ Amplify.configure({
     AppRoutingModule,
     AmplifyUIAngularModule,
     BrowserAnimationsModule,
+    AccountModule,
   ],
   providers: [
     TranslationService,

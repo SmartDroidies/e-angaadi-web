@@ -15,4 +15,7 @@
             <button class="list-cart-button" mat-raised-button><span class="list-icon-text">Add To</span> <span class="list-icon-text">List</span></button>
           </mat-card-actions>
     </mat-card>
+    <div class="product-container" *ngFor="let product of productsByGroup">
+        <app-product-item [product]="product"></app-product-item>
+    </div>
 </div>

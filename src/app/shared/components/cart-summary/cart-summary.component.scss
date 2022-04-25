@@ -7,6 +7,8 @@
 .price {
   //FIXME - Use flex layout and align right
   font-weight: bold;
+  display: flex;
+  align-content: space-between;
 }
 
 mat-list {

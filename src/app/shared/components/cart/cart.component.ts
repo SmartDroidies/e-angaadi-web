@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Cart } from '../../models/cart';
+import { CartItem } from '../../models/cartItem';
 import { CartService } from '../../service/cart.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { CartService } from '../../service/cart.service';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  items: Cart[] = [];
+  items: CartItem[] = [];
   cartTotal = 0;
   qtyTotal = 0;
   constructor(private router: Router, private cartService: CartService) {}
@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
   }
 
   getCartItem(): void {
-    this.cartService.getCart().subscribe((products) => (this.items = products));
+    this.items = this.cartService.getCartItems();
   }
 
   async onCart() {
@@ -29,14 +29,14 @@ export class CartComponent implements OnInit {
   }
 
   getCartTotal() {
-    this.items.forEach((item) => {
-      this.cartTotal += item.price;
+    this.items.forEach((items) => {
+      this.cartTotal += items.price;
     });
   }
 
   getTotalQty() {
-    this.items.forEach((item) => {
-      this.qtyTotal += item.qty;
+    this.items.forEach((items) => {
+      this.qtyTotal += items.quantity;
     });
   }
 }
