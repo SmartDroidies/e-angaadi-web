@@ -16,7 +16,7 @@ export class ProductItemComponent implements OnInit {
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
 
-  constructor(private cartService: CartService, private toastr: ToastrService) { }
+  constructor(private cartService: CartService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.loadProductsFromCart();
@@ -25,32 +25,29 @@ export class ProductItemComponent implements OnInit {
   loadProductsFromCart() {
     this.cartProductItems = this.cartService.getCartProductItems(this.product.code);
     if (this.selectedUnit) {
-      this.loadProductUnitFromCart();
+      this.loadProductUnitFromCart(this.selectedUnit);
     }
   }
 
-  getCartItemQuantity(items: number) {
-    let allItems = this.cartService.getCartItems();
+  getCartItemQuantity(currUnit: number) {
+    const allItems = this.cartService.getCartItems();
+    let qtyInCart = 0;
     allItems.forEach((item) => {
-      if (item.unit == items) {
-        return items = item.quantity
-      } else {
-        return false;
+      if (item.unit == currUnit) {
+        qtyInCart = item.quantity;
       }
     });
+    return qtyInCart;
   }
 
-  selectChip(item: MatChip) {
+  selectChip(item: MatChip, unit: number) {
     item.selected = !item.selected;
-  }
-
-  unitSelected(unit: number) {
     this.selectedUnit = unit;
-    this.loadProductUnitFromCart();
+    this.loadProductUnitFromCart(unit);
   }
 
-  loadProductUnitFromCart() {
-    this.cartProductItem = this.cartProductItems.find((item) => item.unit == this.selectedUnit);
+  loadProductUnitFromCart(unit: number) {
+    this.cartProductItem = this.cartProductItems.find((item) => item.unit === unit);
   }
 
   addUnit() {
@@ -82,7 +79,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   isInCart() {
-    const cartProductUnitItem = this.cartProductItems.find((item) => (item.unit = this.selectedUnit));
+    const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === this.selectedUnit);
     return cartProductUnitItem != null && cartProductUnitItem.quantity > 0 ? true : false;
   }
 
