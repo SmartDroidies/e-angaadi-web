@@ -16,7 +16,7 @@ export class ProductItemComponent implements OnInit {
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
 
-  constructor(private cartService: CartService, private toastr: ToastrService) {}
+  constructor(private cartService: CartService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.loadProductsFromCart();
@@ -29,11 +29,14 @@ export class ProductItemComponent implements OnInit {
     }
   }
 
-  getCartItemQuantity(item :number){
-    console.log(item);
-    let allItems=this.cartService.getCartItems();
+  getCartItemQuantity(items: number) {
+    let allItems = this.cartService.getCartItems();
     allItems.forEach((item) => {
-     item.unit=item.quantity;
+      if (item.unit == items) {
+        return items = item.quantity
+      } else {
+        return false;
+      }
     });
   }
 
