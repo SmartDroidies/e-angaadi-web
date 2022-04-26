@@ -1,18 +1,33 @@
 @import 'src/styles/abstracts/_variables.scss';
 @import 'src/styles/abstracts/_mixins.scss';
 
-.sign-in {
-  left: 0.3rem;
-  top: 0.3rem;
+.actions {
   display: flex;
+  flex-direction: row;
 }
 
+.sign-in {
+  display: flex;
+  right: 0.5rem;
+}
+.sign-up {
+  align-self: center;
+  font-weight: 400;
+  padding-top: $pad-rem-100;
+  margin: $margin-rem-150;
+}
+.sign-up:hover {
+  color: $hover-color;
+}
+.not-yet-registered {
+  font-size: $font-size-75;
+}
 .mat-menu-item:hover {
   color: $hover-color;
 }
 
-::ng-deep.mat-menu-content:not(:empty) {
-  padding: 0 !important;
+::ng-deep.mat-menu-content {
+  padding: $pad-rem-100;
 }
 
 .user-icon {
@@ -29,6 +44,7 @@
 
 .user-nav-item {
   margin: $margin-rem-25 $margin-rem-100;
+  cursor: pointer;
 }
 
 .user-nav-item:hover {
@@ -38,6 +54,7 @@
   display: flex;
   margin: $margin-rem-25 $margin-rem-100;
   line-height: 1.5rem;
+  cursor: pointer;
 }
 .menu-link:hover {
   color: $hover-color;

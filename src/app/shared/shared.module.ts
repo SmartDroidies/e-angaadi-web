@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { TranslationPipe } from './pipes/translation.pipe';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [CartComponent, CartSummaryComponent, TranslationPipe],
@@ -24,6 +25,7 @@ import { TranslationPipe } from './pipes/translation.pipe';
     MatButtonModule,
     MatMenuModule,
     MatBadgeModule,
+    MatDividerModule
   ],
   exports: [CartComponent, CartSummaryComponent, TranslationPipe],
 })

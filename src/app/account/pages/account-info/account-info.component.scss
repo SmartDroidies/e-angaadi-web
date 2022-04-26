@@ -1,0 +1,25 @@
+@import 'src/styles/abstracts/_variables.scss';
+
+.sidenav-container {
+  position: absolute;
+  width: 100%;
+  top: 7rem;
+  bottom: 5rem;
+  left: 1rem;
+  cursor: pointer;
+}
+
+.nav-link {
+  display: flex;
+  font-size: $font-size-base;
+  margin: $margin-rem-50;
+}
+
+.nav-link:hover {
+  color: $hover-color;
+}
+
+.header {
+  font-weight: bold;
+  display: flex;
+}

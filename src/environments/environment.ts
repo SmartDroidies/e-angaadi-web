@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  productBaseUrl: '/api',
+  productBaseUrl: '/product-api',
 };
 
 /*
