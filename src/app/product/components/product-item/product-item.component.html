@@ -1,4 +1,4 @@
-<div>{{cartProductItems | json}}</div>
+<!-- <div>{{cartProductItems | json}}</div> -->
 <mat-card class="product" role="listitem">
     <img mat-card-image
         src="https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
@@ -8,18 +8,21 @@
         <mat-card-title>{{product.title | titlecase}}</mat-card-title>
         <mat-chip-list>
             <mat-chip *ngFor="let item of product.units" #lbl="matChip" (click)="selectChip(lbl, item)">
-                <button *ngIf="cartProductItem && cartProductItem.quantity>0" class="count-badge" min="0" mat-mini-fab>{{getCartItemQuantity(item)}}</button>
+                <button *ngIf="cartProductItem && cartProductItem.quantity>0" class="count-badge" min="0"
+                    mat-mini-fab>{{getCartItemQuantity(item)}}</button>
                 {{item + ' ' + product.submetric}}
             </mat-chip>
         </mat-chip-list>
     </mat-card-content>
     <mat-card-actions>
-        <button *ngIf="!isInCart()" class="add-cart-button" mat-raised-button  (click)="addToCart(product)">Add To
+        <button *ngIf="!isInCart()" class="add-cart-button" mat-raised-button [disabled]="!selectedUnit"
+            (click)="addToCart(product)">Add To
             Cart</button>
-        <div *ngIf="isInCart()">
-            <button mat-icon-button (click)=subUnit()>-</button>
-            <button *ngIf="isInCart()" min="0">{{ selectedProductUnitQuantity() }} in basket</button>
-            <button mat-icon-button (click)=addUnit()>+</button>
+        <div *ngIf="isInCart()" class="add-cart-button">
+            <button mat-icon-button (click)=subUnit()><span class='add-sub-icon'>-</span></button>
+            <button class='quantity-info' *ngIf="isInCart()" min="0">{{ selectedProductUnitQuantity() }} in
+                Basket</button>
+            <button mat-icon-button (click)=addUnit()><span class='add-sub-icon'>+</span></button>
         </div>
         <button class="list-cart-button" mat-icon-button>
             <mat-icon>playlist_add</mat-icon>
