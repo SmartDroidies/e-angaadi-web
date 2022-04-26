@@ -63,11 +63,7 @@ export class ProductItemComponent implements OnInit {
       this.cartService.updateCart(product, this.selectedUnit, +1);
       this.loadProductsFromCart();
     } else {
-      () => {
-        this.toastr.error('Select unit before adding', 'Error', {
-          positionClass: 'toast-bottom-center',
-        });
-      };
+        this.toastr.warning('Select unit before adding', 'Error');
     }
   }
 
