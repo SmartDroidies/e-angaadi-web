@@ -63,7 +63,7 @@ export class ProductItemComponent implements OnInit {
       this.cartService.updateCart(product, this.selectedUnit, +1);
       this.loadProductsFromCart();
     } else {
-        this.toastr.warning('Select unit before adding', 'Error');
+      this.toastr.warning('Select unit before adding', 'Error');
     }
   }
 
@@ -77,6 +77,11 @@ export class ProductItemComponent implements OnInit {
   isInCart() {
     const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === this.selectedUnit);
     return cartProductUnitItem != null && cartProductUnitItem.quantity > 0 ? true : false;
+  }
+
+  isProductUnitInCart(unit: number) {
+    const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === unit);
+    return cartProductUnitItem != null ? true : false;
   }
 
   selectedProductUnitQuantity() {
