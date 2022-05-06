@@ -40,5 +40,15 @@ mat-card-actions {
 
 .count-badge {
   transform: scale(0.7);
-  font-size: 1rem;
+  font-size: $font-size-base;
+}
+
+.quantity-info{
+  font-size: $font-size-875 ;
+  width:$width-rem-800;
+}
+
+.add-sub-icon{
+  font-size:$font-size-base ;
+  margin:$margin-rem-50
 }
