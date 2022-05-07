@@ -49,7 +49,6 @@ export class ChangePasswordComponent implements OnInit {
     void this.initUser();
   }
 
-
   initUser() {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
       if (user && user.attributes) {
@@ -66,7 +65,9 @@ export class ChangePasswordComponent implements OnInit {
       return await Auth.changePassword(user, this.oldPassword, this.newPassword);
 
     } catch (e) {
-      this.toastr.error('Error while saving', 'Error')
+      this.toastr.error('Error while saving', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
       return false;
 
     }
