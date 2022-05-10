@@ -1,26 +1,10 @@
 @import '/src/styles/abstracts/variables';
 @import '/src/styles/abstracts/mixins';
 
-.cart {
-  display: flex;
-  flex-wrap: wrap;
+table {
+  width: 100%;
 }
 
-.cart-item {
-  margin: $margin-rem-25;
-}
-
-.product-image {
-  @include img-style;
-  margin: $margin-rem-25;
-  height: 15rem;
-}
-
-mat-card-title {
-  font-size: $font-size-875;
-  font-weight: $font-weight-bold;
-}
-
-.price-cart-right {
-  float: right;
+th {
+  text-align: center;
 }

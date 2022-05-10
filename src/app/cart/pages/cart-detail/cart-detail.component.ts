@@ -9,9 +9,9 @@ import { CartService } from 'src/app/shared/service/cart.service';
 })
 export class CartDetailComponent implements OnInit {
   items: CartItem[] = [];
-
   constructor(private cartService: CartService) {}
-
+  displayedColumns: string[] = ['title', 'price', 'quantity'];
+  dataSource = this.items;
   ngOnInit(): void {
     this.getCart();
   }
