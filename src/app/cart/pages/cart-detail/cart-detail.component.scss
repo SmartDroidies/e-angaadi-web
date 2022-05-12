@@ -1,10 +1,26 @@
 @import '/src/styles/abstracts/variables';
 @import '/src/styles/abstracts/mixins';
 
-table {
-  width: 100%;
+.product-image {
+  width: 2rem;
+  height: 2rem;
+  // margin-top: .5rem;
 }
 
-th {
+table {
+  width: 60%;
+  margin-left: 15rem;
+}
+
+th.mat-header-cell {
   text-align: center;
+  font-size: medium;
+}
+
+td {
+  text-align: center;
+}
+.product {
+  // display: flex;
+  // justify-content: space-evenly;
 }
