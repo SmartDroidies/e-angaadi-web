@@ -11,12 +11,9 @@ import { ProductService } from 'src/app/product/service/product.service';
 })
 export class CartDetailComponent implements OnInit {
   @Input() product!: Product;
-  selectedUnit!: number;
-  cartProductItems!: CartItem[];
-  cartProductItem: CartItem | undefined;
   items: CartItem[] = [];
   constructor(private productService: ProductService, private cartService: CartService) {}
-  displayedColumns: string[] = ['title', 'price', 'quantity', 'total'];
+  displayedColumns: string[] = ['title', 'unit', 'price', 'quantity', 'total'];
   ngOnInit(): void {
     this.getCart();
   }
@@ -25,47 +22,10 @@ export class CartDetailComponent implements OnInit {
     this.items = this.cartService.getCartItems();
   }
 
-  loadProductsFromCart() {
-    this.cartProductItems = this.cartService.getCartProductItems(this.product.code);
-    if (this.selectedUnit) {
-      this.loadProductUnitFromCart(this.selectedUnit);
-    }
+  addUnit(product: Product, selectedUnit: number) {
+    this.cartService.updateCart(product, selectedUnit, +1);
   }
-
-  // getCartItemQuantity(currUnit: number) {
-  //   const allItems = this.cartService.getCartItems();
-  //   let qtyInCart = 0;
-  //   allItems.forEach((item) => {
-  //     if (item.unit == currUnit) {
-  //       qtyInCart = item.quantity;
-  //     }
-  //   });
-  //   return qtyInCart;
-  // }
-
-  loadProductUnitFromCart(unit: number) {
-    this.cartProductItem = this.cartProductItems.find((item) => item.unit === unit);
-  }
-
-  addUnit() {
-    this.addToCart(this.product);
-  }
-
-  subUnit() {
-    this.removeFromCart(this.product);
-  }
-
-  addToCart(product: Product) {
-    if (this.selectedUnit) {
-      this.cartService.updateCart(product, this.selectedUnit, +1);
-      this.loadProductsFromCart();
-    }
-  }
-
-  removeFromCart(product: Product) {
-    if (this.selectedUnit) {
-      this.cartService.updateCart(product, this.selectedUnit, -1);
-      this.loadProductsFromCart();
-    }
+  subUnit(product: Product, selectedUnit: number) {
+    this.cartService.updateCart(product, selectedUnit, -1);
   }
 }
