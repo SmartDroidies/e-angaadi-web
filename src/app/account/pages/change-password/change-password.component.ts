@@ -11,8 +11,8 @@ import { from } from 'rxjs';
 })
 export class ChangePasswordComponent implements OnInit {
   passwordForm!: FormGroup;
-  oldPassword!: any;
-  newPassword!: any;
+  oldPassword!: string;
+  newPassword!: string;
   showPassword = false;
   name: string | undefined;
   constructor(private fb: FormBuilder, private toastr: ToastrService,) {
@@ -36,15 +36,20 @@ export class ChangePasswordComponent implements OnInit {
       ),
     });
   }
+
   setData() {
     this.passwordForm.controls['user'].setValue(this.name)
   }
+
   get f() {
     return this.passwordForm.controls;
   }
+
+  //FIXME - Either show password or don't have the icon
   toggleShowPassword(showBoolean: boolean) {
-    showBoolean = !showBoolean;
+    this.showPassword = !showBoolean;
   }
+
   ngOnInit(): void {
     void this.initUser();
   }
@@ -78,3 +83,7 @@ export class ChangePasswordComponent implements OnInit {
 
 
 
+//FIXME 
+// Dont make server call when the validation fails
+// Use flex layout for alignment
+// Create Mixin
