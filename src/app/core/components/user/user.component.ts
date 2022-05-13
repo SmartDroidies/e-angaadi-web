@@ -40,7 +40,7 @@ export class UserComponent implements OnInit {
     });
   }
 
-  async accountinfo() {
+  async accountInfo() {
     await this.router.navigate(['/account/account-info']);
   }
 
@@ -48,7 +48,7 @@ export class UserComponent implements OnInit {
     await this.router.navigate(['/auth/sign-in']);
   }
 
-  async changepassword() {
-    await this.router.navigate(['/account/changepassword']);
+  async changePassword() {
+    await this.router.navigate(['/account/change-password']);
   }
 }

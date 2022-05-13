@@ -19,7 +19,7 @@ const routes: Routes = [
           ],
         },
         
-       { path: 'changepassword', component: ChangePasswordComponent },
+       { path: 'change-password', component: ChangePasswordComponent },
       ],
     },
   ];
