@@ -23,14 +23,14 @@ export class ChangePasswordComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern("^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{8,255})\\S$"),
+          Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"),
         ]
       ),
       newPassword: new FormControl(
         '',
         [
           Validators.required,
-          Validators.pattern("^((?=\\S*?[A-Z])(?=\\S*?[a-z])(?=\\S*?[0-9]).{8,255})\\S$"),
+          Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"),
         ],
 
       ),
@@ -45,7 +45,7 @@ export class ChangePasswordComponent implements OnInit {
     return this.passwordForm.controls;
   }
 
-  //FIXME - Either show password or don't have the icon
+
   toggleShowPassword(showBoolean: boolean) {
     this.showPassword = !showBoolean;
   }
@@ -62,6 +62,11 @@ export class ChangePasswordComponent implements OnInit {
     });
   }
   async onChangePassword() {
+
+    if (this.passwordForm.invalid) {
+      return;
+    } 
+
     try {
       const user = await Auth.currentAuthenticatedUser()
       let Values = this.passwordForm.value;
