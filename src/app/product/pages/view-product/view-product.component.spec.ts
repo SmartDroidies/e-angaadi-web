@@ -4,7 +4,7 @@ import { CategoryComponent } from '../../components/category/category.component'
 import { ProductListingComponent } from '../../components/product-listing/product-listing.component';
 import { ViewProductComponent } from './view-product.component';
 
-fdescribe('ViewProductComponent', () => {
+describe('ViewProductComponent', () => {
   let component: ViewProductComponent;
   let fixture: ComponentFixture<ViewProductComponent>;
 
