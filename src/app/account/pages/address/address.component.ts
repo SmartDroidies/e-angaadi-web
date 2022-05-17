@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder,  FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Auth } from 'aws-amplify';
 import { ToastrService, } from 'ngx-toastr';
+import { from } from 'rxjs';
 import { UserdataService } from '../../service/userdata.service'
 
 @Component({
@@ -13,8 +15,10 @@ export class AddressComponent {
   addressForm!: FormGroup;
   street!: string;
   saved = false;
-  loading: boolean|undefined;
-  error: boolean|undefined;
+  loading: boolean | undefined;
+  error: boolean | undefined;
+  name: string | undefined;
+  phone_number: '' | undefined;
   constructor(
     private userdataService: UserdataService,
     private fb: FormBuilder,
@@ -22,6 +26,8 @@ export class AddressComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router) {
     this.addressForm = this.fb.group({
+      user: new FormControl(),
+      contact: new FormControl(),
       street: [
         '',
         [
@@ -47,9 +53,25 @@ export class AddressComponent {
   get f() {
     return this.addressForm.controls;
   }
-  
+  setData() {
+    this.addressForm.controls['user'].setValue(this.name);
+    this.addressForm.controls['contact'].setValue(this.phone_number)
+  }
+  ngOnInit(): void {
+    void this.initUser();
+  }
 
-  
+  initUser() {
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      if (user && user.attributes) {
+        this.name = user.attributes.name as string;
+        this.phone_number = user.attributes.phone_number;
+      }
+    });
+  }
+
+
+
   onSave() {
     this.saved = true;
 
@@ -60,7 +82,7 @@ export class AddressComponent {
 
     this.loading = true;
 
-    
+
     this.userdataService.updateProduct(this.addressForm.value).subscribe(
       () => {
         this.toastr.success('Product saved successfully', 'Success', {

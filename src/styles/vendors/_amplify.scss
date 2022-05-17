@@ -1,6 +1,9 @@
+@import '../abstracts/variables';
+
+
 :root {
-  --amplify-primary-color: #c749ee;
-  --amplify-primary-tint: black;
-  --amplify-primary-shade: #e03ed8;
-  --amplify-background-color: skyblue;
+  --amplify-primary-color: #2C5F2D;
+  --amplify-primary-shade: #97BC62;
+  // --amplify-primary-tint: #2C5F2D;
+  // --amplify-background-color: mat.get-color-from-palette($shopper-palette, '500');
 }
