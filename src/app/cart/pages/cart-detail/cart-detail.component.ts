@@ -43,7 +43,7 @@ export class CartDetailComponent implements OnInit {
     return this.subtotal;
   }
 
-  async onCart() {
+  async onShopping() {
     await this.router.navigate(['/cart']);
   }
 }
