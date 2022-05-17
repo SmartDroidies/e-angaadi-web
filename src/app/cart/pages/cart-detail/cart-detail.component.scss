@@ -4,7 +4,9 @@
 .product-image {
   width: 2rem;
   height: 2rem;
-  // margin-top: .5rem;
+  // float:left;
+  // margin: 0rem;
+  // padding: 0rem;
 }
 
 table {
@@ -21,6 +23,14 @@ td {
   text-align: center;
 }
 .product {
-  // display: flex;
-  // justify-content: space-evenly;
+  margin: 0rem;
+  padding: 0rem;
+}
+.button {
+  display: flex;
+  margin-top: $margin-rem-100;
+  margin-left: $margin-rem-200;
+}
+.shopping {
+  margin-top: $margin-rem-400;
 }
