@@ -35,17 +35,24 @@ $width-rem-300: 3rem;
 $width-rem-800: 8rem;
 $width-rem-1200: 12rem;
 $width-rem-1600: 16rem;
+$width-rem-2100: 21rem;
 
 //height
 $height-rem-400: 4rem;
 $height-rem-800: 8rem;
+$height-rem-1300: 13rem;
 
 //border-radius
 $border-radius-350: 3.5rem;
 $border-radius-25: 0.25rem;
 $border-radius-0: 0rem;
 
-// Primary colour
-$hover-color: aqua;
+// Primary color
+$moss-green: #97BC62;
+$forest-green: #2C5F2D;
+$border-color: #979797;
+
+$hover-color: #2C5F2D;   //FIXME  - Prasath - Refactor this with team
+
 
 // Secondary color

@@ -3,15 +3,25 @@
   margin: $margin-rem-150;
   border: 1px solid #979797;
 }
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: $margin-rem-100;
+}
 .row {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
-.form {
+.row1 {
+  display:flex;
+  padding: 10px 15px;
+  margin: 5px 0;
+  justify-content: space-evenly;
+}
+.row2 {
   display: flex;
-  flex-direction: column;
-  margin: $margin-rem-100;
+  padding: 0.125rem 8.2rem;
 }
 
 .actions {
@@ -24,10 +34,11 @@
   justify-content: space-between;
   margin-left: 0.625rem;
 }
-.row1 {
-  display: flex;
-  padding: 0.125rem 8.2rem;
-}
+
 .mat-form-field {
   width: 350px !important;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
 }
