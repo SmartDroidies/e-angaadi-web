@@ -34,3 +34,20 @@ td {
 .shopping {
   margin-top: $margin-rem-400;
 }
+.boxtotal{
+  float:right;
+  margin-right:$margin-rem-200;
+  width: $width-rem-2100;
+  height: $height-rem-800;
+  padding: $pad-rem-200;
+  border: $border-radius-25 solid black ;
+}
+
+.checkout{
+display: flex;
+align-items: flex-end;
+}
+
+.total{
+  font-size: $font-size-base;
+}

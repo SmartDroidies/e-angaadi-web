@@ -42,7 +42,7 @@
 
   <ng-container matColumnDef="total">
     <th mat-header-cell *matHeaderCellDef> SubTotal </th>
-    <td mat-cell *matCellDef="let item"> {{subtotal}}</td>
+    <td mat-cell *matCellDef="let item"> {{getTotal()}}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -54,9 +54,10 @@
 <span class="button">
 <button class="shopping" mat-raised-button color="primary" (click)="onShopping()">Continue Shopping</button>
 </span>
-
-<span class="total">Total</span>
-<button class="button" mat-raised-button color="primary" >Checkout</button>
-
-
+<div class="boxtotal">
+<span class="total">Total:</span>
+<span>
+<button class="checkout" mat-raised-button color="primary" >Checkout</button>
+</span>
+</div>
 

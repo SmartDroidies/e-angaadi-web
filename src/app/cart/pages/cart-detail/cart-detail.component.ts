@@ -12,35 +12,38 @@ import { Router } from '@angular/router';
 export class CartDetailComponent implements OnInit {
   @Input() product!: Product;
   items: CartItem[] = [];
-  subtotal = 0;
   unitqty = 0;
-
   constructor(private cartService: CartService, private router: Router) {}
   displayedColumns: string[] = ['image', 'title', 'unit', 'price', 'quantity', 'total'];
   ngOnInit(): void {
     this.getCart();
-    this.getTotal();
   }
 
   getCart(): void {
     this.items = this.cartService.getCartItems();
   }
+  
+  
 
   addUnit(product: Product, selectedUnit: number) {
     this.cartService.updateCart(product, selectedUnit, +1);
-    this.getTotal();
+    // this.getTotal();
   }
   subUnit(product: Product, selectedUnit: number) {
     this.cartService.updateCart(product, selectedUnit, -1);
-    this.getTotal();
+    // this.getTotal();
   }
 
   getTotal() {
+    let subtotal = 0; 
+   
     this.items.forEach((items) => {
       this.unitqty = items.quantity * items.unit;
-      this.subtotal = 50 * this.unitqty;
+      
+      subtotal = 50 * this.unitqty;
+    
     });
-    return this.subtotal;
+    return subtotal;
   }
 
   async onShopping() {
