@@ -31,7 +31,7 @@ export class CartDetailComponent implements OnInit {
     // this.getTotal();
   }
 
-  getTotal(cartItem: CartItem) {
+  getSubTotal(cartItem: CartItem) {
     let subTotal = 0;    
     this.items.forEach((loopItem) => {
       if(loopItem.code === cartItem.code && loopItem.unit === cartItem.unit) {
@@ -42,7 +42,16 @@ export class CartDetailComponent implements OnInit {
     return subTotal;
   }
 
+  getTotal(){
+    let total = 0;
+    this.items.forEach((items) => {
+      total += this.getSubTotal(items);
+    });
+    return total;
+  }
+  
+
   async onShopping() {
-    await this.router.navigate(['/cart']);
+    await this.router.navigate(['/home']);
   }
 }

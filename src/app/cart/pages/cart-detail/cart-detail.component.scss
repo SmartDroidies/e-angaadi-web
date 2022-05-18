@@ -2,16 +2,14 @@
 @import '/src/styles/abstracts/mixins';
 
 .product-image {
-  width: 2rem;
-  height: 2rem;
-  // float:left;
-  // margin: 0rem;
-  // padding: 0rem;
+  width: $width-rem-200;
+  height: $height-rem-200;
+  
 }
 
 table {
   width: 60%;
-  margin-left: 15rem;
+  margin-left: $margin-rem-1500;
 }
 
 th.mat-header-cell {
@@ -22,32 +20,31 @@ th.mat-header-cell {
 td {
   text-align: center;
 }
-.product {
-  margin: 0rem;
-  padding: 0rem;
-}
+
 .button {
   display: flex;
-  margin-top: $margin-rem-100;
-  margin-left: $margin-rem-200;
+  align-items: flex-end;
+  justify-content: space-between;
 }
+
+.boxtotal{
+  margin-top:$margin-rem-200 ;
+  float:right;
+  margin-right:$margin-rem-200;
+  width: $width-rem-2500;
+  padding: $pad-rem-200;
+  border: $border-radius-1 solid black ;
+}
+
 .shopping {
   margin-top: $margin-rem-400;
 }
-.boxtotal{
-  float:right;
-  margin-right:$margin-rem-200;
-  width: $width-rem-2100;
-  height: $height-rem-800;
-  padding: $pad-rem-200;
-  border: $border-radius-25 solid black ;
+
+.total{
+  font-size: $font-size-200;
 }
 
 .checkout{
-display: flex;
-align-items: flex-end;
-}
-
-.total{
-  font-size: $font-size-base;
+  width: 8rem;
+  height:3rem;
 }
