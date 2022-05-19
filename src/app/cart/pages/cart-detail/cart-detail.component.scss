@@ -4,12 +4,19 @@
 .product-image {
   width: $width-rem-200;
   height: $height-rem-200;
-  
+}
+
+.hidecart{
+font-size: $font-size-200;
+display: flex;
+justify-content: center;
+margin-top: 12rem;
 }
 
 table {
   width: 60%;
   margin-left: $margin-rem-1500;
+  margin-top: $margin-rem-400;
 }
 
 th.mat-header-cell {
@@ -47,4 +54,8 @@ td {
 .checkout{
   width: 8rem;
   height:3rem;
+}
+
+.amount{
+  float: right;
 }

@@ -12,16 +12,28 @@ import { Router } from '@angular/router';
 export class CartDetailComponent implements OnInit {
   @Input() product!: Product;
   items: CartItem[] = [];
+  show!:boolean;
+
   constructor(private cartService: CartService, private router: Router) {}
   displayedColumns: string[] = ['image', 'title', 'unit', 'price', 'quantity', 'total'];
   ngOnInit(): void {
     this.getCart();
+    this.showCart();
   }
 
   getCart(): void {
     this.items = this.cartService.getCartItems();
   }
-  
+
+  showCart(){
+  if(this.items.length>0){
+    this.show=true;
+  }
+  else{
+    this.show=false;
+  }
+  }
+
   addUnit(product: Product, selectedUnit: number) {
     this.cartService.updateCart(product, selectedUnit, +1);
     // this.getTotal();
@@ -40,6 +52,9 @@ export class CartDetailComponent implements OnInit {
       }
     });
     return subTotal;
+  }
+  emptyCart(){
+    return 
   }
 
   getTotal(){

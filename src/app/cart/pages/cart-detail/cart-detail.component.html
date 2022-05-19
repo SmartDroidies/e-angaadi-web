@@ -1,4 +1,5 @@
-<h3>Cart</h3>
+<div *ngIf="show==false" class="hidecart">"Your Cart Is Empty!"</div>
+<div *ngIf="show==true">
 <table mat-table [dataSource]="items" class="mat-elevation-z8">
   <ng-container matColumnDef="image">
 
@@ -46,10 +47,13 @@
 </table>
 
 <div class="boxtotal">
-  <span class="total">Total:{{getTotal()}}</span>
+  <span class="total">Total:
+    <span class="amount">{{getTotal()| currency:'INR'}}</span>
+  </span>
   <span class="button">
   <button class="emptycart" mat-raised-button color="primary">Empty Cart</button>
   <button class="shopping" mat-raised-button color="primary" (click)="onShopping()">Continue Shopping</button>
   <button class="checkout" mat-raised-button color="accent">Checkout</button>
   </span>
+</div>
 </div>
