@@ -3,6 +3,7 @@
 }
 .category-listing {
   display: flex;
+  justify-content: space-between;
 }
 .product-listing {
   flex-basis: 75%;
