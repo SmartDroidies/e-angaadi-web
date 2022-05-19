@@ -21,9 +21,7 @@
   height: $height-rem-400;
   margin: $margin-rem-25 $margin-rem-50;
 }
- 
-@mixin change-password {
-  width:$width-rem-2100;
-  height:$height-rem-1300;
-  
+
+@mixin box-border {
+  border: 1px solid $border-color;
 }
