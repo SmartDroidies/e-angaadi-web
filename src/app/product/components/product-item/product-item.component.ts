@@ -25,21 +25,29 @@ export class ProductItemComponent implements OnInit {
   loadProductsFromCart() {
     this.cartProductItems = this.cartService.getCartProductItems(this.product.code);
     if (this.selectedUnit) {
-      this.loadProductUnitFromCart();
+      this.loadProductUnitFromCart(this.selectedUnit);
     }
   }
 
-  selectChip(item: MatChip) {
+  getCartItemQuantity(currUnit: number) {
+    const allItems = this.cartService.getCartItems();
+    let qtyInCart = 0;
+    allItems.forEach((item) => {
+      if (item.unit == currUnit) {
+        qtyInCart = item.quantity;
+      }
+    });
+    return qtyInCart;
+  }
+
+  selectChip(item: MatChip, unit: number) {
     item.selected = !item.selected;
-  }
-
-  unitSelected(unit: number) {
     this.selectedUnit = unit;
-    this.loadProductUnitFromCart();
+    this.loadProductUnitFromCart(unit);
   }
 
-  loadProductUnitFromCart() {
-    this.cartProductItem = this.cartProductItems.find((item) => item.unit == this.selectedUnit);
+  loadProductUnitFromCart(unit: number) {
+    this.cartProductItem = this.cartProductItems.find((item) => item.unit === unit);
   }
 
   addUnit() {
@@ -55,11 +63,7 @@ export class ProductItemComponent implements OnInit {
       this.cartService.updateCart(product, this.selectedUnit, +1);
       this.loadProductsFromCart();
     } else {
-      () => {
-        this.toastr.error('Select unit before adding', 'Error', {
-          positionClass: 'toast-bottom-center',
-        });
-      };
+      this.toastr.warning('Select unit before adding', 'Error');
     }
   }
 
@@ -71,8 +75,13 @@ export class ProductItemComponent implements OnInit {
   }
 
   isInCart() {
-    const cartProductUnitItem = this.cartProductItems.find((item) => (item.unit = this.selectedUnit));
+    const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === this.selectedUnit);
     return cartProductUnitItem != null && cartProductUnitItem.quantity > 0 ? true : false;
+  }
+
+  isProductUnitInCart(unit: number) {
+    const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === unit);
+    return cartProductUnitItem != null ? true : false;
   }
 
   selectedProductUnitQuantity() {

@@ -13,10 +13,12 @@ export class CartSummaryComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
+    console.log("Cart summary component is initialized");
     this.getCartData();
   }
 
   getCartData(): void {
+    console.log("Cart summary component - Calling cart data");
     this.items = this.cartService.getCartItems();
   }
 }

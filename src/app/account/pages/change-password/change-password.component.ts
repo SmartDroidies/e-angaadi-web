@@ -13,7 +13,8 @@ export class ChangePasswordComponent implements OnInit {
   passwordForm!: FormGroup;
   oldPassword!: string;
   newPassword!: string;
-  showPassword = false;
+  showPassword: boolean = false;
+  showOldPassword: boolean = false;
   name: string | undefined;
   constructor(private fb: FormBuilder, private toastr: ToastrService,) {
     this.initUser();
@@ -45,9 +46,12 @@ export class ChangePasswordComponent implements OnInit {
     return this.passwordForm.controls;
   }
 
+  toggleShowOldPassword() {
+    this.showOldPassword = !this.showOldPassword;
+  }
 
-  toggleShowPassword(showBoolean: boolean) {
-    this.showPassword = !showBoolean;
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 
   ngOnInit(): void {

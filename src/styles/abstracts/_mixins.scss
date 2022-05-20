@@ -25,3 +25,7 @@
 @mixin box-border {
   border: 1px solid $border-color;
 }
+ 
+@mixin change-password {
+  width:$width-rem-2500;
+}
