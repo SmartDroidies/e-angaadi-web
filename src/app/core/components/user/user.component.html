@@ -1,5 +1,4 @@
 <div>
-
     <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger">
         <mat-icon class="user-icon">account_circle</mat-icon>
         <span class="user-icon-text mat-small">Your Account</span>
@@ -8,22 +7,24 @@
     </button>
     <mat-menu #menu="matMenu" [overlapTrigger]="false">
         <div *ngIf="!signedIn" class="row actions">
-            <button mat-raised-button class="sign-in" *ngIf="!signedIn" (click)="signIn()"
-                color="primary">SignIn</button>
-            <div>
-                <a class="not-yet-registered" *ngIf="!signedIn" (click)="signUp()">Not yet registered?</a>
-                <br>
-                <a class="sign-up" *ngIf="!signedIn" (click)="signUp()">SignUp</a>
+            <button mat-raised-button class="sign-in" *ngIf="!signedIn" (click)="signIn()" color="primary">Sign in</button>
+            <div class="signup-div">
+                <span>
+                    <a class="not-yet-registered" *ngIf="!signedIn" (click)="signUp()">Not yet registered?</a>
+                </span>
+                <br/>
+                <span>
+                    <a class="sign-up" *ngIf="!signedIn" (click)="signUp()">Sign up</a>
+                </span>
             </div>
         </div>
         <span mat-menu-item *ngIf="signedIn">{{mail}}</span>
         <mat-divider></mat-divider>
         <a class="menu-link" (click)="accountInfo()">Account Information</a>
-        <a class="menu-link"(click)="changePassword()">Change Password</a>
+        <a class="menu-link" (click)="changePassword()">Change Password</a>
         <a class="menu-link">Help Center</a>
         <mat-divider *ngIf="signedIn"></mat-divider>
         <a *ngIf="signedIn" class="user-nav-item" (click)="signOut()">Sign out</a>
-        <mat-divider *ngIf="signedIn"></mat-divider>
     </mat-menu>
 
 </div>
