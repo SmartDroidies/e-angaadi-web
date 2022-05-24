@@ -1,15 +1,9 @@
 * {
   box-sizing: border-box;
 }
-
-.column-listing {
-  padding: 5px;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
 .category-listing {
-  flex-basis: 25%;
+  display: flex;
+  justify-content: space-between;
 }
 .product-listing {
   flex-basis: 75%;
