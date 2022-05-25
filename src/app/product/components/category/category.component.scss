@@ -1,3 +1,5 @@
-button:focus {
-    color: blue;
-  }
+@import 'src/styles/layout/_navbar.scss';
+
+.category-nav-list {
+  @include category-navigation
+}
