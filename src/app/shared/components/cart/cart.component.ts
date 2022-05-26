@@ -11,11 +11,14 @@ import { CartService } from '../../service/cart.service';
 export class CartComponent implements OnInit {
   items: CartItem[] = [];
   cartTotal = 0;
+  badgeHidden!:boolean;  
+
   constructor(private router: Router, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getCartItem();
   }
+
 
   getCartItem(): void {
     this.items = this.cartService.getCartItems();
@@ -23,7 +26,9 @@ export class CartComponent implements OnInit {
 
   async onCart() {
     await this.router.navigate(['/cart']);
+    this.badgeHidden=true;
   }
+
 
   getCartTotal() {
     let cartTotal = 0;

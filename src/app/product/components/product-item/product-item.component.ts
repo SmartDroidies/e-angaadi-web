@@ -15,11 +15,18 @@ export class ProductItemComponent implements OnInit {
   selectedUnit!: number;
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
+  
 
   constructor(private cartService: CartService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.loadProductsFromCart();
+    this.productImage(this.product);
+  }
+
+  productImage(product:Product){
+    let productImageUrl ="https://shopper-image.s3.ap-south-1.amazonaws.com/" +product.code +".png";
+    return productImageUrl;
   }
 
   loadProductsFromCart() {
