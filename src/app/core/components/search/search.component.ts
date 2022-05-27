@@ -11,10 +11,11 @@ import { ProductService } from 'src/app/product/service/product.service';
 export class SearchComponent {
 
   search!: string;
+  searchedDatas!:Product[];
 
   constructor(private productService: ProductService) { }
 
   searchData() {
-   this.productService.searchProduct(this.search).subscribe((search) => (this.search = search));
+   this.productService.searchProduct(this.search).subscribe((searchDatas) => (this.searchedDatas = searchDatas));
   }
 }
