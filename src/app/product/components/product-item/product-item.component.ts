@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatChip } from '@angular/material/chips';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { CartService } from 'src/app/shared/service/cart.service';
@@ -17,7 +18,7 @@ export class ProductItemComponent implements OnInit {
   cartProductItem: CartItem | undefined;
   
 
-  constructor(private cartService: CartService, private toastr: ToastrService) {}
+  constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.loadProductsFromCart();
