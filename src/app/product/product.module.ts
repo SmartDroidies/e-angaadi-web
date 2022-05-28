@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
 import { ProductItemComponent } from './components/product-item/product-item.component';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [
     CategoryComponent,
@@ -29,6 +30,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     HttpClientModule,
     MatInputModule,
     ToastrModule.forRoot(),
+    TranslateModule
   ],
   exports: [ViewProductComponent],
 })
