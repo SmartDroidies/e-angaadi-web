@@ -13,10 +13,9 @@ justify-content: center;
 margin-top: 12rem;
 }
 
-table {
+table{
   width: 60%;
   margin-left: $margin-rem-1500;
-  margin-top: $margin-rem-400;
 }
 
 th.mat-header-cell {
@@ -32,6 +31,11 @@ td {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+}
+
+.mat-mini-fab{
+width: 2rem;
+height:2rem;
 }
 
 .boxtotal{
@@ -58,4 +62,18 @@ td {
 
 .amount{
   float: right;
+}
+
+.heading{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 22rem;
+  margin-top: 2rem;
+  font-size: $font-size-base;
+  font-weight: bold;
+}
+
+.text{
+  display: flex;
+  justify-content: space-around;
 }

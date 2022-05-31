@@ -1,49 +1,97 @@
 <div *ngIf="show==false" class="hidecart">"Your Cart Is Empty!"</div>
+
 <div *ngIf="show==true">
+  <div class="heading">Delivery items({{getTotalQuantity()}})</div>
 <table mat-table [dataSource]="items" class="mat-elevation-z8">
-  <ng-container matColumnDef="image">
+  <!-- <ng-container matColumnDef="image">
 
     <th mat-header-cell *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let item">
-      <!-- <img mat-card-image
+      <img mat-card-image
         src="https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
-        class="product-image" /> -->
+        class="product-image" />
     </td>
-  </ng-container>
+  </ng-container> -->
   <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef> Products </th>
+    <th mat-header-cell *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let item">
-      <span class="product">{{item.title}}</span>
+      <span class="product">{{item.title}} ({{item.unit+item.submetric}})</span>
     </td>
-  </ng-container>
-  <ng-container matColumnDef="unit">
-    <th mat-header-cell *matHeaderCellDef> Unit </th>
-    <td mat-cell *matCellDef="let item"> {{item.unit+item.submetric}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="price">
+  <!-- <ng-container matColumnDef="price">
     <th mat-header-cell *matHeaderCellDef> Price </th>
     <td mat-cell *matCellDef="let item"> 50 </td>
-  </ng-container>
+  </ng-container> -->
 
   <ng-container matColumnDef="quantity">
-    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+    <th mat-header-cell *matHeaderCellDef>  </th>
     <td mat-cell *matCellDef="let item">
       <div>
-        <button mat-icon-button (click)=subUnit(item,item.unit)>-</button>
+        <button mat-mini-fab color="primary" class="addsub" (click)=subUnit(item,item.unit)>-</button>
         <button min="0">{{item.quantity}}</button>
-        <button mat-icon-button (click)=addUnit(item,item.unit)>+</button>
+        <button mat-mini-fab color="primary" class="addsub" (click)=addUnit(item,item.unit)>+</button>
       </div>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="total">
-    <th mat-header-cell *matHeaderCellDef> SubTotal </th>
-    <td mat-cell *matCellDef="let item"> {{getSubTotal(item)}}</td>
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let item"> {{getSubTotal(item)}}
+    <div class="text">
+      <div>Delete</div>
+      <div>Save For Later</div>
+    </div>
+  </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+</table>
+
+<div class="heading">Saved For Later</div>
+<table mat-table [dataSource]="items" class="mat-elevation-z8">
+  <!-- <ng-container matColumnDef="image">
+
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let item">
+      <img mat-card-image
+        src="https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
+        class="product-image" />
+    </td>
+  </ng-container> -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let item">
+      <span class="product">{{item.title}} ({{item.unit+item.submetric}})</span>
+    </td>
+  </ng-container>
+
+  <!-- <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef> Price </th>
+    <td mat-cell *matCellDef="let item"> 50 </td>
+  </ng-container> -->
+
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef>  </th>
+    <td mat-cell *matCellDef="let item">
+      <div>
+        <button >{{item.quantity}}</button>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="total">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let item"> {{getSubTotal(item)}}</td>
+    <div class="text">
+      <div>Remove</div>
+      <div>Move To Cart</div>
+    </div>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
 </table>
 
 <div class="boxtotal">

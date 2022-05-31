@@ -12,10 +12,12 @@ import { Router } from '@angular/router';
 export class CartDetailComponent implements OnInit {
   @Input() product!: Product;
   items: CartItem[] = [];
+  saved:any;
   show!:boolean;
 
   constructor(private cartService: CartService, private router: Router) {}
-  displayedColumns: string[] = ['image', 'title', 'unit', 'price', 'quantity', 'total'];
+  displayedColumns1: string[] = [ 'title',  'quantity', 'total'];
+  displayedColumns2: string[] = [ 'title',  'quantity', 'total'];
   ngOnInit(): void {
     this.getCart();
     this.showCart();
@@ -53,6 +55,11 @@ export class CartDetailComponent implements OnInit {
     });
     return subTotal;
   }
+
+onSave(){
+
+}
+
   emptyCart(){
     return 
   }
@@ -68,5 +75,13 @@ export class CartDetailComponent implements OnInit {
 
   async onShopping() {
     await this.router.navigate(['/home']);
+  }
+
+  getTotalQuantity() {
+    let totalQuantity = 0;
+    this.items.forEach((items) => {
+      totalQuantity += items.quantity;
+    });
+    return totalQuantity;
   }
 }
