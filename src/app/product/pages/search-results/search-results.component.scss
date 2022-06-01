@@ -1,0 +1,10 @@
+@import '/src/styles/abstracts/variables';
+@import '/src/styles/abstracts/mixins';
+
+.products {
+    @include product-listing;
+}
+
+.product-container {
+  margin: $margin-rem-25;
+}

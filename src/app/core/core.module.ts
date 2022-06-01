@@ -16,9 +16,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { ViewSearchComponent } from './pages/view-search/view-search.component';
 @NgModule({
-  declarations: [NavMenuComponent, UserComponent, SearchComponent, LocationComponent, HeaderComponent, ViewSearchComponent],
+  declarations: [NavMenuComponent, UserComponent, SearchComponent, LocationComponent, HeaderComponent],
   imports: [
     CommonModule,
     MatDividerModule,
@@ -33,6 +32,6 @@ import { ViewSearchComponent } from './pages/view-search/view-search.component';
     MatFormFieldModule,
     FormsModule
   ],
-  exports: [HeaderComponent,ViewSearchComponent],
+  exports: [HeaderComponent],
 })
 export class CoreModule {}

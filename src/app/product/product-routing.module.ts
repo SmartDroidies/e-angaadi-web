@@ -10,7 +10,7 @@ const routes: Routes = [
     path: 'product',
     component: FullLayoutComponent,
     children: [
-      { path: 'search', component: SearchResultsComponent },
+      { path: 'search/:searchword', component: SearchResultsComponent },
       { path: '', component: ViewProductComponent },
     ],
   },

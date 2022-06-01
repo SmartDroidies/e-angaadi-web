@@ -1,9 +1,8 @@
 @import '/src/styles/abstracts/variables';
+@import '/src/styles/abstracts/mixins';
 
 .products {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  @include product-listing;
 }
 
 .product-container {

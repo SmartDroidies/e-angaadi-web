@@ -8,11 +8,13 @@ import { Router } from '@angular/router';
 })
 
 export class SearchComponent { 
-  search!: string;
+  searchword!: string;
 
   constructor(private router: Router) { }
 
-  async searchData(search:string){
-    await this.router.navigate(['/product/search']);
+  async searchData(searchword:string){
+    if(searchword){
+    await this.router.navigate(['/product/search',searchword]);
+    }
   }
 }
