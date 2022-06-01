@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Product } from 'src/app/product/models/product';
-import { ProductService } from 'src/app/product/service/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -8,14 +7,12 @@ import { ProductService } from 'src/app/product/service/product.service';
   styleUrls: ['./search.component.scss'],
 })
 
-export class SearchComponent {
-
+export class SearchComponent { 
   search!: string;
-  searchedDatas!:Product[];
 
-  constructor(private productService: ProductService) { }
+  constructor(private router: Router) { }
 
-  searchData() {
-   this.productService.searchProduct(this.search).subscribe((searchDatas) => (this.searchedDatas = searchDatas));
+  async searchData(search:string){
+    await this.router.navigate(['/product/search']);
   }
 }
