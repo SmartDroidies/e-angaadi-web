@@ -13,18 +13,16 @@ justify-content: center;
 margin-top: 12rem;
 }
 
-table {
-  width: 60%;
-  margin-left: $margin-rem-1500;
-  margin-top: $margin-rem-400;
+table{
+  width: 50%;
+  margin-left: $margin-rem-2000;
 }
 
-th.mat-header-cell {
+.td1 {
   text-align: center;
-  font-size: medium;
 }
 
-td {
+.td2 {
   text-align: center;
 }
 
@@ -58,4 +56,23 @@ td {
 
 .amount{
   float: right;
+}
+
+.heading{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 25rem;
+  margin-top: 2rem;
+  font-size: $font-size-base;
+  font-weight: bold;
+}
+
+.text1{
+  display: flex;
+  justify-content: space-around;
+}
+
+.text2{
+  display: flex;
+  justify-content: space-around;
 }
