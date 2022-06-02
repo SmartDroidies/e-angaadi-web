@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
+import { ProductRoutingModule } from './product-routing.module';
 @NgModule({
   declarations: [
     CategoryComponent,
@@ -30,7 +31,8 @@ import { SearchResultsComponent } from './pages/search-results/search-results.co
     HttpClientModule,
     MatInputModule,
     ToastrModule.forRoot(),
-    TranslateModule
+    TranslateModule,
+    ProductRoutingModule
   ],
   exports: [ViewProductComponent],
 })
