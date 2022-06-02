@@ -13,6 +13,9 @@ import { ProductModule } from './product/product.module';
 import { Amplify } from 'aws-amplify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccountModule } from './account/account.module';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 Amplify.configure({
@@ -29,9 +32,23 @@ Amplify.configure({
     },
   },
 });
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   declarations: [AppComponent, FullLayoutComponent, BlankLayoutComponent],
   imports: [
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      defaultLanguage: 'ta'
+    }),
     AuthModule,
     ProductModule,
     CoreModule,
@@ -46,4 +63,4 @@ Amplify.configure({
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

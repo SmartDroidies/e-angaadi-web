@@ -1,10 +1,12 @@
 * {
   box-sizing: border-box;
 }
+
 .category-listing {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
+
 .product-listing {
   flex-basis: 75%;
 }
