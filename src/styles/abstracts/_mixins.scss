@@ -24,5 +24,11 @@
  
 @mixin change-password {
   width:$width-rem-2100;
-  height:$height-rem-1300;  
+  height:$height-rem-1300;
+}
+
+@mixin product-listing{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
