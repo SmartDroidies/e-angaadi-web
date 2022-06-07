@@ -4,6 +4,7 @@ import { FullLayoutComponent } from '../layouts/full-layout/full-layout.componen
 import { AddressComponent } from './pages/address/address.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AccountInfoComponent } from './pages/account-info/account-info.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 const routes: Routes = [
     {
@@ -17,6 +18,8 @@ const routes: Routes = [
             { path: 'address', component: AddressComponent },
           ],
         },
+        
+       { path: 'change-password', component: ChangePasswordComponent },
       ],
     },
   ];

@@ -1,11 +1,13 @@
 {
-    "/api": {
-        "target": "https://hf8y35g47j.execute-api.ap-south-1.amazonaws.com/Prod",
+    "/product-api": {
+        "target": "https://p64ygl47wj.execute-api.ap-south-1.amazonaws.com/Prod/product-api",
         "secure": true,
         "changeOrigin": true,
         "logLevel": "debug",
         "pathRewrite": {
-            "^/api": ""
+            "^/product-api": ""
         }
     }
 }
+
+

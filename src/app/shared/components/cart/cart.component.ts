@@ -11,14 +11,14 @@ import { CartService } from '../../service/cart.service';
 export class CartComponent implements OnInit {
   items: CartItem[] = [];
   cartTotal = 0;
-  qtyTotal = 0;
-  constructor(private router: Router, private cartService: CartService) {}
+  badgeHidden!:boolean;  
+
+  constructor(private router: Router, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getCartItem();
-    this.getCartTotal();
-    this.getTotalQty();
   }
+
 
   getCartItem(): void {
     this.items = this.cartService.getCartItems();
@@ -26,17 +26,23 @@ export class CartComponent implements OnInit {
 
   async onCart() {
     await this.router.navigate(['/cart']);
+    this.badgeHidden=true;
   }
+
 
   getCartTotal() {
+    let cartTotal = 0;
     this.items.forEach((items) => {
-      this.cartTotal += items.price;
+      cartTotal += items.price;
     });
+    return cartTotal;
   }
 
-  getTotalQty() {
+  getTotalQuantity() {
+    let totalQuantity = 0;
     this.items.forEach((items) => {
-      this.qtyTotal += items.quantity;
+      totalQuantity += items.quantity;
     });
+    return totalQuantity;
   }
 }

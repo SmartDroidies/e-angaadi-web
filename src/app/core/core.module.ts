@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [NavMenuComponent, UserComponent, SearchComponent, LocationComponent, HeaderComponent],
   imports: [
@@ -28,7 +29,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatIconModule,
     MatInputModule,
     RouterModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    FormsModule
   ],
   exports: [HeaderComponent],
 })

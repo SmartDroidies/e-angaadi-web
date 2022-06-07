@@ -6,13 +6,13 @@
         <div>
           <mat-form-field appearance="fill">
             <mat-label for="fullname">Full Name</mat-label>
-            <input matInput placeholder="Placeholder" name="fullname" value="Indumathi" required>
+            <input matInput name="user" formControlName="user" [value]="setData()" />
           </mat-form-field>
         </div>
         <div>
           <mat-form-field appearance="fill">
             <mat-label for="contact">Mobile number</mat-label>
-            <input matInput placeholder="Placeholder" name="contact" value="9080558903" required>
+            <input matInput name="contact" formControlName="contact" [value]="setData()" />
           </mat-form-field>
         </div>
       </div>
@@ -44,7 +44,7 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="row">
+      <div class="row1">
         <div>
           <mat-form-field appearance="fill">
             <mat-label>Landmark for easy reach out</mat-label>
@@ -75,7 +75,7 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="row1">
+      <div class="row2">
         <mat-form-field appearance="fill">
           <mat-label>Pincode</mat-label>
           <input matInput placeholder="Placeholder" required>

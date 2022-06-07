@@ -1,5 +1,5 @@
 <span mat-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
-    <mat-icon [matBadge]="qtyTotal" matBadgeColor="warn" class="cart-icon">add_shopping_cart</mat-icon>
+    <mat-icon [matBadge]="getTotalQuantity()"  [matBadgeHidden]="badgeHidden" matBadgeColor="warn" class="cart-icon">add_shopping_cart</mat-icon>
     <span class="cart-icon-text"><span class="mat-small">Cart</span></span>
 </span>
 
@@ -10,9 +10,9 @@
 
         <footer class="footer">
             <div>
-                <span class="total">Subtotal </span>
-                <span class="quantity">({{qtyTotal}} items)</span>
-                <span class="cart-total">{{cartTotal | currency:'INR'}}</span>
+                <span class="total">Subtotal : </span>
+                <span class="quantity">({{getTotalQuantity()}})</span>
+                <span class="cart-total">{{getCartTotal() | currency:'INR'}}</span>
             </div>
             <button class="button" mat-raised-button color="primary" (click)="onCart()">View
                 Cart & Checkout</button>

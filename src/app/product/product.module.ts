@@ -11,14 +11,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
 import { ProductItemComponent } from './components/product-item/product-item.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { SearchResultsComponent } from './pages/search-results/search-results.component';
+import { ProductRoutingModule } from './product-routing.module';
 @NgModule({
   declarations: [
     CategoryComponent,
     ProductListingComponent,
     ViewProductComponent,
-    ViewProductComponent,
-    ViewProductComponent,
     ProductItemComponent,
+    SearchResultsComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,8 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     HttpClientModule,
     MatInputModule,
     ToastrModule.forRoot(),
+    TranslateModule,
+    ProductRoutingModule
   ],
   exports: [ViewProductComponent],
 })

@@ -1,0 +1,23 @@
+@import 'src/styles/abstracts/_variables.scss';
+
+@mixin category-navigation {
+
+    display: flex;
+    flex-direction: row;
+    margin-top: $margin-rem-100;
+    margin-bottom: $margin-rem-100;
+
+    li {
+        list-style: none;
+        cursor: pointer;
+    }
+
+    li a {
+        margin: $margin-rem-100 
+    }
+
+    li a:hover {
+        color: $hover-color;
+    }
+
+}
