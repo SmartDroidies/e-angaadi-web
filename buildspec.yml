@@ -12,7 +12,12 @@ phases:
     commands:
       - echo Build started on `date`
       - ng build --prod --aot
-  post_build:
-     commands:
-      - aws s3 cp dist/e-angaadi s3://eangaadi --recursive
-      - echo Build completed on `date`      
+  # post_build:
+  #    commands:
+  #     - aws s3 cp dist/e-angaadi s3://eangaadi --recursive
+  #     - echo Build completed on `date`      
+artifacts:
+  files:
+    - "**/*"
+  discard-paths: no
+  base-directory: dist/e-angaadi
