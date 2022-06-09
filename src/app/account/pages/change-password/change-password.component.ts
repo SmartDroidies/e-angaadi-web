@@ -32,6 +32,7 @@ export class ChangePasswordComponent implements OnInit {
         [
           Validators.required,
           Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"),
+          Validators.minLength(8), Validators.maxLength(10)
         ],
 
       ),

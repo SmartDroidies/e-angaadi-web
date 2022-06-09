@@ -1,6 +1,6 @@
 {
     "/product-api": {
-        "target": "https://vdjp855ktc.execute-api.ap-south-1.amazonaws.com/Prod/product-api",
+        "target": "https://p64ygl47wj.execute-api.ap-south-1.amazonaws.com/Prod/product-api",
         "secure": true,
         "changeOrigin": true,
         "logLevel": "debug",
