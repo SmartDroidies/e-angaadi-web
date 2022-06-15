@@ -16,6 +16,7 @@ export class ProductItemComponent implements OnInit {
   selectedUnit!: number;
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
+  price!: number;
   
 
   constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService) {}
@@ -48,10 +49,15 @@ export class ProductItemComponent implements OnInit {
     return qtyInCart;
   }
 
-  selectChip(item: MatChip, unit: number) {
+  selectChip(item: MatChip, unit: number,price:number) {
     item.selected = !item.selected;
     this.selectedUnit = unit;
     this.loadProductUnitFromCart(unit);
+    this.preparePrice(price);
+  }
+
+  preparePrice(clickedUnitPrice: number) {
+    this.price=clickedUnitPrice;
   }
 
   loadProductUnitFromCart(unit: number) {
