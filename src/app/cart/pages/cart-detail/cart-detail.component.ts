@@ -17,9 +17,9 @@ export class CartDetailComponent implements OnInit {
   items: CartItem[] = [];
   saved: any;
   show!: boolean;
-  authData: CognitoUserInterface  | undefined;
+  authData: CognitoUserInterface | undefined;
   authState!: AuthState;
-  signedIn=false;
+  signedIn = false;
   user!: any;
 
 
@@ -32,9 +32,9 @@ export class CartDetailComponent implements OnInit {
   }
 
   getCart() {
-    var userId=this.user;
+    var userId = this.user;
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      if (this.signedIn=true) {
+      if (this.signedIn = true) {
         this.user == user.attributes.name as string;
         this.cartService.getCartItems(this.user).subscribe((cartItems) => (this.items = cartItems));
       }
