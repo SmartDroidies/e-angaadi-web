@@ -20,7 +20,7 @@ export class CartDetailComponent implements OnInit {
   authData: CognitoUserInterface | undefined;
   authState!: AuthState;
   signedIn = false;
-  user!: any;
+  userId!: string;
 
 
   constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef) { }
@@ -32,11 +32,10 @@ export class CartDetailComponent implements OnInit {
   }
 
   getCart() {
-    var userId = this.user;
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
       if (this.signedIn = true) {
-        this.user == user.attributes.name as string;
-        this.cartService.getCartItems(this.user).subscribe((cartItems) => (this.items = cartItems));
+       let userId = user.username;
+        this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
       }
     });
   }

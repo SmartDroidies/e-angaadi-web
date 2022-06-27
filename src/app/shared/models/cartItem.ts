@@ -6,6 +6,7 @@ export class CartItem {
   submetric!: string;
   quantity!: number;
   price!: number;
+  userId!:string;
 
   constructor(code: string, selectedUnit: number, quantity: number, title: string, submetric: string) {
     this.code = code;

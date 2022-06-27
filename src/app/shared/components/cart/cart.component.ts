@@ -31,19 +31,19 @@ export class CartComponent implements OnInit {
   }
 
 
-  getCartTotal() {
-    let cartTotal = 0;
-    this.items.forEach((items) => {
-      cartTotal += items.price;
-    });
-    return cartTotal;
-  }
+  // getCartTotal() {
+  //   let cartTotal = 0;
+  //   this.items.forEach((items) => {
+  //     cartTotal += items.price;
+  //   });
+  //   return cartTotal;
+  // }
 
-  getTotalQuantity() {
-    let totalQuantity = 0;
-    this.items.forEach((items) => {
-      totalQuantity += items.quantity;
-    });
-    return totalQuantity;
-  }
+  // getTotalQuantity() {
+  //   let totalQuantity = 0;
+  //   this.items.forEach((items) => {
+  //     totalQuantity += items.quantity;
+  //   });
+  //   return totalQuantity;
+  // }
 }
