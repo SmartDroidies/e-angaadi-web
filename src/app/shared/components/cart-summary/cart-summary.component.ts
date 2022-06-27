@@ -9,7 +9,7 @@ import { CartService } from '../../service/cart.service';
 })
 export class CartSummaryComponent implements OnInit {
   items: CartItem[] = [];
-
+userId!:string;
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
@@ -17,6 +17,7 @@ export class CartSummaryComponent implements OnInit {
   }
 
   getCartData(): void {
-    this.items = this.cartService.getCartItems();
+    this.cartService.getCartItems(this.userId).subscribe((cartItems) => (this.items = cartItems));
+
   }
 }

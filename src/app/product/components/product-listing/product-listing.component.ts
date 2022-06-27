@@ -13,7 +13,7 @@ export class ProductListingComponent implements OnInit, OnChanges {
   @Input() productGroupCode!: string;
   products: Product[] = [];
   cartItems: CartItem[] = [];
-
+  userId!:string;
   productsByGroup: Product[] = [];
   product!: Product;
   selectedUnit!: number;
@@ -28,7 +28,7 @@ export class ProductListingComponent implements OnInit, OnChanges {
   }
 
   loadCartItems() {
-    this.cartItems = this.cartService.getCartItems();
+    this.cartService.getCartItems(this.userId).subscribe((cartItems) => (this.cartItems = cartItems));
   }
 
   ngOnChanges(changes: SimpleChanges): void {

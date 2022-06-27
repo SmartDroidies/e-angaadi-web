@@ -17,7 +17,7 @@ export class ProductItemComponent implements OnInit {
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
   price!: number;
-  
+  userId!:string;
 
   constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService) {}
 
@@ -39,13 +39,11 @@ export class ProductItemComponent implements OnInit {
   }
 
   getCartItemQuantity(currUnit: number) {
-    const allItems = this.cartService.getCartItems();
+    this.cartService.getCartItems(this.userId).subscribe((cartItems) => (this.cartProductItems = cartItems));
     let qtyInCart = 0;
-    allItems.forEach((item) => {
-      if (item.unit == currUnit) {
-        qtyInCart = item.quantity;
-      }
-    });
+      // if (item.unit == currUnit) {
+      //   qtyInCart = item.quantity;
+      // };
     return qtyInCart;
   }
 

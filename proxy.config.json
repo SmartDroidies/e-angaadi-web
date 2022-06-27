@@ -7,6 +7,15 @@
         "pathRewrite": {
             "^/product-api": ""
         }
+    },
+    "/order-api":{
+        "target": "https://ih4hbu6n51.execute-api.ap-south-1.amazonaws.com/Staging/order-api",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug",
+        "pathRewrite": {
+            "^/order-api": ""
+        }
     }
 }
 

@@ -1,8 +1,11 @@
 import { CartItem } from './../../../shared/models/cartItem';
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { Product } from 'src/app/product/models/product';
 import { Router } from '@angular/router';
+import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
+import { Auth } from 'aws-amplify';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-cart-detail',
@@ -14,8 +17,13 @@ export class CartDetailComponent implements OnInit {
   items: CartItem[] = [];
   saved: any;
   show!: boolean;
+  authData: CognitoUserInterface  | undefined;
+  authState!: AuthState;
+  signedIn=false;
+  user!: any;
 
-  constructor(private cartService: CartService, private router: Router) { }
+
+  constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef) { }
   displayedColumns1: string[] = ['title', 'quantity', 'total'];
   displayedColumns2: string[] = ['title', 'quantity', 'total'];
   ngOnInit(): void {
@@ -23,8 +31,14 @@ export class CartDetailComponent implements OnInit {
     this.showCart();
   }
 
-  getCart(): void {
-    this.items = this.cartService.getCartItems();
+  getCart() {
+    var userId=this.user;
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      if (this.signedIn=true) {
+        this.user == user.attributes.name as string;
+        this.cartService.getCartItems(this.user).subscribe((cartItems) => (this.items = cartItems));
+      }
+    });
   }
 
   showCart() {

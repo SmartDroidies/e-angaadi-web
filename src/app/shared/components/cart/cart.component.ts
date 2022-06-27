@@ -12,7 +12,7 @@ export class CartComponent implements OnInit {
   items: CartItem[] = [];
   cartTotal = 0;
   badgeHidden!:boolean;  
-
+  userId!:string;
   constructor(private router: Router, private cartService: CartService) { }
 
   ngOnInit(): void {
@@ -21,7 +21,8 @@ export class CartComponent implements OnInit {
 
 
   getCartItem(): void {
-    this.items = this.cartService.getCartItems();
+    this.cartService.getCartItems(this.userId).subscribe((cartItems) => (this.items = cartItems));
+
   }
 
   async onCart() {

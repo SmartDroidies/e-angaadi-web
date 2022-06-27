@@ -1,7 +1,7 @@
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 import { CoreModule } from './core/core.module';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +37,9 @@ Amplify.configure({
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+// export function GetCartFactory(http: HttpClient) {
+//   return new TranslateHttpLoader(http);
+// }
 
 @NgModule({
   declarations: [AppComponent, FullLayoutComponent, BlankLayoutComponent],
@@ -60,7 +63,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     AccountModule,
   ],
-  providers: [],
+  providers: [
+  //   {
+  //   provide: APP_INITIALIZER,
+  //   useFactory: GetCartFactory,
+  //   deps: [HttpClient],
+  //   multi: true
+  //  }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

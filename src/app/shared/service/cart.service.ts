@@ -1,5 +1,8 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Product } from 'src/app/product/models/product';
+import { environment } from 'src/environments/environment';
 import { CartItem } from '../models/cartItem';
 
 @Injectable({
@@ -7,9 +10,17 @@ import { CartItem } from '../models/cartItem';
 })
 
 export class CartService {
+  constructor(private http: HttpClient) {}
+
+
+  getCartItems(userId: string): Observable<CartItem[]> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    return this.http.get<CartItem[]>(environment.orderBaseUrl + '/cart', { params: params });
+  }
+
 
   cartItems: CartItem[] = [];
-
   updateCart(product: Product, selectedUnit: number, quantity: number) {
     const itemInCart = this.getCartItem(product.code, selectedUnit);
     if (itemInCart) {
@@ -50,7 +61,7 @@ export class CartService {
     return this.cartItems.filter((item) => item.code == code);
   }
 
-  getCartItems(): CartItem[] {
-    return this.cartItems;
-  }
+  // getCartItems(): CartItem[] {
+  //   return this.cartItems;
+  // }
 }
