@@ -17,8 +17,6 @@ export class CartDetailComponent implements OnInit {
   items: CartItem[] = [];
   saved: any;
   show!: boolean;
-  authData: CognitoUserInterface | undefined;
-  authState!: AuthState;
   signedIn = false;
   userId!: string;
 

@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatChip } from '@angular/material/chips';
 import { TranslateService } from '@ngx-translate/core';
+import { Auth } from 'aws-amplify';
 import { ToastrService } from 'ngx-toastr';
+import { from } from 'rxjs';
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { Product } from '../../models/product';
@@ -18,7 +20,8 @@ export class ProductItemComponent implements OnInit {
   cartProductItem: CartItem | undefined;
   price!: number;
   userId!:string;
-
+  signedIn = false;
+  
   constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService) {}
 
   ngOnInit(): void {
@@ -39,7 +42,13 @@ export class ProductItemComponent implements OnInit {
   }
 
   getCartItemQuantity(currUnit: number) {
-    this.cartService.getCartItems(this.userId).subscribe((cartItems) => (this.cartProductItems = cartItems));
+      from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+        if (this.signedIn = true) {
+         let userId = user.username;
+          this.cartService.getCartItems(userId).subscribe((cartItems) => (this.cartProductItems = cartItems));
+        }
+      });
+    
     // let qtyInCart = 0;
       // if (item.unit == currUnit) {
       //   qtyInCart = item.quantity;
@@ -71,8 +80,14 @@ export class ProductItemComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    this.cartService.addToCart(product).subscribe((cartItems) => (this.cartProductItems = cartItems));
-
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      if (this.signedIn = true) {
+       let userId = user.username;
+       product.userId = userId;
+       console.log(userId);
+       this.cartService.addToCart(product).subscribe((cartItems) => (this.cartProductItems = cartItems));
+      }
+    });
   }
 
   removeFromCart(product: Product) {
