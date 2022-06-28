@@ -33,9 +33,7 @@ export class ProductService {
     return this.http.get<Product>(environment.productBaseUrl + '/search', { params: params });
   }
 
-  getProductImage(): Observable<any> {
-    let image = this.http.get<any>(environment.productBaseUrl + '/group');
-    //  return localStorage.setitem('image',JSON.stringify(image));
-    return image;
+  getProductImages(): Observable<any> {
+    return this.http.get<any>(environment.productBaseUrl + '/image');
   }
 }

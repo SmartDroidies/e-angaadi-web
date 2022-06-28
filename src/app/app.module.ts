@@ -14,11 +14,10 @@ import { Amplify } from 'aws-amplify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccountModule } from './account/account.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { ProductService } from './product/service/product.service';
+import { Observable, tap } from 'rxjs';
 
 
 Amplify.configure({
@@ -41,9 +40,11 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-export function getProductsImage(productService: ProductService) {
-  return () => productService.getProductImage();
+function initializeApp(productService: ProductService): () => Observable<any> {
+  return () => productService.getProductImages()
+    .pipe(tap(images => window.localStorage.setItem("product-images", JSON.stringify(images))));
 }
+
 
 @NgModule({
   declarations: [AppComponent, FullLayoutComponent, BlankLayoutComponent],
@@ -56,6 +57,7 @@ export function getProductsImage(productService: ProductService) {
       },
       defaultLanguage: 'ta'
     }),
+    HttpClientModule,
     AuthModule,
     ProductModule,
     CoreModule,
@@ -67,12 +69,12 @@ export function getProductsImage(productService: ProductService) {
     BrowserAnimationsModule,
     AccountModule,
   ],
-  providers: [[{
+  providers: [{
     provide: APP_INITIALIZER,
-    useFactory: getProductsImage,
+    useFactory: initializeApp,
     deps: [ProductService],
     multi: true
-  }]],
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
