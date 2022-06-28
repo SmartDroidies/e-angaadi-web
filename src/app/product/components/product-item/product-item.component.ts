@@ -20,6 +20,7 @@ export class ProductItemComponent implements OnInit {
   cartProductItem: CartItem | undefined;
   price!: number;
   productimages: any;
+  imageData:any;
 
 
   constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService, private productService: ProductService) { }
@@ -32,17 +33,14 @@ export class ProductItemComponent implements OnInit {
   }
 
   productsImage(product: Product) {
-    let img!: ProductImage;
-    this.productService.getProductImage().subscribe((images) => this.productimages = (images));
-    console.log(this.productimages)
-    const pdtimg = this.productimages.map((code: any) => {
-      for (let i = 0; i < code.length; i++) {
-        if (code[i] == product) {
-          code[i] = img;
-          console.log(img.code, img.modified, img.url);
-        }
-      }
-    });
+    this.imageData=localStorage.getItem("product-images")
+    let images = JSON.parse(this.imageData);
+    console.log(images);
+   
+    // for(let i=0;i<images;i++){
+    // if(product.code==images[i]){
+    // }
+    // }
   }
 
   productImage(product: Product) {
