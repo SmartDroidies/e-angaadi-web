@@ -50,11 +50,11 @@ export class CartDetailComponent implements OnInit {
   }
 
   addUnit(product: Product, selectedUnit: number) {
-    this.cartService.updateCart(product, selectedUnit, +1);
+    this.cartService.addToCart(product);
     // this.getTotal();
   }
   subUnit(product: Product, selectedUnit: number) {
-    this.cartService.updateCart(product, selectedUnit, -1);
+    this.cartService.addToCart(product);
     // this.getTotal();
   }
 

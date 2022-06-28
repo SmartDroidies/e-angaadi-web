@@ -40,11 +40,11 @@ export class ProductItemComponent implements OnInit {
 
   getCartItemQuantity(currUnit: number) {
     this.cartService.getCartItems(this.userId).subscribe((cartItems) => (this.cartProductItems = cartItems));
-    let qtyInCart = 0;
+    // let qtyInCart = 0;
       // if (item.unit == currUnit) {
       //   qtyInCart = item.quantity;
       // };
-    return qtyInCart;
+    // return qtyInCart;
   }
 
   selectChip(item: MatChip, unit: number,price:number) {
@@ -71,25 +71,19 @@ export class ProductItemComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    if (this.selectedUnit) {
-      this.cartService.updateCart(product, this.selectedUnit, +1);
-      this.loadProductsFromCart();
-    } else {
-      this.toastr.warning('Select unit before adding', 'Error');
-    }
+    this.cartService.addToCart(product).subscribe((cartItems) => (this.cartProductItems = cartItems));
+
   }
 
   removeFromCart(product: Product) {
-    if (this.selectedUnit) {
-      this.cartService.updateCart(product, this.selectedUnit, -1);
-      this.loadProductsFromCart();
-    }
+    this.cartService.addToCart(product).subscribe((cartItems) => (this.cartProductItems = cartItems));
+
   }
 
-  isInCart() {
-    const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === this.selectedUnit);
-    return cartProductUnitItem != null && cartProductUnitItem.quantity > 0 ? true : false;
-  }
+  // isInCart() {
+  //   const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === this.selectedUnit);
+  //   return cartProductUnitItem != null && cartProductUnitItem.quantity > 0 ? true : false;
+  // }
 
   isProductUnitInCart(unit: number) {
     const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === unit);

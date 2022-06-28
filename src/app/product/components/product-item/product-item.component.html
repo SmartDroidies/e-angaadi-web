@@ -12,15 +12,15 @@
         </mat-chip-list>
     </mat-card-content>
     <mat-card-actions>
-        <button *ngIf="!isInCart()" class="add-cart-button" mat-raised-button [disabled]="!selectedUnit"
+        <button  class="add-cart-button" mat-raised-button [disabled]="!selectedUnit"
             (click)="addToCart(product)">Add To
             Cart</button>
-        <div *ngIf="isInCart()" class="add-cart-button">
+        <!-- <div *ngIf="isInCart()" class="add-cart-button">
             <button mat-icon-button (click)=subUnit()><span class='add-sub-icon'>-</span></button>
             <button class='quantity-info' *ngIf="isInCart()" min="0">{{ selectedProductUnitQuantity() }} in
                 Basket</button>
             <button mat-icon-button (click)=addUnit()><span class='add-sub-icon'>+</span></button>
-        </div>
+        </div> -->
         <button class="list-cart-button" mat-icon-button>
             <mat-icon>playlist_add</mat-icon>
         </button>
