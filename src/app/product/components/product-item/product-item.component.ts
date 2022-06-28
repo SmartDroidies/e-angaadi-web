@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { Product } from '../../models/product';
+import { ProductImage } from '../../models/product-image';
+import { ProductService } from '../../service/product.service';
 
 @Component({
   selector: 'app-product-item',
@@ -17,17 +19,34 @@ export class ProductItemComponent implements OnInit {
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
   price!: number;
-  
+  productimages: any;
 
-  constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService) {}
+
+  constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService, private productService: ProductService) { }
 
   ngOnInit(): void {
     this.loadProductsFromCart();
     this.productImage(this.product);
+    this.productsImage(this.product);
+
   }
 
-  productImage(product:Product){
-    let productImageUrl ="https://shopper-image.s3.ap-south-1.amazonaws.com/" +product.code +".png";
+  productsImage(product: Product) {
+    let img!: ProductImage;
+    this.productService.getProductImage().subscribe((images) => this.productimages = (images));
+    console.log(this.productimages)
+    const pdtimg = this.productimages.map((code: any) => {
+      for (let i = 0; i < code.length; i++) {
+        if (code[i] == product) {
+          code[i] = img;
+          console.log(img.code, img.modified, img.url);
+        }
+      }
+    });
+  }
+
+  productImage(product: Product) {
+    let productImageUrl = "https://shopper-image.s3.ap-south-1.amazonaws.com/" + product.code + ".png";
     return productImageUrl;
   }
 
@@ -49,7 +68,7 @@ export class ProductItemComponent implements OnInit {
     return qtyInCart;
   }
 
-  selectChip(item: MatChip, unit: number,price:number) {
+  selectChip(item: MatChip, unit: number, price: number) {
     item.selected = !item.selected;
     this.selectedUnit = unit;
     this.loadProductUnitFromCart(unit);
@@ -57,7 +76,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   preparePrice(clickedUnitPrice: number) {
-    this.price=clickedUnitPrice;
+    this.price = clickedUnitPrice;
   }
 
   loadProductUnitFromCart(unit: number) {

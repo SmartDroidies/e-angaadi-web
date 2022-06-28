@@ -1,7 +1,7 @@
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 import { CoreModule } from './core/core.module';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,9 @@ import { AccountModule } from './account/account.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { ProductService } from './product/service/product.service';
 
 
 Amplify.configure({
@@ -36,6 +39,10 @@ Amplify.configure({
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
+}
+
+export function getProductsImage(productService: ProductService) {
+  return () => productService.getProductImage();
 }
 
 @NgModule({
@@ -60,7 +67,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     AccountModule,
   ],
-  providers: [],
+  providers: [[{
+    provide: APP_INITIALIZER,
+    useFactory: getProductsImage,
+    deps: [ProductService],
+    multi: true
+  }]],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
