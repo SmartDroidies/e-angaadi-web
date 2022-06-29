@@ -31,7 +31,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   collectProductImages(product: Product) {
-    this.productImages = this.productImageService.getProductImages(product.code);
+    this.productImages = this.productImageService.getProductImages(product);
   }
 
   productImage(product: Product) {

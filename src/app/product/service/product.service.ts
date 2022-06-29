@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ProductGroup } from '../models/product-group';
 import { Product } from '../models/product';
+import { ProductImage } from '../models/product-image';
 @Injectable({
   providedIn: 'root',
 })
@@ -33,7 +34,7 @@ export class ProductService {
     return this.http.get<Product>(environment.productBaseUrl + '/search', { params: params });
   }
 
-  getProductImages(): Observable<any> {
-    return this.http.get<any>(environment.productBaseUrl + '/image');
+  getProductImages(): Observable<ProductImage> {
+    return this.http.get<ProductImage>(environment.productBaseUrl + '/image');
   }
 }
