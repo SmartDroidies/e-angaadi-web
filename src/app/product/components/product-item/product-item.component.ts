@@ -1,3 +1,4 @@
+import { ProductImageService } from './../../service/product-image.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatChip } from '@angular/material/chips';
 import { TranslateService } from '@ngx-translate/core';
@@ -5,7 +6,6 @@ import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { Product } from '../../models/product';
-import { ProductImage } from '../../models/product-image';
 import { ProductService } from '../../service/product.service';
 
 @Component({
@@ -19,33 +19,24 @@ export class ProductItemComponent implements OnInit {
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
   price!: number;
-  productimages: any;
-  imageData:any;
+  productImages: any;
 
 
-  constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService, private productService: ProductService) { }
+  constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService, private productService: ProductService, private productImageService: ProductImageService) { }
 
   ngOnInit(): void {
     this.loadProductsFromCart();
-    this.productImage(this.product);
-    this.productsImage(this.product);
-
+    // this.productImage(this.product);
+    this.collectProductImages(this.product);
   }
 
-  productsImage(product: Product) {
-    this.imageData=localStorage.getItem("product-images")
-    let images = JSON.parse(this.imageData);
-    console.log(images);
-   
-    // for(let i=0;i<images;i++){
-    // if(product.code==images[i]){
-    // }
-    // }
+  collectProductImages(product: Product) {
+    this.productImages = this.productImageService.getProductImages(product.code);
   }
 
   productImage(product: Product) {
-    let productImageUrl = "https://shopper-image.s3.ap-south-1.amazonaws.com/" + product.code + ".png";
-    return productImageUrl;
+    // let productImageUrl = "https://shopper-image.s3.ap-south-1.amazonaws.com/" + product.code + ".png";
+    // return productImageUrl;
   }
 
   loadProductsFromCart() {
