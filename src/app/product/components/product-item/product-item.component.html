@@ -1,12 +1,13 @@
 <!-- <div>{{cartProductItems | json}}</div> -->
 <mat-card class="product" role="listitem">
-    <img mat-card-image src="{{imageUrl}}/{{productImages[0]['url']}}"/>
+    <app-product-image [product]="product"></app-product-image>
     <mat-card-content>
         <mat-card-title>{{product.key | translate}}<span class="price-cart-right">₹{{price}}</span></mat-card-title>
         <mat-card-title>{{product.title | titlecase}}</mat-card-title>
         <mat-chip-list>
             <mat-chip *ngFor="let item of product.units" #lbl="matChip" (click)="selectChip(lbl, item.unit,item.price)">
-                <button *ngIf="isProductUnitInCart(item.unit)" class="count-badge" min="0" mat-mini-fab>{{getCartItemQuantity(item.unit)}}</button>
+                <button *ngIf="isProductUnitInCart(item.unit)" class="count-badge" min="0"
+                    mat-mini-fab>{{getCartItemQuantity(item.unit)}}</button>
                 {{item.unit + ' ' + product.submetric}}
             </mat-chip>
         </mat-chip-list>

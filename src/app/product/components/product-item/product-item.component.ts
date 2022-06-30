@@ -1,4 +1,3 @@
-import { ProductImageService } from './../../service/product-image.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatChip } from '@angular/material/chips';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,8 +6,6 @@ import { CartItem } from 'src/app/shared/models/cartItem';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { Product } from '../../models/product';
 import { ProductService } from '../../service/product.service';
-import { ProductImage } from '../../models/product-image';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-item',
@@ -22,23 +19,11 @@ export class ProductItemComponent implements OnInit {
   cartProductItem: CartItem | undefined;
   price!: number;
   productImages!: any;
-  imageUrl=environment.imageBaseUrl;
 
-  constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService, private productService: ProductService, private productImageService: ProductImageService) { }
+  constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService, private productService: ProductService) { }
 
   ngOnInit(): void {
     this.loadProductsFromCart();
-    // this.productImage(this.product);
-    this.collectProductImages(this.product);
-  }
-
-  collectProductImages(product: Product) {
-    this.productImages = this.productImageService.getProductImages(product);
-  }
-
-  productImage(product: Product) {
-    // let productImageUrl = "https://shopper-image.s3.ap-south-1.amazonaws.com/" + product.code + ".png";
-    // return productImageUrl;
   }
 
   loadProductsFromCart() {

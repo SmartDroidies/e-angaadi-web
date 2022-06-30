@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   productBaseUrl: '/product-api',
-  imageBaseUrl:'/product-image',
+  imageBaseUrl:'/image-api/',
 };
 
 /*
