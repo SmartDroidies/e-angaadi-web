@@ -7,6 +7,8 @@ import { CartItem } from 'src/app/shared/models/cartItem';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { Product } from '../../models/product';
 import { ProductService } from '../../service/product.service';
+import { ProductImage } from '../../models/product-image';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-item',
@@ -19,8 +21,8 @@ export class ProductItemComponent implements OnInit {
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
   price!: number;
-  productImages: any;
-
+  productImages!: any;
+  imageUrl=environment.imageBaseUrl;
 
   constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService, private productService: ProductService, private productImageService: ProductImageService) { }
 

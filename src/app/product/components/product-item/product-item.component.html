@@ -1,6 +1,6 @@
 <!-- <div>{{cartProductItems | json}}</div> -->
 <mat-card class="product" role="listitem">
-    <img mat-card-image src="/image-api/{{productImages[0]['url']}}"/>
+    <img mat-card-image src="{{imageUrl}}/{{productImages[0]['url']}}"/>
     <mat-card-content>
         <mat-card-title>{{product.key | translate}}<span class="price-cart-right">₹{{price}}</span></mat-card-title>
         <mat-card-title>{{product.title | titlecase}}</mat-card-title>

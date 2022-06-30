@@ -16,9 +16,6 @@ export class ProductImageService {
     if (allProductImagesStr != null) {
       const allProductImages = JSON.parse(allProductImagesStr);
       return allProductImages;
-    } else {
-      this.productService.getProductImages().subscribe(images => window.localStorage.setItem("product-images", JSON.stringify(images)));
-      return this.getAllProductImages();
     }
   }
 
