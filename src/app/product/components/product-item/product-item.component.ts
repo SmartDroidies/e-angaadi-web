@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { Product } from '../../models/product';
+import { ProductService } from '../../service/product.service';
 
 @Component({
   selector: 'app-product-item',
@@ -16,18 +17,13 @@ export class ProductItemComponent implements OnInit {
   selectedUnit!: number;
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
-  
+  price!: number;
+  productImages!: any;
 
-  constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService) {}
+  constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService, private productService: ProductService) { }
 
   ngOnInit(): void {
     this.loadProductsFromCart();
-    this.productImage(this.product);
-  }
-
-  productImage(product:Product){
-    let productImageUrl ="https://shopper-image.s3.ap-south-1.amazonaws.com/" +product.code +".png";
-    return productImageUrl;
   }
 
   loadProductsFromCart() {
@@ -48,10 +44,15 @@ export class ProductItemComponent implements OnInit {
     return qtyInCart;
   }
 
-  selectChip(item: MatChip, unit: number) {
+  selectChip(item: MatChip, unit: number, price: number) {
     item.selected = !item.selected;
     this.selectedUnit = unit;
     this.loadProductUnitFromCart(unit);
+    this.preparePrice(price);
+  }
+
+  preparePrice(clickedUnitPrice: number) {
+    this.price = clickedUnitPrice;
   }
 
   loadProductUnitFromCart(unit: number) {
