@@ -4,11 +4,12 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ProductGroup } from '../models/product-group';
 import { Product } from '../models/product';
+import { ProductImage } from '../models/product-image';
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getProductGroups(): Observable<ProductGroup[]> {
     return this.http.get<ProductGroup[]>(environment.productBaseUrl + '/group');
@@ -27,9 +28,13 @@ export class ProductService {
     return this.http.get<Product>(environment.productBaseUrl + '/item', { params: params });
   }
 
-  searchProduct(search:string):Observable<any>{
+  searchProduct(search: string): Observable<any> {
     let params = new HttpParams();
     params = params.append('search', search);
-    return this.http.get<Product>(environment.productBaseUrl+'/search',{ params: params });
+    return this.http.get<Product>(environment.productBaseUrl + '/search', { params: params });
+  }
+
+  getProductImages(): Observable<ProductImage> {
+    return this.http.get<ProductImage>(environment.productBaseUrl + '/image');
   }
 }

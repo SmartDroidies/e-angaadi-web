@@ -14,8 +14,10 @@ import { Amplify } from 'aws-amplify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccountModule } from './account/account.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ProductService } from './product/service/product.service';
+import { Observable, tap } from 'rxjs';
 
 
 Amplify.configure({
@@ -41,6 +43,12 @@ export function HttpLoaderFactory(http: HttpClient) {
 //   return new TranslateHttpLoader(http);
 // }
 
+function initializeApp(productService: ProductService): () => Observable<any> {
+  return () => productService.getProductImages()
+    .pipe(tap(images => window.localStorage.setItem("product-images", JSON.stringify(images))));
+}
+
+
 @NgModule({
   declarations: [AppComponent, FullLayoutComponent, BlankLayoutComponent],
   imports: [
@@ -52,6 +60,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
       defaultLanguage: 'ta'
     }),
+    HttpClientModule,
     AuthModule,
     ProductModule,
     CoreModule,
@@ -63,13 +72,18 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     AccountModule,
   ],
-  providers: [
-  //   {
-  //   provide: APP_INITIALIZER,
-  //   useFactory: GetCartFactory,
-  //   deps: [HttpClient],
-  //   multi: true
-  //  }
+  providers: [{
+    provide: APP_INITIALIZER,
+    useFactory: initializeApp,
+    deps: [ProductService],
+    multi: true
+  },
+    //   {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: GetCartFactory,
+    //   deps: [HttpClient],
+    //   multi: true
+    //  }
   ],
   bootstrap: [AppComponent],
 })

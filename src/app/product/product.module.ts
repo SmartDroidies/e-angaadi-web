@@ -14,6 +14,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
 import { TranslateModule } from '@ngx-translate/core';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { ProductRoutingModule } from './product-routing.module';
+import { ProductImageComponent } from './components/product-image/product-image.component';
 @NgModule({
   declarations: [
     CategoryComponent,
@@ -21,6 +22,7 @@ import { ProductRoutingModule } from './product-routing.module';
     ViewProductComponent,
     ProductItemComponent,
     SearchResultsComponent,
+    ProductImageComponent,
   ],
   imports: [
     CommonModule,
