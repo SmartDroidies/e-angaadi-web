@@ -19,7 +19,7 @@ export class CartDetailComponent implements OnInit {
   show!: boolean;
   signedIn = false;
   userId!: string;
-
+  flag=false;
 
   constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef) { }
   displayedColumns1: string[] = ['title', 'quantity', 'total'];
@@ -30,13 +30,16 @@ export class CartDetailComponent implements OnInit {
   }
 
   getCart() {
-    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      if (this.signedIn = true) {
-       let userId = user.username;
-        this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
-      }
-    });
-  }
+    // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+    //   if (this.signedIn = true) {
+    //    let userId = user.username;
+    //     this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
+    //   }
+    // });
+    this.flag=false;
+    this.items = this.cartService.getCart();
+  
+}
 
   showCart() {
     if (this.items.length > 0) {
@@ -48,16 +51,17 @@ export class CartDetailComponent implements OnInit {
   }
 
   addUnit(product: Product, selectedUnit: number) {
-    this.cartService.addToCart(product);
-    // this.getTotal();
+    this.cartService.updateCart(product, selectedUnit, +1);
+    this.getTotal();
   }
   subUnit(product: Product, selectedUnit: number) {
-    this.cartService.addToCart(product);
-    // this.getTotal();
+    this.cartService.updateCart(product, selectedUnit, -1);
+    this.getTotal();
   }
 
   getSubTotal(cartItem: CartItem) {
     let subTotal = 0;
+
     this.items.forEach((loopItem) => {
       if (loopItem.code === cartItem.code && loopItem.unit === cartItem.unit) {
         //FIXME - The price needs to be pulled from the service
@@ -77,6 +81,7 @@ export class CartDetailComponent implements OnInit {
 
   getTotal() {
     let total = 0;
+
     this.items.forEach((items) => {
       total += this.getSubTotal(items);
     });

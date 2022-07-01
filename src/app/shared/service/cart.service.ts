@@ -9,7 +9,10 @@ import { CartItem } from '../models/cartItem';
   providedIn: 'root',
 })
 
+
 export class CartService {
+  cart = JSON.parse(localStorage.getItem('cart')|| '[]');
+ 
   constructor(private http: HttpClient) {}
 
 
@@ -19,21 +22,23 @@ export class CartService {
     return this.http.get<CartItem[]>(environment.orderBaseUrl + '/cart', { params: params });
   }
   
-  addToCart(cartItem: Product): Observable<any> {
-    return this.http.post<any>(environment.orderBaseUrl + '/cart', cartItem);
-  }
-  cartItems: CartItem[] = [];
-  // updateCart(product: Product, selectedUnit: number, quantity: number) {
-  //   const itemInCart = this.getCartItem(product.code, selectedUnit);
-  //   if (itemInCart) {
-  //     itemInCart.quantity = itemInCart.quantity + quantity;
-  //     if (itemInCart.quantity == 0) {
-  //       this.removeItemInCart(itemInCart);
-  //     }
-  //   } else {
-  //     this.addToCart(this.toCartItem(product, selectedUnit, quantity));
-  //   }
+  // addToCart(cartItem: Product): Observable<any> {
+  //   return this.http.post<any>(environment.orderBaseUrl + '/cart', cartItem);
   // }
+  cartItems: CartItem[] = [];
+   
+
+  updateCart(product: Product, selectedUnit: number, quantity: number) {
+    const itemInCart = this.getCartItem(product.code, selectedUnit);
+    if (itemInCart) {
+      itemInCart.quantity = itemInCart.quantity + quantity;
+      if (itemInCart.quantity == 0) {
+        this.removeItemInCart(itemInCart);
+      }
+    } else {
+      this.addToCart(this.toCartItem(product, selectedUnit, quantity));
+    }
+  }
 
   removeItemInCart(itemInCart: CartItem) {
     for (let i = 0; i < this.cartItems.length; i++) {
@@ -44,10 +49,14 @@ export class CartService {
     }
   }
 
-  // addToCart(cartItem: CartItem) {
-  //   this.cartItems.push(cartItem);
-  //   localStorage.setItem('cart', JSON.stringify(this.cartItems));
-  // }
+  addToCart(cartItem: CartItem) {
+   
+    this.cartItems.push(cartItem); 
+    localStorage.setItem('cart', JSON.stringify(this.cartItems));
+    
+    // localStorage.setItem('cart', JSON.stringify(this.cart));
+    // JSON.parse(localStorage.getItem('cart')|| '{}');
+  }
 
   toCartItem(product: Product, selectedUnit: number, quantity: number): CartItem {
     const cartItem = new CartItem(product.code, selectedUnit, quantity, product.title, product.submetric);
@@ -63,7 +72,8 @@ export class CartService {
     return this.cartItems.filter((item) => item.code == code);
   }
 
-  // getCartItems(): CartItem[] {
-  //   return this.cartItems;
-  // }
+  getCart(): CartItem[] {
+    return this.cartItems;
+    
+  }
 }

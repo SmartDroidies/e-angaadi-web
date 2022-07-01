@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth } from 'aws-amplify';
+import { from } from 'rxjs';
 import { CartItem } from '../../models/cartItem';
 import { CartService } from '../../service/cart.service';
 
@@ -9,15 +11,23 @@ import { CartService } from '../../service/cart.service';
 })
 export class CartSummaryComponent implements OnInit {
   items: CartItem[] = [];
-userId!:string;
+  userId!:string;
+  signedIn=false;
+  
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.getCartData();
+    localStorage.getItem('cart');
   }
 
-  getCartData(): void {
-    this.cartService.getCartItems(this.userId).subscribe((cartItems) => (this.items = cartItems));
-
+  getCartData(): void  {
+    // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+    //   if (this.signedIn = true) {
+    //    let userId = user.username;
+    //     this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
+    //   }
+    // });
+    this.items = this.cartService.getCart();
   }
 }

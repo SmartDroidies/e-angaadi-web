@@ -42,18 +42,21 @@ export class ProductItemComponent implements OnInit {
   }
 
   getCartItemQuantity(currUnit: number) {
-      from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-        if (this.signedIn = true) {
-         let userId = user.username;
-          this.cartService.getCartItems(userId).subscribe((cartItems) => (this.cartProductItems = cartItems));
+      // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      //   if (this.signedIn = true) {
+      //    let userId = user.username;
+      //     this.cartService.getCartItems(userId).subscribe((cartItems) => (this.cartProductItems = cartItems));
+      //   }
+      // });
+    
+      const allItems = this.cartService.getCart();
+      let qtyInCart = 0;
+      allItems.forEach((item) => {
+        if (item.unit == currUnit) {
+          qtyInCart = item.quantity;
         }
       });
-    
-    // let qtyInCart = 0;
-      // if (item.unit == currUnit) {
-      //   qtyInCart = item.quantity;
-      // };
-    // return qtyInCart;
+      return qtyInCart;
   }
 
   selectChip(item: MatChip, unit: number,price:number) {
@@ -80,25 +83,26 @@ export class ProductItemComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      if (this.signedIn = true) {
-       let userId = user.username;
-       product.userId = userId;
-       console.log(userId);
-       this.cartService.addToCart(product).subscribe((cartItems) => (this.cartProductItems = cartItems));
-      }
-    });
+    if (this.selectedUnit) {
+      this.cartService.updateCart(product, this.selectedUnit, +1);
+      this.loadProductsFromCart();
+    } else {
+      this.toastr.warning('Select unit before adding', 'Error');
+    }
   }
 
   removeFromCart(product: Product) {
-    this.cartService.addToCart(product).subscribe((cartItems) => (this.cartProductItems = cartItems));
+    if (this.selectedUnit) {
+      this.cartService.updateCart(product, this.selectedUnit, -1);
+      this.loadProductsFromCart();
+    }
 
   }
 
-  // isInCart() {
-  //   const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === this.selectedUnit);
-  //   return cartProductUnitItem != null && cartProductUnitItem.quantity > 0 ? true : false;
-  // }
+  isInCart() {
+    const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === this.selectedUnit);
+    return cartProductUnitItem != null && cartProductUnitItem.quantity > 0 ? true : false;
+  }
 
   isProductUnitInCart(unit: number) {
     const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === unit);

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Auth } from 'aws-amplify';
+import { from } from 'rxjs';
 import { CartItem } from '../../models/cartItem';
 import { CartService } from '../../service/cart.service';
 
@@ -13,6 +15,8 @@ export class CartComponent implements OnInit {
   cartTotal = 0;
   badgeHidden!:boolean;  
   userId!:string;
+  signedIn=false;
+
   constructor(private router: Router, private cartService: CartService) { }
 
   ngOnInit(): void {
@@ -20,9 +24,14 @@ export class CartComponent implements OnInit {
   }
 
 
-  getCartItem(): void {
-    this.cartService.getCartItems(this.userId).subscribe((cartItems) => (this.items = cartItems));
-
+  getCartItem(): void  {
+    // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+    //   if (this.signedIn = true) {
+    //    let userId = user.username;
+    //     this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
+    //   }
+    // });
+    this.items = this.cartService.getCart();
   }
 
   async onCart() {
@@ -31,19 +40,19 @@ export class CartComponent implements OnInit {
   }
 
 
-  // getCartTotal() {
-  //   let cartTotal = 0;
-  //   this.items.forEach((items) => {
-  //     cartTotal += items.price;
-  //   });
-  //   return cartTotal;
-  // }
+  getCartTotal() {
+    let cartTotal = 0;
+    this.items.forEach((items) => {
+      cartTotal += items.price;
+    });
+    return cartTotal;
+  }
 
-  // getTotalQuantity() {
-  //   let totalQuantity = 0;
-  //   this.items.forEach((items) => {
-  //     totalQuantity += items.quantity;
-  //   });
-  //   return totalQuantity;
-  // }
+  getTotalQuantity() {
+    let totalQuantity = 0;
+    this.items.forEach((items) => {
+      totalQuantity += items.quantity;
+    });
+    return totalQuantity;
+  }
 }
