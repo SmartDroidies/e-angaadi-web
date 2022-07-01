@@ -15,15 +15,15 @@ export class ProductListingComponent implements OnInit, OnChanges {
   @Input() productGroupCode!: string;
   products: Product[] = [];
   cartItems: CartItem[] = [];
-  userId!:string;
+  userId!: string;
   productsByGroup: Product[] = [];
   product!: Product;
   selectedUnit!: number;
   code!: string;
   quantity = 0;
-  signedIn=false;
-  
-  constructor(private productService: ProductService, private cartService: CartService) {}
+  signedIn = false;
+
+  constructor(private productService: ProductService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -31,12 +31,13 @@ export class ProductListingComponent implements OnInit, OnChanges {
   }
 
   loadCartItems() {
-    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      if (this.signedIn = true) {
-       let userId = user.username;
-        this.cartService.getCartItems(userId).subscribe((cartItems) => (this.cartItems = cartItems));
-      }
-    });
+    this.cartItems = this.cartService.getCart(); 
+    // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+    //   if (this.signedIn === true) {
+    //     let userId = user.username;
+    //     this.cartService.getCartItems(userId).subscribe((userCartItems) => (this.cartItems = userCartItems));
+    //   }
+    // });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -17,11 +17,10 @@ export class CartSummaryComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.getCartData();
-    localStorage.getItem('cart');
+    this.loadCartData();
   }
 
-  getCartData(): void  {
+  loadCartData(): void  {
     // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
     //   if (this.signedIn = true) {
     //    let userId = user.username;

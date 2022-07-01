@@ -1,8 +1,7 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { StorageService } from './storage.service';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Product } from 'src/app/product/models/product';
-import { environment } from 'src/environments/environment';
 import { CartItem } from '../models/cartItem';
 
 @Injectable({
@@ -11,23 +10,22 @@ import { CartItem } from '../models/cartItem';
 
 
 export class CartService {
-  cart = JSON.parse(localStorage.getItem('cart')|| '[]');
- 
-  constructor(private http: HttpClient) {}
 
+  constructor(private http: HttpClient, private storageService: StorageService) { }
 
-  getCartItems(userId: string): Observable<CartItem[]> {
-    let params = new HttpParams();
-    params = params.append('userId', userId);
-    return this.http.get<CartItem[]>(environment.orderBaseUrl + '/cart', { params: params });
-  }
-  
-  // addToCart(cartItem: Product): Observable<any> {
-  //   return this.http.post<any>(environment.orderBaseUrl + '/cart', cartItem);
+  // getCartItems(userId: string): Observable<CartItem[]> {
+  //   let params = new HttpParams();
+  //   params = params.append('userId', userId);
+  //   return this.http.get<CartItem[]>(environment.orderBaseUrl + '/cart', { params: params });
   // }
-  cartItems: CartItem[] = [];
-   
 
+  // getCartItems(userId: string): Observable<CartItem[]> {
+  //   let params = new HttpParams();
+  //   params = params.append('userId', userId);
+  //   return this.http.get<CartItem[]>(environment.orderBaseUrl + '/cart', { params: params });
+  // }
+
+  //FIXME - Handle the update 
   updateCart(product: Product, selectedUnit: number, quantity: number) {
     const itemInCart = this.getCartItem(product.code, selectedUnit);
     if (itemInCart) {
@@ -40,22 +38,20 @@ export class CartService {
     }
   }
 
+  //FIXME - Handle the remove 
   removeItemInCart(itemInCart: CartItem) {
-    for (let i = 0; i < this.cartItems.length; i++) {
-      if (this.cartItems[i].code == itemInCart.code) {
-        this.cartItems.splice(i, 1);
-        break;
-      }
-    }
+    // for (let i = 0; i < this.cartItems.length; i++) {
+    //   if (this.cartItems[i].code == itemInCart.code) {
+    //     this.cartItems.splice(i, 1);
+    //     break;
+    //   }
+    // }
   }
 
   addToCart(cartItem: CartItem) {
-   
-    this.cartItems.push(cartItem); 
-    localStorage.setItem('cart', JSON.stringify(this.cartItems));
-    
-    // localStorage.setItem('cart', JSON.stringify(this.cart));
-    // JSON.parse(localStorage.getItem('cart')|| '{}');
+    const userCart = this.storageService.getUserCartItems();
+    userCart.push(cartItem);
+    this.storageService.updateUserCart(userCart);
   }
 
   toCartItem(product: Product, selectedUnit: number, quantity: number): CartItem {
@@ -64,16 +60,15 @@ export class CartService {
   }
 
   getCartItem(code: string, selectedUnit: number) {
-    return this.cartItems.find((item) => item.code == code && item.unit == selectedUnit);
+    return this.storageService.getUserCartItems().find((item) => item.code == code && item.unit == selectedUnit);
   }
 
 
   getCartProductItems(code: string): CartItem[] {
-    return this.cartItems.filter((item) => item.code == code);
+    return this.storageService.getUserCartItems().filter((item) => item.code == code);
   }
 
   getCart(): CartItem[] {
-    return this.cartItems;
-    
+    return this.storageService.getUserCartItems();
   }
 }
