@@ -18,12 +18,7 @@ export class CartService {
   //   params = params.append('userId', userId);
   //   return this.http.get<CartItem[]>(environment.orderBaseUrl + '/cart', { params: params });
   // }
-
-  // getCartItems(userId: string): Observable<CartItem[]> {
-  //   let params = new HttpParams();
-  //   params = params.append('userId', userId);
-  //   return this.http.get<CartItem[]>(environment.orderBaseUrl + '/cart', { params: params });
-  // }
+  cartItems!:CartItem[]
 
   //FIXME - Handle the update 
   updateCart(product: Product, selectedUnit: number, quantity: number) {
@@ -40,12 +35,12 @@ export class CartService {
 
   //FIXME - Handle the remove 
   removeItemInCart(itemInCart: CartItem) {
-    // for (let i = 0; i < this.cartItems.length; i++) {
-    //   if (this.cartItems[i].code == itemInCart.code) {
-    //     this.cartItems.splice(i, 1);
-    //     break;
-    //   }
-    // }
+    for (let i = 0; i < this.cartItems.length; i++) {
+      if (this.cartItems[i].code == itemInCart.code) {
+        this.cartItems.splice(i, 1);
+        break;
+      }
+    }
   }
 
   addToCart(cartItem: CartItem) {

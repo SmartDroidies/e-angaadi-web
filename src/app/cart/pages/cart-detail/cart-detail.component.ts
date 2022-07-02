@@ -19,7 +19,7 @@ export class CartDetailComponent implements OnInit {
   show!: boolean;
   signedIn = false;
   userId!: string;
-  flag=false;
+ 
 
   constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef) { }
   displayedColumns1: string[] = ['title', 'quantity', 'total'];
@@ -36,7 +36,6 @@ export class CartDetailComponent implements OnInit {
     //     this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
     //   }
     // });
-    this.flag=false;
     this.items = this.cartService.getCart();
   
 }
