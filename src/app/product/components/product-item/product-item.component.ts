@@ -61,7 +61,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   preparePrice(clickedUnitPrice: number) {
-    this.price = '₹' + clickedUnitPrice ;
+    this.price = clickedUnitPrice;
   }
 
   loadProductUnitFromCart(unit: number) {

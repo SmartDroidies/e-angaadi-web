@@ -2,7 +2,7 @@
 <mat-card class="product" role="listitem">
     <app-product-image [product]="product"></app-product-image>
     <mat-card-content>
-        <mat-card-title>{{product.key | translate}}<span class="price-cart-right">{{price}}</span></mat-card-title>
+        <mat-card-title>{{product.key | translate}}<span class="price-cart-right">{{price| currency:'INR'}}</span></mat-card-title>
         <mat-card-title>{{product.title | titlecase}}</mat-card-title>
         <mat-chip-list>
             <mat-chip *ngFor="let item of product.units" #lbl="matChip" (click)="selectChip(lbl, item.unit,item.price)">
