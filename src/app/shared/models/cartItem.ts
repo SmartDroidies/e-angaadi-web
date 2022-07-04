@@ -12,11 +12,12 @@ export class CartItem {
   id!:any;
   flag!:boolean;
 
-  constructor(code: string, selectedUnit: number, quantity: number, title: string, submetric: string) {
+  constructor(code: string, selectedUnit: number, quantity: number, title: string, submetric: string, flag:boolean) {
     this.code = code;
     this.unit = selectedUnit;
     this.quantity = quantity;
     this.title = title;
     this.submetric = submetric;
+    this.flag = flag;
   }
 }

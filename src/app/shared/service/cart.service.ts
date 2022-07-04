@@ -50,7 +50,7 @@ export class CartService {
   }
 
   toCartItem(product: Product, selectedUnit: number, quantity: number): CartItem {
-    const cartItem = new CartItem(product.code, selectedUnit, quantity, product.title, product.submetric);
+    const cartItem = new CartItem(product.code, selectedUnit, quantity, product.title, product.submetric,product.flag);
     return cartItem;
   }
 

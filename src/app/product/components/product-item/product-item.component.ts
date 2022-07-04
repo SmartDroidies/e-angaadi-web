@@ -17,11 +17,10 @@ export class ProductItemComponent implements OnInit {
   selectedUnit!: number;
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
-  price!: number;
+  price!: any;
   userId!:string;
   signedIn = false;
   productImages!: any;
-  flag!:boolean;
 
   constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService, private productService: ProductService) { }
 
@@ -62,7 +61,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   preparePrice(clickedUnitPrice: number) {
-    this.price = clickedUnitPrice;
+    this.price = '₹' + clickedUnitPrice ;
   }
 
   loadProductUnitFromCart(unit: number) {
@@ -79,7 +78,7 @@ export class ProductItemComponent implements OnInit {
 
   addToCart(product: Product) {
     if (this.selectedUnit) {
-      this.flag=false;
+      product.flag=false;
       this.cartService.updateCart(product, this.selectedUnit, +1);
       this.loadProductsFromCart();
     } else {

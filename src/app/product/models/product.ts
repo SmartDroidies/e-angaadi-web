@@ -14,4 +14,5 @@ export class Product {
   status?: string;
   units?:  UnitPrice[];
   userId?: string;
+  flag!:boolean;
 }

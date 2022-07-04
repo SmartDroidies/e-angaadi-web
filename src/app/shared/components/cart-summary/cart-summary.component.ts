@@ -13,7 +13,6 @@ export class CartSummaryComponent implements OnInit {
   items: CartItem[] = [];
   userId!:string;
   signedIn=false;
-  
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
