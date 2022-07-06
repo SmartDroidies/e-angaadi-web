@@ -14,8 +14,9 @@ export class CartComponent implements OnInit {
   items: CartItem[] = [];
   cartTotal = 0;
   badgeHidden!:boolean;  
-  userId!:string;
-  signedIn=false;
+  signedIn = false;
+  userId!: string;
+  flag!:boolean
 
   constructor(private router: Router, private cartService: CartService) { }
 
@@ -34,9 +35,25 @@ export class CartComponent implements OnInit {
     this.items = this.cartService.getCart();
   }
 
+  updateCart(){
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      if (this.signedIn = true ) {
+        this.items = this.cartService.getCart();
+        for (let i = 0; i < this.items.length; i++) {
+         
+        this.items[i].flag=true;
+        this.items[i].userId = user.username;
+        console.log (this.items[i])
+        }
+       this.cartService.updateCartItems(this.items).subscribe();
+      }
+    });
+  }
+  
   async onCart() {
     await this.router.navigate(['/cart']);
     this.badgeHidden=true;
+    this.updateCart();
   }
 
 

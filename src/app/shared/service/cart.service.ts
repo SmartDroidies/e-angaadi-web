@@ -1,8 +1,10 @@
 import { StorageService } from './storage.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from 'src/app/product/models/product';
 import { CartItem } from '../models/cartItem';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,12 +15,16 @@ export class CartService {
 
   constructor(private http: HttpClient, private storageService: StorageService) { }
 
-  // getCartItems(userId: string): Observable<CartItem[]> {
-  //   let params = new HttpParams();
-  //   params = params.append('userId', userId);
-  //   return this.http.get<CartItem[]>(environment.orderBaseUrl + '/cart', { params: params });
-  // }
-  cartItems!:CartItem[]
+  getCartItems(userId: string): Observable<CartItem[]> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    return this.http.get<CartItem[]>(environment.orderBaseUrl + '/cart', { params: params });
+  }
+  
+  
+  updateCartItems(cartItem: CartItem[]): Observable<any> {
+    return this.http.post<any>(environment.orderBaseUrl + '/cart', cartItem);
+  }
 
   //FIXME - Handle the update 
   updateCart(product: Product, selectedUnit: number, quantity: number) {
@@ -35,12 +41,12 @@ export class CartService {
 
   //FIXME - Handle the remove 
   removeItemInCart(itemInCart: CartItem) {
-    for (let i = 0; i < this.cartItems.length; i++) {
-      if (this.cartItems[i].code == itemInCart.code) {
-        this.cartItems.splice(i, 1);
-        break;
-      }
-    }
+    // for (let i = 0; i < this.cartItems.length; i++) {
+    //   if (this.cartItems[i].code == itemInCart.code) {
+    //     this.cartItems.splice(i, 1);
+    //     break;
+    //   }
+    // }
   }
 
   addToCart(cartItem: CartItem) {
@@ -50,7 +56,7 @@ export class CartService {
   }
 
   toCartItem(product: Product, selectedUnit: number, quantity: number): CartItem {
-    const cartItem = new CartItem(product.code, selectedUnit, quantity, product.title, product.submetric,product.flag);
+    const cartItem = new CartItem(product.code, selectedUnit, quantity, product.title, product.submetric,product.flag, product.userId);
     return cartItem;
   }
 

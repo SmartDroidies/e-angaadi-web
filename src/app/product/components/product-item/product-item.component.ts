@@ -18,7 +18,6 @@ export class ProductItemComponent implements OnInit {
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
   price!: any;
-  userId!:string;
   signedIn = false;
   productImages!: any;
 
@@ -36,21 +35,16 @@ export class ProductItemComponent implements OnInit {
   }
 
   getCartItemQuantity(currUnit: number) {
-      // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      //   if (this.signedIn = true) {
-      //    let userId = user.username;
-      //     this.cartService.getCartItems(userId).subscribe((cartItems) => (this.cartProductItems = cartItems));
-      //   }
-      // });
-    
-      const allItems = this.cartService.getCart();
-      let qtyInCart = 0;
-      allItems.forEach((item) => {
-        if (item.unit == currUnit) {
-          qtyInCart = item.quantity;
-        }
-      });
+
+    const allItems = this.cartService.getCart();
+    let qtyInCart = 0;
+    allItems.forEach((item) => {
+      if (item.unit == currUnit) {
+        qtyInCart = item.quantity;
+      }
       return qtyInCart;
+    });
+
   }
 
   selectChip(item: MatChip, unit: number, price: number) {
@@ -78,13 +72,14 @@ export class ProductItemComponent implements OnInit {
 
   addToCart(product: Product) {
     if (this.selectedUnit) {
-      product.flag=false;
+      product.flag = false;
       this.cartService.updateCart(product, this.selectedUnit, +1);
       this.loadProductsFromCart();
     } else {
       this.toastr.warning('Select unit before adding', 'Error');
     }
   }
+
 
   removeFromCart(product: Product) {
     if (this.selectedUnit) {
