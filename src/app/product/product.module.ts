@@ -15,6 +15,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductImageComponent } from './components/product-image/product-image.component';
+import { CarouselComponent, CarouselItemElement} from './components/carousel/carousel.component';
+import { CarouselItemDirective } from './directive/carousel-item.directive';
 @NgModule({
   declarations: [
     CategoryComponent,
@@ -23,6 +25,9 @@ import { ProductImageComponent } from './components/product-image/product-image.
     ProductItemComponent,
     SearchResultsComponent,
     ProductImageComponent,
+    CarouselComponent,
+    CarouselItemElement,
+    CarouselItemDirective
   ],
   imports: [
     CommonModule,
