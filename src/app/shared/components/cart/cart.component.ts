@@ -16,14 +16,13 @@ export class CartComponent implements OnInit {
   badgeHidden!: boolean;
   signedIn = false;
   userId!: string;
-  flag!: boolean
+  flag!: boolean;
 
-  constructor(private router: Router, private cartService: CartService) { }
+  constructor(private router: Router, private cartService: CartService) {}
 
   ngOnInit(): void {
     this.getCartItem();
   }
-
 
   getCartItem(): void {
     // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
@@ -37,23 +36,27 @@ export class CartComponent implements OnInit {
 
   updateCart() {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      if (this.signedIn = true) {
-        this.items = this.cartService.getCart();
-        for (let i = 0; i < this.items.length; i++) {
-          this.items[i].synced = true;
-          this.items[i].userId = user.username;
-        }
-        this.cartService.updateCartItems(this.items).subscribe();
-      }
+      this.cartService
+        .updateCartItems(this.items)
+        .subscribe
+        //FIXME - On successful submission make a call for getCartItems()
+        ();
+
+      // if (this.signedIn === true) {
+      //   // this.items = this.cartService.getCart();
+      //   // for (let i = 0; i < this.items.length; i++) {
+      //   //   this.items[i].synced = true;
+      //   //   this.items[i].userId = user.username;
+      //   // }
+      // }
     });
   }
 
   async onCart() {
-    await this.router.navigate(['/cart']);
+    this.updateCart(); //TODO - Move this to cart screen
     this.badgeHidden = true;
-    this.updateCart();
+    await this.router.navigate(['/cart']);
   }
-
 
   getCartTotal() {
     let cartTotal = 0;

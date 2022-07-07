@@ -9,24 +9,21 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-
-
 export class CartService {
-
-  constructor(private http: HttpClient, private storageService: StorageService) { }
+  constructor(private http: HttpClient, private storageService: StorageService) {}
 
   getCartItems(userId: string): Observable<CartItem[]> {
     let params = new HttpParams();
     params = params.append('userId', userId);
     return this.http.get<CartItem[]>(environment.orderBaseUrl + '/cart', { params: params });
+    //FIXME - Update the response into local storage
   }
-  
-  
+
   updateCartItems(cartItem: CartItem[]): Observable<any> {
     return this.http.post<any>(environment.orderBaseUrl + '/cart', cartItem);
   }
 
-  //FIXME - Handle the update 
+  //FIXME - Handle the update
   updateCart(product: Product, selectedUnit: number, quantity: number) {
     const itemInCart = this.getCartItem(product.code, selectedUnit);
     if (itemInCart) {
@@ -39,7 +36,7 @@ export class CartService {
     }
   }
 
-  //FIXME - Handle the remove 
+  //FIXME - Handle the remove
   removeItemInCart(itemInCart: CartItem) {
     // for (let i = 0; i < this.cartItems.length; i++) {
     //   if (this.cartItems[i].code == itemInCart.code) {
@@ -56,14 +53,21 @@ export class CartService {
   }
 
   toCartItem(product: Product, selectedUnit: number, quantity: number): CartItem {
-    const cartItem = new CartItem(product.code, selectedUnit, quantity, product.title, product.submetric, false, product.userId);
+    const cartItem = new CartItem(
+      product.code,
+      selectedUnit,
+      quantity,
+      product.title,
+      product.submetric,
+      false,
+      product.userId
+    );
     return cartItem;
   }
 
   getCartItem(code: string, selectedUnit: number) {
     return this.storageService.getUserCartItems().find((item) => item.code == code && item.unit == selectedUnit);
   }
-
 
   getCartProductItems(code: string): CartItem[] {
     return this.storageService.getUserCartItems().filter((item) => item.code == code);
