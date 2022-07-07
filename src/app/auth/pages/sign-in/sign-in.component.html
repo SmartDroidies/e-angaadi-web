@@ -1,9 +1,37 @@
-<div>
+<!-- <div>
     <amplify-authenticator *ngIf="authState !== 'signedin'">
         <amplify-sign-in slot="sign-in">
             <div slot="federated-buttons"></div>
           </amplify-sign-in>
     </amplify-authenticator>
-</div>
+</div> -->
 
 <!-- FIXME - Better to build our own screen -->
+
+<div class="login">
+        <div class="row">
+          <div>
+            <label for="Username" class="form-label">Username:</label>
+            <input type="Username" id="Username" name="Username" #Username="ngModel" [(ngModel)]="user.Username" class="input">
+          </div>
+        </div>
+        <div class="row">
+          <div  >
+            <label for="password" class="form-label">Password:</label>
+            <div class="pwd" >
+              <input [type]="user.showPassword ? 'text' : 'password'" id="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="input">
+              <button type="button" class="pwd-hideshow" (click)="user.showPassword = !user.showPassword">
+                <mat-icon class="bi" [ngClass]="{'bi-eye-fill': !user.showPassword, 'bi-eye-slash-fill': user.showPassword}"mat-icon-type="font">visibility</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="sign-in">
+          <div>
+            <button type="button" (click)="signIn()" [disabled]="loading">
+              <span role="status" aria-hidden="true" *ngIf="loading"></span>
+              Sign in
+            </button>
+          </div>
+        </div>
+</div>
