@@ -17,6 +17,8 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductImageComponent } from './components/product-image/product-image.component';
 import { CarouselComponent, CarouselItemElement} from './components/carousel/carousel.component';
 import { CarouselItemDirective } from './directive/carousel-item.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 @NgModule({
   declarations: [
     CategoryComponent,
@@ -27,7 +29,7 @@ import { CarouselItemDirective } from './directive/carousel-item.directive';
     ProductImageComponent,
     CarouselComponent,
     CarouselItemElement,
-    CarouselItemDirective
+    CarouselItemDirective,
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,9 @@ import { CarouselItemDirective } from './directive/carousel-item.directive';
     MatInputModule,
     ToastrModule.forRoot(),
     TranslateModule,
-    ProductRoutingModule
+    ProductRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule
   ],
   exports: [ViewProductComponent],
 })

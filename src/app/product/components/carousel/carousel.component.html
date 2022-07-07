@@ -5,7 +5,7 @@
         </li>
     </ul>
 </section>
-<div *ngIf="showControls" style="margin-top: 1em">
-    <button (click)="next()" class="btn btn-default">❯</button>
-    <button (click)="prev()" class="btn btn-default">❮</button>
+<div *ngIf="showControls">
+    <a (click)="prev()" class="prev">❮</a>
+    <a (click)="next()" class="next">❯</a>
 </div>
