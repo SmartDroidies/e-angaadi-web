@@ -72,7 +72,6 @@ export class ProductItemComponent implements OnInit {
 
   addToCart(product: Product) {
     if (this.selectedUnit) {
-      product.flag = false;
       this.cartService.updateCart(product, this.selectedUnit, +1);
       this.loadProductsFromCart();
     } else {
