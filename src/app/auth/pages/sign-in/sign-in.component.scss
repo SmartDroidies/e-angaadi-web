@@ -1,24 +1,35 @@
-.login {
-    width: 15rem;
-    height: 10rem;
+@import 'src/styles/abstracts/_mixins.scss';
+@import 'src/styles/abstracts/_variables.scss';
+
+.container {
+   @include change-password;
     margin: auto;
-    border: 1px solid #979797;
-    padding: 1rem;
-    margin-top: 8%
+    border: 1px solid $border-color;  
+    padding: $pad-rem-100;
+    margin-top:8%;  //FIXME - Use flex and align vertically center
 }
-.input {
-    display:flex;
+
+.column {
+    display: flex;
+    flex-direction: column;   
+    margin: $margin-rem-100; 
 }
- .sign-in {
+
+.button {
     display:flex;
     justify-content: flex-end;
- }
- .pwd {
+}
+
+::ng-deep.mat-form-field-flex  {
     display: inline-flex;
-    align-items: baseline;
+    align-items: end !important;
+    box-sizing: border-box;
     width: 100%;
- }
- .pwd-hideshow {
-padding: 5px;
-margin:5px;
- }
+}
+
+.header {
+    font-size: 1rem;
+    font-weight: 700;
+    display:flex;
+    justify-content: center;
+}

@@ -7,7 +7,7 @@
 </div> -->
 
 <!-- FIXME - Better to build our own screen -->
-
+<!-- 
 <div class="login">
         <div class="row">
           <div>
@@ -34,4 +34,31 @@
             </button>
           </div>
         </div>
+</div> -->
+
+<div class="container">
+  <h2  class="header">Sign in to your account </h2>
+  <form class="form">
+    <div class="column">
+      <mat-form-field>
+        <div >
+        <mat-label>Username</mat-label>
+      </div>
+        <input matInput type="Username" name="Username" #Username="ngModel" [(ngModel)]="user.Username"  placeholder="Enter your Username" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <div>
+        <mat-label>Password </mat-label>
+      </div>
+        <input matInput type="password" name="password" #password="ngModel" [(ngModel)]="user.password"  id="password" placeholder="Enter your password"
+          type="{{(showPassword === false)?'password':'text'}}" />
+        <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword(showPassword)">
+          {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="button">
+      <button (click)="signIn()" mat-raised-button color="primary"  >Signin</button>
+    </div>
+  </form>
 </div>

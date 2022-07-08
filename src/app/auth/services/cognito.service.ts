@@ -19,6 +19,7 @@ export interface IUser {
 export class CognitoService {
 
   private authenticationSubject: BehaviorSubject<any>;
+  currentUserValue!: IUser;
 
   constructor() {
     this.authenticationSubject = new BehaviorSubject<boolean>(false);
