@@ -6,6 +6,10 @@
     </ul>
 </section>
 <div *ngIf="showControls">
-    <a (click)="prev()" class="prev">❮</a>
-    <a (click)="next()" class="next">❯</a>
+    <button mat-mini-fab color="accent" aria-label="Previous" class="prev" (click)="prev()" *ngIf="showControls">
+        <mat-icon>navigate_before</mat-icon>
+    </button>
+    <button mat-mini-fab color="accent" aria-label="Next" class="next" (click)="next()" *ngIf="showControls">
+        <mat-icon>navigate_next</mat-icon>
+    </button>
 </div>
