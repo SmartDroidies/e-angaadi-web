@@ -31,11 +31,11 @@ mat-card-actions {
 }
 
 .add-cart-button {
-  flex-basis: 80%;
+  flex-basis: 85%;
 }
 
 .list-cart-button {
-  flex-basis: 20%;
+  flex-basis: 15%;
 }
 
 .count-badge {
@@ -43,12 +43,22 @@ mat-card-actions {
   font-size: $font-size-base;
 }
 
-.quantity-info{
-  font-size: $font-size-875 ;
-  width:$width-rem-800;
+.quantity-info {
+  width: 68%;
+  height: $height-rem-200;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
 }
 
-.add-sub-icon{
-  font-size:$font-size-base ;
-  margin:$margin-rem-50
+.add-sub-icon {
+  min-width: $width-rem-200;
+  padding: 0%;
+  min-height: $height-rem-200;
+}
+
+.mat-card-actions:not(.mat-card-actions-align-end) .mat-button:first-child,
+.mat-card-actions:not(.mat-card-actions-align-end) .mat-raised-button:first-child,
+.mat-card-actions:not(.mat-card-actions-align-end) .mat-stroked-button:first-child {
+  margin-left: $margin-rem-50;
+  margin-right: $margin-rem-50;
 }
