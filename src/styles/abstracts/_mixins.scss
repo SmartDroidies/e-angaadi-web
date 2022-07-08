@@ -21,14 +21,15 @@
   height: $height-rem-400;
   margin: $margin-rem-25 $margin-rem-50;
 }
- 
+
 @mixin change-password {
-  width:$width-rem-2100;
-  height:$height-rem-1300;
+  width: $width-rem-2100;
+  height: $height-rem-1300;
 }
 
-@mixin product-listing{
+@mixin product-listing {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
