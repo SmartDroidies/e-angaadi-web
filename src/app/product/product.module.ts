@@ -15,6 +15,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductImageComponent } from './components/product-image/product-image.component';
+import { CarouselComponent, CarouselItemElement} from './components/carousel/carousel.component';
+import { CarouselItemDirective } from './directive/carousel-item.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 @NgModule({
   declarations: [
     CategoryComponent,
@@ -23,6 +27,9 @@ import { ProductImageComponent } from './components/product-image/product-image.
     ProductItemComponent,
     SearchResultsComponent,
     ProductImageComponent,
+    CarouselComponent,
+    CarouselItemElement,
+    CarouselItemDirective,
   ],
   imports: [
     CommonModule,
@@ -34,7 +41,9 @@ import { ProductImageComponent } from './components/product-image/product-image.
     MatInputModule,
     ToastrModule.forRoot(),
     TranslateModule,
-    ProductRoutingModule
+    ProductRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule
   ],
   exports: [ViewProductComponent],
 })
