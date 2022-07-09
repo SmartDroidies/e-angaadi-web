@@ -6,8 +6,9 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [CartDetailComponent],
-  imports: [CartRoutingModule, MatCardModule, CommonModule, MatTableModule, CdkTableModule, MatButtonModule],
+  imports: [CartRoutingModule, MatCardModule, CommonModule, MatTableModule, CdkTableModule, MatButtonModule,MatIconModule],
 })
 export class CartModule {}
