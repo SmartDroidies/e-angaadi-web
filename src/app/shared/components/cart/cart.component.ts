@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth } from 'aws-amplify';
-import { from } from 'rxjs';
 import { CartItem } from '../../models/cartItem';
 import { CartService } from '../../service/cart.service';
 
@@ -16,7 +14,6 @@ export class CartComponent implements OnInit {
   badgeHidden!: boolean;
   signedIn = false;
   userId!: string;
-  flag!: boolean;
 
   constructor(private router: Router, private cartService: CartService) {}
 
@@ -34,26 +31,9 @@ export class CartComponent implements OnInit {
     this.items = this.cartService.getCart();
   }
 
-  updateCart() {
-    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      this.cartService
-        .updateCartItems(this.items)
-        .subscribe
-        //FIXME - On successful submission make a call for getCartItems()
-        ();
-
-      // if (this.signedIn === true) {
-      //   // this.items = this.cartService.getCart();
-      //   // for (let i = 0; i < this.items.length; i++) {
-      //   //   this.items[i].synced = true;
-      //   //   this.items[i].userId = user.username;
-      //   // }
-      // }
-    });
-  }
+  
 
   async onCart() {
-    this.updateCart(); //TODO - Move this to cart screen
     this.badgeHidden = true;
     await this.router.navigate(['/cart']);
   }

@@ -3,7 +3,6 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { Product } from 'src/app/product/models/product';
 import { Router } from '@angular/router';
-import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
 import { Auth } from 'aws-amplify';
 import { from } from 'rxjs';
 
@@ -19,7 +18,7 @@ export class CartDetailComponent implements OnInit {
   show!: boolean;
   signedIn = false;
   userId!: string;
- 
+
 
   constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef) { }
   displayedColumns1: string[] = ['title', 'quantity', 'total'];
@@ -27,18 +26,35 @@ export class CartDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getCart();
     this.showCart();
+    this.updateCart();
   }
 
   getCart() {
-    // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-    //   if (this.signedIn = true) {
-    //    let userId = user.username;
-    //     this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
-    //   }
-    // });
-    this.items = this.cartService.getCart();
-  
-}
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      if (user) {
+        const userId = user.username;
+        this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
+      }
+      // else{
+      //   this.items = this.cartService.getCart();
+      
+    });
+
+  }
+  updateCart() {
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      for (let i = 0; i < this.items.length; i++) {
+        this.items[i].synced = true;
+        this.items[i].userId = user.username;
+      }
+      this.cartService
+        .updateCartItems(this.items)
+        .subscribe((cartItem) => {
+          cartItem = this.getCart();
+        });
+
+    });
+  }
 
   showCart() {
     if (this.items.length > 0) {
@@ -70,13 +86,13 @@ export class CartDetailComponent implements OnInit {
     return subTotal;
   }
 
-  onSave() {
+  // onSave() {
 
-  }
+  // }
 
-  emptyCart() {
-    return
-  }
+  // emptyCart() {
+  //   return
+  // }
 
   getTotal() {
     let total = 0;
