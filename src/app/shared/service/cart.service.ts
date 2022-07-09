@@ -18,7 +18,6 @@ export class CartService {
     return this.http.get<CartItem[]>(environment.orderBaseUrl + '/cart', { params: params });
     //FIXME - Update the response into local storage
   }
-
   updateCartItems(cartItem: CartItem[]): Observable<any> {
     return this.http.post<any>(environment.orderBaseUrl + '/cart', cartItem);
   }
@@ -38,12 +37,13 @@ export class CartService {
 
   //FIXME - Handle the remove
   removeItemInCart(itemInCart: CartItem) {
-    // for (let i = 0; i < this.cartItems.length; i++) {
-    //   if (this.cartItems[i].code == itemInCart.code) {
-    //     this.cartItems.splice(i, 1);
-    //     break;
-    //   }
-    // }
+    const cartItems = this.storageService.getUserCartItems();
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].code == itemInCart.code) {
+        cartItems.splice(i, 1);
+        break;
+      }
+    }
   }
 
   addToCart(cartItem: CartItem) {

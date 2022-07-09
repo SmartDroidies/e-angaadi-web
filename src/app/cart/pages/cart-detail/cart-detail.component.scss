@@ -102,28 +102,28 @@ li {
 //   text-align: center;
 // }
 
-// .button {
-//   display: flex;
-//   align-items: flex-end;
-//   justify-content: space-between;
-// }
+.button {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
 
-// .boxtotal {
-//   margin-top: $margin-rem-200 ;
-//   float: right;
-//   margin-right: $margin-rem-200;
-//   width: $width-rem-2500;
-//   padding: $pad-rem-200;
-//   border: $border-radius-1 solid black;
-// }
+.boxtotal {
+  margin-top: $margin-rem-200 ;
+  float: right;
+  margin-right: $margin-rem-200;
+  width: $width-rem-2500;
+  padding: $pad-rem-200;
+  border: $border-radius-1 solid black;
+}
 
-// .shopping {
-//   margin-top: $margin-rem-400;
-// }
+.shopping {
+  margin-top: $margin-rem-400;
+}
 
-// .total {
-//   font-size: $font-size-200;
-// }
+.total {
+  font-size: $font-size-200;
+}
 
 // .checkout {
 //   width: 8rem;

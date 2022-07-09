@@ -18,7 +18,7 @@ export class CartDetailComponent implements OnInit {
   show!: boolean;
   signedIn = false;
   userId!: string;
-
+  synced = false;
 
   constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef) { }
   displayedColumns1: string[] = ['title', 'quantity', 'total'];
@@ -30,29 +30,27 @@ export class CartDetailComponent implements OnInit {
   }
 
   getCart() {
-    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      if (user) {
-        const userId = user.username;
-        this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
-      }
-      // else{
-      //   this.items = this.cartService.getCart();
-      
-    });
-
+    // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+    //   if (user) {
+    //     const userId = user.username;
+    //     this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
+    //   }
+      // });
+        this.items = this.cartService.getCart();
   }
+
   updateCart() {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      
       for (let i = 0; i < this.items.length; i++) {
-        this.items[i].synced = true;
         this.items[i].userId = user.username;
       }
       this.cartService
         .updateCartItems(this.items)
-        .subscribe((cartItem) => {
-          cartItem = this.getCart();
-        });
-
+        .subscribe(() => 
+           (this.getCart() ) 
+        );
+      
     });
   }
 
