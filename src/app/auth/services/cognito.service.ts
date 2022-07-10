@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, defer, Observable, tap } from 'rxjs';
 import Amplify, { Auth } from 'aws-amplify';
 
 
@@ -18,11 +18,11 @@ export interface IUser {
 })
 export class CognitoService {
 
-  private authenticationSubject: BehaviorSubject<any>;
-  currentUserValue!: IUser;
+  // private authenticationSubject: BehaviorSubject<any>;
+  public loggedIn: BehaviorSubject<boolean>;
 
   constructor() {
-    this.authenticationSubject = new BehaviorSubject<boolean>(false);
+    this.loggedIn = new BehaviorSubject<boolean>(false);
   }
 
   public signUp(user: IUser): Promise<any> {
@@ -35,23 +35,27 @@ export class CognitoService {
   public confirmSignUp(user: IUser): Promise<any> {
     return Auth.confirmSignUp(user.Username, user.code);
   }
-
-  public signIn(user: IUser): Promise<any> {
-    return Auth.signIn(user.Username, user.password)
-    .then(() => {
-      this.authenticationSubject.next(true);
-    });
+ // public async signIn(user: IUser): Promise<any> {
+  //   await Auth.signIn(user.Username, user.password);
+  //   this.authenticationSubject.next(true);
+  // }
+ 
+  public signIn(user: IUser): Observable<any> {
+    return  defer(() => Auth.signIn(user.Username, user.password))
+      .pipe(
+        tap(() => this.loggedIn.next(true))
+      );
   }
 
   public signOut(): Promise<any> {
     return Auth.signOut()
     .then(() => {
-      this.authenticationSubject.next(false);
+      this.loggedIn.next(false);
     });
   }
 
   public isAuthenticated(): Promise<boolean> {
-    if (this.authenticationSubject.value) {
+    if (this.loggedIn.value) {
       return Promise.resolve(true);
     } else {
       return this.getUser()

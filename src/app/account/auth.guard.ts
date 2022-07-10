@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { defer, Observable, tap } from 'rxjs';
 import { CognitoService } from '../auth/services/cognito.service';
 
 
@@ -11,15 +12,14 @@ export class AuthGuard implements CanActivate {
         private cognitoService: CognitoService
     ) {}
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const currentUser = this.cognitoService.currentUserValue;
-        if (currentUser) {
-            // authorised so return true
-            return true;
-        }
-
-        // not logged in so redirect to login page with the return url
-        this.router.navigate(['/auth/sign-in'], { queryParams: { returnUrl: state.url }});
-        return false;
+     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+        return  defer(() => this.cognitoService.isAuthenticated())
+        .pipe(
+          tap(loggedIn => {
+            if (!loggedIn) {
+              this.router.navigate(['/auth/sign-in']);
+            }
+          })
+        );
     }
 }

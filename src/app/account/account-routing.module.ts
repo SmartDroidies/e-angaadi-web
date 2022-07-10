@@ -13,9 +13,9 @@ const routes: Routes = [
       children: [
         {
           path: 'account-info',
-          component: AccountInfoComponent,
+          component: AccountInfoComponent,canActivate: [AuthGuard],
           children: [
-            { path: 'profile', component: ProfileComponent,canActivate: [AuthGuard] },
+            { path: 'profile', component: ProfileComponent, },
             { path: 'address', component: AddressComponent },
           ],
         },
