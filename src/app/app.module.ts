@@ -1,3 +1,4 @@
+import { ProductImage } from './product/models/product-image';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 import { CoreModule } from './core/core.module';
@@ -19,7 +20,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ProductService } from './product/service/product.service';
 import { Observable, tap } from 'rxjs';
 import { CartService } from './shared/service/cart.service';
-
+import { CartItem } from './shared/models/cartItem';
 
 Amplify.configure({
   Auth: {
@@ -40,16 +41,22 @@ Amplify.configure({
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
-function GetCart(cartService: CartService , userId:string): () => Observable<any> {
-  return () => cartService.getCartItems(userId)
-    .pipe(tap(userCart => window.localStorage.setItem("user_cart", JSON.stringify(userCart))));
+
+function syncUserCart(cartService: CartService): () => Observable<CartItem[]> {
+  //FIXME - Collet the user id from cognito session
+  const userId = 'barani';
+  return () =>
+    cartService
+      .getCartItems(userId)
+      .pipe(tap((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart))));
 }
 
-function initializeApp(productService: ProductService): () => Observable<any> {
-  return () => productService.getProductImages()
-    .pipe(tap(images => window.localStorage.setItem("product-images", JSON.stringify(images))));
+function initializeApp(productService: ProductService): () => Observable<ProductImage[]> {
+  return () =>
+    productService
+      .getProductImages()
+      .pipe(tap((images) => window.localStorage.setItem('product-images', JSON.stringify(images))));
 }
-
 
 @NgModule({
   declarations: [AppComponent, FullLayoutComponent, BlankLayoutComponent],
@@ -58,9 +65,9 @@ function initializeApp(productService: ProductService): () => Observable<any> {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
+        deps: [HttpClient],
       },
-      defaultLanguage: 'ta'
+      defaultLanguage: 'ta',
     }),
     HttpClientModule,
     AuthModule,
@@ -74,21 +81,20 @@ function initializeApp(productService: ProductService): () => Observable<any> {
     BrowserAnimationsModule,
     AccountModule,
   ],
-  providers: [{
-    provide: APP_INITIALIZER,
-    useFactory: initializeApp,
-    deps: [ProductService],
-    multi: true
-  },
-      {
+  providers: [
+    {
       provide: APP_INITIALIZER,
-      // useFactory: (cartService: CartService , userId:string) =>
-      //       () => cartService.getCartItems(userId),
-      useFactory:GetCart,
+      useFactory: initializeApp,
+      deps: [ProductService],
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: syncUserCart,
       deps: [CartService],
-      multi: true
-     }
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

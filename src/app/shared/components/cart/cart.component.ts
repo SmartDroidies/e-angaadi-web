@@ -31,8 +31,6 @@ export class CartComponent implements OnInit {
     this.items = this.cartService.getCart();
   }
 
-  
-
   async onCart() {
     this.badgeHidden = true;
     await this.router.navigate(['/cart']);
@@ -40,17 +38,21 @@ export class CartComponent implements OnInit {
 
   getCartTotal() {
     let cartTotal = 0;
-    this.items.forEach((items) => {
-      cartTotal += items.price;
-    });
+    if (this.items.length) {
+      this.items.forEach((items) => {
+        cartTotal += items.price;
+      });
+    }
     return cartTotal;
   }
 
   getTotalQuantity() {
     let totalQuantity = 0;
-    this.items.forEach((items) => {
-      totalQuantity += items.quantity;
-    });
+    if (this.items.length) {
+      this.items.forEach((items) => {
+        totalQuantity += items.quantity;
+      });
+    }
     return totalQuantity;
   }
 }
