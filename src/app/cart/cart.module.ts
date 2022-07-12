@@ -7,8 +7,9 @@ import { MatTableModule } from '@angular/material/table';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [CartDetailComponent],
-  imports: [CartRoutingModule, MatCardModule, CommonModule, MatTableModule, CdkTableModule, MatButtonModule,MatIconModule],
+  imports: [CartRoutingModule, MatCardModule, CommonModule, MatTableModule, CdkTableModule, MatButtonModule,MatIconModule, TranslateModule,],
 })
 export class CartModule {}

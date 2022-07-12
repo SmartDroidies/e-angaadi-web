@@ -5,6 +5,7 @@ import { Product } from 'src/app/product/models/product';
 import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 import { from } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cart-detail',
@@ -20,9 +21,9 @@ export class CartDetailComponent implements OnInit {
   userId!: string;
   synced = false;
 
-  constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef) { }
-  displayedColumns1: string[] = ['title', 'quantity', 'total'];
-  displayedColumns2: string[] = ['title', 'quantity', 'total'];
+
+  constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef,private translate: TranslateService) { }
+  displayedColumns: string[] = ['title', 'quantity', 'total'];
   ngOnInit(): void {
     this.getCart();
     this.showCart();
@@ -113,4 +114,5 @@ export class CartDetailComponent implements OnInit {
     });
     return totalQuantity;
   }
+
 }
