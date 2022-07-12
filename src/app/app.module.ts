@@ -18,9 +18,10 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ProductService } from './product/service/product.service';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, of } from 'rxjs';
 import { CartService } from './shared/service/cart.service';
-import { CartItem } from './shared/models/cartItem';
+import { Auth } from 'aws-amplify';
+import { from } from 'rxjs';
 
 Amplify.configure({
   Auth: {
@@ -42,13 +43,20 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-function syncUserCart(cartService: CartService): () => Observable<CartItem[]> {
+function syncUserCart(cartService: CartService): () => Observable<any> {
   //FIXME - Collet the user id from cognito session
-  const userId = 'barani';
-  return () =>
-    cartService
-      .getCartItems(userId)
-      .pipe(tap((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart))));
+  from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+    if (user) {
+      return () =>
+        cartService
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+          .getCartItems(user['username'])
+          .pipe(tap((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart))));
+    } else {
+      return () => of(null);
+    }
+  });
+  return () => of(null);
 }
 
 function initializeApp(productService: ProductService): () => Observable<ProductImage[]> {
