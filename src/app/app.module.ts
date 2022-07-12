@@ -70,16 +70,13 @@ function initializeApp(productService: ProductService): () => Observable<any> {
     BrowserAnimationsModule,
     AccountModule,
   ],
-<<<<<<< HEAD
   providers: [AuthGuard],
-=======
   providers: [{
     provide: APP_INITIALIZER,
     useFactory: initializeApp,
     deps: [ProductService],
     multi: true
   }],
->>>>>>> stage
   bootstrap: [AppComponent],
 })
 export class AppModule { }
