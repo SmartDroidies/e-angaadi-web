@@ -5,9 +5,8 @@
 export const environment = {
   production: false,
   productBaseUrl: '/product-api',
-  orderBaseUrl: "/order-api",
-  // imageBaseUrl:'/image-api/',  //FIXME - Change this after the API is fixed
-  imageBaseUrl:'',
+  orderBaseUrl: '/order-api',
+  imageBaseUrl:'/image-api/',  
 };
 
 /*

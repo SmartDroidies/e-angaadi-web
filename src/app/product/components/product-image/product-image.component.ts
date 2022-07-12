@@ -22,4 +22,8 @@ export class ProductImageComponent implements OnInit {
     this.productImages = this.productImageService.getProductImages(product);
   }
 
+  hasMultipleImages() {
+    return this.productImages.length > 1 ? true : false;
+  }
+
 }
