@@ -1,5 +1,7 @@
+@import '/src/styles/abstracts/variables';
+
 .product-image {
-  width: 360px;
-  height: 240px;
-  margin: 4px;
+  width: $width-rem-2250;
+  height: $height-rem-1500;
+  margin: $margin-rem-25;
 }
