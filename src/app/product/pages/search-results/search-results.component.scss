@@ -2,7 +2,7 @@
 @import '/src/styles/abstracts/mixins';
 
 .products {
-  @include product-listing;
+    @include product-listing;
 }
 
 .product-container {

@@ -1,3 +1,5 @@
+import { UnitPrice } from "./unit-price";
+
 export class Product {
   code!: string;
   group!: string;
@@ -10,5 +12,5 @@ export class Product {
   brand!: string;
   metric!: string;
   status?: string;
-  units?: number[];
+  units?:  UnitPrice[];
 }

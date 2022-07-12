@@ -7,7 +7,17 @@
         "pathRewrite": {
             "^/product-api": ""
         }
+    },
+    "/image-api": {
+        "target": "https://shopper-image.s3.ap-south-1.amazonaws.com/image-api/",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug",
+        "pathRewrite": {
+            "^/image-api": ""
+        }
     }
+
 }
 
 

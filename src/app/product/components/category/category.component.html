@@ -1,3 +1,5 @@
-<mat-card *ngFor="let productGroup of productGroups" (click)="onGroupChange(productGroup.code)">
-    <button mat-stroked-button color="primary">{{productGroup.title}}</button>
-</mat-card>
+<ul class="category-nav-list" >
+    <li *ngFor="let productGroup of productGroups">
+        <a (click)="onGroupChange(productGroup.code)">{{productGroup.title}}</a>
+    </li>
+</ul>    

@@ -1,14 +1,6 @@
-<!-- <div>
-    <form>
-        <input class="search-text" type="text" placeholder="Search for a products">
-        <button mat-button matPrefix mat-icon-button>
-            <mat-icon>search</mat-icon>
-          </button>
-    </form>
-</div> -->
 <div>
-    <mat-form-field appearance="outline">
-      <input  type="text" placeholder="Search for a products" matInput/>
-      <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
-  </div>
+  <mat-form-field appearance="outline">
+    <input [(ngModel)]="searchword" placeholder="Search for products" (keydown.enter)="searchData(searchword)" matInput />
+    <mat-icon (click)="searchData(searchword)" matSuffix>search</mat-icon>
+  </mat-form-field>
+</div>
