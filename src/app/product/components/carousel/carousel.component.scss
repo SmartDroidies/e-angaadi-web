@@ -1,0 +1,32 @@
+@import '/src/styles/abstracts/variables';
+
+ul {
+  list-style: none;
+  margin: $margin-rem-0;
+  padding: $pad-rem-0;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: flex;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: $height-rem-800;
+  font-size: $font-size-base;
+  transition: 0.6s ease;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}

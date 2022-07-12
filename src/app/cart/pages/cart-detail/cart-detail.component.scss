@@ -6,14 +6,14 @@
   height: $height-rem-200;
 }
 
-.hidecart{
-font-size: $font-size-200;
-display: flex;
-justify-content: center;
-margin-top: 12rem;
+.hidecart {
+  font-size: $font-size-200;
+  display: flex;
+  justify-content: center;
+  margin-top: 12rem;
 }
 
-table{
+table {
   width: 50%;
   margin-left: $margin-rem-2000;
 }
@@ -32,33 +32,33 @@ table{
   justify-content: space-between;
 }
 
-.boxtotal{
-  margin-top:$margin-rem-200 ;
-  float:right;
-  margin-right:$margin-rem-200;
+.boxtotal {
+  margin-top: $margin-rem-200 ;
+  float: right;
+  margin-right: $margin-rem-200;
   width: $width-rem-2500;
   padding: $pad-rem-200;
-  border: $border-radius-1 solid black ;
+  border: $border-radius-1 solid black;
 }
 
 .shopping {
   margin-top: $margin-rem-400;
 }
 
-.total{
+.total {
   font-size: $font-size-200;
 }
 
-.checkout{
+.checkout {
   width: 8rem;
-  height:3rem;
+  height: 3rem;
 }
 
-.amount{
+.amount {
   float: right;
 }
 
-.heading{
+.heading {
   display: flex;
   justify-content: flex-end;
   margin-right: 25rem;
@@ -67,12 +67,12 @@ table{
   font-weight: bold;
 }
 
-.text1{
+.text1 {
   display: flex;
   justify-content: space-around;
 }
 
-.text2{
+.text2 {
   display: flex;
   justify-content: space-around;
 }
