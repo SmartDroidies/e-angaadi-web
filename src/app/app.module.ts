@@ -18,6 +18,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ProductService } from './product/service/product.service';
 import { Observable, tap } from 'rxjs';
+import { CartService } from './shared/service/cart.service';
 
 
 Amplify.configure({
@@ -39,9 +40,10 @@ Amplify.configure({
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
-// export function GetCartFactory(http: HttpClient) {
-//   return new TranslateHttpLoader(http);
-// }
+function GetCart(cartService: CartService , userId:string): () => Observable<any> {
+  return () => cartService.getCartItems(userId)
+    .pipe(tap(userCart => window.localStorage.setItem("user_cart", JSON.stringify(userCart))));
+}
 
 function initializeApp(productService: ProductService): () => Observable<any> {
   return () => productService.getProductImages()
@@ -78,12 +80,14 @@ function initializeApp(productService: ProductService): () => Observable<any> {
     deps: [ProductService],
     multi: true
   },
-    //   {
-    //   provide: APP_INITIALIZER,
-    //   useFactory: GetCartFactory,
-    //   deps: [HttpClient],
-    //   multi: true
-    //  }
+      {
+      provide: APP_INITIALIZER,
+      // useFactory: (cartService: CartService , userId:string) =>
+      //       () => cartService.getCartItems(userId),
+      useFactory:GetCart,
+      deps: [CartService],
+      multi: true
+     }
   ],
   bootstrap: [AppComponent],
 })
