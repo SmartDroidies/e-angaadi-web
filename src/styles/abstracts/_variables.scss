@@ -19,6 +19,7 @@ $font-sans: 'sans-serif';
 
 // Font Sizes
 $font-size-200: 2rem;
+$font-size-150: 1.5rem;
 $font-size-base: 1rem;
 $font-size-875: 0.875rem;
 $font-size-75: 0.75rem;
@@ -36,9 +37,11 @@ $pad-rem-0: 0rem;
 //Margin
 $margin-rem-2000: 20rem;
 $margin-rem-1500: 15rem;
-$margin-rem-200: 2rem;
+$margin-rem-800: 8rem;
+$margin-rem-500: 5rem;
 $margin-rem-300: 3rem;
 $margin-rem-400: 4rem;
+$margin-rem-200: 2rem;
 $margin-rem-150: 1.5rem;
 $margin-rem-100: 1rem;
 $margin-rem-50: 0.5rem;
@@ -55,17 +58,27 @@ $width-rem-800: 8rem;
 $width-rem-1200: 12rem;
 $width-rem-1600: 16rem;
 $width-rem-2100: 21rem;
+$width-rem-2250: 22.5rem;
 $width-rem-2500: 25rem;
 
 
 //height
+$height-rem-150: 1.5rem;
 $height-rem-200: 2rem;
 $height-rem-400: 4rem;
 $height-rem-800: 8rem;
 $height-rem-1300: 13rem;
+$height-rem-1500: 15rem;
 
 //border-radius
+$border-radius-500: 5rem;
 $border-radius-350: 3.5rem;
 $border-radius-25: 0.25rem;
 $border-radius-1: 0.1rem;
 $border-radius-0: 0rem;
+
+//border-circular-radius
+$border-circular-radius-100: 1rem;
+
+//line-height
+$line-height-150:1.5rem;

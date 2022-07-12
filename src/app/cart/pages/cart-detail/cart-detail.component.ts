@@ -3,9 +3,11 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { Product } from 'src/app/product/models/product';
 import { Router } from '@angular/router';
+
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
 import { Auth } from 'aws-amplify';
 import { from } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cart-detail',
@@ -19,11 +21,10 @@ export class CartDetailComponent implements OnInit {
   show!: boolean;
   signedIn = false;
   userId!: string;
- 
 
-  constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef) { }
-  displayedColumns1: string[] = ['title', 'quantity', 'total'];
-  displayedColumns2: string[] = ['title', 'quantity', 'total'];
+
+  constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef,private translate: TranslateService) { }
+  displayedColumns: string[] = ['title', 'quantity', 'total'];
   ngOnInit(): void {
     this.getCart();
     this.showCart();
@@ -37,8 +38,9 @@ export class CartDetailComponent implements OnInit {
     //   }
     // });
     this.items = this.cartService.getCart();
-  
-}
+    console.log(this.items);
+
+  }
 
   showCart() {
     if (this.items.length > 0) {
@@ -99,4 +101,5 @@ export class CartDetailComponent implements OnInit {
     });
     return totalQuantity;
   }
+
 }

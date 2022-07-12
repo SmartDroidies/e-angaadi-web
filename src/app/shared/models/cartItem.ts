@@ -1,4 +1,3 @@
-import { Directionality } from "@angular/cdk/bidi";
 
 export class CartItem {
   code!: string;
@@ -11,8 +10,9 @@ export class CartItem {
   userId!:string;
   id!:any;
   synced!:boolean;
+  key!: string;
 
-  constructor(code: string, selectedUnit: number, quantity: number, title: string, submetric: string, synced:boolean, userId:string) {
+  constructor(code: string, selectedUnit: number, quantity: number, title: string, submetric: string, synced:boolean, userId:string,key:string) {
     this.code = code;
     this.unit = selectedUnit;
     this.quantity = quantity;
@@ -20,5 +20,6 @@ export class CartItem {
     this.submetric = submetric;
     this.synced = synced;
     this.userId=userId;
+    this.key=key;
   }
 }

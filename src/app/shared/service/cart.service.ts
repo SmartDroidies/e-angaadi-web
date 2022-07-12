@@ -60,7 +60,8 @@ export class CartService {
       product.title,
       product.submetric,
       false,
-      product.userId
+      product.userId,
+      product.key,
     );
     return cartItem;
   }
