@@ -5,6 +5,7 @@ import { AddressComponent } from './pages/address/address.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AccountInfoComponent } from './pages/account-info/account-info.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
@@ -13,9 +14,9 @@ const routes: Routes = [
       children: [
         {
           path: 'account-info',
-          component: AccountInfoComponent,
+          component: AccountInfoComponent,canActivate: [AuthGuard],
           children: [
-            { path: 'profile', component: ProfileComponent },
+            { path: 'profile', component: ProfileComponent, },
             { path: 'address', component: AddressComponent },
           ],
         },

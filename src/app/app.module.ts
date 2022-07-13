@@ -16,6 +16,7 @@ import { AccountModule } from './account/account.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AuthGuard } from './account/auth.guard';
 import { ProductService } from './product/service/product.service';
 import { Observable, tap } from 'rxjs';
 
@@ -69,6 +70,7 @@ function initializeApp(productService: ProductService): () => Observable<any> {
     BrowserAnimationsModule,
     AccountModule,
   ],
+  providers: [AuthGuard],
   providers: [{
     provide: APP_INITIALIZER,
     useFactory: initializeApp,
