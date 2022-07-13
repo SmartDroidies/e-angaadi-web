@@ -16,6 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [NavMenuComponent, UserComponent, SearchComponent, LocationComponent, HeaderComponent],
   imports: [
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     RouterModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    TranslateModule,
   ],
   exports: [HeaderComponent],
 })
