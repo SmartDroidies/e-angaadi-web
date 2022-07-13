@@ -3,7 +3,19 @@
         "TITLE": "இ-அங்காடி"
     },
     "pulse": {
-        "horse_gram": "கொள்ளு"
+        "horse_gram": "கொள்ளு",
+        "toor_dhal": "துவரம் பருப்பு",
+        "moong_dhal": "பாசிப்பருப்பு",
+        "peanut": "",
+        "chenna_dhal": "",
+        "urud_dhal": "",
+        "fried_gram": "",
+        "brown_chickpeas_dhal": "",
+        "chickpeas_dhal": "",
+        "greengram_dhal": "",
+        "kidney_dhal": "",
+        "masoor_dhal": "",
+        "black_urud_dhal": ""
     },
     "grain": {
         "brown_rice": "பழுப்பு அரிசி",
