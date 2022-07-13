@@ -1,16 +1,15 @@
 @use '@angular/material' as mat;
 
 $primary-color: mat.get-color-from-palette(mat.$light-green-palette, 500);
-$primary-color-dark: mat.get-color-from-palette(mat.$light-green-palette, 900);
+$primary-color-dark: mat.get-color-from-palette(mat.$light-green-palette, 800);
 $primary-text-color: #000000; //FIXME - Pull this from the angular material theme
 
 // Primary color
-// $moss-green: #97BC62;
-// $forest-green: #2C5F2D;
-$border-color: #979797; //FIXME  - Refactor this 
-$border-black: #000000;
-$hover-color: $primary-color-dark;
+$moss-green: #97BC62;
+$forest-green: #2C5F2D;
+$border-color: #979797;
 
+$hover-color: $primary-color-dark;   
 
 // Font family
 $font-roboto: 'Roboto';

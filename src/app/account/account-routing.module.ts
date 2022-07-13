@@ -6,6 +6,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { AccountInfoComponent } from './pages/account-info/account-info.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
+
 const routes: Routes = [
     {
       path: 'account',component: FullLayoutComponent,
@@ -19,7 +20,7 @@ const routes: Routes = [
           ],
         },
         
-       { path: 'change-password', component: ChangePasswordComponent },
+       { path: 'change-password', component: ChangePasswordComponent, },
       ],
     },
   ];
