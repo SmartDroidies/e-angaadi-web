@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ProductImage } from './product/models/product-image';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
@@ -43,20 +44,22 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-function syncUserCart(cartService: CartService): () => Observable<any> {
-  //FIXME - Collet the user id from cognito session
-  from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-    if (user) {
-      return () =>
-        cartService
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
-          .getCartItems(user['username'])
-          .pipe(tap((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart))));
-    } else {
-      return () => of(null);
-    }
-  });
-  return () => of(null);
+function syncUserCart(cartService: CartService): () => Promise<void> {
+  return () =>
+    new Promise((resolve) => {
+      Auth.currentAuthenticatedUser()
+        .then((user) => {
+          console.log(user);
+          cartService
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+            .getCartItems(user['username'])
+            .pipe(tap((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart))));
+          resolve();
+        })
+        .catch(() => {
+          resolve();
+        });
+    });
 }
 
 function initializeApp(productService: ProductService): () => Observable<ProductImage[]> {
