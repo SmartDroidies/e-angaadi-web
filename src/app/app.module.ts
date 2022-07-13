@@ -20,7 +20,6 @@ import { AuthGuard } from './account/auth.guard';
 import { ProductService } from './product/service/product.service';
 import { Observable, tap } from 'rxjs';
 
-
 Amplify.configure({
   Auth: {
     userPoolId: 'ap-south-1_Rqzfipat9',
@@ -42,10 +41,11 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 function initializeApp(productService: ProductService): () => Observable<any> {
-  return () => productService.getProductImages()
-    .pipe(tap(images => window.localStorage.setItem("product-images", JSON.stringify(images))));
+  return () =>
+    productService
+      .getProductImages()
+      .pipe(tap((images) => window.localStorage.setItem('product-images', JSON.stringify(images))));
 }
-
 
 @NgModule({
   declarations: [AppComponent, FullLayoutComponent, BlankLayoutComponent],
@@ -54,9 +54,9 @@ function initializeApp(productService: ProductService): () => Observable<any> {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
+        deps: [HttpClient],
       },
-      defaultLanguage: 'ta'
+      defaultLanguage: 'ta',
     }),
     HttpClientModule,
     AuthModule,
@@ -70,13 +70,15 @@ function initializeApp(productService: ProductService): () => Observable<any> {
     BrowserAnimationsModule,
     AccountModule,
   ],
-  providers: [AuthGuard],
-  providers: [{
-    provide: APP_INITIALIZER,
-    useFactory: initializeApp,
-    deps: [ProductService],
-    multi: true
-  }],
+  providers: [
+    AuthGuard,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [ProductService],
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
