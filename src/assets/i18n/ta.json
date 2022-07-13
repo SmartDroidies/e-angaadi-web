@@ -2,8 +2,11 @@
     "HOME": {
         "TITLE": "இ-அங்காடி"
     },
+    "pulse": {
+        "horse_gram": "கொள்ளு"
+    },
     "grain": {
         "brown_rice": "பழுப்பு அரிசி",
         "basmathi_rice": "பாசுமதி அரிசி"
     }
-}
+} 
