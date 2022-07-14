@@ -1,8 +1,6 @@
 <mat-list>
   <mat-list-item *ngFor="let item of items">
-    <img mat-card-image
-      src="{{cartImages.url}}"
-      class="product-image" />
+    <img mat-card-image *ngIf="collectCartImages(item)" src="{{cartImages.url}}" class="product-image" />
     <span>
       <span mat-line>{{ item.title| titlecase }} ({{item.unit+" "+item.submetric}})</span>
       <span mat-line class="quantity">

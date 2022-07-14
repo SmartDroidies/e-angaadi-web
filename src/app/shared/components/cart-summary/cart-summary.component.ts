@@ -21,7 +21,6 @@ export class CartSummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCartData();
-    this.hasCartItems(this.items);
   }
 
   loadCartData(): void  {
@@ -34,11 +33,6 @@ export class CartSummaryComponent implements OnInit {
     this.items = this.cartService.getCart();
   }
 
-  hasCartItems(items: CartItem[]){
-    for (let item of items){
-     this.collectCartImages(item);
-    }
- }
 
   collectCartImages(item:CartItem) {
      this.cartImages = this.productImageService.getCartImages(item);  

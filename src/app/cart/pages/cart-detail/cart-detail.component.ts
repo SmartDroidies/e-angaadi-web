@@ -31,7 +31,6 @@ export class CartDetailComponent implements OnInit {
     this.getCart();
     this.showCart();
     this.updateCart();
-    this.hasCartItems(this.items);
   }
 
   getCart() {
@@ -119,11 +118,6 @@ export class CartDetailComponent implements OnInit {
     return totalQuantity;
   }
 
-  hasCartItems(items: CartItem[]){
-     for (let item of items){
-      this.collectCartImages(item);
-     }
-  }
 
   collectCartImages(item:CartItem) {
       this.cartImages = this.productImageService.getCartImages(item);  
