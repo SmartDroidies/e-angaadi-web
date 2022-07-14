@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import { from } from 'rxjs';
+import { ProductImage } from 'src/app/product/models/product-image';
+import { ProductImageService } from 'src/app/product/service/product-image.service';
 import { CartItem } from '../../models/cartItem';
 import { CartService } from '../../service/cart.service';
 
@@ -13,10 +15,13 @@ export class CartSummaryComponent implements OnInit {
   items: CartItem[] = [];
   userId!:string;
   signedIn=false;
-  constructor(private cartService: CartService) {}
+  cartImages!: ProductImage;
+
+  constructor(private cartService: CartService,private productImageService: ProductImageService) {}
 
   ngOnInit(): void {
     this.loadCartData();
+    this.hasCartItems(this.items);
   }
 
   loadCartData(): void  {
@@ -28,4 +33,15 @@ export class CartSummaryComponent implements OnInit {
     // });
     this.items = this.cartService.getCart();
   }
+
+  hasCartItems(items: CartItem[]){
+    for (let item of items){
+     this.collectCartImages(item);
+    }
+ }
+
+  collectCartImages(item:CartItem) {
+     this.cartImages = this.productImageService.getCartImages(item);  
+     return this.cartImages;
+ }
 }

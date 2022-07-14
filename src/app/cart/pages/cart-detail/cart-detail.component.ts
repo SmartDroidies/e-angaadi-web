@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 import { from } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { ProductImageService } from 'src/app/product/service/product-image.service';
+import { ProductImage } from 'src/app/product/models/product-image';
 
 @Component({
   selector: 'app-cart-detail',
@@ -20,14 +22,16 @@ export class CartDetailComponent implements OnInit {
   signedIn = false;
   userId!: string;
   synced = false;
-
-
-  constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef,private translate: TranslateService) { }
   displayedColumns: string[] = ['title', 'quantity', 'total'];
+  cartImages!: ProductImage;
+
+  constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef, private translate: TranslateService, private productImageService: ProductImageService) { }
+
   ngOnInit(): void {
     this.getCart();
     this.showCart();
     this.updateCart();
+    this.hasCartItems(this.items);
   }
 
   getCart() {
@@ -36,22 +40,22 @@ export class CartDetailComponent implements OnInit {
     //     const userId = user.username;
     //     this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
     //   }
-      // });
-        this.items = this.cartService.getCart();
+    // });
+    this.items = this.cartService.getCart();
   }
 
   updateCart() {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      
+
       for (let i = 0; i < this.items.length; i++) {
         this.items[i].userId = user.username;
       }
       this.cartService
         .updateCartItems(this.items)
-        .subscribe(() => 
-           (this.getCart() ) 
+        .subscribe(() =>
+          (this.getCart())
         );
-      
+
     });
   }
 
@@ -115,4 +119,14 @@ export class CartDetailComponent implements OnInit {
     return totalQuantity;
   }
 
+  hasCartItems(items: CartItem[]){
+     for (let item of items){
+      this.collectCartImages(item);
+     }
+  }
+
+  collectCartImages(item:CartItem) {
+      this.cartImages = this.productImageService.getCartImages(item);  
+      return this.cartImages;
+  }
 }

@@ -13,16 +13,13 @@
         <td mat-cell *matCellDef="let item">
           <ul class="row-image-info">
             <li>
-              <img mat-card-image
-                src="https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
-                class="product-image" />
+              <img class="product-image" src="{{cartImages.url}}">
             </li>
             <li>
               <ul class="cart-info">
                 <li>{{item.key | translate}}</li>
                 <li>{{item.title}}</li>
-                <li>{{item.unit+item.submetric}}</li>
-                <li>₹{{getSubTotal(item)}}</li>
+                <li>{{item.unit+item.submetric}} / ₹{{getSubTotal(item)}}</li>
               </ul>
             </li>
           </ul>
@@ -31,7 +28,7 @@
 
       <ng-container matColumnDef="quantity">
         <th class="text-heading" mat-header-cell *matHeaderCellDef>Quantity</th>
-        <td class="text-center" mat-cell *matCellDef="let item">
+        <td mat-cell *matCellDef="let item">
           <ul class="column-action-button">
             <li class="row-action-button">
               <button mat-mini-fab color="primary" (click)=subUnit(item,item.unit)>
@@ -44,11 +41,10 @@
             </li>
             <ul class="row-action-button">
               <li>
-                Delete
+                <mat-icon>delete</mat-icon>
               </li>
-              <span class="vertical-bar"></span>
               <li>
-                Save For Later
+                <mat-icon>save_alt</mat-icon>
               </li>
             </ul>
           </ul>
@@ -57,9 +53,11 @@
 
 
       <ng-container matColumnDef="total">
-        <th class="text-heading" mat-header-cell *matHeaderCellDef>Sub-Total</th>
-        <td class="text-center" mat-cell *matCellDef="let item">
-          ₹{{getSubTotal(item)}}
+        <th class="text-heading" mat-header-cell *matHeaderCellDef>
+          <div>Sub-Total</div>
+        </th>
+        <td mat-cell *matCellDef="let item">
+          <div class="text-center">₹{{getSubTotal(item)}}</div>
         </td>
       </ng-container>
 
@@ -84,16 +82,13 @@
     <div class="card-heading">Saved For Later</div>
     <div class="list-products">
       <mat-card *ngFor="let item of items">
-        <img mat-card-image
-          src="https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
-          class="card-product-image" />
+          <img class="card-product-image" mat-card-image src="{{cartImages.url}}">
         <mat-card-content>
           <mat-card-title>
             <ul class="card-info">
               <li>{{item.key | translate}}</li>
               <li>{{item.title}}</li>
-              <li>{{item.unit+item.submetric}}</li>
-              <li>₹{{getSubTotal(item)}}</li>
+              <li>{{item.unit+item.submetric}}/₹{{getSubTotal(item)}}</li>
             </ul>
           </mat-card-title>
         </mat-card-content>

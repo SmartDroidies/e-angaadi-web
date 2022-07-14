@@ -11,6 +11,10 @@
   @include flex-center;
 }
 
+.text-center {
+  @include flex-center;
+}
+
 table {
   width: 80%;
 }
@@ -20,8 +24,9 @@ ng-container {
 }
 
 .product-image {
-  width: 6rem;
-  height: 6rem;
+  width: $width-rem-800;
+  height: $height-rem-600;
+  margin: $margin-rem-50;
 }
 
 .table-header {
@@ -46,7 +51,7 @@ li {
 .table-heading {
   font-size: $font-size-base;
   font-weight: bold;
-  margin: $margin-rem-200 0 0 $margin-rem-100;
+  margin: $margin-rem-200 0 $margin-rem-100  $margin-rem-100;
 }
 
 .text-heading {
@@ -68,18 +73,16 @@ li {
   @include flex-row;
 }
 
+.row-action-button button {
+  margin: 0.3rem;
+}
+
 .row-action-button li {
   margin: $margin-rem-50;
 }
 
-.vertical-bar {
-  border-left: 0.5rem solid;
-  border-width: 1px;
-  height: $height-rem-150;
-}
-
 .cart-info li {
-  margin-left: $margin-rem-200;
+  margin: $margin-rem-50;
   align-items: left;
   font-size: $font-size-875;
   font-weight: $font-weight-bold;
@@ -89,7 +92,7 @@ li {
 .card-product-image {
   width: $width-rem-2250;
   height: $height-rem-1500;
-  margin: $margin-rem-25;
+  margin: $margin-rem-50;
 }
 
 .list-products {
@@ -102,14 +105,10 @@ mat-card-title {
   font-weight: $font-weight-bold;
 }
 
-::ng-deep .mat-chip-list-wrapper {
-  @include img-style;
-}
-
 .card-heading {
   font-size: $font-size-base;
   font-weight: bold;
-  margin: $margin-rem-200 0 0 $margin-rem-500;
+  margin: $margin-rem-200 0  $margin-rem-100 $margin-rem-500;
 }
 
 mat-card-actions {
@@ -126,9 +125,9 @@ mat-card-actions {
 }
 
 .boxtotal {
-  margin: 0 $margin-rem-800 0 $margin-rem-800;
+  margin: $margin-rem-100 $margin-rem-800 $margin-rem-100 $margin-rem-800;
   border: $border-radius-1 solid black;
-  border-radius:$border-circular-radius-100;
+  border-radius: $border-circular-radius-100;
   padding: $pad-rem-100;
   background-color: rgb(240, 207, 101);
 }

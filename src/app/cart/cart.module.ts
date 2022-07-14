@@ -10,6 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [CartDetailComponent],
-  imports: [CartRoutingModule, MatCardModule, CommonModule, MatTableModule, CdkTableModule, MatButtonModule,MatIconModule, TranslateModule,],
+  imports: [CartRoutingModule, MatCardModule, CommonModule, MatTableModule, CdkTableModule, MatButtonModule,MatIconModule, TranslateModule],
 })
 export class CartModule {}

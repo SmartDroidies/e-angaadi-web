@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CartItem } from 'src/app/shared/models/cartItem';
 import { environment } from 'src/environments/environment';
 import { Product } from '../models/product';
 import { ProductImage } from '../models/product-image';
@@ -27,7 +28,6 @@ export class ProductImageService {
   
   getProductImages(product: Product): ProductImage[] {
     const allProductImages = this.getAllProductImages();
-      //FIXME - Try to get the category images if there is no images for code
     if (allProductImages != null) {
       let productImages: ProductImage[];
       if (allProductImages[product.code]) {
@@ -43,6 +43,26 @@ export class ProductImageService {
     } else {
       this.getAllProductImages();
       return this.getProductImages(product);
+    }
+  }
+
+  getCartImages(cart: CartItem): ProductImage{
+    const allCartImages = this.getAllProductImages();
+    if (allCartImages != null) {
+      let productImages: ProductImage[];
+      if (allCartImages[cart.code]) {
+        productImages = allCartImages[cart.code];
+      }
+      else {
+        productImages = allCartImages[cart.group];
+      }
+      if(productImages.length > 0) {
+        productImages.forEach(productImage => this.processUrl(productImage))
+      }
+      return productImages[0];
+    } else {
+      this.getAllProductImages();
+      return this.getCartImages(cart);
     }
   }
 }
