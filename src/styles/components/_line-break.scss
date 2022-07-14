@@ -1,0 +1,19 @@
+
+@import 'src/styles/abstracts/_variables.scss';
+
+br.divider {
+    position:relative;
+    display: block;
+    height: 1px;
+    background: $primary-color-dark;  
+    opacity: 0.8;
+    content: "";
+    width: 95%;
+    margin: 0px 2rem;
+}
+
+mat-divider {
+    background: $primary-color-dark;  
+    margin: auto !important;
+    width: 90%;
+}

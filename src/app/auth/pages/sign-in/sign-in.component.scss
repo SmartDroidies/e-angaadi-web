@@ -1,0 +1,36 @@
+@import 'src/styles/abstracts/_mixins.scss';
+@import 'src/styles/abstracts/_variables.scss';
+
+.container {
+    @include change-password;
+    margin: auto;
+    border: 1px solid $border-color;
+    padding: $pad-rem-100;
+    margin-top: 8%; //FIXME - Use flex and align vertically center
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    margin: $margin-rem-100;
+}
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+::ng-deep.mat-form-field-flex {
+    display: inline-flex;
+    align-items: end !important;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+//FIXME - This should this be mixin  
+.header {
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+}

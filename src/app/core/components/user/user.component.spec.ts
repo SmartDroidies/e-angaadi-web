@@ -11,6 +11,7 @@ describe('UserComponent', () => {
   let component: UserComponent;
   let fixture: ComponentFixture<UserComponent>;
   let routerSpy = {navigate: jasmine.createSpy('navigate')};
+  let windowSpy = {window: jasmine.createSpy('window')};
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,6 +19,7 @@ describe('UserComponent', () => {
       imports: [RouterTestingModule,MatIconModule,MatDividerModule,MatMenuModule],
       providers: [
         { provide: Router, useValue: routerSpy },
+        {provide:Window,windowSpy}
       ]
     }).compileComponents();
   });
@@ -40,4 +42,9 @@ describe('UserComponent', () => {
     expect (routerSpy.navigate).toHaveBeenCalledWith(['/auth/sign-in']);
   });
    
+  // it('should signout', () => {
+  //   component.signOut();
+  //   fixture.detectChanges();
+  //   expect (routerSpy.window)
+  // });
 });
