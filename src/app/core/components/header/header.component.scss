@@ -13,8 +13,15 @@
 }
 
 .header-logo {
-  width: 3rem;
-  float: left;
+  display: flex;
+
+  .logo-image {
+    width: 100px;
+  }
+
+  .logo-name {
+    margin: auto;
+  }
 }
 
 .header-icons {

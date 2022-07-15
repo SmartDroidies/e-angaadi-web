@@ -1,30 +1,41 @@
-import { Component, OnInit,OnDestroy,ChangeDetectorRef } from '@angular/core';
+
+import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
+import { CognitoService, IUser } from '../../services/cognito.service';
+
+
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+    selector: 'app-sign-in',
+    templateUrl: './sign-in.component.html',
+    styleUrls: ['./sign-in.component.scss'],
 })
-export class SignInComponent implements OnInit,OnDestroy {
-  user: CognitoUserInterface | undefined;
-  authState!: AuthState;
+export class SignInComponent {
+    loginForm!: FormGroup;
+    loading: boolean;
+    user: IUser;
+    showPassword = false;
+    Username!: string;
 
+    constructor(private router: Router, private fb: FormBuilder,
+        private cognitoService: CognitoService) {
+        this.loading = false;
+        this.user = {} as IUser;
+        
+    }
 
-  constructor(private ref: ChangeDetectorRef,private router: Router) { }
+    toggleShowPassword(showBoolean: boolean) {
+        this.showPassword = !showBoolean;
+    }
 
-  ngOnInit(): void {
-    onAuthUIStateChange((authState, authData) => {
-      this.authState = authState;
-      this.user = authData as CognitoUserInterface;
-      this.ref.detectChanges();
-      if(this.authState == 'signedin') {
-        this.router.navigate(['/home'])
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    return onAuthUIStateChange;
-  }
+    public signIn(): void {
+        this.loading = true;
+        this.cognitoService.signIn(this.user)
+        .toPromise()
+            .then(() => {
+                this.router.navigate(['/home']);
+            }).catch(() => {
+                this.loading = false;
+            });
+    }
 }

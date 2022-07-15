@@ -18,7 +18,9 @@ export class CategoryComponent implements OnInit {
   }
 
   getProductGroups(): void {
-    this.productService.getProductGroups().subscribe((groups) => (this.productGroups = groups));
+    this.productService
+      .getProductGroups()
+      .subscribe((groups) => (this.productGroups = groups.sort((a, b) => a.order - b.order)));
   }
 
   onGroupChange(groupCode: string) {
