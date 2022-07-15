@@ -17,7 +17,8 @@ export class ProductItemComponent implements OnInit {
   selectedUnit!: number;
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
-  price!: number;
+  price!: any;
+  signedIn = false;
   productImages!: any;
 
   constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService, private productService: ProductService) { }
@@ -34,14 +35,16 @@ export class ProductItemComponent implements OnInit {
   }
 
   getCartItemQuantity(currUnit: number) {
-    const allItems = this.cartService.getCartItems();
+
+    const allItems = this.cartService.getCart();
     let qtyInCart = 0;
     allItems.forEach((item) => {
       if (item.unit == currUnit) {
         qtyInCart = item.quantity;
       }
+      return qtyInCart;
     });
-    return qtyInCart;
+
   }
 
   selectChip(item: MatChip, unit: number, price: number) {
@@ -76,11 +79,13 @@ export class ProductItemComponent implements OnInit {
     }
   }
 
+
   removeFromCart(product: Product) {
     if (this.selectedUnit) {
       this.cartService.updateCart(product, this.selectedUnit, -1);
       this.loadProductsFromCart();
     }
+
   }
 
   isInCart() {

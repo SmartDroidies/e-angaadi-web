@@ -13,4 +13,5 @@ export class Product {
   metric!: string;
   status?: string;
   units?:  UnitPrice[];
+  userId!: string;  //FIXME - This cannot be an attribute in product 
 }
