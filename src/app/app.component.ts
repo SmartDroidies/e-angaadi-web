@@ -3,14 +3,13 @@ import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs';
 
-declare const gtag: Function;
+declare const gtag: (config: string, gid: string, path: { page_path: string }) => void;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-
 export class AppComponent implements OnInit {
   title = 'E-Angaadi';
 
@@ -27,13 +26,10 @@ export class AppComponent implements OnInit {
   }
 
   setUpAnalytics() {
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        gtag('config', 'G-YOUR-GOOGLE-ID',
-          {
-            page_path: event.urlAfterRedirects
-          }
-        );
+    this.router.events
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        gtag('config', 'G-ZY7T3DR3RW', { page_path: event.urlAfterRedirects });
       });
   }
 }
