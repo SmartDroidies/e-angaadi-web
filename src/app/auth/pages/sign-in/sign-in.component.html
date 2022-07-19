@@ -1,3 +1,33 @@
+<div class="container">
+  <div class="section">
+    <h3 class="header">Sign in to your account </h3>
+    <form>
+      <div>
+        <div class="label">Username*</div>
+        <mat-form-field appearance="fill">
+          <input matInput type="Username" name="Username" #Username="ngModel" [(ngModel)]="user.Username"
+            placeholder="Enter your Username" />
+        </mat-form-field>
+      </div>
+      <div>
+        <div class="label">Password*</div>
+        <mat-form-field appearance="fill">
+          <input matInput type="password" name="password" #password="ngModel" [(ngModel)]="user.password" id="password"
+            placeholder="Enter your password" type="{{(showPassword === false)?'password':'text'}}" />
+          <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword(showPassword)">
+            {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
+        </mat-form-field>
+        <div class="password-hint">Forgot your password? Reset password</div>
+      </div>
+      <div class="footer">
+        <div>No account? Sign up</div>
+        <button class="button" (click)="signIn()" mat-raised-button color="primary">Sign in</button>
+        <button class="button" (click)="cancel()" mat-raised-button color="primary">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <!-- <div>
     <amplify-authenticator *ngIf="authState !== 'signedin'">
         <amplify-sign-in slot="sign-in">
@@ -35,27 +65,3 @@
           </div>
         </div>
 </div> -->
-
-<div class="container">
-  <h2 class="header">Sign in to your account </h2>
-  <form class="form">
-    <div class="column">
-      <mat-form-field appearance="fill">
-        <mat-label>Username</mat-label>
-        <input matInput type="Username" name="Username" #Username="ngModel" [(ngModel)]="user.Username"
-          placeholder="Enter your Username" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Password </mat-label>
-        <input matInput type="password" name="password" #password="ngModel" [(ngModel)]="user.password" id="password"
-          placeholder="Enter your password" type="{{(showPassword === false)?'password':'text'}}" />
-        <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword(showPassword)">
-          {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
-      </mat-form-field>
-    </div>
-    <div class="button">
-      <button (click)="signIn()" mat-raised-button color="primary">Signin</button>
-    </div>
-  </form>
-</div>

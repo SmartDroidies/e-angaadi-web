@@ -33,9 +33,13 @@ export class SignInComponent {
         this.cognitoService.signIn(this.user)
         .toPromise()
             .then(() => {
-                this.router.navigate(['/home']);
+               this.cancel();
             }).catch(() => {
                 this.loading = false;
             });
+    }
+
+    cancel(){
+        this.router.navigate(['/home']);
     }
 }

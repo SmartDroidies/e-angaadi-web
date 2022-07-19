@@ -2,35 +2,81 @@
 @import 'src/styles/abstracts/_variables.scss';
 
 .container {
-    @include change-password;
-    margin: auto;
-    border: 1px solid $border-color;
-    padding: $pad-rem-100;
-    margin-top: 8%; //FIXME - Use flex and align vertically center
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-.column {
+.section{
+    position: relative;
+    min-width: 20rem;
+    padding: 35px 40px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+.label{
+    display: block;
+    font-size: 0.875rem;
+    padding-bottom: 0.5em;
+}
+
+.footer{
     display: flex;
-    flex-direction: column;
-    margin: $margin-rem-100;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
 }
 
 .button {
-    display: flex;
-    justify-content: flex-end;
+    min-width: 6rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.875rem;
 }
 
-::ng-deep.mat-form-field-flex {
-    display: inline-flex;
-    align-items: end !important;
-    box-sizing: border-box;
-    width: 100%;
+.password-hint{
+ margin-bottom: 2rem;
 }
 
-//FIXME - This should this be mixin  
+::ng-deep .mat-form-field{
+    display: block;
+    width: 22rem;
+    height: 3.125rem;
+    margin:  0 0 0.625rem 0;
+}
+
+::ng-deep .mat-input-element{
+    font-size: 0.875rem;
+}
+
 .header {
-    font-size: 1rem;
+    font-size: 1.15rem;
     font-weight: 700;
-    display: flex;
-    justify-content: center;
+    margin-bottom: 0.75rem;
 }
+
+// .container{ 
+//     @include change-password;
+//     margin: auto;
+//     border: 1px solid $border-color;
+//     padding: 35px 45px;
+//     margin-top: 8%; //FIXME - Use flex and align vertically center
+// }
+
+// .column {
+//     display: flex;
+//     flex-direction: column;
+//     margin: $margin-rem-100;
+// }
+
+// ::ng-deep.mat-form-field-flex {
+//     display: inline-flex;
+//     align-items: end !important;
+//     box-sizing: border-box;
+//     width: 100%;
+// }
+
+// //FIXME - This should this be mixin 
