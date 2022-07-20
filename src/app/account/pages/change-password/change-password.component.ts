@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 import { ToastrService } from 'ngx-toastr';
 import { from } from 'rxjs';
@@ -15,16 +16,19 @@ export class ChangePasswordComponent implements OnInit {
   newPassword!: string;
   showPassword: boolean = false;
   showOldPassword: boolean = false;
-  name: string | undefined;
-  constructor(private fb: FormBuilder, private toastr: ToastrService,) {
+  name!: string;
+
+
+  constructor(private fb: FormBuilder, private toastr: ToastrService, private router: Router) {
     this.initUser();
     this.passwordForm = this.fb.group({
-      user: new FormControl(),
+      user: new FormControl('', [Validators.required, Validators.minLength(4)]),
       oldPassword: new FormControl(
         '',
         [
           Validators.required,
           Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"),
+          Validators.minLength(8), Validators.maxLength(10)
         ]
       ),
       newPassword: new FormControl(
@@ -37,6 +41,10 @@ export class ChangePasswordComponent implements OnInit {
 
       ),
     });
+  }
+
+  ngOnInit(): void {
+    void this.initUser();
   }
 
   setData() {
@@ -55,8 +63,8 @@ export class ChangePasswordComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  ngOnInit(): void {
-    void this.initUser();
+  cancel() {
+    this.router.navigate(['/home']);
   }
 
   initUser() {
@@ -66,11 +74,12 @@ export class ChangePasswordComponent implements OnInit {
       }
     });
   }
+
   async onChangePassword() {
 
     if (this.passwordForm.invalid) {
       return;
-    } 
+    }
 
     try {
       const user = await Auth.currentAuthenticatedUser()
@@ -85,14 +94,6 @@ export class ChangePasswordComponent implements OnInit {
       });
       return false;
     }
-
   }
 
 }
-
-
-
-//FIXME 
-// Dont make server call when the validation fails
-// Use flex layout for alignment
-// Create Mixin

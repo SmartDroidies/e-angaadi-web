@@ -23,8 +23,8 @@
 }
 
 @mixin change-password {
-  width:$width-rem-2100 ;
-  height:$height-rem-1500;
+  width: $width-rem-2100 ;
+  height: $height-rem-1500;
 }
 
 @mixin product-listing {
@@ -61,4 +61,55 @@
 @mixin flex-content-right {
   display: flex;
   justify-content: right;
+}
+
+@mixin box-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: $vertical-height-100;
+}
+
+@mixin box-section {
+  padding: $pad-rem-200 $pad-rem-250;
+  margin-bottom:$margin-rem-100;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+@mixin box-title-label {
+  display: block;
+  font-size: $font-size-875;
+  padding-bottom: 0.5em;
+}
+
+@mixin box-footer {
+  margin-top:$margin-rem-200 ;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+@mixin box-button {
+  min-width: $width-rem-600;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+  font-size: $font-size-875;
+}
+
+@mixin box-mat-form-field {
+  width: $width-rem-2250;
+  height:$height-rem-400;
+  margin: 0 0 $margin-rem-50 0;
+}
+
+@mixin box-mat-form-field-input{
+  font-size: $font-size-875;
+}
+
+@mixin box-header-title {
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  margin-bottom: $margin-rem-75;
 }

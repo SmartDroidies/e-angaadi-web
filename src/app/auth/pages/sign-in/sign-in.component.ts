@@ -28,9 +28,9 @@ export class SignInComponent {
         this.showPassword = !showBoolean;
     }
 
-    public signIn(): void {
+    public async signIn(): Promise<void> {
         this.loading = true;
-        this.cognitoService.signIn(this.user).toPromise()
+        (await this.cognitoService.signIn(this.user)).toPromise()
             .then(() => {
                 this.cancel();
             }).catch(() => {
