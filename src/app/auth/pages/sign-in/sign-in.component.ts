@@ -29,7 +29,7 @@ export class SignInComponent {
 
     public async signIn(): Promise<void> {
         this.loading = true;
-        (await this.cognitoService.signIn(this.user)).toPromise()
+        (this.cognitoService.signIn(this.user)).toPromise()
             .then(() => {
                 this.cancel();
             }).catch(() => {

@@ -21,7 +21,7 @@ export class SignUpComponent {
   constructor(private router: Router, private fb: FormBuilder,
     private cognitoService: CognitoService) {
     this.loading = false;
-    this.isConfirm = true;
+    this.isConfirm = false;
     this.user = {} as CognitoUser;
   }
 
