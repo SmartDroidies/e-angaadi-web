@@ -1,8 +1,8 @@
-
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CognitoService, IUser } from '../../services/cognito.service';
+import { CognitoService} from '../../services/cognito.service';
+import { CognitoUser } from '../../models/cognito-user';
 
 
 @Component({
@@ -13,15 +13,14 @@ import { CognitoService, IUser } from '../../services/cognito.service';
 export class SignInComponent {
     loginForm!: FormGroup;
     loading: boolean;
-    user: IUser;
+    user: CognitoUser;
     showPassword = false;
-    Username!: string;
+    userName!: string;
 
     constructor(private router: Router, private fb: FormBuilder,
         private cognitoService: CognitoService) {
         this.loading = false;
-        this.user = {} as IUser;
-
+        this.user = {} as CognitoUser;
     }
 
     toggleShowPassword(showBoolean: boolean) {

@@ -1,17 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, defer, Observable, tap } from 'rxjs';
-import Amplify, { Auth } from 'aws-amplify';
-
-
-
-export interface IUser {
-  Username: string;
-  email: string;
-  password: string;
-  showPassword: boolean;
-  code: string;
-  name: string;
-}
+import { Auth } from 'aws-amplify';
+import { CognitoUser } from '../models/cognito-user';
 
 @Injectable({
   providedIn: 'root',
@@ -25,23 +15,23 @@ export class CognitoService {
     this.loggedIn = new BehaviorSubject<boolean>(false);
   }
 
-  public signUp(user: IUser): Promise<any> {
+  public signUp(user: CognitoUser): Promise<any> {
     return Auth.signUp({
-      username: user.Username,
+      username: user.username,
       password: user.password,
     });
   }
 
-  public confirmSignUp(user: IUser): Promise<any> {
-    return Auth.confirmSignUp(user.Username, user.code);
+  public confirmSignUp(user: CognitoUser): Promise<any> {
+    return Auth.confirmSignUp(user.username, user.code);
   }
  // public async signIn(user: IUser): Promise<any> {
   //   await Auth.signIn(user.Username, user.password);
   //   this.authenticationSubject.next(true);
   // }
  
-  public signIn(user: IUser): Observable<any> {
-    return  defer(() => Auth.signIn(user.Username, user.password))
+  public signIn(user: CognitoUser): Observable<any> {
+    return  defer(() => Auth.signIn(user.username, user.password))
       .pipe(
         tap(() => this.loggedIn.next(true))
       );
@@ -75,7 +65,7 @@ export class CognitoService {
     return Auth.currentUserInfo();
   }
 
-  public updateUser(user: IUser): Promise<any> {
+  public updateUser(user: CognitoUser): Promise<any> {
     return Auth.currentUserPoolUser()
     .then((cognitoUser: any) => {
       return Auth.updateUserAttributes(cognitoUser, user);
