@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CognitoService} from '../../services/cognito.service';
+import { CognitoService } from '../../services/cognito.service';
 import { CognitoUser } from '../../models/cognito-user';
 
 
@@ -11,7 +11,7 @@ import { CognitoUser } from '../../models/cognito-user';
     styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent {
-    loginForm!: FormGroup;
+
     loading: boolean;
     user: CognitoUser;
     showPassword = false;
@@ -37,11 +37,11 @@ export class SignInComponent {
             });
     }
 
-    cancel() {
-        this.router.navigate(['/home']);
+    async cancel() {
+        await this.router.navigate(['/home']);
     }
 
-    signUp(){
-        
+    async signUp() {
+        await this.router.navigate(['/auth/sign-up']);
     }
 }

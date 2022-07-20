@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="section">
+      <h3 class="header">Sign up your new account </h3>
+      <form>
+        <div class="label">Email</div>
+        <mat-form-field>
+          <input matInput type="email" name="email" #email="ngModel" [(ngModel)]="user.email"
+            placeholder="Enter your Email" />
+        </mat-form-field>
+        <div class="label">Password*</div>
+        <mat-form-field>
+          <input matInput type="password" name="password" #password="ngModel" [(ngModel)]="user.password" id="password"
+            placeholder="Enter your password" type="{{(showPassword === false)?'password':'text'}}" />
+          <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword(showPassword)">
+            {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
+        </mat-form-field>
+        <div class="footer">
+          <button class="button" (click)="cancel()" mat-raised-button color="primary">Cancel</button>
+          <button class="button" (click)="signIn()" mat-raised-button color="primary">Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>
