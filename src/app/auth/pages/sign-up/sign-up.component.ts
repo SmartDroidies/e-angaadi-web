@@ -11,15 +11,17 @@ import { CognitoUser } from '../../models/cognito-user';
 })
 
 export class SignUpComponent {
-  
+
   loading: boolean;
   user: CognitoUser;
   showPassword = false;
   email!: string;
+  isConfirm: boolean;
 
   constructor(private router: Router, private fb: FormBuilder,
     private cognitoService: CognitoService) {
     this.loading = false;
+    this.isConfirm = true;
     this.user = {} as CognitoUser;
   }
 
@@ -27,21 +29,29 @@ export class SignUpComponent {
     this.showPassword = !showBoolean;
   }
 
-  public async signIn(): Promise<void> {
+  public async signUp(): Promise<void> {
     this.loading = true;
-    (await this.cognitoService.signIn(this.user)).toPromise()
-      .then(() => {
-        this.cancel();
-      }).catch(() => {
-        this.loading = false;
-      });
+    (await this.cognitoService.signUp(this.user)).toPromise()
+    .then(() => {
+      this.loading = false;
+      this.isConfirm = true;
+    }).catch(() => {
+      this.loading = false;
+    });
   }
+
+  public async confirmSignUp():Promise<void> {
+    this.loading = true;
+    (await this.cognitoService.confirmSignUp(this.user)).toPromise()
+    .then(() => {
+      this.router.navigate(['/auth/sign-in']);
+    }).catch(() => {
+      this.loading = false;
+    });
+  } 
 
   async cancel() {
     await this.router.navigate(['/home']);
   }
 
-  async signUp() {
-    await this.router.navigate(['/auth/sign-up']);
-  }
 }
