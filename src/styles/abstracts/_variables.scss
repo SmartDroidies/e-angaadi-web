@@ -25,6 +25,7 @@ $font-size-75: 0.75rem;
 $font-size-625: 0.625rem;
 
 //Padding
+$pad-rem-250: 2.5rem;
 $pad-rem-200: 2rem;
 $pad-rem-150: 1.5rem;
 $pad-rem-125: 1.25rem;
@@ -43,6 +44,7 @@ $margin-rem-400: 4rem;
 $margin-rem-200: 2rem;
 $margin-rem-150: 1.5rem;
 $margin-rem-100: 1rem;
+$margin-rem-75: 0.75rem;
 $margin-rem-50: 0.5rem;
 $margin-rem-25: 0.25rem;
 $margin-rem-0: 0rem;
@@ -54,12 +56,15 @@ $font-weight-bold: bold;
 $width-rem-200: 2rem;
 $width-rem-300: 3rem;
 $width-rem-400: 4rem;
+$width-rem-600: 6rem;
 $width-rem-800: 8rem;
 $width-rem-1200: 12rem;
 $width-rem-1600: 16rem;
 $width-rem-2100: 21rem;
 $width-rem-2250: 22.5rem;
 $width-rem-2500: 25rem;
+$width-rem-2800: 28rem;
+
 
 
 //height
@@ -84,3 +89,7 @@ $border-circular-radius-100: 1rem;
 
 //line-height
 $line-height-150:1.5rem;
+
+//vertical-height
+$vertical-height-100:100vh;
+

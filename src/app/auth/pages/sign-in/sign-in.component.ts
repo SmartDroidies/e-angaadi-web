@@ -21,7 +21,7 @@ export class SignInComponent {
         private cognitoService: CognitoService) {
         this.loading = false;
         this.user = {} as IUser;
-        
+
     }
 
     toggleShowPassword(showBoolean: boolean) {
@@ -30,16 +30,19 @@ export class SignInComponent {
 
     public signIn(): void {
         this.loading = true;
-        this.cognitoService.signIn(this.user)
-        .toPromise()
+        this.cognitoService.signIn(this.user).toPromise()
             .then(() => {
-               this.cancel();
+                this.cancel();
             }).catch(() => {
                 this.loading = false;
             });
     }
 
-    cancel(){
+    cancel() {
         this.router.navigate(['/home']);
+    }
+
+    signUp(){
+        
     }
 }

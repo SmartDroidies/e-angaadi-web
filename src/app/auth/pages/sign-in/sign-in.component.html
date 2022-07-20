@@ -17,10 +17,9 @@
           <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword(showPassword)">
             {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
         </mat-form-field>
-        <div class="password-hint">Forgot your password? Reset password</div>
       </div>
       <div class="footer">
-        <div>No account? Sign up</div>
+        <div>No account? <span (click)="signUp()">Sign up</span></div>
         <button class="button" (click)="signIn()" mat-raised-button color="primary">Sign in</button>
         <button class="button" (click)="cancel()" mat-raised-button color="primary">Cancel</button>
       </div>

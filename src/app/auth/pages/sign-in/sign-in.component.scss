@@ -5,25 +5,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: $vertical-height-100;
 }
 
-.section{
-    position: relative;
-    min-width: 20rem;
-    padding: 35px 40px;
-    margin-bottom: 20px;
+.section {
+    min-width:$width-rem-2800;
+    padding: $pad-rem-200 $pad-rem-250;
+    margin-bottom:$margin-rem-100;
     box-sizing: border-box;
     box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.15);
 }
 
-.label{
+.label {
     display: block;
-    font-size: 0.875rem;
+    font-size: $font-size-875;
     padding-bottom: 0.5em;
 }
 
-.footer{
+.footer {
+    margin-top:$margin-rem-200 ;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -31,31 +31,30 @@
 }
 
 .button {
-    min-width: 6rem;
-    font-weight: 600;
+    min-width: $width-rem-600;
+    font-weight: $font-weight-bold;
     cursor: pointer;
-    font-size: 0.875rem;
+    font-size: $font-size-875;
 }
 
-.password-hint{
- margin-bottom: 2rem;
+.password-hint {
+    margin-bottom: $margin-rem-200;
 }
 
-::ng-deep .mat-form-field{
-    display: block;
-    width: 22rem;
-    height: 3.125rem;
-    margin:  0 0 0.625rem 0;
+::ng-deep .mat-form-field {
+    width: $width-rem-2250;
+    height:$height-rem-400;
+    margin: 0 0 $margin-rem-50 0;
 }
 
-::ng-deep .mat-input-element{
-    font-size: 0.875rem;
+::ng-deep .mat-input-element {
+    font-size: $font-size-875;
 }
 
 .header {
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    margin-bottom: $margin-rem-75;
 }
 
 // .container{ 

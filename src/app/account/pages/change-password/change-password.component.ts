@@ -84,7 +84,6 @@ export class ChangePasswordComponent implements OnInit {
         positionClass: 'toast-bottom-center',
       });
       return false;
-
     }
 
   }
