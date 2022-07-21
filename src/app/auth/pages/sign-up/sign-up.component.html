@@ -1,20 +1,38 @@
 <div class="container" *ngIf="!isConfirm">
     <div class="section">
         <h3 class="header">Sign up your new account </h3>
-        <form>
+        <form [formGroup]="signupForm">
             <div class="label">Email</div>
             <mat-form-field>
-                <input matInput type="email" name="email" #email="ngModel" [(ngModel)]="user.email"
-                    placeholder="Enter your Email" />
+                <input matInput type="email" name="email" formControlName="email" placeholder="Enter your Email" />
+                <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="alert">
+                    <div *ngIf="f.email.errors?.required">
+                        email is required.
+                    </div>
+                    <div *ngIf="f.email.errors?.minlength">
+                        email must be atleast 4 characters.
+                    </div>
+                </div>
             </mat-form-field>
             <div class="label">Password*</div>
             <mat-form-field>
-                <input matInput type="password" name="password" #password="ngModel" [(ngModel)]="user.password"
-                    id="password" placeholder="Enter your password"
-                    type="{{(showPassword === false)?'password':'text'}}" />
+                <input matInput type="password" name="password" formControlName="password" id="password"
+                    placeholder="Enter your password" type="{{(showPassword === false)?'password':'text'}}" />
                 <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword(showPassword)">
                     {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
+                <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="alert">
+                    <div *ngIf="f.password.errors?.required">
+                        Password is required.
+                    </div>
+                    <div *ngIf="f.password.errors?.minlength">
+                        Password must be 8 characters.
+                    </div>
+                    <div *ngIf="f.password.errors?.maxlength">
+                        Password cannnot more than 10 characters.
+                    </div>
+                </div>
             </mat-form-field>
+            <div class="alert">{{signupError}}</div>
             <div class="footer">
                 <button class="button" (click)="cancel()" mat-raised-button color="primary">Cancel</button>
                 <button class="button" (click)="signUp()" mat-raised-button color="primary">Sign up</button>
@@ -25,12 +43,17 @@
 <div class="container" *ngIf="isConfirm">
     <div class="section">
         <h3 class="header">Enter the code that we have sent to your Email id</h3>
-        <form>
+        <form [formGroup]="signupForm">
             <div class="label">confirmation code</div>
             <mat-form-field>
-                <input matInput type="number" name="code" #code="ngModel" [(ngModel)]="user.code"
-                    placeholder="Enter your code" />
+                <input matInput type="number" name="code" formControlName="code" placeholder="Enter your code" />
+                <div *ngIf="f.code.invalid && (f.code.dirty || f.code.touched)" class="alert">
+                    <div *ngIf="f.username.errors?.required">
+                        code is required.
+                    </div>
+                </div>
             </mat-form-field>
+            <div class="alert">{{codeError}}</div>
             <div class="footer">
                 <button class="button" (click)="cancel()" mat-raised-button color="primary">Cancel</button>
                 <button class="button" (click)="confirmSignUp()" mat-raised-button color="primary">Confirm</button>

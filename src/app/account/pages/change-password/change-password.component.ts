@@ -20,7 +20,6 @@ export class ChangePasswordComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private toastr: ToastrService, private router: Router) {
-    this.initUser();
     this.passwordForm = this.fb.group({
       user: new FormControl('', [Validators.required, Validators.minLength(4)]),
       oldPassword: new FormControl(

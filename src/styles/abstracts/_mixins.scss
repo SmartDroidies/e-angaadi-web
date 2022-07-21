@@ -113,3 +113,7 @@
   font-weight: $font-weight-bold;
   margin-bottom: $margin-rem-75;
 }
+
+@mixin alert-form-field {
+  color: red;
+}

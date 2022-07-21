@@ -1,19 +1,38 @@
 <div class="container">
   <div class="section">
     <h3 class="header">Sign in to your account </h3>
-    <form>
+    <form [formGroup]="signinForm">
       <div class="label">Username*</div>
       <mat-form-field>
-        <input matInput type="text" name="username" #username="ngModel" [(ngModel)]="user.username"
-          placeholder="Enter your username" />
+        <input matInput type="text" name="username" formControlName="username" placeholder="Enter your username" />
+        <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)" class="alert">
+          <div *ngIf="f.username.errors?.required">
+            username is required.
+          </div>
+          <div *ngIf="f.username.errors?.minlength">
+            username must be atleast 4 characters.
+          </div>
+        </div>
       </mat-form-field>
       <div class="label">Password*</div>
       <mat-form-field>
-        <input matInput type="password" name="password" #password="ngModel" [(ngModel)]="user.password" id="password"
+        <input matInput type="password" name="password" formControlName="password" id="password"
           placeholder="Enter your password" type="{{(showPassword === false)?'password':'text'}}" />
         <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword(showPassword)">
           {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
+        <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="alert">
+          <div *ngIf="f.password.errors?.required">
+            Password is required.
+          </div>
+          <div *ngIf="f.password.errors?.minlength">
+            Password must be 8 characters.
+          </div>
+          <div *ngIf="f.password.errors?.maxlength">
+            Password cannnot more than 10 characters.
+          </div>
+        </div>
       </mat-form-field>
+      <div class="alert">{{formError}}</div>
       <div class="footer">
         <div>No account? <span class="Highlight-signup" (click)="signUp()">Sign up</span></div>
         <button class="button" (click)="cancel()" mat-raised-button color="primary">Cancel</button>

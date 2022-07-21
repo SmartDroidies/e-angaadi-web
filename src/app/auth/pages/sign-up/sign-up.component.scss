@@ -39,3 +39,7 @@
     color: orange;
     cursor: pointer;
 }
+
+.alert {
+    @include alert-form-field;
+}
