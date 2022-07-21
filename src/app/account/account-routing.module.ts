@@ -18,9 +18,9 @@ const routes: Routes = [
         children: [
           { path: 'profile', component: ProfileComponent, },
           { path: 'address', component: AddressComponent },
-          { path: 'change-password', component: ChangePasswordComponent }
         ],
       },
+      { path: 'change-password', component: ChangePasswordComponent,canActivate: [AuthGuard] }
     ],
   },
 ];

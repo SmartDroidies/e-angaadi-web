@@ -22,6 +22,7 @@ export class SignUpComponent {
   isConfirm: boolean;
   signupError!: any;
   codeError!: any;
+  resendError!: any;
 
   constructor(private router: Router, private fb: FormBuilder, private toastr: ToastrService, private cognitoService: CognitoService) {
     this.loading = false;
@@ -29,8 +30,6 @@ export class SignUpComponent {
     this.user = {} as CognitoUser;
     this.signupForm = this.fb.group({
       email: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      username: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      phonenumber: new FormControl('', [Validators.required, Validators.minLength(4)]),
       password: new FormControl(
         '',
         [
@@ -64,8 +63,6 @@ export class SignUpComponent {
   public async signUp(): Promise<void> {
     this.loading = true;
     this.user.email = this.signupForm.value.email;
-    this.user.username = this.signupForm.value.username;
-    this.user.phonenumber = this.signupForm.value.phonenumber;
     this.user.password = this.signupForm.value.password;
 
     if (this.signupForm.invalid) {
@@ -77,12 +74,19 @@ export class SignUpComponent {
         .then(() => {
           this.loading = false;
           this.isConfirm = true;
-        }).catch(() => {
+          this.toastr.success('Successfully code sent to mailid', 'Success', {
+            positionClass: 'toast-bottom-center',
+          });
+        }).catch((e: any) => {
           this.loading = false;
+          this.signupError = e;
+          this.toastr.error('Error while signup', 'Error', {
+            positionClass: 'toast-bottom-center',
+          });
         });
     } catch (e) {
       this.signupError = e;
-      this.toastr.error('Error while saving', 'Error', {
+      this.toastr.error('Error while signup', 'Error', {
         positionClass: 'toast-bottom-center',
       });
     }
@@ -98,12 +102,19 @@ export class SignUpComponent {
       (await this.cognitoService.confirmSignUp(this.user)).toPromise()
         .then(() => {
           this.router.navigate(['/auth/sign-in']);
-        }).catch(() => {
+          this.toastr.success('Successfully completed signup', 'Success', {
+            positionClass: 'toast-bottom-center',
+          });
+        }).catch((e: any) => {
           this.loading = false;
+          this.codeError = e;
+          this.toastr.error('Error while confirmSignUp', 'Error', {
+            positionClass: 'toast-bottom-center',
+          });
         });
     } catch (e) {
       this.codeError = e;
-      this.toastr.error('Error while saving', 'Error', {
+      this.toastr.error('Error while confirmSignUp', 'Error', {
         positionClass: 'toast-bottom-center',
       });
     }
@@ -113,4 +124,27 @@ export class SignUpComponent {
     await this.router.navigate(['/home']);
   }
 
+  public async resendCode(): Promise<void> {
+    this.loading = true;
+    this.user.username = this.confirmForm.value.username;
+    try {
+      (await this.cognitoService.resendSignUp(this.user)).toPromise()
+        .then(() => {
+          this.toastr.success('Successfully code sent', 'Success', {
+            positionClass: 'toast-bottom-center',
+          });
+        }).catch((e: any) => {
+          this.loading = false;
+          this.resendError = e;
+          this.toastr.error('Error while sending code', 'Error', {
+            positionClass: 'toast-bottom-center',
+          });
+        });
+    } catch (e) {
+      this.resendError = e;
+      this.toastr.error('Error while sending code', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
+    }
+  }
 }

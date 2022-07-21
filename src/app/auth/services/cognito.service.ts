@@ -16,12 +16,8 @@ export class CognitoService {
 
   public signUp(user: CognitoUser): Promise<any> {
     return Auth.signUp({
-      username: user.username,
+      username: user.email,
       password: user.password,
-      attributes: {
-        phonenumber: user.phonenumber,
-        email:user.email
-      },
     });
   }
 
@@ -39,6 +35,10 @@ export class CognitoService {
   public async signOut(): Promise<any> {
     await Auth.signOut();
     this.loggedIn.next(false);
+  }
+
+  public async resendSignUp(user: CognitoUser): Promise<any> {
+    await Auth.resendSignUp(user.email);
   }
 
   public getUser(): Promise<any> {

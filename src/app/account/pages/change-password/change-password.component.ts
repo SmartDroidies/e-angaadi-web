@@ -17,9 +17,12 @@ export class ChangePasswordComponent implements OnInit {
   showPassword: boolean = false;
   showOldPassword: boolean = false;
   name!: string;
+  passError!: any;
+  loading!: boolean;
 
 
   constructor(private fb: FormBuilder, private toastr: ToastrService, private router: Router) {
+    this.loading = false;
     this.passwordForm = this.fb.group({
       user: new FormControl('', [Validators.required, Validators.minLength(4)]),
       oldPassword: new FormControl(
@@ -72,7 +75,7 @@ export class ChangePasswordComponent implements OnInit {
     });
   }
 
-  async onChangePassword() {
+  async onChangePassword(): Promise<void> {
 
     if (this.passwordForm.invalid) {
       return;
@@ -83,13 +86,24 @@ export class ChangePasswordComponent implements OnInit {
       let Values = this.passwordForm.value;
       this.oldPassword = Values.oldPassword;
       this.newPassword = Values.newPassword;
-      return await Auth.changePassword(user, this.oldPassword, this.newPassword);
+      await Auth.changePassword(user, this.oldPassword, this.newPassword).then(() => {
+        this.router.navigate(['/auth/sign-in']);
+        this.toastr.success('Successfully changed password', 'Success', {
+          positionClass: 'toast-bottom-center',
+        });
+      }).catch((e: any) => {
+        this.loading = false;
+        this.passError = e;
+        this.toastr.error('Error while saving', 'Error', {
+          positionClass: 'toast-bottom-center',
+        });
+      });
 
     } catch (e) {
+      this.passError = e;
       this.toastr.error('Error while saving', 'Error', {
         positionClass: 'toast-bottom-center',
       });
-      return false;
     }
   }
 
