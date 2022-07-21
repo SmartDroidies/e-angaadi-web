@@ -9,25 +9,24 @@ import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
-    {
-      path: 'account',component: FullLayoutComponent,
-      children: [
-        {
-          path: 'account-info',
-          component: AccountInfoComponent,canActivate: [AuthGuard],
-          children: [
-            { path: 'profile', component: ProfileComponent, },
-            { path: 'address', component: AddressComponent },
-          ],
-        },
-        
-       { path: 'change-password', component: ChangePasswordComponent, },
-      ],
-    },
-  ];
+  {
+    path: 'account', component: FullLayoutComponent,
+    children: [
+      {
+        path: 'account-info',
+        component: AccountInfoComponent, canActivate: [AuthGuard],
+        children: [
+          { path: 'profile', component: ProfileComponent, },
+          { path: 'address', component: AddressComponent },
+          { path: 'change-password', component: ChangePasswordComponent }
+        ],
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AccountRoutingModule {}
+export class AccountRoutingModule { }

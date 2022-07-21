@@ -1,9 +1,10 @@
 export interface CognitoUser {
     username: string;
-    email: string;
-    password: string;
+    email: any;
+    password: any;
     showPassword: boolean;
     code: string;
     name: string;
+    phonenumber:number;
   }
   

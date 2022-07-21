@@ -15,7 +15,7 @@
 }
 
 .footer {
-    @include box-footer;
+    @include box-footer-sign-in;
 }
 
 .button {
@@ -35,8 +35,8 @@
     @include box-header-title;
 }
 
-.Highlight-signup {
-    color: orange;
+.Highlight-signup:hover{
+    color: $hover-color;
     cursor: pointer;
 }
 

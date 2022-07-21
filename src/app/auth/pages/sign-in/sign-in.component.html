@@ -4,7 +4,7 @@
     <form [formGroup]="signinForm">
       <div class="label">Username*</div>
       <mat-form-field>
-        <input matInput type="text" name="username" formControlName="username" placeholder="Enter your username" />
+        <input matInput type="text" name="username" formControlName="username" />
         <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)" class="alert">
           <div *ngIf="f.username.errors?.required">
             username is required.
@@ -17,7 +17,7 @@
       <div class="label">Password*</div>
       <mat-form-field>
         <input matInput type="password" name="password" formControlName="password" id="password"
-          placeholder="Enter your password" type="{{(showPassword === false)?'password':'text'}}" />
+          type="{{(showPassword === false)?'password':'text'}}" />
         <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword(showPassword)">
           {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
         <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="alert">

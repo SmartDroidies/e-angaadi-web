@@ -14,31 +14,35 @@ import { ToastrService } from 'ngx-toastr';
 export class SignUpComponent {
 
   signupForm!: FormGroup;
+  confirmForm!: FormGroup;
   loading: boolean;
   user: CognitoUser;
   showPassword = false;
   email!: string;
   isConfirm: boolean;
-  signupError!:any;
-  codeError!:any;
+  signupError!: any;
+  codeError!: any;
 
-  constructor(private router: Router, private fb: FormBuilder, private toastr: ToastrService,private cognitoService: CognitoService) {
+  constructor(private router: Router, private fb: FormBuilder, private toastr: ToastrService, private cognitoService: CognitoService) {
     this.loading = false;
     this.isConfirm = false;
     this.user = {} as CognitoUser;
     this.signupForm = this.fb.group({
       email: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      username: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      phonenumber: new FormControl('', [Validators.required, Validators.minLength(4)]),
       password: new FormControl(
         '',
         [
           Validators.required,
           Validators.minLength(8), Validators.maxLength(10)
         ]
-      ),
+      )
+    });
+    this.confirmForm = this.fb.group({
       code: new FormControl(
         '',
-        [
-          Validators.required        ]
+        [Validators.required]
       ),
     });
 
@@ -48,6 +52,10 @@ export class SignUpComponent {
     return this.signupForm.controls;
   }
 
+  get c() {
+    return this.confirmForm.controls;
+  }
+
 
   toggleShowPassword(showBoolean: boolean) {
     this.showPassword = !showBoolean;
@@ -55,22 +63,25 @@ export class SignUpComponent {
 
   public async signUp(): Promise<void> {
     this.loading = true;
-    this.user.email=this.signupForm.value.email;
-    this.user.password=this.signupForm.value.password;
+    this.user.email = this.signupForm.value.email;
+    this.user.username = this.signupForm.value.username;
+    this.user.phonenumber = this.signupForm.value.phonenumber;
+    this.user.password = this.signupForm.value.password;
 
     if (this.signupForm.invalid) {
       return;
     }
-    try{
-    (await this.cognitoService.signUp(this.user)).toPromise()
-      .then(() => {
-        this.loading = false;
-        this.isConfirm = true;
-      }).catch(() => {
-        this.loading = false;
-      });
-    }catch (e) {
-      this.signupError=e;
+
+    try {
+      (await this.cognitoService.signUp(this.user)).toPromise()
+        .then(() => {
+          this.loading = false;
+          this.isConfirm = true;
+        }).catch(() => {
+          this.loading = false;
+        });
+    } catch (e) {
+      this.signupError = e;
       this.toastr.error('Error while saving', 'Error', {
         positionClass: 'toast-bottom-center',
       });
@@ -79,19 +90,19 @@ export class SignUpComponent {
 
   public async confirmSignUp(): Promise<void> {
     this.loading = true;
-    this.user.code=this.signupForm.value.code;
+    this.user.code = this.confirmForm.value.code;
     if (this.signupForm.invalid) {
       return;
     }
-    try{
-    (await this.cognitoService.confirmSignUp(this.user)).toPromise()
-      .then(() => {
-        this.router.navigate(['/auth/sign-in']);
-      }).catch(() => {
-        this.loading = false;
-      });
-    }catch (e) {
-      this.codeError=e;
+    try {
+      (await this.cognitoService.confirmSignUp(this.user)).toPromise()
+        .then(() => {
+          this.router.navigate(['/auth/sign-in']);
+        }).catch(() => {
+          this.loading = false;
+        });
+    } catch (e) {
+      this.codeError = e;
       this.toastr.error('Error while saving', 'Error', {
         positionClass: 'toast-bottom-center',
       });

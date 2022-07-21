@@ -18,15 +18,19 @@ export class CognitoService {
     return Auth.signUp({
       username: user.username,
       password: user.password,
+      attributes: {
+        phonenumber: user.phonenumber,
+        email:user.email
+      },
     });
   }
 
   public confirmSignUp(user: CognitoUser): Promise<any> {
-    return Auth.confirmSignUp(user.username, user.code);
+    return Auth.confirmSignUp(user.email, user.code);
   }
 
   public signIn(user: CognitoUser): Observable<any> {
-    return defer(() => Auth.signIn(user.username, user.password))
+    return defer(() => Auth.signIn(user.username,user.password))
       .pipe(
         tap(() => this.loggedIn.next(true))
       );

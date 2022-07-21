@@ -2,9 +2,9 @@
     <div class="section">
         <h3 class="header">Sign up your new account </h3>
         <form [formGroup]="signupForm">
-            <div class="label">Email</div>
+            <div class="label">Email*</div>
             <mat-form-field>
-                <input matInput type="email" name="email" formControlName="email" placeholder="Enter your Email" />
+                <input matInput type="email" name="email" formControlName="email" />
                 <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="alert">
                     <div *ngIf="f.email.errors?.required">
                         email is required.
@@ -14,10 +14,34 @@
                     </div>
                 </div>
             </mat-form-field>
+            <div class="label">Username*</div>
+            <mat-form-field>
+                <input matInput type="text" name="username" formControlName="username" />
+                <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)" class="alert">
+                    <div *ngIf="f.username.errors?.required">
+                        username is required.
+                    </div>
+                    <div *ngIf="f.username.errors?.minlength">
+                        username must be atleast 4 characters.
+                    </div>
+                </div>
+            </mat-form-field>
+            <div class="label">Phonenumber*</div>
+            <mat-form-field>
+                <input matInput type="tel" name="phonenumber" formControlName="phonenumber" />
+                <div *ngIf="f.phonenumber.invalid && (f.phonenumber.dirty || f.phonenumber.touched)" class="alert">
+                    <div *ngIf="f.phonenumber.errors?.required">
+                        phonenumber is required.
+                    </div>
+                    <div *ngIf="f.phonenumber.errors?.minlength">
+                        phonenumber must be atleast 4 characters.
+                    </div>
+                </div>
+            </mat-form-field>
             <div class="label">Password*</div>
             <mat-form-field>
                 <input matInput type="password" name="password" formControlName="password" id="password"
-                    placeholder="Enter your password" type="{{(showPassword === false)?'password':'text'}}" />
+                    type="{{(showPassword === false)?'password':'text'}}" />
                 <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword(showPassword)">
                     {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
                 <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="alert">
@@ -43,12 +67,12 @@
 <div class="container" *ngIf="isConfirm">
     <div class="section">
         <h3 class="header">Enter the code that we have sent to your Email id</h3>
-        <form [formGroup]="signupForm">
+        <form [formGroup]="confirmForm">
             <div class="label">confirmation code</div>
             <mat-form-field>
-                <input matInput type="number" name="code" formControlName="code" placeholder="Enter your code" />
-                <div *ngIf="f.code.invalid && (f.code.dirty || f.code.touched)" class="alert">
-                    <div *ngIf="f.username.errors?.required">
+                <input matInput type="password" name="code" formControlName="code" />
+                <div *ngIf="c.code.invalid && (c.code.dirty || c.code.touched)" class="alert">
+                    <div *ngIf="c.code.errors?.required">
                         code is required.
                     </div>
                 </div>
