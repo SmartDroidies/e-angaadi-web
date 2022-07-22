@@ -29,7 +29,11 @@ export class SignUpComponent {
     this.isConfirm = false;
     this.user = {} as CognitoUser;
     this.signupForm = this.fb.group({
+      username: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      firstname: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      lastname: new FormControl('', [Validators.required, Validators.minLength(4)]),
       email: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      phonenumber: new FormControl('', [Validators.required, Validators.minLength(4)]),
       password: new FormControl(
         '',
         [
@@ -62,7 +66,11 @@ export class SignUpComponent {
 
   public async signUp(): Promise<void> {
     this.loading = true;
+    this.user.username = this.signupForm.value.username;
+    this.user.firstname = this.signupForm.value.firstname;
+    this.user.lastname = this.signupForm.value.lastname;
     this.user.email = this.signupForm.value.email;
+    this.user.phonenumber = this.signupForm.value.phonenumber;
     this.user.password = this.signupForm.value.password;
 
     if (this.signupForm.invalid) {

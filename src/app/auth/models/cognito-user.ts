@@ -6,5 +6,7 @@ export interface CognitoUser {
     code: string;
     name: string;
     phonenumber:number;
+    firstname:string;
+    lastname:string;
   }
   

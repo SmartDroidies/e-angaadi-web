@@ -2,6 +2,42 @@
     <div class="section">
         <h3 class="header">Sign up your new account </h3>
         <form [formGroup]="signupForm">
+            <div class="label">Username*</div>
+            <mat-form-field>
+                <input matInput type="text" name="username" formControlName="username" />
+                <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)" class="alert">
+                    <div *ngIf="f.username.errors?.required">
+                        username is required.
+                    </div>
+                    <div *ngIf="f.username.errors?.minlength">
+                        username must be atleast 4 characters.
+                    </div>
+                </div>
+            </mat-form-field>
+            <div class="label">Firstname*</div>
+            <mat-form-field>
+                <input matInput type="text" name="firstname" formControlName="firstname" />
+                <div *ngIf="f.firstname.invalid && (f.firstname.dirty || f.firstname.touched)" class="alert">
+                    <div *ngIf="f.firstname.errors?.required">
+                        firstname is required.
+                    </div>
+                    <div *ngIf="f.firstname.errors?.minlength">
+                        firstname must be atleast 4 characters.
+                    </div>
+                </div>
+            </mat-form-field>
+            <div class="label">Lastname*</div>
+            <mat-form-field>
+                <input matInput type="text" name="lastname" formControlName="lastname" />
+                <div *ngIf="f.lastname.invalid && (f.lastname.dirty || f.lastname.touched)" class="alert">
+                    <div *ngIf="f.lastname.errors?.required">
+                        lastname is required.
+                    </div>
+                    <div *ngIf="f.lastname.errors?.minlength">
+                        lastname must be atleast 4 characters.
+                    </div>
+                </div>
+            </mat-form-field>
             <div class="label">Email*</div>
             <mat-form-field>
                 <input matInput type="email" name="email" formControlName="email" />
@@ -11,6 +47,18 @@
                     </div>
                     <div *ngIf="f.email.errors?.minlength">
                         email must be atleast 4 characters.
+                    </div>
+                </div>
+            </mat-form-field>
+            <div class="label">Phonenumber*</div>
+            <mat-form-field>
+                <input matInput type="tel" name="phonenumber" formControlName="phonenumber" />
+                <div *ngIf="f.phonenumber.invalid && (f.phonenumber.dirty || f.phonenumber.touched)" class="alert">
+                    <div *ngIf="f.phonenumber.errors?.required">
+                        phonenumber is required.
+                    </div>
+                    <div *ngIf="f.phonenumber.errors?.minlength">
+                        phonenumber must be atleast 4 characters.
                     </div>
                 </div>
             </mat-form-field>
