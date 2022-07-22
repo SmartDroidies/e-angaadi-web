@@ -1,19 +1,16 @@
-<div>
+<div class="container">
     <div class="nav-header">Personal information</div>
-    <mat-divider></mat-divider>
-    <div>
-        <a class="nav-item-header">Name</a>
-        <br>
-        <span class="nav-item">{{name}}</span>
-    </div>
-    <div>
-        <a class="nav-item-header">Email</a>
-        <br>
-        <span class="nav-item">{{mail}}</span>
-    </div>
-    <div>
-        <a class="nav-item-header">Phone number</a>
-        <br>
-        <span class="nav-item">{{phone_number}}</span>
-    </div>
+    <mat-divider class="mat-divider"></mat-divider>
+    <ul>
+        <li class="nav-item-title">Name</li>
+        <li class="nav-item">{{name}}</li>
+    </ul>
+    <ul>
+        <li class="nav-item-title">Email</li>
+        <li class="nav-item">{{mail}}</li>
+    </ul>
+    <ul>
+        <li class="nav-item-title">Phone number</li>
+        <li class="nav-item">{{phone_number}}</li>
+    </ul>
 </div>

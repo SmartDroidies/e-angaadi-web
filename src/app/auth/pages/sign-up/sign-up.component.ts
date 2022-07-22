@@ -78,20 +78,14 @@ export class SignUpComponent {
     }
 
     try {
-      (await this.cognitoService.signUp(this.user)).toPromise()
+      (await this.cognitoService.signUp(this.user))
         .then(() => {
           this.loading = false;
           this.isConfirm = true;
           this.toastr.success('Successfully code sent to mailid', 'Success', {
             positionClass: 'toast-bottom-center',
           });
-        }).catch((e: any) => {
-          this.loading = false;
-          this.signupError = e;
-          this.toastr.error('Error while signup', 'Error', {
-            positionClass: 'toast-bottom-center',
-          });
-        });
+        })
     } catch (e) {
       this.signupError = e;
       this.toastr.error('Error while signup', 'Error', {
@@ -107,19 +101,11 @@ export class SignUpComponent {
       return;
     }
     try {
-      (await this.cognitoService.confirmSignUp(this.user)).toPromise()
-        .then(() => {
-          this.router.navigate(['/auth/sign-in']);
-          this.toastr.success('Successfully completed signup', 'Success', {
-            positionClass: 'toast-bottom-center',
-          });
-        }).catch((e: any) => {
-          this.loading = false;
-          this.codeError = e;
-          this.toastr.error('Error while confirmSignUp', 'Error', {
-            positionClass: 'toast-bottom-center',
-          });
-        });
+      (await this.cognitoService.confirmSignUp(this.user))
+      this.toastr.success('Successfully completed signup', 'Success', {
+        positionClass: 'toast-bottom-center',
+      })
+      this.router.navigate(['/auth/sign-in']);
     } catch (e) {
       this.codeError = e;
       this.toastr.error('Error while confirmSignUp', 'Error', {
