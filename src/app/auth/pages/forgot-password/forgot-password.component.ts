@@ -92,19 +92,11 @@ export class ForgotPasswordComponent {
     }
 
     try {
-      (await this.cognitoService.forgotPasswordSubmit(this.user)).toPromise()
-        .then(() => {
-          this.router.navigate(['/auth/sign-in']);
-          this.toastr.success('Successfully changed password', 'Success', {
-            positionClass: 'toast-bottom-center',
-          });
-        }).catch((e: any) => {
-          this.loading = false;
-          this.submitError = e;
-          this.toastr.error('Error while change password', 'Error', {
-            positionClass: 'toast-bottom-center',
-          });
-        });
+      (await this.cognitoService.forgotPasswordSubmit(this.user))
+      this.router.navigate(['/auth/sign-in']);
+      this.toastr.success('Successfully changed password', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
     } catch (e) {
       this.submitError = e;
       this.toastr.error('Errorwhile change password', 'Error', {
