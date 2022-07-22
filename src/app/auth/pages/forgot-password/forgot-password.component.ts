@@ -6,30 +6,34 @@ import { CognitoUser } from '../../models/cognito-user';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss'],
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.scss']
 })
-
-export class SignUpComponent {
-
-  signupForm!: FormGroup;
+export class ForgotPasswordComponent {
+  codeForm!: FormGroup;
   confirmForm!: FormGroup;
   loading: boolean;
   user: CognitoUser;
   showPassword = false;
   email!: string;
   isConfirm: boolean;
-  signupError!: any;
   codeError!: any;
+  submitError!: any;
   resendError!: any;
 
   constructor(private router: Router, private fb: FormBuilder, private toastr: ToastrService, private cognitoService: CognitoService) {
     this.loading = false;
     this.isConfirm = false;
     this.user = {} as CognitoUser;
-    this.signupForm = this.fb.group({
+    this.codeForm = this.fb.group({
       email: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    });
+    this.confirmForm = this.fb.group({
+      code: new FormControl(
+        '',
+        [Validators.required]
+      ),
       password: new FormControl(
         '',
         [
@@ -38,17 +42,11 @@ export class SignUpComponent {
         ]
       )
     });
-    this.confirmForm = this.fb.group({
-      code: new FormControl(
-        '',
-        [Validators.required]
-      ),
-    });
 
   }
 
   get f() {
-    return this.signupForm.controls;
+    return this.codeForm.controls;
   }
 
   get c() {
@@ -60,17 +58,16 @@ export class SignUpComponent {
     this.showPassword = !showBoolean;
   }
 
-  public async signUp(): Promise<void> {
+  public async forgotpasswordConfirm(): Promise<void> {
     this.loading = true;
-    this.user.email = this.signupForm.value.email;
-    this.user.password = this.signupForm.value.password;
+    this.user.email = this.codeForm.value.email;
 
-    if (this.signupForm.invalid) {
+    if (this.codeForm.invalid) {
       return;
     }
 
     try {
-      (await this.cognitoService.signUp(this.user)).toPromise()
+      (await this.cognitoService.forgotPassword(this.user)).toPromise()
         .then(() => {
           this.loading = false;
           this.isConfirm = true;
@@ -79,42 +76,46 @@ export class SignUpComponent {
           });
         }).catch((e: any) => {
           this.loading = false;
-          this.signupError = e;
-          this.toastr.error('Error while signup', 'Error', {
-            positionClass: 'toast-bottom-center',
-          });
-        });
-    } catch (e) {
-      this.signupError = e;
-      this.toastr.error('Error while signup', 'Error', {
-        positionClass: 'toast-bottom-center',
-      });
-    }
-  }
-
-  public async confirmSignUp(): Promise<void> {
-    this.loading = true;
-    this.user.code = this.confirmForm.value.code;
-    if (this.signupForm.invalid) {
-      return;
-    }
-    try {
-      (await this.cognitoService.confirmSignUp(this.user)).toPromise()
-        .then(() => {
-          this.router.navigate(['/auth/sign-in']);
-          this.toastr.success('Successfully completed signup', 'Success', {
-            positionClass: 'toast-bottom-center',
-          });
-        }).catch((e: any) => {
-          this.loading = false;
           this.codeError = e;
-          this.toastr.error('Error while confirmSignUp', 'Error', {
+          this.toastr.error('Error while forgot password', 'Error', {
             positionClass: 'toast-bottom-center',
           });
         });
     } catch (e) {
       this.codeError = e;
-      this.toastr.error('Error while confirmSignUp', 'Error', {
+      this.toastr.error('Error while password', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
+    }
+  }
+
+  public async confirmForgotPassword(): Promise<void> {
+    this.loading = true;
+    this.user.code = this.confirmForm.value.code;
+    this.user.password=this.confirmForm.value.password;
+    this.user.email=this.codeForm.value.email;
+
+    if (this.codeForm.invalid) {
+      return;
+    }
+
+    try {
+      (await this.cognitoService.forgotPasswordSubmit(this.user)).toPromise()
+        .then(() => {
+          this.router.navigate(['/auth/sign-in']);
+          this.toastr.success('Successfully changed password', 'Success', {
+            positionClass: 'toast-bottom-center',
+          });
+        }).catch((e: any) => {
+          this.loading = false;
+          this.submitError = e;
+          this.toastr.error('Error while change password', 'Error', {
+            positionClass: 'toast-bottom-center',
+          });
+        });
+    } catch (e) {
+      this.submitError = e;
+      this.toastr.error('Errorwhile change password', 'Error', {
         positionClass: 'toast-bottom-center',
       });
     }
@@ -126,7 +127,7 @@ export class SignUpComponent {
 
   public async resendCode(): Promise<void> {
     this.loading = true;
-    this.user.email = this.signupForm.value.email;
+    this.user.email = this.codeForm.value.email;
     try {
       (await this.cognitoService.resendSignUp(this.user)).toPromise()
         .then(() => {

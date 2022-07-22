@@ -80,4 +80,8 @@ export class SignInComponent {
     async signUp() {
         await this.router.navigate(['/auth/sign-up']);
     }
+
+    async resetPassword(){
+        await this.router.navigate(['/auth/forgot-password']);
+    }
 }

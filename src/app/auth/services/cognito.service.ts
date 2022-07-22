@@ -41,6 +41,14 @@ export class CognitoService {
     await Auth.resendSignUp(user.email);
   }
 
+  public async forgotPassword(user: CognitoUser): Promise<any> {
+    await Auth.forgotPassword(user.email);
+  }
+
+  public async forgotPasswordSubmit(user: CognitoUser): Promise<any> {
+    return Auth.forgotPasswordSubmit(user.email,user.code,user.password);
+  }
+
   public getUser(): Promise<any> {
     return Auth.currentUserInfo();
   }
