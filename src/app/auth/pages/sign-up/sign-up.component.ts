@@ -128,18 +128,10 @@ export class SignUpComponent {
     this.loading = true;
     this.user.email = this.signupForm.value.email;
     try {
-      (await this.cognitoService.resendSignUp(this.user)).toPromise()
-        .then(() => {
-          this.toastr.success('Successfully code sent', 'Success', {
-            positionClass: 'toast-bottom-center',
-          });
-        }).catch((e: any) => {
-          this.loading = false;
-          this.resendError = e;
-          this.toastr.error('Error while sending code', 'Error', {
-            positionClass: 'toast-bottom-center',
-          });
-        });
+      (await this.cognitoService.resendSignUp(this.user))
+      this.toastr.success('Successfully code sent', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
     } catch (e) {
       this.resendError = e;
       this.toastr.error('Error while sending code', 'Error', {

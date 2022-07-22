@@ -67,20 +67,12 @@ export class ForgotPasswordComponent {
     }
 
     try {
-      (await this.cognitoService.forgotPassword(this.user)).toPromise()
-        .then(() => {
-          this.loading = false;
-          this.isConfirm = true;
-          this.toastr.success('Successfully code sent to mailid', 'Success', {
-            positionClass: 'toast-bottom-center',
-          });
-        }).catch((e: any) => {
-          this.loading = false;
-          this.codeError = e;
-          this.toastr.error('Error while forgot password', 'Error', {
-            positionClass: 'toast-bottom-center',
-          });
-        });
+      (await this.cognitoService.forgotPassword(this.user))
+      this.loading = false;
+      this.isConfirm = true;
+      this.toastr.success('Successfully code sent to mailid', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
     } catch (e) {
       this.codeError = e;
       this.toastr.error('Error while password', 'Error', {
@@ -92,8 +84,8 @@ export class ForgotPasswordComponent {
   public async confirmForgotPassword(): Promise<void> {
     this.loading = true;
     this.user.code = this.confirmForm.value.code;
-    this.user.password=this.confirmForm.value.password;
-    this.user.email=this.codeForm.value.email;
+    this.user.password = this.confirmForm.value.password;
+    this.user.email = this.codeForm.value.email;
 
     if (this.codeForm.invalid) {
       return;
@@ -129,18 +121,10 @@ export class ForgotPasswordComponent {
     this.loading = true;
     this.user.email = this.codeForm.value.email;
     try {
-      (await this.cognitoService.resendSignUp(this.user)).toPromise()
-        .then(() => {
-          this.toastr.success('Successfully code sent', 'Success', {
-            positionClass: 'toast-bottom-center',
-          });
-        }).catch((e: any) => {
-          this.loading = false;
-          this.resendError = e;
-          this.toastr.error('Error while sending code', 'Error', {
-            positionClass: 'toast-bottom-center',
-          });
-        });
+      (await this.cognitoService.resendSignUp(this.user))
+      this.toastr.success('Successfully code sent', 'Success', {
+        positionClass: 'toast-bottom-center',
+      })
     } catch (e) {
       this.resendError = e;
       this.toastr.error('Error while sending code', 'Error', {
