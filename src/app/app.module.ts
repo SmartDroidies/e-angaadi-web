@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+import { ProductImage } from './product/models/product-image';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 import { CoreModule } from './core/core.module';
@@ -18,7 +20,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AuthGuard } from './account/auth.guard';
 import { ProductService } from './product/service/product.service';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, of } from 'rxjs';
+import { CartService } from './shared/service/cart.service';
+import { Auth } from 'aws-amplify';
+import { from } from 'rxjs';
 
 Amplify.configure({
   Auth: {
@@ -40,7 +45,26 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-function initializeApp(productService: ProductService): () => Observable<any> {
+function syncUserCart(cartService: CartService): () => Promise<void> {
+  return () =>
+    new Promise((resolve) => {
+      Auth.currentAuthenticatedUser()
+        .then((user) => {
+          console.log(user);
+          cartService
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+            .getCartItems(user['username'])
+            .subscribe((result) => console.log(result));
+          // .pipe(tap((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart))));
+          resolve();
+        })
+        .catch(() => {
+          resolve();
+        });
+    });
+}
+
+function initializeApp(productService: ProductService): () => Observable<ProductImage[]> {
   return () =>
     productService
       .getProductImages()
@@ -71,11 +95,16 @@ function initializeApp(productService: ProductService): () => Observable<any> {
     AccountModule,
   ],
   providers: [
-    AuthGuard,
     {
       provide: APP_INITIALIZER,
       useFactory: initializeApp,
       deps: [ProductService],
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: syncUserCart,
+      deps: [CartService],
       multi: true,
     },
   ],

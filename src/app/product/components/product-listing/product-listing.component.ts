@@ -3,6 +3,8 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { Product } from '../../models/product';
 import { ProductService } from '../../service/product.service';
+import { from } from 'rxjs';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-product-listing',
@@ -13,14 +15,15 @@ export class ProductListingComponent implements OnInit, OnChanges {
   @Input() productGroupCode!: string;
   products: Product[] = [];
   cartItems: CartItem[] = [];
-
+  userId!: string;
   productsByGroup: Product[] = [];
   product!: Product;
   selectedUnit!: number;
   code!: string;
   quantity = 0;
+  signedIn = false;
 
-  constructor(private productService: ProductService, private cartService: CartService) {}
+  constructor(private productService: ProductService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -28,7 +31,13 @@ export class ProductListingComponent implements OnInit, OnChanges {
   }
 
   loadCartItems() {
-    this.cartItems = this.cartService.getCartItems();
+    this.cartItems = this.cartService.getCart(); 
+    // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+    //   if (this.signedIn === true) {
+    //     let userId = user.username;
+    //     this.cartService.getCartItems(userId).subscribe((userCartItems) => (this.cartItems = userCartItems));
+    //   }
+    // });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

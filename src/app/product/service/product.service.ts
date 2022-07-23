@@ -9,7 +9,7 @@ import { ProductImage } from '../models/product-image';
   providedIn: 'root',
 })
 export class ProductService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getProductGroups(): Observable<ProductGroup[]> {
     return this.http.get<ProductGroup[]>(environment.productBaseUrl + '/group');
@@ -34,7 +34,7 @@ export class ProductService {
     return this.http.get<Product>(environment.productBaseUrl + '/search', { params: params });
   }
 
-  getProductImages(): Observable<ProductImage> {
-    return this.http.get<ProductImage>(environment.productBaseUrl + '/image');
+  getProductImages(): Observable<ProductImage[]> {
+    return this.http.get<ProductImage[]>(environment.productBaseUrl + '/image');
   }
 }
