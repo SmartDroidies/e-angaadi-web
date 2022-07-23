@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe((event) => {
-        gtag('config', 'G-ZY7T3DR3RW', { page_path: event.urlAfterRedirects });
+        gtag('config', 'G-775VE7JS7V', { page_path: event.urlAfterRedirects });
       });
   }
 }
