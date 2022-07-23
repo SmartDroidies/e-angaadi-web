@@ -54,7 +54,7 @@ function syncUserCart(cartService: CartService): () => Promise<void> {
           cartService
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
             .getCartItems(user['username'])
-            .subscribe((result) => console.log(result));
+            .subscribe((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart)));
           // .pipe(tap((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart))));
           resolve();
         })

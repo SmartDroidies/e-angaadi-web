@@ -24,12 +24,6 @@ export class CartSummaryComponent implements OnInit {
   }
 
   loadCartData(): void  {
-    // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-    //   if (this.signedIn = true) {
-    //    let userId = user.username;
-    //     this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
-    //   }
-    // });
     this.items = this.cartService.getCart();
   }
 
