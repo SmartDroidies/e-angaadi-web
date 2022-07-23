@@ -21,10 +21,9 @@ export class CartDetailComponent implements OnInit {
   show!: boolean;
   signedIn = false;
   userId!: string;
-  synced = false;
   displayedColumns: string[] = ['title', 'quantity', 'total'];
   cartImages!: ProductImage;
-
+  sync = [];
   constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef, private translate: TranslateService, private productImageService: ProductImageService) { }
 
   ngOnInit(): void {
@@ -33,24 +32,30 @@ export class CartDetailComponent implements OnInit {
     this.updateCart();
   }
 
-  getCart() {
-    // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-    //   if (user) {
-    //     const userId = user.username;
-    //     this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
-    //   }
-    // });
+  getUpdateCart() {
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      let userId = user.username;
+      this.cartService.getCartItems(userId).subscribe((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart)));
+    });
+    
+  }
+  getCart(){
+    this.getUpdateCart();
     this.items = this.cartService.getCart();
   }
 
   updateCart() {
+    let cartItem: CartItem[] = [];
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-
       for (let i = 0; i < this.items.length; i++) {
+        if (this.items[i].synced == false) {
+          cartItem.push(this.items[i]);
+        }
         this.items[i].userId = user.username;
       }
+      console.log(cartItem);
       this.cartService
-        .updateCartItems(this.items)
+        .updateCartItems(cartItem)
         .subscribe(() =>
           (this.getCart())
         );
@@ -119,8 +124,8 @@ export class CartDetailComponent implements OnInit {
   }
 
 
-  collectCartImages(item:CartItem) {
-      this.cartImages = this.productImageService.getCartImages(item);  
-      return this.cartImages;
+  collectCartImages(item: CartItem) {
+    this.cartImages = this.productImageService.getCartImages(item);
+    return this.cartImages;
   }
 }
