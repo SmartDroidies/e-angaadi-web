@@ -5,7 +5,7 @@ import { AccountInfoComponent } from './account-info.component';
 describe('AccountInfoComponent', () => {
   let component: AccountInfoComponent;
   let fixture: ComponentFixture<AccountInfoComponent>;
-  let routerSpy = {navigate: jasmine.createSpy('navigate')};
+  const routerSpy = {navigate: jasmine.createSpy('navigate')};
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

@@ -13,8 +13,8 @@ export class ChangePasswordComponent implements OnInit {
   passwordForm!: FormGroup;
   oldPassword!: string;
   newPassword!: string;
-  showPassword: boolean = false;
-  showOldPassword: boolean = false;
+  showPassword=false;
+  showOldPassword = false;
   name: string | undefined;
   constructor(private fb: FormBuilder, private toastr: ToastrService,) {
     this.initUser();
@@ -24,14 +24,14 @@ export class ChangePasswordComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"),
+          Validators.pattern("(?=.*)(?=.*[a-z])(?=.*[A-Z]).{8,}"),
         ]
       ),
       newPassword: new FormControl(
         '',
         [
           Validators.required,
-          Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"),
+          Validators.pattern("(?=.*)(?=.*[a-z])(?=.*[A-Z]).{8,}"),
           Validators.minLength(8), Validators.maxLength(10)
         ],
 
@@ -74,7 +74,7 @@ export class ChangePasswordComponent implements OnInit {
 
     try {
       const user = await Auth.currentAuthenticatedUser()
-      let Values = this.passwordForm.value;
+      const Values = this.passwordForm.value;
       this.oldPassword = Values.oldPassword;
       this.newPassword = Values.newPassword;
       return await Auth.changePassword(user, this.oldPassword, this.newPassword);
