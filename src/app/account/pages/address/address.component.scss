@@ -40,51 +40,7 @@ li {
   margin: 1rem;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
-.row li{
+.address-button {
   margin: 1rem;
-}
-
-.button {
   display: flex;
-  justify-content: flex-end;
 }
-
-.address-mat-form-field{
-  width:100%;
-  height: 10rem;
-}
-// .row1 {
-//   display: flex;
-//   padding: 10px 15px;
-//   margin: 5px 0;
-//   justify-content: space-evenly;
-// }
-
-// .row2 {
-//   display: flex;
-//   padding: 0.125rem 8.2rem;
-// }
-
-// .actions {
-//   align-self: flex-end;
-//   margin-right: 1.25rem;
-//   padding-right: 1.25rem;
-// }
-
-// .button {
-//   justify-content: space-between;
-//   margin-left: 0.625rem;
-// }
-
-// .mat-form-field {
-//   width: 350px !important;
-// }
-
-// ::ng-deep .mat-form-field-underline {
-//   display: none;
-// }

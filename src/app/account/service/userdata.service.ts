@@ -11,7 +11,7 @@ export class UserdataService {
 
   constructor(private http: HttpClient) { }
 
-  updateProduct(address: Address): Observable<any> {
+  updateAddress(address: Address): Observable<any> {
     return this.http.post<any>(environment.productBaseUrl + '/user-info', address);
   }
 }

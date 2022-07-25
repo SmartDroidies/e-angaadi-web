@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="header">Add/Edit Address</div>
+    <mat-divider class="mat-divider"></mat-divider>
+    <form class='form-container' [formGroup]="addressForm">
+        <ul>
+            <li>
+                <div class="title">Address</div>
+                <mat-form-field class="address-mat-form-field">
+                    <input matInput type="url" name="address" formControlName="address" />
+                    <div *ngIf="f.address.invalid && (f.address.dirty || f.address.touched)" class="alert">
+                        <div *ngIf="f.address.errors?.required">
+                            address is required.
+                        </div>
+                        <div *ngIf="f.address.errors?.minlength">
+                            address should be atleast 15 letters.
+                        </div>
+                        <div *ngIf="f.address.errors?.maxlength">
+                            address must be within 100 letters.
+                        </div>
+                    </div>
+                </mat-form-field>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <div class="title">Landmark</div>
+                <mat-form-field>
+                    <input matInput type="url" name="landmark" formControlName="landmark" />
+                    <div *ngIf="f.landmark.invalid && (f.landmark.dirty || f.landmark.touched)" class="alert">
+                        <div *ngIf="f.landmark.errors?.required">
+                            landmark is required.
+                        </div>
+                        <div *ngIf="f.landmark.errors?.minlength">
+                            landmark should be atleast 3 letters.
+                        </div>
+                        <div *ngIf="f.landmark.errors?.maxlength">
+                            landmark must be within 100 letters.
+                        </div>
+                    </div>
+                </mat-form-field>
+            </li>
+            <li>
+                <div class="title">City</div>
+                <mat-form-field>
+                    <input matInput type="text" name="city" formControlName="city" />
+                    <div *ngIf="f.city.invalid && (f.city.dirty || f.city.touched)" class="alert">
+                        <div *ngIf="f.city.errors?.required">
+                            city is required.
+                        </div>
+                        <div *ngIf="f.city.errors?.minlength">
+                            city should be atleast 3 letters.
+                        </div>
+                        <div *ngIf="f.city.errors?.maxlength">
+                            city must be within 100 letters.
+                        </div>
+                    </div>
+                </mat-form-field>
+            </li>
+            <li>
+                <div class="title">Pincode</div>
+                <mat-form-field>
+                    <input matInput type="url" name="pincode" formControlName="pincode" />
+                    <div *ngIf="f.pincode.invalid && (f.pincode.dirty || f.pincode.touched)" class="alert">
+                        <div *ngIf="f.pincode.errors?.required">
+                            pincode is required.
+                        </div>
+                        <div *ngIf="f.pincode.errors?.minlength">
+                            pincode should be atleast 6 digit.
+                        </div>
+                        <div *ngIf="f.pincode.errors?.maxlength">
+                            pincode must be within 6 digit.
+                        </div>
+                    </div>
+                </mat-form-field>
+            </li>
+        </ul>
+        <ul class="button">
+            <li><button (click)="address()" mat-raised-button color="primary">Back</button></li>
+            <li><button (click)="onSave()" mat-raised-button color="primary">Save</button></li>
+        </ul>
+    </form>
+</div>
