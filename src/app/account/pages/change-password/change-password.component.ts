@@ -14,8 +14,8 @@ export class ChangePasswordComponent implements OnInit {
   passwordForm!: FormGroup;
   oldPassword!: string;
   newPassword!: string;
-  showPassword: boolean = false;
-  showOldPassword: boolean = false;
+  showPassword=false;
+  showOldPassword=false;
   name!: string;
   passError!: any;
   loading!: boolean;

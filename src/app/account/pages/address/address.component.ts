@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService, } from 'ngx-toastr';
 import { CognitoService } from 'src/app/auth/services/cognito.service';
@@ -59,11 +59,11 @@ export class AddressComponent {
   }
 
   ngOnInit(): void {
-    void this.initUser();
+    this.initUser();
   }
 
   async initUser() {
-    let currentUser = await this.cognitoService.currentAuthenticatedUser()
+    const currentUser = await this.cognitoService.currentAuthenticatedUser()
     this.name = currentUser.attributes.name;
     this.email = currentUser.attributes.email;
     this.phone_number = currentUser.attributes.phone_number;
