@@ -86,19 +86,12 @@ export class ChangePasswordComponent implements OnInit {
       let Values = this.passwordForm.value;
       this.oldPassword = Values.oldPassword;
       this.newPassword = Values.newPassword;
-      await Auth.changePassword(user, this.oldPassword, this.newPassword).then(() => {
-        this.router.navigate(['/auth/sign-in']);
-        this.toastr.success('Successfully changed password', 'Success', {
-          positionClass: 'toast-bottom-center',
-        });
-      }).catch((e: any) => {
-        this.loading = false;
-        this.passError = e;
-        this.toastr.error('Error while saving', 'Error', {
-          positionClass: 'toast-bottom-center',
-        });
+      
+      await Auth.changePassword(user, this.oldPassword, this.newPassword)
+      this.router.navigate(['/auth/sign-in']);
+      this.toastr.success('Successfully changed password', 'Success', {
+        positionClass: 'toast-bottom-center',
       });
-
     } catch (e) {
       this.passError = e;
       this.toastr.error('Error while saving', 'Error', {

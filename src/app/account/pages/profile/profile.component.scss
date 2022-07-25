@@ -1,4 +1,6 @@
 @import 'src/styles/abstracts/_variables.scss';
+@import 'src/styles/abstracts/_mixins.scss';
+
 
 li {
   list-style: none;
@@ -8,7 +10,7 @@ li {
   margin: 2rem;
 }
 
-.nav-header {
+.header {
   margin: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
@@ -18,13 +20,13 @@ li {
   width: 100%;
 }
 
-.nav-item-title {
+.title {
   font-size: $font-size-base;
   margin: 1rem;
   font-weight: 500;
 }
 
-.nav-item {
+.item {
   font-size: $font-size-base;
   margin: 1rem;
 }

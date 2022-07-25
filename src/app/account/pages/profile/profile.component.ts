@@ -8,9 +8,9 @@ import { from } from 'rxjs';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  mail: string | undefined;
-  name: string | undefined;
-  phone_number: '' | undefined;
+  email!: string;
+  name!: string;
+  phone_number!: number;
   
 
   ngOnInit(): void {
@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
       if (user && user.attributes) {
         this.name = user.attributes.name as string;
-        this.mail = user.attributes.email as string;
+        this.email = user.attributes.email as string;
         this.phone_number = user.attributes.phone_number;
       }
     });

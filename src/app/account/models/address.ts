@@ -4,6 +4,4 @@ export class Address {
     landmark!:string;
     city!: string;
     pincode!: number
-
-
 }

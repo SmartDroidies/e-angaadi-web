@@ -1,92 +1,101 @@
 <div class="container">
-  <form class=form [formGroup]="addressForm">
-    <div>
-      <h2 class="header">Personal Details</h2>
-      <div class="row">
-        <div>
-          <mat-form-field appearance="fill">
-            <mat-label for="fullname">Full Name</mat-label>
-            <input matInput name="user" formControlName="user" [value]="setData()" />
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field appearance="fill">
-            <mat-label for="contact">Mobile number</mat-label>
-            <input matInput name="contact" formControlName="contact" [value]="setData()" />
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-    <div>
-      <h2 class="header">Address Details</h2>
-      <div class="row">
-        <div>
-          <mat-form-field appearance="fill">
-            <mat-label>House no.</mat-label>
-            <input matInput placeholder="Placeholder" required>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field appearance="fill">
-            <mat-label>Street details to locate you</mat-label>
-            <input matInput id="street" name="street" formControlName="street" class="form-control" />
-            <div *ngIf="f.street.invalid && (f.street.dirty || f.street.touched)" class="alert">
-              <div *ngIf="f.street.errors?.required">
-                street name is required.
+  <div class="basic-form">
+    <div class="header">Personal Details</div>
+    <mat-divider class="mat-divider"></mat-divider>
+    <ul class="personal-info-row">
+      <li>
+        <div class="title">Username</div>
+        <div class="item">{{name}}</div>
+      </li>
+      <li>
+        <div class="title">Mobile number</div>
+        <div class="item">{{email}}</div>
+      </li>
+      <li>
+        <div class="title">Mobile number</div>
+        <div class="item">{{phone_number}}</div>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <div class="header">Address Details</div>
+    <mat-divider class="mat-divider"></mat-divider>
+    <form class='form-container' [formGroup]="addressForm">
+      <ul class="row">
+        <li>
+          <div class="title">Address</div>
+          <mat-form-field class="address-mat-form-field">
+            <input matInput type="url" name="address" formControlName="address" />
+            <div *ngIf="f.address.invalid && (f.address.dirty || f.address.touched)" class="alert">
+              <div *ngIf="f.address.errors?.required">
+                address is required.
               </div>
-              <div *ngIf="f.street.errors?.minlength">
-                street name must be at least 4 characters long.
+              <div *ngIf="f.address.errors?.minlength">
+                address should be atleast 15 letters.
               </div>
-              <div *ngIf="f.street.errors?.pattern">
-                Only A-Z or a-z is allowed.
+              <div *ngIf="f.address.errors?.maxlength">
+                address must be within 100 letters.
               </div>
             </div>
           </mat-form-field>
-        </div>
-      </div>
-      <div class="row1">
-        <div>
-          <mat-form-field appearance="fill">
-            <mat-label>Landmark for easy reach out</mat-label>
-            <input matInput id="landmark" name="landmark" formControlName="landmark" class="form-control" />
+        </li>
+      </ul>
+      <ul class="row">
+        <li>
+          <div class="title">Landmark</div>
+          <mat-form-field>
+            <input matInput type="url" name="landmark" formControlName="landmark" />
             <div *ngIf="f.landmark.invalid && (f.landmark.dirty || f.landmark.touched)" class="alert">
               <div *ngIf="f.landmark.errors?.required">
                 landmark is required.
               </div>
               <div *ngIf="f.landmark.errors?.minlength">
-                landmark must be at least 4 characters long.
+                landmark should be atleast 3 letters.
               </div>
-              <div *ngIf="f.landmark.errors?.pattern">
-                Only A-Z or a-z is allowed.
+              <div *ngIf="f.landmark.errors?.maxlength">
+                landmark must be within 100 letters.
               </div>
             </div>
           </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field appearance="fill">
-            <mat-label>city</mat-label>
-            <mat-select name="city" formControlName="city" required>
-              <mat-option value="arakkonam ">Arakkonam</mat-option>
-              <mat-option value="bangalore">Bangalore</mat-option>
-              <mat-option value="chennai">Chennai</mat-option>
-              <mat-option value="delhi">Delhi</mat-option>
-              <mat-option value="erode">Erode</mat-option>
-            </mat-select>
+        </li>
+        <li>
+          <div class="title">City</div>
+          <mat-form-field>
+            <input matInput type="text" name="city" formControlName="city" />
+            <div *ngIf="f.city.invalid && (f.city.dirty || f.city.touched)" class="alert">
+              <div *ngIf="f.city.errors?.required">
+                city is required.
+              </div>
+              <div *ngIf="f.city.errors?.minlength">
+                city should be atleast 3 letters.
+              </div>
+              <div *ngIf="f.city.errors?.maxlength">
+                city must be within 100 letters.
+              </div>
+            </div>
           </mat-form-field>
-        </div>
+        </li>
+        <li>
+          <div class="title">Pincode</div>
+          <mat-form-field>
+            <input matInput type="url" name="pincode" formControlName="pincode" />
+            <div *ngIf="f.pincode.invalid && (f.pincode.dirty || f.pincode.touched)" class="alert">
+              <div *ngIf="f.pincode.errors?.required">
+                pincode is required.
+              </div>
+              <div *ngIf="f.pincode.errors?.minlength">
+                pincode should be atleast 6 digit.
+              </div>
+              <div *ngIf="f.pincode.errors?.maxlength">
+                pincode must be within 6 digit.
+              </div>
+            </div>
+          </mat-form-field>
+        </li>
+      </ul>
+      <div class="button">
+        <button (click)="onSave()" mat-raised-button color="primary">Save</button>
       </div>
-      <div class="row2">
-        <mat-form-field appearance="fill">
-          <mat-label>Pincode</mat-label>
-          <input matInput placeholder="Placeholder" required>
-        </mat-form-field>
-      </div>
-    </div>
 
-    <div class="row actions">
-      <button class="button" mat-raised-button color="primary">Cancel</button>
-      <button class="button" (click)="onSave()" mat-raised-button color="primary">Save</button>
-    </div>
-
-  </form>
-</div>
+    </form>
+  </div>
