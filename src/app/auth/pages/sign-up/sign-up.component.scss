@@ -43,3 +43,6 @@
 .alert {
     @include alert-form-field;
 }
+.error-alert{
+    @include error-alert-form-field;
+}

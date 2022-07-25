@@ -31,7 +31,6 @@ export class SignUpComponent {
     this.signupForm = this.fb.group({
       username: new FormControl('', [Validators.required, Validators.minLength(4)]),
       firstname: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      lastname: new FormControl('', [Validators.required, Validators.minLength(4)]),
       email: new FormControl('', [Validators.required, Validators.minLength(4)]),
       phonenumber: new FormControl('', [Validators.required, Validators.minLength(4)]),
       password: new FormControl(
@@ -68,7 +67,6 @@ export class SignUpComponent {
     this.loading = true;
     this.user.username = this.signupForm.value.username;
     this.user.firstname = this.signupForm.value.firstname;
-    this.user.lastname = this.signupForm.value.lastname;
     this.user.email = this.signupForm.value.email;
     this.user.phonenumber = this.signupForm.value.phonenumber;
     this.user.password = this.signupForm.value.password;
@@ -79,13 +77,11 @@ export class SignUpComponent {
 
     try {
       (await this.cognitoService.signUp(this.user))
-        .then(() => {
           this.loading = false;
           this.isConfirm = true;
           this.toastr.success('Successfully code sent to mailid', 'Success', {
             positionClass: 'toast-bottom-center',
           });
-        })
     } catch (e) {
       this.signupError = e;
       this.toastr.error('Error while signup', 'Error', {

@@ -19,10 +19,9 @@ export class CognitoService {
       username: user.username,
       password: user.password,
       attributes: {
-        firstname: user.firstname,
-        lastname: user.lastname,
+        name: user.firstname,
         email:user.email,
-        phonenumber:user.phonenumber
+        phone_number:user.phonenumber
       },
     });
   }

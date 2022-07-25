@@ -121,3 +121,8 @@
 @mixin alert-form-field {
   color: red;
 }
+
+@mixin  error-alert-form-field {
+  margin-top: 2rem;
+  color: red;
+}

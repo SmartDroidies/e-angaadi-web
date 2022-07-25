@@ -35,11 +35,20 @@
     @include box-header-title;
 }
 
-.Highlight-signup:hover{
+.highlight-signup {
+    color: $link-color;
+    cursor: pointer;
+}
+
+.highlight-signup:hover {
     color: $hover-color;
     cursor: pointer;
 }
 
 .alert {
     @include alert-form-field;
+}
+
+.error-alert{
+    @include error-alert-form-field;
 }
