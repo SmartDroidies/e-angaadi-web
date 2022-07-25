@@ -5,7 +5,7 @@ export interface CognitoUser {
     showPassword: boolean;
     code: string;
     name: string;
-    phonenumber:number;
+    phone_number:number;
     firstname:string;
     lastname:string;
   }

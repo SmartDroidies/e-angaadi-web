@@ -20,9 +20,17 @@ export class CognitoService {
       password: user.password,
       attributes: {
         name: user.firstname,
-        email:user.email,
-        phone_number:user.phonenumber
+        email: user.email,
+        phone_number: user.phone_number
       },
+    });
+  }
+
+  public updateUserAttributes(user: CognitoUser): Promise<any> {
+    return Auth.updateUserAttributes(user, {
+      email: user.email,
+      phone_number: user.phone_number,
+      name: user.firstname,
     });
   }
 
@@ -31,7 +39,7 @@ export class CognitoService {
   }
 
   public signIn(user: CognitoUser): Observable<any> {
-    return defer(() => Auth.signIn(user.username,user.password))
+    return defer(() => Auth.signIn(user.username, user.password))
       .pipe(
         tap(() => this.loggedIn.next(true))
       );
@@ -51,7 +59,7 @@ export class CognitoService {
   }
 
   public async forgotPasswordSubmit(user: CognitoUser): Promise<any> {
-    return Auth.forgotPasswordSubmit(user.email,user.code,user.password);
+    return Auth.forgotPasswordSubmit(user.email, user.code, user.password);
   }
 
   public getUser(): Promise<any> {

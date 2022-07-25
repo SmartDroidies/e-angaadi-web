@@ -68,7 +68,7 @@ export class SignUpComponent {
     this.user.username = this.signupForm.value.username;
     this.user.firstname = this.signupForm.value.firstname;
     this.user.email = this.signupForm.value.email;
-    this.user.phonenumber = this.signupForm.value.phonenumber;
+    this.user.phone_number = this.signupForm.value.phonenumber;
     this.user.password = this.signupForm.value.password;
 
     if (this.signupForm.invalid) {
