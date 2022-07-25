@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Auth } from 'aws-amplify';
 import { ToastrService, } from 'ngx-toastr';
-import { from } from 'rxjs';
+import { CognitoService } from 'src/app/auth/services/cognito.service';
 import { UserdataService } from '../../service/userdata.service'
 
 @Component({
@@ -25,7 +24,8 @@ export class AddressComponent {
     private userdataService: UserdataService,
     private fb: FormBuilder,
     private toastr: ToastrService,
-    private router: Router) {
+    private router: Router,
+    private cognitoService: CognitoService) {
     this.addressForm = this.fb.group({
       address: [
         '',
@@ -62,14 +62,11 @@ export class AddressComponent {
     void this.initUser();
   }
 
-  initUser() {
-    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      if (user && user.attributes) {
-        this.name = user.attributes.name as string;
-        this.email = user.attributes.email as string;
-        this.phone_number = user.attributes.phone_number;
-      }
-    });
+  async initUser() {
+    let currentUser = await this.cognitoService.currentAuthenticatedUser()
+    this.name = currentUser.attributes.name;
+    this.email = currentUser.attributes.email;
+    this.phone_number = currentUser.attributes.phone_number;
   }
 
 

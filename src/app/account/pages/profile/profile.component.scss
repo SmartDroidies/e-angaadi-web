@@ -1,11 +1,6 @@
 @import 'src/styles/abstracts/_variables.scss';
 @import 'src/styles/abstracts/_mixins.scss';
 
-
-li {
-  list-style: none;
-}
-
 .container {
   margin: 2rem;
 }
@@ -20,13 +15,28 @@ li {
   width: 100%;
 }
 
-.title {
-  font-size: $font-size-base;
-  margin: 1rem;
-  font-weight: 500;
+::ng-deep .mat-form-field {
+  width: $width-rem-1600;
+  height:$height-rem-400;
+  margin: 0 0 $margin-rem-50 0;
 }
 
-.item {
-  font-size: $font-size-base;
+::ng-deep .mat-input-element {
+  @include box-mat-form-field-input;
+}
+
+.alert {
+  @include alert-form-field;
+}
+
+.error-alert {
+  @include error-alert-form-field;
+}
+
+.label {
+  @include box-title-label;
+}
+
+form{
   margin: 1rem;
 }

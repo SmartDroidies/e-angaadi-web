@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, defer, Observable, tap } from 'rxjs';
+import { BehaviorSubject, defer, from, Observable, tap } from 'rxjs';
 import { Auth } from 'aws-amplify';
 import { CognitoUser } from '../models/cognito-user';
 
@@ -27,7 +27,8 @@ export class CognitoService {
   }
 
   public updateUserAttributes(user: CognitoUser): Promise<any> {
-    return Auth.updateUserAttributes(user, {
+    let currentUser=this.currentAuthenticatedUser();
+    return Auth.updateUserAttributes(currentUser, {
       email: user.email,
       phone_number: user.phone_number,
       name: user.firstname,
@@ -81,6 +82,10 @@ export class CognitoService {
           return false;
         });
     }
+  }
+
+  public async currentAuthenticatedUser(): Promise<any> {
+    return await Auth.currentAuthenticatedUser();
   }
 
 }
