@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Router, CanActivate } from '@angular/router';
 import { defer, Observable, tap } from 'rxjs';
 import { CognitoService } from '../auth/services/cognito.service';
 
@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
         private cognitoService: CognitoService
     ) {}
 
-     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+     canActivate(): Observable<boolean> {
         return  defer(() => this.cognitoService.isAuthenticated())
         .pipe(
           tap(loggedIn => {

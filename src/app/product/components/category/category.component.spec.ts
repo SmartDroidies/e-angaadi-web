@@ -2,7 +2,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatCardModule } from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { ProductService } from '../../service/product.service';
 
@@ -38,7 +37,6 @@ describe('CategoryComponent', () => {
   it('product groups should be populated from service', () => {
     component.ngOnInit();
     fixture.detectChanges();
-    console.log("Product Group Length : ", component.productGroups.length);
     expect(component.productGroups.length).toBeGreaterThan(0);
   });
 

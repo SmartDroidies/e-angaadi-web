@@ -34,7 +34,7 @@ export class CartDetailComponent implements OnInit {
 
   getUpdateCart() {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      let userId = user.username;
+      const userId = user.username;
       this.cartService.getCartItems(userId).subscribe((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart)));
     });
     
@@ -45,7 +45,7 @@ export class CartDetailComponent implements OnInit {
   }
 
   updateCart() {
-    let cartItem: CartItem[] = [];
+    const cartItem: CartItem[] = [];
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
       for (let i = 0; i < this.items.length; i++) {
         if (this.items[i].synced == false) {
@@ -53,7 +53,6 @@ export class CartDetailComponent implements OnInit {
         }
         this.items[i].userId = user.username;
       }
-      console.log(cartItem);
       this.cartService
         .updateCartItems(cartItem)
         .subscribe(() =>

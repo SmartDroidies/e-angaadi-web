@@ -3,8 +3,6 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { Product } from '../../models/product';
 import { ProductService } from '../../service/product.service';
-import { from } from 'rxjs';
-import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-product-listing',

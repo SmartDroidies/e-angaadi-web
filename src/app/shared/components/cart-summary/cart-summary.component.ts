@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth } from 'aws-amplify';
-import { from } from 'rxjs';
 import { ProductImage } from 'src/app/product/models/product-image';
 import { ProductImageService } from 'src/app/product/service/product-image.service';
 import { CartItem } from '../../models/cartItem';

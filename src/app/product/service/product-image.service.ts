@@ -3,14 +3,13 @@ import { CartItem } from 'src/app/shared/models/cartItem';
 import { environment } from 'src/environments/environment';
 import { Product } from '../models/product';
 import { ProductImage } from '../models/product-image';
-import { ProductService } from './product.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductImageService {
 
-  constructor(private productService: ProductService) { }
+  
 
   getAllProductImages(): any {
     const allProductImagesStr = localStorage.getItem("product-images");

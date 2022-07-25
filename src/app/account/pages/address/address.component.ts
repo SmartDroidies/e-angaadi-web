@@ -57,6 +57,7 @@ export class AddressComponent {
     this.addressForm.controls['user'].setValue(this.name);
     this.addressForm.controls['contact'].setValue(this.phone_number)
   }
+  
   ngOnInit(): void {
     void this.initUser();
   }
