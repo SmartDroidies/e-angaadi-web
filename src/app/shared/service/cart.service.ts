@@ -23,7 +23,7 @@ export class CartService {
   }
 
   //FIXME - Handle the update
-  updateCart(product: Product, selectedUnit: number, quantity: number) {
+  updateCart(product: Product, selectedUnit: number, quantity: number, price:number) {
     const itemInCart = this.getCartItem(product.code, selectedUnit);
     if (itemInCart) {
       itemInCart.quantity = itemInCart.quantity + quantity;
@@ -31,7 +31,7 @@ export class CartService {
         this.removeItemInCart(itemInCart);
       }
     } else {
-      this.addToCart(this.toCartItem(product, selectedUnit, quantity));
+      this.addToCart(this.toCartItem(product, selectedUnit, quantity, price));
     }
   }
 
@@ -52,17 +52,19 @@ export class CartService {
     this.storageService.updateUserCart(userCart);
   }
 
-  toCartItem(product: Product, selectedUnit: number, quantity: number): CartItem {
+  toCartItem(product: Product, selectedUnit: number, quantity: number, price:number): CartItem {
     const cartItem = new CartItem(
       product.code,
       selectedUnit,
       quantity,
       product.title,
       product.submetric,
+      price,
       false,
       product.userId,
       product.key,
       product.group,
+     
     );
     return cartItem;
   }

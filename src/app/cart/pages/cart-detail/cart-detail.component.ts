@@ -23,7 +23,7 @@ export class CartDetailComponent implements OnInit {
   userId!: string;
   displayedColumns: string[] = ['title', 'quantity', 'total'];
   cartImages!: ProductImage;
-  sync = [];
+  price!: number;
   constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef, private translate: TranslateService, private productImageService: ProductImageService) { }
 
   ngOnInit(): void {
@@ -72,11 +72,11 @@ export class CartDetailComponent implements OnInit {
   }
 
   addUnit(product: Product, selectedUnit: number) {
-    this.cartService.updateCart(product, selectedUnit, +1);
+    this.cartService.updateCart(product, selectedUnit, +1, this.price);
     this.getTotal();
   }
   subUnit(product: Product, selectedUnit: number) {
-    this.cartService.updateCart(product, selectedUnit, -1);
+    this.cartService.updateCart(product, selectedUnit, -1, this.price);
     this.getTotal();
   }
 
@@ -86,7 +86,7 @@ export class CartDetailComponent implements OnInit {
     this.items.forEach((loopItem) => {
       if (loopItem.code === cartItem.code && loopItem.unit === cartItem.unit) {
         //FIXME - The price needs to be pulled from the service
-        subTotal = 50 * cartItem.quantity;
+        subTotal = cartItem.price* cartItem.quantity;
       }
     });
     return subTotal;

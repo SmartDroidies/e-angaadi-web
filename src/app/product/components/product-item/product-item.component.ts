@@ -17,7 +17,7 @@ export class ProductItemComponent implements OnInit {
   selectedUnit!: number;
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
-  price!: any;
+  price!: number;
   signedIn = false;
   productImages!: any;
 
@@ -72,7 +72,7 @@ export class ProductItemComponent implements OnInit {
 
   addToCart(product: Product) {
     if (this.selectedUnit) {
-      this.cartService.updateCart(product, this.selectedUnit, +1);
+      this.cartService.updateCart(product, this.selectedUnit, +1, this.price);
       this.loadProductsFromCart();
     } else {
       this.toastr.warning('Select unit before adding', 'Error');
@@ -82,7 +82,7 @@ export class ProductItemComponent implements OnInit {
 
   removeFromCart(product: Product) {
     if (this.selectedUnit) {
-      this.cartService.updateCart(product, this.selectedUnit, -1);
+      this.cartService.updateCart(product, this.selectedUnit, -1,this.price);
       this.loadProductsFromCart();
     }
 
