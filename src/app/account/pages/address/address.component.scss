@@ -24,3 +24,9 @@ li {
   display: flex;
   justify-content: flex-end;
 }
+
+.example-card {
+  max-width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+}

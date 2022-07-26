@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CognitoService } from 'src/app/auth/services/cognito.service';
+import { Address } from '../../models/address';
 import { UserdataService } from '../../service/userdata.service';
 
 @Component({
@@ -15,8 +17,11 @@ export class EditAddressComponent implements OnInit {
   street!: string;
   loading!: boolean;
   editError!: any;
+  userId!: string;
+  addressData!:Address;
 
   constructor(private userdataService: UserdataService,
+    private cognitoService: CognitoService,
     private fb: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
@@ -72,12 +77,24 @@ export class EditAddressComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initUser();
+    this.editAddress();
   }
 
   get f() {
     return this.addressForm.controls;
   }
 
+  async initUser() {
+    let currentUser = await this.cognitoService.currentAuthenticatedUser()
+    this.userId = currentUser.attributes.name;
+  }
+
+  editAddress() {
+    this.userdataService.getAddress(this.userId).subscribe((address: Address[]) => {
+        return this.addressForm.patchValue(address);
+    });
+  }
 
   onSave() {
     this.loading = true;
@@ -85,7 +102,9 @@ export class EditAddressComponent implements OnInit {
       return;
     }
     try {
-      this.userdataService.updateAddress(this.addressForm.value).subscribe()
+      this.addressData=this.addressForm.value;
+      this.addressData.userid=this.userId;
+      this.userdataService.addAddress(this.addressData).subscribe()
       this.toastr.success('Product saved successfully', 'Success', {
         positionClass: 'toast-bottom-center',
       });

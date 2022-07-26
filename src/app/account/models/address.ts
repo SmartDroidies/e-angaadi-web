@@ -1,4 +1,5 @@
 export class Address {
+    userid!:string;
     fullname!: string;
     phonenumber!: number;
     address!: string;
