@@ -1,7 +1,7 @@
-<app-carousel [showControls]="hasMultipleImages()">
+<carousel [showControls]="hasMultipleImages()">
     <ng-container *ngFor="let productImage of productImages">
         <ng-container *carouselItem>
             <img class="product-image" mat-card-image src="{{productImage.url}}">
         </ng-container>
     </ng-container>
-</app-carousel>
+</carousel>

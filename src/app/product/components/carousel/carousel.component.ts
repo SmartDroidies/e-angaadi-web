@@ -7,7 +7,7 @@ import { animate, AnimationBuilder, AnimationFactory, AnimationPlayer, style } f
 export class CarouselItemElement {
 }
 @Component({
-  selector: 'app-carousel',
+  selector: 'carousel',
   exportAs: 'carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss']
