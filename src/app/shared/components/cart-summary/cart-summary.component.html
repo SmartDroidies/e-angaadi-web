@@ -5,7 +5,7 @@
       <span mat-line>{{ item.title| titlecase }} ({{item.unit+" "+item.submetric}})</span>
       <span mat-line class="quantity">
         <span>Qty: {{ item.quantity }}</span>
-        <span class="price">50₹</span>
+        <span class="price">{{ 50 | currency:'INR'}}</span>
       </span>
     </span>
     <mat-divider></mat-divider>

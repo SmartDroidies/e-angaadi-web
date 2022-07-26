@@ -12,14 +12,14 @@
         <th class="text-heading" mat-header-cell *matHeaderCellDef>Items</th>
         <td mat-cell *matCellDef="let item">
           <ul class="row-image-info">
-            <!-- <li>
+            <li>
               <img class="product-image" *ngIf="collectCartImages(item)" src="{{cartImages.url}}">
-            </li> -->
+            </li>
             <li>
               <ul class="cart-info">
                 <li>{{item.key | translate}}</li>
                 <li>{{item.title}}</li>
-                <li>{{item.unit+item.submetric}} / ₹{{getSubTotal(item)}}</li>
+                <li>{{item.unit+item.submetric}} / {{getSubTotal(item)|currency:'INR'}}</li>
               </ul>
             </li>
           </ul>
@@ -57,7 +57,7 @@
           <div>Sub-Total</div>
         </th>
         <td mat-cell *matCellDef="let item">
-          <div class="text-center">₹{{getSubTotal(item)}}</div>
+          <div class="text-center">{{getSubTotal(item)|currency:'INR'}}</div>
         </td>
       </ng-container>
 
@@ -82,7 +82,7 @@
     <div class="card-heading">Saved For Later</div>
     <div class="list-products">
       <mat-card *ngFor="let item of items" >
-          <!-- <img class="card-product-image" *ngIf="collectCartImages(item)" mat-card-image src="{{cartImages.url}}">  -->
+          <img class="card-product-image" *ngIf="collectCartImages(item)" mat-card-image src="{{cartImages.url}}"> 
         <mat-card-content>
           <mat-card-title>
             <ul class="card-info">
