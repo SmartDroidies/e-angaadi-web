@@ -1,23 +1,7 @@
 <div class="container">
-  <div class="basic-form">
-    <div class="header">Personal Details</div>
-    <mat-divider class="mat-divider"></mat-divider>
-    <ul class="personal-info-row">
-      <li>
-        <div class="title">Username</div>
-        <div class="item">{{name}}</div>
-      </li>
-      <li>
-        <div class="title">Mobile number</div>
-        <div class="item">{{email}}</div>
-      </li>
-      <li>
-        <div class="title">Mobile number</div>
-        <div class="item">{{phone_number}}</div>
-      </li>
-    </ul>
-  </div>
   <div class="header">Address Details</div>
   <mat-divider class="mat-divider"></mat-divider>
-  <button class="address-button" mat-raised-button color="primary" (click)="editAddress()">Add address</button>
+  <div class="address-button">
+    <button mat-raised-button color="primary" (click)="editAddress()">Add address</button>
+  </div>
 </div>

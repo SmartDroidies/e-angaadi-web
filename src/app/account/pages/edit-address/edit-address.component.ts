@@ -14,7 +14,7 @@ export class EditAddressComponent implements OnInit {
   addressForm!: FormGroup;
   street!: string;
   loading!: boolean;
-  error!: boolean;
+  editError!: any;
 
   constructor(private userdataService: UserdataService,
     private fb: FormBuilder,
@@ -22,7 +22,29 @@ export class EditAddressComponent implements OnInit {
     private router: Router,
   ) {
     this.addressForm = this.fb.group({
+      fullname: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+        ],
+      ],
+      phonenumber: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(10),
+        ],
+      ],
       address: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(15),
+          Validators.maxLength(200),
+        ],
+      ],
+      area: [
         '',
         [
           Validators.required,
@@ -35,14 +57,14 @@ export class EditAddressComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(100),
         ],
       ],
       city: ['', [Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(100)]
+      Validators.minLength(3)]
       ],
-
+      state: ['', [Validators.required,
+      Validators.minLength(3)]
+      ],
       pincode: ['', [Validators.required,
       Validators.minLength(6),
       Validators.maxLength(6)]],
@@ -51,7 +73,7 @@ export class EditAddressComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   get f() {
     return this.addressForm.controls;
   }
@@ -62,25 +84,23 @@ export class EditAddressComponent implements OnInit {
     if (this.addressForm.invalid) {
       return;
     }
-
-    this.userdataService.updateAddress(this.addressForm.value).subscribe(
-      () => {
-        this.toastr.success('Product saved successfully', 'Success', {
-          positionClass: 'toast-bottom-center',
-        });
-        return this.router.navigate(['/home/account-info']);
-      },
-      () => {
-        this.toastr.error('Error while saving', 'Error', {
-          positionClass: 'toast-bottom-center',
-        });
-        this.error = true;
-        this.loading = false;
-      }
-    );
+    try {
+      this.userdataService.updateAddress(this.addressForm.value).subscribe()
+      this.toastr.success('Product saved successfully', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
+      return this.router.navigate(['/home/account-info']);
+    } catch (e) {
+      this.editError = e;
+      this.toastr.error('Error while saving', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
+      this.loading = false;
+    }
+    return false;
   }
 
-  async address(){
-       await this.router.navigate(['/account/account-info/address']);
+  async address() {
+    await this.router.navigate(['/account/account-info/address']);
   }
 }

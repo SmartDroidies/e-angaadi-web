@@ -51,11 +51,13 @@ export class ProfileComponent implements OnInit {
     }
 
     try {
-      (await this.cognitoService.updateUserAttributes(this.user))
-      this.loading = false;
-      this.toastr.success('Successfully saved', 'Success', {
-        positionClass: 'toast-bottom-center',
-      });
+      (await this.cognitoService.updateUserAttributes(this.user)).toPromise()
+        .then(() => {
+          this.loading = false;
+          this.toastr.success('Successfully saved', 'Success', {
+            positionClass: 'toast-bottom-center',
+          });
+        })
     } catch (e) {
       this.editError = e;
       this.toastr.error('Error while Edit', 'Error', {

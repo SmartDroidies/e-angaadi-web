@@ -26,9 +26,9 @@ export class CognitoService {
     });
   }
 
-  public updateUserAttributes(user: CognitoUser): Promise<any> {
-    let currentUser=this.currentAuthenticatedUser();
-    return Auth.updateUserAttributes(currentUser, {
+  public async updateUserAttributes(user: CognitoUser): Promise<any> {
+    const currentuser = await this.currentAuthenticatedUser();
+    return Auth.updateUserAttributes(currentuser, {
       email: user.email,
       phone_number: user.phone_number,
       name: user.firstname,

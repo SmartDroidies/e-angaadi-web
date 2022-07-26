@@ -1,7 +1,10 @@
 export class Address {
-    houseno! : number;
-    street!: string;
-    landmark!:string;
+    fullname!: string;
+    phonenumber!: number;
+    address!: string;
+    area!: string;
+    landmark!: string;
     city!: string;
-    pincode!: number
+    state!: string;
+    pincode!: number;
 }
