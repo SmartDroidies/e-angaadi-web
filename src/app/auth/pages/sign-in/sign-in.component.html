@@ -1,61 +1,44 @@
-<!-- <div>
-    <amplify-authenticator *ngIf="authState !== 'signedin'">
-        <amplify-sign-in slot="sign-in">
-            <div slot="federated-buttons"></div>
-          </amplify-sign-in>
-    </amplify-authenticator>
-</div> -->
-
-<!-- FIXME - Better to build our own screen -->
-<!-- 
-<div class="login">
-        <div class="row">
-          <div>
-            <label for="Username" class="form-label">Username:</label>
-            <input type="Username" id="Username" name="Username" #Username="ngModel" [(ngModel)]="user.Username" class="input">
-          </div>
-        </div>
-        <div class="row">
-          <div  >
-            <label for="password" class="form-label">Password:</label>
-            <div class="pwd" >
-              <input [type]="user.showPassword ? 'text' : 'password'" id="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="input">
-              <button type="button" class="pwd-hideshow" (click)="user.showPassword = !user.showPassword">
-                <mat-icon class="bi" [ngClass]="{'bi-eye-fill': !user.showPassword, 'bi-eye-slash-fill': user.showPassword}"mat-icon-type="font">visibility</mat-icon>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="sign-in">
-          <div>
-            <button type="button" (click)="signIn()" [disabled]="loading">
-              <span role="status" aria-hidden="true" *ngIf="loading"></span>
-              Sign in
-            </button>
-          </div>
-        </div>
-</div> -->
-
 <div class="container">
-  <h2 class="header">Sign in to your account </h2>
-  <form class="form">
-    <div class="column">
-      <mat-form-field appearance="fill">
-        <mat-label>Username</mat-label>
-        <input matInput type="Username" name="Username" #Username="ngModel" [(ngModel)]="user.Username"
-          placeholder="Enter your Username" />
+  <div class="section">
+    <h3 class="header">Sign in to your account </h3>
+    <form [formGroup]="signinForm">
+      <div class="label">Username*</div>
+      <mat-form-field>
+        <input matInput type="text" name="username" formControlName="username" />
+        <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)" class="alert">
+          <div *ngIf="f.username.errors?.required">
+            username is required.
+          </div>
+          <div *ngIf="f.username.errors?.minlength">
+            username must be atleast 4 characters.
+          </div>
+        </div>
       </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Password </mat-label>
-        <input matInput type="password" name="password" #password="ngModel" [(ngModel)]="user.password" id="password"
-          placeholder="Enter your password" type="{{(showPassword === false)?'password':'text'}}" />
+      <div class="label">Password*</div>
+      <mat-form-field>
+        <input matInput type="password" name="password" formControlName="password" id="password"
+          type="{{(showPassword === false)?'password':'text'}}" />
         <mat-icon matSuffix style="cursor: pointer;" (click)="toggleShowPassword(showPassword)">
           {{!showPassword?'visibility':'visibility_off'}}</mat-icon>
+        <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="alert">
+          <div *ngIf="f.password.errors?.required">
+            Password is required.
+          </div>
+          <div *ngIf="f.password.errors?.minlength">
+            Password must be 8 characters.
+          </div>
+          <div *ngIf="f.password.errors?.maxlength">
+            Password cannot be more than 10 characters.
+          </div>
+        </div>
       </mat-form-field>
-    </div>
-    <div class="button">
-      <button (click)="signIn()" mat-raised-button color="primary">Signin</button>
-    </div>
-  </form>
+      <div>Forgot your password? <span class="highlight-signup" (click)="resetPassword()">Reset password</span></div>
+      <div class="error-alert">{{formError}}</div>
+      <div class="footer">
+        <div>No account? <span class="highlight-signup" (click)="signUp()">Sign up</span></div>
+        <button class="button" (click)="cancel()" mat-raised-button color="primary">Cancel</button>
+        <button class="button" (click)="signIn()" mat-raised-button color="primary">Sign in</button>
+      </div>
+    </form>
+  </div>
 </div>

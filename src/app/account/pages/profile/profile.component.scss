@@ -1,20 +1,42 @@
 @import 'src/styles/abstracts/_variables.scss';
+@import 'src/styles/abstracts/_mixins.scss';
 
-.nav-header {
+.container {
+  margin: 2rem;
+}
+
+.header {
+  margin: 1rem;
   font-size: 1.5rem;
-  margin: $margin-rem-25;
   font-weight: bold;
 }
 
-.nav-item-header {
-  font-size: $font-size-base;
-  margin: $margin-rem-25;
-  font-weight: 600;
-  padding: $pad-rem-50;
+.mat-divider {
+  width: 100%;
 }
 
-.nav-item {
-  font-size: $font-size-base;
-  margin: $margin-rem-25;
-  padding: $pad-rem-50;
+::ng-deep .mat-form-field {
+  width: $width-rem-1600;
+  height:$height-rem-400;
+  margin: 0 0 $margin-rem-50 0;
+}
+
+::ng-deep .mat-input-element {
+  @include box-mat-form-field-input;
+}
+
+.alert {
+  @include alert-form-field;
+}
+
+.error-alert {
+  @include error-alert-form-field;
+}
+
+.label {
+  @include box-title-label;
+}
+
+form{
+  margin: 1rem;
 }

@@ -16,11 +16,12 @@ import { AddressComponent } from './pages/address/address.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AccountInfoComponent } from './pages/account-info/account-info.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { EditAddressComponent } from './pages/edit-address/edit-address.component';
 
 
 
 @NgModule({
-  declarations: [ AccountInfoComponent, ProfileComponent, AddressComponent, ChangePasswordComponent],
+  declarations: [ AccountInfoComponent, ProfileComponent, AddressComponent, ChangePasswordComponent, EditAddressComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
