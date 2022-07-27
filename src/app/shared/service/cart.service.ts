@@ -18,20 +18,23 @@ export class CartService {
     return this.http.get<CartItem[]>(environment.orderBaseUrl + '/cart', { params: params });
     //FIXME - Update the response into local storage
   }
+
   updateCartItems(cartItem: CartItem[]): Observable<any> {
     return this.http.post<any>(environment.orderBaseUrl + '/cart', cartItem);
   }
 
-  //FIXME - Handle the update
-  updateCart(product: Product, selectedUnit: number, quantity: number, price:number) {
+  updateCart(product: Product, selectedUnit: number, quantity: number, price: number) {
     const itemInCart = this.getCartItem(product.code, selectedUnit);
     if (itemInCart) {
       itemInCart.quantity = itemInCart.quantity + quantity;
+      itemInCart.synced = false;
       if (itemInCart.quantity == 0) {
         this.removeItemInCart(itemInCart);
+      } else {
+        this.updateCartStorage(itemInCart);
       }
     } else {
-      this.addToCart(this.toCartItem(product, selectedUnit, quantity, price));
+      this.updateCartStorage(this.toCartItem(product, selectedUnit, quantity, price));
     }
   }
 
@@ -46,13 +49,22 @@ export class CartService {
     }
   }
 
-  addToCart(cartItem: CartItem) {
+  updateCartStorage(cartItem: CartItem) {
     const userCart = this.storageService.getUserCartItems();
-    userCart.push(cartItem);
+    //Replace the existing item or push new entry
+    //FIXME - Have to handle the remove condition
+    const itemIndex = userCart.findIndex(
+      (strCartItem) => strCartItem.code === cartItem.code && strCartItem.unit === cartItem.unit
+    );
+    if (itemIndex > -1) {
+      userCart[itemIndex] = cartItem;
+    } else {
+      userCart.push(cartItem);
+    }
     this.storageService.updateUserCart(userCart);
   }
 
-  toCartItem(product: Product, selectedUnit: number, quantity: number, price:number): CartItem {
+  toCartItem(product: Product, selectedUnit: number, quantity: number, price: number): CartItem {
     const cartItem = new CartItem(
       product.code,
       selectedUnit,
@@ -63,8 +75,7 @@ export class CartService {
       false,
       product.userId,
       product.key,
-      product.group,
-     
+      product.group
     );
     return cartItem;
   }
