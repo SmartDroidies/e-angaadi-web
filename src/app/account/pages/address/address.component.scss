@@ -14,15 +14,12 @@ li {
 }
 
 .header {
-  margin: 1rem;
-  font-size: 1.5rem;
-  font-weight: bold;
+  @include account-info-header;
 }
 
 .address-button {
   margin: 1rem;
-  display: flex;
-  justify-content: flex-end;
+  @include flex-content-end
 }
 
 .example-card {

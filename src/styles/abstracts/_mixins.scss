@@ -59,6 +59,11 @@
   justify-content: right;
 }
 
+@mixin flex-content-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
 @mixin box-container {
   display: flex;
   justify-content: center;
@@ -125,4 +130,16 @@
 @mixin  error-alert-form-field {
   margin-top: 2rem;
   color: red;
+}
+
+@mixin account-info-header {
+  margin: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+@mixin account-info-title {
+  font-size: $font-size-base;
+  font-weight: 500;
+  margin: 1rem;
 }
