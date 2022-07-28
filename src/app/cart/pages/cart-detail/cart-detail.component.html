@@ -31,17 +31,17 @@
         <td mat-cell *matCellDef="let item">
           <ul class="column-action-button">
             <li class="row-action-button">
-              <button mat-mini-fab color="primary" (click)=subUnit(item,item.unit)>
+              <button mat-mini-fab color="primary" (click)=subUnit(item,item.unit,item.price)>
                 <mat-icon>remove</mat-icon>
               </button>
               <button min="0" class="quantity-info">{{item.quantity}}</button>
-              <button mat-mini-fab color="primary" (click)=addUnit(item,item.unit)>
+              <button mat-mini-fab color="primary" (click)=addUnit(item,item.unit,item.price)>
                 <mat-icon>add</mat-icon>
               </button>
             </li>
             <ul class="row-action-button">
               <li>
-                <mat-icon>delete</mat-icon>
+                <mat-icon (click)="removeCartItem(item.code)">delete</mat-icon>
               </li>
               <li>
                 <mat-icon>save_alt</mat-icon>

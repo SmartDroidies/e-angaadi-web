@@ -20,5 +20,9 @@ export class StorageService {
   updateUserCart(userCart: CartItem[] ) {
     localStorage.setItem(this.C_USER_CART, JSON.stringify(userCart));
   } 
-
+  
+  // removeUserCartItems(): CartItem[] {
+  //    localStorage.removeItem(this.C_USER_CART);
+  //    return [];
+  // }
 }

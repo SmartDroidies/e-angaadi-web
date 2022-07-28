@@ -29,7 +29,7 @@ export class CartDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getCart();
     this.showCart();
-    this.updateCart();
+    // this.updateCart();
   }
 
   getUpdateCart() {
@@ -40,27 +40,27 @@ export class CartDetailComponent implements OnInit {
     
   }
   getCart(){
-    this.getUpdateCart();
+    // this.getUpdateCart();
     this.items = this.cartService.getCart();
   }
 
-  updateCart() {
-    const cartItem: CartItem[] = [];
-    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      for (let i = 0; i < this.items.length; i++) {
-        if (this.items[i].synced == false) {
-          cartItem.push(this.items[i]);
-        }
-        this.items[i].userId = user.username;
-      }
-      this.cartService
-        .updateCartItems(cartItem)
-        .subscribe(() =>
-          (this.getCart())
-        );
+  // updateCart() {
+  //   const cartItem: CartItem[] = [];
+  //   from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+  //     for (let i = 0; i < this.items.length; i++) {
+  //       if (this.items[i].synced == false) {
+  //         cartItem.push(this.items[i]);
+  //       }
+  //       this.items[i].userId = user.username;
+  //     }
+  //     this.cartService
+  //       .updateCartItems(cartItem)
+  //       .subscribe(() =>
+  //         (this.getCart())
+  //       );
 
-    });
-  }
+  //   });
+  // }
 
   showCart() {
     if (this.items.length > 0) {
@@ -71,13 +71,13 @@ export class CartDetailComponent implements OnInit {
     }
   }
 
-  addUnit(product: Product, selectedUnit: number) {
-    this.cartService.updateCart(product, selectedUnit, +1, this.price);
-    this.getTotal();
+  addUnit(product: Product, selectedUnit: number, price:number) {
+    this.cartService.updateCart(product, selectedUnit, +1, price);
+    this.getCart();
   }
-  subUnit(product: Product, selectedUnit: number) {
-    this.cartService.updateCart(product, selectedUnit, -1, this.price);
-    this.getTotal();
+  subUnit(product: Product, selectedUnit: number, price:number) {
+    this.cartService.updateCart(product, selectedUnit, -1, price);
+    this.getCart();
   }
 
   getSubTotal(cartItem: CartItem) {
@@ -126,5 +126,9 @@ export class CartDetailComponent implements OnInit {
   collectCartImages(item: CartItem) {
     this.cartImages = this.productImageService.getCartImages(item);
     return this.cartImages;
+  }
+
+  removeCartItem(product: Product){
+    this.cartService.deleteCartProduct(product.code);
   }
 }
