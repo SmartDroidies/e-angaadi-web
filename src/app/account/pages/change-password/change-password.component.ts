@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 import { ToastrService } from 'ngx-toastr';
 import { from } from 'rxjs';
-import { CognitoService } from 'src/app/auth/services/cognito.service';
 
 @Component({
   selector: 'app-change-password',
@@ -19,7 +18,7 @@ export class ChangePasswordComponent implements OnInit {
   loading!: boolean;
 
 
-  constructor(private fb: FormBuilder, private toastr: ToastrService, private router: Router, private cognitoService: CognitoService) {
+  constructor(private fb: FormBuilder, private toastr: ToastrService, private router: Router) {
     this.loading = false;
     this.passwordForm = this.fb.group({
       user: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -61,9 +60,10 @@ export class ChangePasswordComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  async initUser() {
-    let currentUser = await this.cognitoService.currentAuthenticatedUser()
-    this.passwordForm.patchValue({ user: currentUser.attributes.name });
+  initUser() {
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+        this.passwordForm.patchValue({ user: user.attributes.name });
+    });
   }
 
   async onChangePassword(): Promise<void> {

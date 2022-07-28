@@ -27,7 +27,7 @@ export class CognitoService {
   }
 
   public async updateUserAttributes(user: CognitoUser): Promise<any> {
-    const currentuser = await this.currentAuthenticatedUser();
+    const currentuser = await Auth.currentAuthenticatedUser();
     return Auth.updateUserAttributes(currentuser, {
       email: user.email,
       phone_number: user.phone_number,
@@ -82,10 +82,6 @@ export class CognitoService {
           return false;
         });
     }
-  }
-
-  public async currentAuthenticatedUser(): Promise<any> {
-    return await Auth.currentAuthenticatedUser();
   }
 
 }

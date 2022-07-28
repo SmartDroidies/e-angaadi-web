@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CognitoService } from 'src/app/auth/services/cognito.service';
+import { Auth } from 'aws-amplify';
+import { from } from 'rxjs';
 import { Address } from '../../models/address';
 import { UserdataService } from '../../service/userdata.service';
 
@@ -13,17 +14,11 @@ export class AddressComponent {
   userId!: string;
   addressDatas!:Address[];
 
-  constructor(private cognitoService: CognitoService,private router: Router,private userdataService: UserdataService) {}
+  constructor(private router: Router,private userdataService: UserdataService) {}
 
  
   ngOnInit(): void {
-    this.initUser();
     this.getAddress();
-  }
-
-  async initUser() {
-    const currentUser = await this.cognitoService.currentAuthenticatedUser()
-    this.userId = currentUser.attributes.name;
   }
   
   async editAddress(){
@@ -31,8 +26,10 @@ export class AddressComponent {
   }
 
   getAddress() {
-    this.userdataService.getAddress(this.userId).subscribe((address: Address[]) => {
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+        this.userdataService.getAddress(user.attributes.name).subscribe((address: Address[]) => {
         return this.addressDatas=address;
+      });
     });
   }
 

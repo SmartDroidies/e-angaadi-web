@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Auth } from 'aws-amplify';
 import { ToastrService } from 'ngx-toastr';
+import { from } from 'rxjs';
 import { CognitoUser } from 'src/app/auth/models/cognito-user';
 import { CognitoService } from 'src/app/auth/services/cognito.service';
 
@@ -34,10 +36,12 @@ export class ProfileComponent implements OnInit {
   }
 
   async initUser() {
-    let currentUser = await this.cognitoService.currentAuthenticatedUser()
-    this.EditForm.patchValue({ firstname: currentUser.attributes.name });
-    this.EditForm.patchValue({ email: currentUser.attributes.email });
-    this.EditForm.patchValue({ phonenumber: currentUser.attributes.phone_number });
+
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+        this.EditForm.patchValue({ firstname: user.attributes.name });
+        this.EditForm.patchValue({ email: user.attributes.email });
+        this.EditForm.patchValue({ phonenumber: user.attributes.phone_number });
+    });
   }
 
   public async editUserData(): Promise<void> {

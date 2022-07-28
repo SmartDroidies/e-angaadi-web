@@ -21,9 +21,18 @@ li {
     @include account-info-title;
 }
 
+form {
+    width: 100%;
+}
+
 ::ng-deep .mat-form-field {
-    // @include box-mat-form-field;
-    margin: $margin-rem-100 0 $margin-rem-100 $margin-rem-100;
+    width: 15rem;
+    margin: $margin-rem-100 0 0 $margin-rem-100;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: row;
 }
 
 .button {
@@ -38,16 +47,7 @@ li {
     @include alert-form-field;
 }
 
-.align-form-row{
-   width:100%
-}
-
-.align-form-row ul{
-    display: flex;
-    flex-direction: row;
-}
 
 .error-alert {
     @include error-alert-form-field;
 }
-

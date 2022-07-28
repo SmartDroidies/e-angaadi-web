@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Auth } from 'aws-amplify';
 import { ToastrService } from 'ngx-toastr';
-import { CognitoService } from 'src/app/auth/services/cognito.service';
+import { from } from 'rxjs';
 import { Address } from '../../models/address';
 import { UserdataService } from '../../service/userdata.service';
 
@@ -18,10 +19,9 @@ export class EditAddressComponent implements OnInit {
   loading!: boolean;
   editError!: any;
   userId!: string;
-  addressData!:Address;
+  addressData!: Address;
 
   constructor(private userdataService: UserdataService,
-    private cognitoService: CognitoService,
     private fb: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
@@ -38,7 +38,7 @@ export class EditAddressComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(10),
+          Validators.maxLength(10),
         ],
       ],
       address: [
@@ -77,7 +77,6 @@ export class EditAddressComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initUser();
     this.editAddress();
   }
 
@@ -85,14 +84,14 @@ export class EditAddressComponent implements OnInit {
     return this.addressForm.controls;
   }
 
-  async initUser() {
-    let currentUser = await this.cognitoService.currentAuthenticatedUser()
-    this.userId = currentUser.attributes.name;
-  }
 
   editAddress() {
-    this.userdataService.getAddress(this.userId).subscribe((address: Address[]) => {
-        return this.addressForm.patchValue(address);
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      if (user) {
+        this.userdataService.getAddress(user.attributes.name).subscribe((address: Address[]) => {
+          return this.addressForm.patchValue(address);
+        });
+      }
     });
   }
 
@@ -101,22 +100,26 @@ export class EditAddressComponent implements OnInit {
     if (this.addressForm.invalid) {
       return;
     }
-    try {
-      this.addressData=this.addressForm.value;
-      this.addressData.userid=this.userId;
-      this.userdataService.addAddress(this.addressData).subscribe()
-      this.toastr.success('Product saved successfully', 'Success', {
-        positionClass: 'toast-bottom-center',
-      });
-      return this.router.navigate(['/home/account-info']);
-    } catch (e) {
-      this.editError = e;
-      this.toastr.error('Error while saving', 'Error', {
-        positionClass: 'toast-bottom-center',
-      });
-      this.loading = false;
-    }
-    return false;
+
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      this.addressData.userid = user.attributes.name;
+    });
+    this.addressData = this.addressForm.value;
+    this.userdataService.addAddress(this.addressData).subscribe(
+      () => {
+        this.toastr.success('Product saved successfully', 'Success', {
+          positionClass: 'toast-bottom-center',
+        });
+        return this.router.navigate(['/home/account-info']);
+      },
+      (error) => {
+        this.toastr.error('Error while saving', 'Error', {
+          positionClass: 'toast-bottom-center',
+        });
+        this.loading = false;
+        this.editError = error;
+      },
+    );
   }
 
   async address() {
