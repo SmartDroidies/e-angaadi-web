@@ -2,8 +2,7 @@
 
 <div *ngIf="show===true">
   <ul class="table-header">
-    <li class="cart-heading">Your Basket</li>
-    <li class="table-heading">Delivery Items({{getTotalQuantity()}})</li>
+    <li class="cart-heading">Items In Your Cart({{getTotalQuantity()}})</li>
   </ul>
   <div class="table-content">
     <table mat-table [dataSource]="items" class="mat-elevation-z8">

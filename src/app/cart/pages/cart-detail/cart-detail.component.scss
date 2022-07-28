@@ -9,6 +9,7 @@
 
 .table-content {
   @include flex-center;
+  margin: $margin-rem-200 
 }
 
 .text-center {
@@ -16,7 +17,7 @@
 }
 
 table {
-  width: 80%;
+  width: 70%;
 }
 
 ng-container {
@@ -31,7 +32,7 @@ ng-container {
 
 .table-header {
   @include flex-column;
-  margin: 0 $margin-rem-800 0 $margin-rem-800;
+  margin: 0 $margin-rem-1500 0 $margin-rem-1500;
 }
 
 .quantity-info {
@@ -44,16 +45,10 @@ li {
 }
 
 .cart-heading {
-  font-size: $font-size-150;
-  font-weight: bold;
-}
-
-.table-heading {
+  margin-top:$margin-rem-50 ;
   font-size: $font-size-base;
   font-weight: bold;
-  margin: $margin-rem-200 0 $margin-rem-100  $margin-rem-100;
 }
-
 .text-heading {
   text-align: center;
   font-size: $font-size-base;
@@ -66,6 +61,7 @@ li {
 
 .row-image-info {
   @include flex-row;
+  justify-content: center;
 }
 
 .row-action-button {
@@ -83,7 +79,7 @@ li {
 
 .cart-info li {
   margin: $margin-rem-50;
-  align-items: left;
+  align-items: center;
   font-size: $font-size-875;
   font-weight: $font-weight-bold;
   line-height: $line-height-150;
