@@ -11,23 +11,22 @@ import { CartService } from '../../service/cart.service';
 })
 export class CartSummaryComponent implements OnInit {
   items: CartItem[] = [];
-  userId!:string;
-  signedIn=false;
+  userId!: string;
+  signedIn = false;
   cartImages!: ProductImage;
 
-  constructor(private cartService: CartService,private productImageService: ProductImageService) {}
+  constructor(private cartService: CartService, private productImageService: ProductImageService) {}
 
   ngOnInit(): void {
     this.loadCartData();
   }
 
-  loadCartData(): void  {
+  loadCartData(): void {
     this.items = this.cartService.getCart();
   }
 
-
-  collectCartImages(item:CartItem) {
-     this.cartImages = this.productImageService.getCartImages(item);  
-     return this.cartImages;
- }
+  collectCartImages(item: CartItem) {
+    this.cartImages = this.productImageService.getCartImages(item);
+    return this.cartImages;
+  }
 }

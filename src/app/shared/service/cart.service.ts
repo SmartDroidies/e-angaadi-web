@@ -34,24 +34,18 @@ export class CartService {
       } else {
         this.updateCartStorage(itemInCart);
       }
-    }else {
+    } else {
       this.updateCartStorage(this.toCartItem(product, selectedUnit, quantity, price));
     }
   }
 
-  //FIXME - Handle the remove
   removeItemInCart(itemInCart: CartItem) {
     const userCart = this.storageService.getUserCartItems();
-    //Replace the existing item or push new entry
-    //FIXME - Have to handle the remove condition
-
     const itemIndex = userCart.findIndex(
       (strCartItem) => strCartItem.code === itemInCart.code && strCartItem.unit === itemInCart.unit
     );
-    if (itemIndex) {
-      userCart.splice(itemIndex,1)
-    } else {
-      userCart.push(itemInCart);
+    if (itemIndex > -1) {
+      userCart.splice(itemIndex, 1);
     }
     this.storageService.updateUserCart(userCart);
   }
@@ -99,10 +93,10 @@ export class CartService {
     return this.storageService.getUserCartItems();
   }
 
-  deleteCartProduct(code: string){
-    const cartItems= this.storageService.getUserCartItems().find((item) => item.code == code);
-    if(cartItems){
-     return  localStorage.removeItem('user_cart');
+  deleteCartProduct(code: string) {
+    const cartItems = this.storageService.getUserCartItems().find((item) => item.code == code);
+    if (cartItems) {
+      return localStorage.removeItem('user_cart');
     }
   }
 }
