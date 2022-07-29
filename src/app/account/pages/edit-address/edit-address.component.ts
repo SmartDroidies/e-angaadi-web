@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 import { ToastrService } from 'ngx-toastr';
 import { from } from 'rxjs';
@@ -13,18 +13,18 @@ import { UserdataService } from '../../service/userdata.service';
   styleUrls: ['./edit-address.component.scss']
 })
 export class EditAddressComponent implements OnInit {
-
   addressForm!: FormGroup;
   street!: string;
   loading!: boolean;
   editError!: any;
-  userId!: string;
   addressData!: Address;
-
+  EditAddressData!:any;
+  
   constructor(private userdataService: UserdataService,
     private fb: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) {
     this.addressForm = this.fb.group({
       fullname: [
@@ -86,13 +86,16 @@ export class EditAddressComponent implements OnInit {
 
 
   editAddress() {
-    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      if (user) {
-        this.userdataService.getAddress(user.attributes.name).subscribe((address: Address[]) => {
-          return this.addressForm.patchValue(address);
-        });
+    this.activatedRoute.paramMap.subscribe((params) => {
+      if (params.get('id')) {
+        this.EditAddressData = params.get('id');
+        // this.addressForm.patchValue(this.EditAddressData);
       }
     });
+  }
+
+  updateAddress(){
+    
   }
 
   onSave() {
@@ -102,27 +105,30 @@ export class EditAddressComponent implements OnInit {
     }
 
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      this.addressData.userid = user.attributes.name;
+      this.addressData = this.addressForm.value;
+      this.addressData.userId=user.attributes.name;
+      this.userdataService.saveAddress(this.addressData).subscribe(
+        () => {
+          this.toastr.success('Address saved successfully', 'Saved', {
+            positionClass: 'toast-bottom-center',
+          });
+          this.router.navigate(['/account/account-info/address']);
+        },
+        (error) => {
+          this.toastr.error('Error while Saving', 'Error', {
+            positionClass: 'toast-bottom-center',
+          });
+          this.loading = false;
+          this.editError = error;
+        }
+      );
     });
-    this.addressData = this.addressForm.value;
-    this.userdataService.addAddress(this.addressData).subscribe(
-      () => {
-        this.toastr.success('Product saved successfully', 'Success', {
-          positionClass: 'toast-bottom-center',
-        });
-        return this.router.navigate(['/home/account-info']);
-      },
-      (error) => {
-        this.toastr.error('Error while saving', 'Error', {
-          positionClass: 'toast-bottom-center',
-        });
-        this.loading = false;
-        this.editError = error;
-      },
-    );
   }
+
+  
 
   async address() {
     await this.router.navigate(['/account/account-info/address']);
   }
+
 }

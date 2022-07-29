@@ -2,29 +2,31 @@
   <div class="header">Address Details</div>
   <mat-divider class="mat-divider"></mat-divider>
   <div class="address-button">
-    <button mat-raised-button color="primary" (click)="editAddress()">Add address</button>
+    <button mat-raised-button color="primary" (click)="newAddress()">Add address</button>
   </div>
-  <div *ngFor="let addressData of addressDatas">
-    <mat-card class="example-card">
-      <mat-card-subtitle>Default</mat-card-subtitle>
-      <mat-card-title>{{addressData.fullname}}</mat-card-title>
-      <mat-card-content>
-        <ul>
-          <li>{{addressData.fullname}}</li>
-          <li>{{addressData.phonenumber}}</li>
-          <li>{{addressData.address}}</li>
-          <li>{{addressData.area}}</li>
-          <li>{{addressData.landmark}}</li>
-          <li>{{addressData.city}}</li>
-          <li>{{addressData.state}}</li>
-          <li>{{addressData.pincode}}</li>
-        </ul>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Edit</button>
-        <button mat-button>Set as Default</button>
-      </mat-card-actions>
-    </mat-card>
+  <div class="address-warp">
+    <div *ngFor="let addressData of addressDatas">
+      <mat-card class="margin-card">
+        <mat-card-subtitle>Default</mat-card-subtitle>
+        <mat-card-title>{{addressData.fullname}}</mat-card-title>
+        <mat-card-content>
+          <ul>
+            <li>{{addressData.fullname}}</li>
+            <li>{{addressData.phonenumber}}</li>
+            <li>{{addressData.address}}</li>
+            <li>{{addressData.area}}</li>
+            <li>{{addressData.landmark}}</li>
+            <li>{{addressData.city}}</li>
+            <li>{{addressData.state}}</li>
+            <li>{{addressData.pincode}}</li>
+          </ul>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="editAddress(addressData.id)">Edit</button>
+          <button mat-raised-button color="primary" (click)="onDelete(addressData.id)">Delete</button>
+          <button mat-raised-button color="primary">Set as Default</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
-
 </div>

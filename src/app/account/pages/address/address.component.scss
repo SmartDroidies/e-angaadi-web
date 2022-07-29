@@ -22,8 +22,11 @@ li {
   @include flex-content-end
 }
 
-.example-card {
-  max-width: 300px;
-  display: flex;
-  flex-wrap: wrap;
+.margin-card {
+  min-width: 16rem;
+  margin: $margin-rem-25;
+}
+
+.address-warp{
+  @include product-listing;
 }

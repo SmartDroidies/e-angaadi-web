@@ -19,6 +19,7 @@ const routes: Routes = [
         children: [
           { path: 'profile', component: ProfileComponent, },
           { path: 'address', component: AddressComponent },
+          { path: 'modify/:id', component: EditAddressComponent },
           { path: 'edit-address', component: EditAddressComponent },
         ],
       },

@@ -14,11 +14,17 @@ export class UserdataService {
   getAddress(userId: string): Observable<Address[]> {
     let params = new HttpParams();
     params = params.append('userId', userId);
-    return this.http.get<Address[]>(environment.productBaseUrl + '/user-info', { params: params });
+    return this.http.get<Address[]>(environment.orderBaseUrl + '/address', { params: params });
   }
 
-  addAddress(address: Address): Observable<Address> {
-    return this.http.post<any>(environment.productBaseUrl + '/user-info', address);
+  saveAddress(address: Address): Observable<Address> {
+    return this.http.post<any>(environment.orderBaseUrl + '/address', address);
+  }
+  
+  deleteAddress(id:any): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('id', id);
+    return this.http.delete<any>(environment.orderBaseUrl + '/address', { params: params });
   }
 
 }
