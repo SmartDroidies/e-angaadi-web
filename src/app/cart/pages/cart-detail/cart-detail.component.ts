@@ -8,6 +8,7 @@ import { from } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ProductImageService } from 'src/app/product/service/product-image.service';
 import { ProductImage } from 'src/app/product/models/product-image';
+import { CartBadgeService } from 'src/app/shared/components/cart/cart-badge.service';
 
 @Component({
   selector: 'app-cart-detail',
@@ -24,10 +25,13 @@ export class CartDetailComponent implements OnInit {
   displayedColumns: string[] = ['title', 'quantity', 'total'];
   cartImages!: ProductImage;
   price!: number;
-  constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef, private translate: TranslateService, private productImageService: ProductImageService) { }
+  constructor(private cartService: CartService, private router: Router,private cartBadgeService: CartBadgeService, private ref: ChangeDetectorRef, private translate: TranslateService, private productImageService: ProductImageService) { }
 
   ngOnInit(): void {
     this.getCart();
+    this.cartBadgeService.change.subscribe(shouldReload => {
+      this.getCart();
+    });
     this.showCart();
     // this.updateCart();
   }
@@ -128,7 +132,5 @@ export class CartDetailComponent implements OnInit {
     return this.cartImages;
   }
 
-  removeCartItem(product: Product){
-    this.cartService.deleteCartProduct(product.code);
-  }
+ 
 }

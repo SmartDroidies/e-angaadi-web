@@ -25,8 +25,4 @@ export class StorageService {
     this.cartBadgeService.reload();
   } 
   
-  // removeUserCartItems(): CartItem[] {
-  //    localStorage.removeItem(this.C_USER_CART);
-  //    return [];
-  // }
 }

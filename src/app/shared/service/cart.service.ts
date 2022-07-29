@@ -93,10 +93,4 @@ export class CartService {
     return this.storageService.getUserCartItems();
   }
 
-  deleteCartProduct(code: string) {
-    const cartItems = this.storageService.getUserCartItems().find((item) => item.code == code);
-    if (cartItems) {
-      return localStorage.removeItem('user_cart');
-    }
-  }
 }

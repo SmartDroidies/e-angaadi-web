@@ -1,4 +1,3 @@
-import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,7 +12,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
-  declarations: [CartComponent, CartSummaryComponent],
+  declarations: [CartComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -25,6 +24,6 @@ import { MatDividerModule } from '@angular/material/divider';
     MatBadgeModule,
     MatDividerModule
   ],
-  exports: [CartComponent, CartSummaryComponent],
+  exports: [CartComponent],
 })
 export class SharedModule {}

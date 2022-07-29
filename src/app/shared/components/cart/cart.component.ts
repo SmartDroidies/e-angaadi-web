@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItem } from '../../models/cartItem';
 import { CartService } from '../../service/cart.service';
+import { ProductImage } from 'src/app/product/models/product-image';
+import { ProductImageService } from 'src/app/product/service/product-image.service';
 
 @Component({
   selector: 'app-cart',
@@ -15,8 +17,9 @@ export class CartComponent implements OnInit {
   badgeHidden!: boolean;
   signedIn = false;
   userId!: string;
-
-  constructor(private router: Router, private cartService: CartService, private cartBadgeService: CartBadgeService) { }
+  cartImages!: ProductImage;
+  
+  constructor(private router: Router, private cartService: CartService, private cartBadgeService: CartBadgeService,private productImageService: ProductImageService) { }
 
   ngOnInit(): void {
     this.loadCartItem();
@@ -53,5 +56,10 @@ export class CartComponent implements OnInit {
       });
     }
     return totalQuantity;
+  }
+
+  collectCartImages(item: CartItem) {
+    this.cartImages = this.productImageService.getCartImages(item);
+    return this.cartImages;
   }
 }
