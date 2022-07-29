@@ -1,3 +1,4 @@
+import { CartBadgeService } from './cart-badge.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItem } from '../../models/cartItem';
@@ -15,13 +16,17 @@ export class CartComponent implements OnInit {
   signedIn = false;
   userId!: string;
 
-  constructor(private router: Router, private cartService: CartService) {}
+  constructor(private router: Router, private cartService: CartService, private cartBadgeService: CartBadgeService) { }
 
   ngOnInit(): void {
-    this.getCartItem();
+    this.loadCartItem();
+    this.cartBadgeService.change.subscribe(shouldReload => {
+      this.loadCartItem();
+    });
+
   }
 
-  getCartItem(): void {
+  loadCartItem(): void {
     this.items = this.cartService.getCart();
   }
 

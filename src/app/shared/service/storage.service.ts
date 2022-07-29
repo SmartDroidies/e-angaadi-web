@@ -1,10 +1,13 @@
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { Injectable } from '@angular/core';
+import { CartBadgeService } from '../components/cart/cart-badge.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
+
+  constructor(private cartBadgeService: CartBadgeService) {}
 
   C_USER_CART = 'user_cart';
 
@@ -19,6 +22,7 @@ export class StorageService {
 
   updateUserCart(userCart: CartItem[] ) {
     localStorage.setItem(this.C_USER_CART, JSON.stringify(userCart));
+    this.cartBadgeService.reload();
   } 
   
   // removeUserCartItems(): CartItem[] {
