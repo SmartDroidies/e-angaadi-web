@@ -18,8 +18,9 @@ export class EditAddressComponent implements OnInit {
   loading!: boolean;
   editError!: any;
   addressData!: Address;
-  EditAddressData!:any;
-  
+  id!: any;
+  saveButton = true;
+
   constructor(private userdataService: UserdataService,
     private fb: FormBuilder,
     private toastr: ToastrService,
@@ -88,14 +89,40 @@ export class EditAddressComponent implements OnInit {
   editAddress() {
     this.activatedRoute.paramMap.subscribe((params) => {
       if (params.get('id')) {
-        this.EditAddressData = params.get('id');
-        // this.addressForm.patchValue(this.EditAddressData);
+        this.id = params.get('id');
+        this.saveButton = false;
+        this.getIdAddress();
       }
     });
   }
 
-  updateAddress(){
-    
+  getIdAddress() {
+    this.userdataService.getIdAddress(this.id).subscribe((address) => this.addressData = address);
+    console.log(this.addressData);
+    this.addressForm.patchValue(this.addressData);
+  }
+
+  onUpdate() {
+    this.loading = true;
+    if (this.addressForm.invalid) {
+      return;
+    }
+    this.addressData = this.addressForm.value;
+    this.userdataService.updateAddress(this.addressData).subscribe(
+      () => {
+        this.toastr.success('Address updated successfully', 'Updated', {
+          positionClass: 'toast-bottom-center',
+        });
+        this.router.navigate(['/account/account-info/address']);
+      },
+      (error) => {
+        this.toastr.error('Error while Upadting', 'Error', {
+          positionClass: 'toast-bottom-center',
+        });
+        this.loading = false;
+        this.editError = error;
+      }
+    );
   }
 
   onSave() {
@@ -106,7 +133,7 @@ export class EditAddressComponent implements OnInit {
 
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
       this.addressData = this.addressForm.value;
-      this.addressData.userId=user.attributes.name;
+      this.addressData.userId = user.attributes.name;
       this.userdataService.saveAddress(this.addressData).subscribe(
         () => {
           this.toastr.success('Address saved successfully', 'Saved', {
@@ -125,7 +152,7 @@ export class EditAddressComponent implements OnInit {
     });
   }
 
-  
+
 
   async address() {
     await this.router.navigate(['/account/account-info/address']);

@@ -120,6 +120,7 @@
     </form>
     <ul class="button">
         <li><button (click)="address()" mat-raised-button color="primary">Back</button></li>
-        <li><button (click)="onSave()" mat-raised-button color="primary">Save</button></li>
+        <li *ngIf="saveButton"><button (click)="onSave()" mat-raised-button color="primary">Save</button></li>
+        <li *ngIf="!saveButton"><button (click)="onUpdate()" mat-raised-button color="primary">Update</button></li>
     </ul>
 </div>
