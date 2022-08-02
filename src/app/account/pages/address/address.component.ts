@@ -13,34 +13,34 @@ import { UserdataService } from '../../service/userdata.service';
 })
 export class AddressComponent {
   userId!: string;
-  addressDatas!:Address[];
+  addressDatas!: Address[];
   editError!: any;
   loading!: boolean;
 
-  constructor(private router: Router,private userdataService: UserdataService, private toastr: ToastrService) {}
+  constructor(private router: Router, private userdataService: UserdataService, private toastr: ToastrService) { }
 
- 
+
   ngOnInit(): void {
     this.getAddress();
   }
-  
-  async editAddress(id:string){
-   await this.router.navigate(['/account/account-info/modify',id]);
+
+  async editAddress(id: string) {
+    await this.router.navigate(['/account/account-info/modify', id]);
   }
 
-  async newAddress(){
+  async newAddress() {
     await this.router.navigate(['/account/account-info/edit-address']);
-   }
+  }
 
   getAddress() {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-        this.userdataService.getAddress(user.attributes.name).subscribe((address: Address[]) => {
-        return this.addressDatas=address;
+      this.userdataService.getAddress(user.attributes.name).subscribe((address: Address[]) => {
+        return this.addressDatas = address;
       });
     });
   }
 
-  onDelete(id:string){
+  onDelete(id: string) {
     this.userdataService.deleteAddress(id).subscribe(
       () => {
         this.toastr.success('Deleted successfully', 'Deleted', {
@@ -50,6 +50,24 @@ export class AddressComponent {
       },
       (error) => {
         this.toastr.error('Error while Deleting', 'Error', {
+          positionClass: 'toast-bottom-center',
+        });
+        this.loading = false;
+        this.editError = error;
+      }
+    );
+  }
+
+  setDefault(id: any, userId: string) {
+    this.userdataService.updateDefaultAddress(id, userId).subscribe(
+      () => {
+        this.toastr.success('Successfully done', 'Default', {
+          positionClass: 'toast-bottom-center',
+        });
+        this.getAddress();
+      },
+      (error) => {
+        this.toastr.error('Error while Default', 'Error', {
           positionClass: 'toast-bottom-center',
         });
         this.loading = false;

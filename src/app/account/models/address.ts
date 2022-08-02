@@ -9,4 +9,5 @@ export class Address {
     state!: string;
     pincode!: number;
     id!: any;
+    default!:boolean;
 }

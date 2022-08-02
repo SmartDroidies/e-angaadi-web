@@ -30,8 +30,15 @@ export class UserdataService {
   updateAddress(address: Address): Observable<Address> {
     return this.http.put<any>(environment.orderBaseUrl + '/address', address);
   }
-  
-  deleteAddress(id:any): Observable<any> {
+
+  updateDefaultAddress(userId: string, id: any): Observable<Address> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    params = params.append('id', id);
+    return this.http.put<any>(environment.orderBaseUrl + '/address/default', { params: params });
+  }
+
+  deleteAddress(id: any): Observable<any> {
     let params = new HttpParams();
     params = params.append('id', id);
     return this.http.delete<any>(environment.orderBaseUrl + '/address', { params: params });

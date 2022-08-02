@@ -14,7 +14,6 @@ import { UserdataService } from '../../service/userdata.service';
 })
 export class EditAddressComponent implements OnInit {
   addressForm!: FormGroup;
-  street!: string;
   loading!: boolean;
   editError!: any;
   addressData!: Address;
@@ -74,6 +73,7 @@ export class EditAddressComponent implements OnInit {
       pincode: ['', [Validators.required,
       Validators.minLength(6),
       Validators.maxLength(6)]],
+      default: false,
     });
   }
 
@@ -97,7 +97,7 @@ export class EditAddressComponent implements OnInit {
   }
 
   getIdAddress() {
-    this.userdataService.getIdAddress(this.id).subscribe((address) => this.addressData = address);
+    this.userdataService.getIdAddress(this.id).subscribe((address: Address) => this.addressData = address);
     console.log(this.addressData);
     this.addressForm.patchValue(this.addressData);
   }
@@ -151,8 +151,6 @@ export class EditAddressComponent implements OnInit {
       );
     });
   }
-
-
 
   async address() {
     await this.router.navigate(['/account/account-info/address']);
