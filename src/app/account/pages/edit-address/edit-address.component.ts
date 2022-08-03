@@ -73,7 +73,6 @@ export class EditAddressComponent implements OnInit {
       pincode: ['', [Validators.required,
       Validators.minLength(6),
       Validators.maxLength(6)]],
-      default: false,
     });
   }
 
@@ -133,6 +132,13 @@ export class EditAddressComponent implements OnInit {
 
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
       this.addressData = this.addressForm.value;
+      this.userdataService.getAddress(user.attributes.name).subscribe((address: Address[]) => {
+        if (address.length > 0) {
+          this.addressData.default = false;
+        } else {
+          this.addressData.default = false;
+        }
+      });
       this.addressData.userId = user.attributes.name;
       this.userdataService.saveAddress(this.addressData).subscribe(
         () => {
