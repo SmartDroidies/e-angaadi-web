@@ -96,9 +96,7 @@ export class EditAddressComponent implements OnInit {
   }
 
   getIdAddress() {
-    this.userdataService.getIdAddress(this.id).subscribe((address: Address) => this.addressData = address);
-    console.log(this.addressData);
-    this.addressForm.patchValue(this.addressData);
+    this.userdataService.getIdAddress(this.id).subscribe((address) => this.addressForm.patchValue(address));
   }
 
   onUpdate() {
