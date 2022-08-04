@@ -4,6 +4,7 @@ import { Auth } from 'aws-amplify';
 import { ToastrService } from 'ngx-toastr';
 import { from } from 'rxjs';
 import { Address } from '../../models/address';
+import { setDefault } from '../../models/setdefault';
 import { UserdataService } from '../../service/userdata.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class AddressComponent {
   addressDatas!: Address[];
   editError!: any;
   loading!: boolean;
+  sendDefault: setDefault = new setDefault;
 
   constructor(private router: Router, private userdataService: UserdataService, private toastr: ToastrService) { }
 
@@ -59,7 +61,9 @@ export class AddressComponent {
   }
 
   setDefault(id: any, userId: string) {
-    this.userdataService.updateDefaultAddress(id, userId).subscribe(
+    this.sendDefault.userId = userId;
+    this.sendDefault.id = id;
+    this.userdataService.updateDefaultAddress(this.sendDefault).subscribe(
       () => {
         this.toastr.success('Successfully done', 'Default', {
           positionClass: 'toast-bottom-center',

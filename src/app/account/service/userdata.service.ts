@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Address } from '../models/address';
+import { setDefault } from '../models/setdefault';
 
 @Injectable({
   providedIn: 'root'
@@ -31,11 +32,8 @@ export class UserdataService {
     return this.http.put<any>(environment.orderBaseUrl + '/address', address);
   }
 
-  updateDefaultAddress(userId: string, id: any): Observable<Address> {
-    let params = new HttpParams();
-    params = params.append('userId', userId);
-    params = params.append('id', id);
-    return this.http.put<any>(environment.orderBaseUrl + '/address/default', { params: params });
+  updateDefaultAddress(setDefault: setDefault): Observable<setDefault> {
+    return this.http.put<setDefault>(environment.orderBaseUrl + '/address/default', setDefault);
   }
 
   deleteAddress(id: any): Observable<any> {
