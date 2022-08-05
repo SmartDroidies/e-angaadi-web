@@ -1,10 +1,6 @@
 @import 'src/styles/abstracts/_variables.scss';
 @import 'src/styles/abstracts/_mixins.scss';
 
-li {
-    list-style: none;
-}
-
 .container {
     margin: $margin-rem-200;
 }
@@ -21,32 +17,32 @@ li {
     @include account-info-title;
 }
 
-form {
-    width: 100%;
+::ng-deep .mat-form-field {
+    width: 21rem;
+    margin: $margin-rem-100 0 $margin-rem-100 0;
 }
 
-::ng-deep .mat-form-field {
-    width: 15rem;
-    margin: $margin-rem-100 0 0 $margin-rem-100;
+::ng-deep textarea {
+    height: 3rem;
 }
 
 .form-row {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
-.button {
+.flex-end-button {
     @include flex-content-end;
 }
 
-.button li {
-    margin: $margin-rem-100;
+.action-button {
+    margin: 1rem;
 }
 
 .alert {
     @include alert-form-field;
 }
-
 
 .error-alert {
     @include error-alert-form-field;
