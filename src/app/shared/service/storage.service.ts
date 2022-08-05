@@ -14,7 +14,7 @@ export class StorageService {
   getUserCartItems(): CartItem[] {
     const cartItems = localStorage.getItem(this.C_USER_CART);
     if (cartItems) {
-      return JSON.parse(cartItems);
+      return JSON.parse(cartItems) as CartItem[];
     } else {
       return [];
     }

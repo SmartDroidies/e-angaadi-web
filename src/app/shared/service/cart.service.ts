@@ -19,8 +19,8 @@ export class CartService {
     //FIXME - Update the response into local storage
   }
 
-  updateCartItems(cartItem: CartItem[]): Observable<any> {
-    return this.http.post<any>(environment.orderBaseUrl + '/cart', cartItem);
+  updateCartItems(cartItem: CartItem[]): Observable<CartItem[]> {
+    return this.http.post<CartItem[]>(environment.orderBaseUrl + '/cart', cartItem);
   }
 
   updateCart(product: Product, selectedUnit: number, quantity: number, price: number) {

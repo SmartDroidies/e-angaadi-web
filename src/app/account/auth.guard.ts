@@ -7,19 +7,20 @@ import { CognitoService } from '../auth/services/cognito.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
-    constructor(
-        private router: Router,
-        private cognitoService: CognitoService
-    ) {}
+  constructor(
+    private router: Router,
+    private cognitoService: CognitoService
+  ) { }
 
-     canActivate(): Observable<boolean> {
-        return  defer(() => this.cognitoService.isAuthenticated())
-        .pipe(
-          tap(loggedIn => {
-            if (!loggedIn) {
-              this.router.navigate(['/auth/sign-in']);
-            }
-          })
-        );
-    }
+  canActivate(): Observable<boolean> {
+    return defer(() => this.cognitoService.isAuthenticated())
+      .pipe(
+        tap(loggedIn => {
+          if (!loggedIn) {
+            this.router.navigate(['/auth/sign-in']);
+          }
+          return false;
+        })
+      );
+  }
 }

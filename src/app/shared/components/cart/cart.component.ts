@@ -23,7 +23,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCartItem();
-    this.cartBadgeService.change.subscribe(shouldReload => {
+    this.cartBadgeService.change.subscribe(() => {
       this.loadCartItem();
     });
 

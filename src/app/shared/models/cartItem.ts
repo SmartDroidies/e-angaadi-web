@@ -8,7 +8,7 @@ export class CartItem {
   quantity!: number;
   price!: number;
   userId!: string;
-  id!: any;
+  id!: string;
   synced!: boolean;
   key!: string;
   group!: string;
