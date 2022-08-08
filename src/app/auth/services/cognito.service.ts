@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, defer, from, Observable, tap } from 'rxjs';
+import { BehaviorSubject, defer, Observable, tap } from 'rxjs';
 import { Auth } from 'aws-amplify';
 import { CognitoUser } from '../models/cognito-user';
 

@@ -10,21 +10,23 @@ import { ProductService } from '../../service/product.service';
 })
 export class SearchResultsComponent implements OnInit {
 
-  searchResults!:Product[];
-  searchword:any;
+  searchResults!: Product[];
+  searchWord: string | null | undefined;
 
-  constructor(private productService: ProductService,private activatedRoute: ActivatedRoute) { }
+  constructor(private productService: ProductService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
-      this.searchword = params.get('searchword');
-      this.searchData(this.searchword);
+      this.searchWord = params.get('searchword');
+      if (this.searchWord != null && this.searchWord != undefined) {
+        this.searchData(this.searchWord);
+      }
     });
-    
+
   }
 
-  searchData(searchword:any) {
-   this.productService.searchProduct(searchword).subscribe((searchDatas) => (this.searchResults = searchDatas));
+  searchData(searchWord: string) {
+    this.productService.searchProduct(searchWord).subscribe((searchData) => (this.searchResults = searchData));
   }
 
 }
