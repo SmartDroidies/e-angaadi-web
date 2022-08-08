@@ -18,7 +18,7 @@ import { CartBadgeService } from 'src/app/shared/components/cart/cart-badge.serv
 export class CartDetailComponent implements OnInit {
   @Input() product!: Product;
   items: CartItem[] = [];
-  saved: any;
+  saved!: string;
   show!: boolean;
   signedIn = false;
   userId!: string;
@@ -29,7 +29,7 @@ export class CartDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCart();
-    this.cartBadgeService.change.subscribe(shouldReload => {
+    this.cartBadgeService.change.subscribe(()=> {
       this.getCart();
     });
     this.showCart();
