@@ -73,38 +73,5 @@
     </table>
   </div>
 
-
-  <!-- <div class="boxtotal">
-    <div class="sub-total"></div>
-    <ul class="action-button">
-      <li></li>
-      <li>
-      </li>
-      <li></li>
-    </ul>
-  </div> -->
-
-
-  <!-- FIXME - Move to its own component -->
-  <!-- <div>
-    <div class="card-heading">Saved For Later</div>
-    <div class="list-products">
-      <mat-card *ngFor="let item of items">
-        <img class="card-product-image" *ngIf="collectCartImages(item)" mat-card-image src="{{cartImages.url}}">
-        <mat-card-content>
-          <mat-card-title>
-            <ul class="card-info">
-              <li>{{item.key | translate}}</li>
-              <li>{{item.title}}</li>
-              <li>{{item.unit+item.submetric}}/₹{{getSubTotal(item)}}</li>
-            </ul>
-          </mat-card-title>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button class="add-cart-button" color="primary">Add to Cart</button>
-          <button mat-raised-button class="remove-cart-button" color="primary">Remove</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-  </div> -->
+<app-save-later></app-save-later>
 </div>
