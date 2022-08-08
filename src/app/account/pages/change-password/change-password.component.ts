@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 import { ToastrService } from 'ngx-toastr';
-import { from } from 'rxjs';
 import { CognitoService } from 'src/app/auth/services/cognito.service';
 
 @Component({
@@ -62,7 +61,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   async initUser() {
-    let currentUser = await this.cognitoService.currentAuthenticatedUser()
+    const currentUser = await this.cognitoService.currentAuthenticatedUser()
     this.passwordForm.patchValue({ user: currentUser.attributes.name });
   }
 
@@ -74,7 +73,7 @@ export class ChangePasswordComponent implements OnInit {
 
     try {
       const user = await Auth.currentAuthenticatedUser()
-      let Values = this.passwordForm.value;
+      const Values = this.passwordForm.value;
       await Auth.changePassword(user, Values.oldPassword, Values.newPassword)
       this.router.navigate(['/auth/sign-in']);
       this.toastr.success('Successfully changed password', 'Success', {

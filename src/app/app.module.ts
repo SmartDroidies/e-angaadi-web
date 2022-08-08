@@ -18,12 +18,10 @@ import { AccountModule } from './account/account.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AuthGuard } from './account/auth.guard';
 import { ProductService } from './product/service/product.service';
-import { Observable, tap, of } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { CartService } from './shared/service/cart.service';
 import { Auth } from 'aws-amplify';
-import { from } from 'rxjs';
 
 Amplify.configure({
   Auth: {
@@ -50,12 +48,11 @@ function syncUserCart(cartService: CartService): () => Promise<void> {
     new Promise((resolve) => {
       Auth.currentAuthenticatedUser()
         .then((user) => {
-          console.log(user);
           cartService
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
             .getCartItems(user['username'])
-            .subscribe((result) => console.log(result));
-          // .pipe(tap((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart))));
+            // window.localStorage.setItem('user_cart', JSON.stringify(userCart))
+            .subscribe((userCart) => console.log('Sync cloud data to local storage : ', userCart));
           resolve();
         })
         .catch(() => {

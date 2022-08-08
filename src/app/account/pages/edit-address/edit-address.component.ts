@@ -86,7 +86,7 @@ export class EditAddressComponent implements OnInit {
   }
 
   async initUser() {
-    let currentUser = await this.cognitoService.currentAuthenticatedUser()
+    const currentUser = await this.cognitoService.currentAuthenticatedUser()
     this.userId = currentUser.attributes.name;
   }
 

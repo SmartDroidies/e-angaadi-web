@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
   }
 
   async initUser() {
-    let currentUser = await this.cognitoService.currentAuthenticatedUser()
+    const currentUser = await this.cognitoService.currentAuthenticatedUser()
     this.EditForm.patchValue({ firstname: currentUser.attributes.name });
     this.EditForm.patchValue({ email: currentUser.attributes.email });
     this.EditForm.patchValue({ phonenumber: currentUser.attributes.phone_number });
