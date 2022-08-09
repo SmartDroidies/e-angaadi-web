@@ -10,7 +10,7 @@ li {
 }
 
 .container {
-  margin: 2rem;
+  margin: $margin-rem-200;
 }
 
 .header {
@@ -18,12 +18,12 @@ li {
 }
 
 .address-button {
-  margin: 1rem;
+  margin: $margin-rem-100; 
   @include flex-content-end
 }
 
 .margin-card {
-  min-width: 16rem;
+  min-width: $margin-rem-1600;
   margin: $margin-rem-25;
 }
 

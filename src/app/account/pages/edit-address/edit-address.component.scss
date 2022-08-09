@@ -18,12 +18,12 @@
 }
 
 ::ng-deep .mat-form-field {
-    width: 21rem;
+    width: $margin-rem-2000;
     margin: $margin-rem-100 0 $margin-rem-100 0;
 }
 
 ::ng-deep textarea {
-    height: 3rem;
+    height: $height-rem-300;
 }
 
 .form-row {
@@ -37,7 +37,7 @@
 }
 
 .action-button {
-    margin: 1rem;
+    margin: $margin-rem-100;
 }
 
 .alert {
