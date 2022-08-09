@@ -96,7 +96,7 @@ export class EditAddressComponent implements OnInit {
   }
 
   getIdAddress() {
-    this.userdataService.getIdAddress(this.id).subscribe((address) => this.addressForm.patchValue(address));
+    this.userdataService.getIdAddress(this.id).subscribe((address) =>{this.addressForm.patchValue(address);});
   }
 
   onUpdate() {
@@ -105,6 +105,7 @@ export class EditAddressComponent implements OnInit {
       return;
     }
     this.addressData = this.addressForm.value;
+    this.addressData.id=this.id;
     this.userdataService.updateAddress(this.addressData).subscribe(
       () => {
         this.toastr.success('Address updated successfully', 'Updated', {
