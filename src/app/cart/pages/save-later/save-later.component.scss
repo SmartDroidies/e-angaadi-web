@@ -1,0 +1,36 @@
+@import '/src/styles/abstracts/variables';
+@import '/src/styles/abstracts/mixins';
+
+.card-product-image {
+    width: $width-rem-2250;
+    height: $height-rem-1500;
+    margin: $margin-rem-100 $margin-rem-100 ;
+}
+
+.list-products {
+    @include flex-center;
+    @include product-listing;
+}
+
+mat-card-title {
+    font-size: $font-size-875;
+    font-weight: $font-weight-bold;
+}
+
+.card-heading {
+    font-size: $font-size-base;
+    font-weight: bold;
+    margin: $margin-rem-200 0 $margin-rem-100 $margin-rem-500;
+}
+
+mat-card-actions {
+    @include flex-center;
+}
+
+.add-cart-button {
+    flex-basis: 70%;
+}
+
+.remove-cart-button {
+    flex-basis: 30%;
+}

@@ -18,13 +18,12 @@ import { CartBadgeService } from 'src/app/shared/components/cart/cart-badge.serv
 export class CartDetailComponent implements OnInit {
   @Input() product!: Product;
   items: CartItem[] = [];
-  saved!: string;
   show!: boolean;
-  signedIn = false;
   userId!: string;
   displayedColumns: string[] = ['title', 'quantity', 'total'];
   cartImages!: ProductImage;
   price!: number;
+  saved!: boolean;
   constructor(private cartService: CartService, private router: Router,private cartBadgeService: CartBadgeService, private ref: ChangeDetectorRef, private translate: TranslateService, private productImageService: ProductImageService) { }
 
   ngOnInit(): void {
@@ -96,9 +95,16 @@ export class CartDetailComponent implements OnInit {
     return subTotal;
   }
 
-  // onSave() {
-
-  // }
+  onSave(cartProduct:CartItem) {
+    this.items.forEach((loopItem)=>{
+      if(loopItem.code === cartProduct.code && loopItem.unit === cartProduct.unit ){
+        loopItem.saved=true;
+        // this.items.push(loopItem);
+        window.localStorage.setItem('user_cart', JSON.stringify(this.items))
+      }
+    })
+    
+  }
 
   // emptyCart() {
   //   return
