@@ -74,7 +74,7 @@ export class ChangePasswordComponent implements OnInit {
 
     try {
       const user = await Auth.currentAuthenticatedUser()
-      let Values = this.passwordForm.value;
+      const Values = this.passwordForm.value;
       await Auth.changePassword(user, Values.oldPassword, Values.newPassword)
       this.router.navigate(['/auth/sign-in']);
       this.toastr.success('Successfully changed password', 'Success', {

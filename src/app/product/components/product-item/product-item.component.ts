@@ -17,11 +17,16 @@ export class ProductItemComponent implements OnInit {
   selectedUnit!: number;
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
-  price!: any;
+  price!: number;
   signedIn = false;
   productImages!: any;
 
-  constructor(private cartService: CartService, private toastr: ToastrService, private translate: TranslateService, private productService: ProductService) { }
+  constructor(
+    private cartService: CartService,
+    private toastr: ToastrService,
+    private translate: TranslateService,
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
     this.loadProductsFromCart();
@@ -32,19 +37,6 @@ export class ProductItemComponent implements OnInit {
     if (this.selectedUnit) {
       this.loadProductUnitFromCart(this.selectedUnit);
     }
-  }
-
-  getCartItemQuantity(currUnit: number) {
-
-    const allItems = this.cartService.getCart();
-    let qtyInCart = 0;
-    allItems.forEach((item) => {
-      if (item.unit == currUnit) {
-        qtyInCart = item.quantity;
-      }
-      return qtyInCart;
-    });
-
   }
 
   selectChip(item: MatChip, unit: number, price: number) {
@@ -72,20 +64,18 @@ export class ProductItemComponent implements OnInit {
 
   addToCart(product: Product) {
     if (this.selectedUnit) {
-      this.cartService.updateCart(product, this.selectedUnit, +1);
+      this.cartService.updateCart(product, this.selectedUnit, +1, this.price);
       this.loadProductsFromCart();
     } else {
       this.toastr.warning('Select unit before adding', 'Error');
     }
   }
 
-
   removeFromCart(product: Product) {
     if (this.selectedUnit) {
-      this.cartService.updateCart(product, this.selectedUnit, -1);
+      this.cartService.updateCart(product, this.selectedUnit, -1, this.price);
       this.loadProductsFromCart();
     }
-
   }
 
   isInCart() {
@@ -96,6 +86,24 @@ export class ProductItemComponent implements OnInit {
   isProductUnitInCart(unit: number) {
     const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === unit);
     return cartProductUnitItem != null ? true : false;
+  }
+
+  getCartItemQuantity(unit: number) {
+    // const allItems = this.cartService.getCart();
+    const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === unit);
+    if (cartProductUnitItem) {
+      return cartProductUnitItem.quantity;
+    } else {
+      return null;
+    }
+
+    // let qtyInCart = 0;
+    // allItems.forEach((item) => {
+    //   if (item.unit == currUnit) {
+    //     qtyInCart = item.quantity;
+    //   }
+    //   return qtyInCart;
+    // });
   }
 
   selectedProductUnitQuantity() {

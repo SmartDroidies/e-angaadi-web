@@ -1,7 +1,10 @@
+import { CartBadgeService } from './cart-badge.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItem } from '../../models/cartItem';
 import { CartService } from '../../service/cart.service';
+import { ProductImage } from 'src/app/product/models/product-image';
+import { ProductImageService } from 'src/app/product/service/product-image.service';
 
 @Component({
   selector: 'app-cart',
@@ -14,20 +17,19 @@ export class CartComponent implements OnInit {
   badgeHidden!: boolean;
   signedIn = false;
   userId!: string;
-
-  constructor(private router: Router, private cartService: CartService) {}
+  cartImages!: ProductImage;
+  
+  constructor(private router: Router, private cartService: CartService, private cartBadgeService: CartBadgeService,private productImageService: ProductImageService) { }
 
   ngOnInit(): void {
-    this.getCartItem();
+    this.loadCartItem();
+    this.cartBadgeService.change.subscribe(() => {
+      this.loadCartItem();
+    });
+
   }
 
-  getCartItem(): void {
-    // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-    //   if (this.signedIn = true) {
-    //    let userId = user.username;
-    //     this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
-    //   }
-    // });
+  loadCartItem(): void {
     this.items = this.cartService.getCart();
   }
 
@@ -54,5 +56,10 @@ export class CartComponent implements OnInit {
       });
     }
     return totalQuantity;
+  }
+
+  collectCartImages(item: CartItem) {
+    this.cartImages = this.productImageService.getCartImages(item);
+    return this.cartImages;
   }
 }
