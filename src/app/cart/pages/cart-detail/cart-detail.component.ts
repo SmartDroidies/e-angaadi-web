@@ -8,6 +8,7 @@ import { from } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ProductImageService } from 'src/app/product/service/product-image.service';
 import { ProductImage } from 'src/app/product/models/product-image';
+import { CartBadgeService } from 'src/app/shared/components/cart/cart-badge.service';
 
 @Component({
   selector: 'app-cart-detail',
@@ -17,46 +18,53 @@ import { ProductImage } from 'src/app/product/models/product-image';
 export class CartDetailComponent implements OnInit {
   @Input() product!: Product;
   items: CartItem[] = [];
-  saved: any;
+  saved!: string;
   show!: boolean;
   signedIn = false;
   userId!: string;
-  synced = false;
   displayedColumns: string[] = ['title', 'quantity', 'total'];
   cartImages!: ProductImage;
-
-  constructor(private cartService: CartService, private router: Router, private ref: ChangeDetectorRef, private translate: TranslateService, private productImageService: ProductImageService) { }
+  price!: number;
+  constructor(private cartService: CartService, private router: Router,private cartBadgeService: CartBadgeService, private ref: ChangeDetectorRef, private translate: TranslateService, private productImageService: ProductImageService) { }
 
   ngOnInit(): void {
     this.getCart();
+    this.cartBadgeService.change.subscribe(()=> {
+      this.getCart();
+    });
     this.showCart();
-    this.updateCart();
+    // this.updateCart();
   }
 
-  getCart() {
-    // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-    //   if (user) {
-    //     const userId = user.username;
-    //     this.cartService.getCartItems(userId).subscribe((cartItems) => (this.items = cartItems));
-    //   }
-    // });
+  getUpdateCart() {
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      const userId = user.username;
+      this.cartService.getCartItems(userId).subscribe((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart)));
+    });
+    
+  }
+  getCart(){
+    // this.getUpdateCart();
     this.items = this.cartService.getCart();
   }
 
-  updateCart() {
-    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+  // updateCart() {
+  //   const cartItem: CartItem[] = [];
+  //   from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+  //     for (let i = 0; i < this.items.length; i++) {
+  //       if (this.items[i].synced == false) {
+  //         cartItem.push(this.items[i]);
+  //       }
+  //       this.items[i].userId = user.username;
+  //     }
+  //     this.cartService
+  //       .updateCartItems(cartItem)
+  //       .subscribe(() =>
+  //         (this.getCart())
+  //       );
 
-      for (let i = 0; i < this.items.length; i++) {
-        this.items[i].userId = user.username;
-      }
-      this.cartService
-        .updateCartItems(this.items)
-        .subscribe(() =>
-          (this.getCart())
-        );
-
-    });
-  }
+  //   });
+  // }
 
   showCart() {
     if (this.items.length > 0) {
@@ -67,13 +75,13 @@ export class CartDetailComponent implements OnInit {
     }
   }
 
-  addUnit(product: Product, selectedUnit: number) {
-    this.cartService.updateCart(product, selectedUnit, +1);
-    this.getTotal();
+  addUnit(product: Product, selectedUnit: number, price:number) {
+    this.cartService.updateCart(product, selectedUnit, +1, price);
+    this.getCart();
   }
-  subUnit(product: Product, selectedUnit: number) {
-    this.cartService.updateCart(product, selectedUnit, -1);
-    this.getTotal();
+  subUnit(product: Product, selectedUnit: number, price:number) {
+    this.cartService.updateCart(product, selectedUnit, -1, price);
+    this.getCart();
   }
 
   getSubTotal(cartItem: CartItem) {
@@ -82,7 +90,7 @@ export class CartDetailComponent implements OnInit {
     this.items.forEach((loopItem) => {
       if (loopItem.code === cartItem.code && loopItem.unit === cartItem.unit) {
         //FIXME - The price needs to be pulled from the service
-        subTotal = 50 * cartItem.quantity;
+        subTotal = cartItem.price* cartItem.quantity;
       }
     });
     return subTotal;
@@ -119,8 +127,10 @@ export class CartDetailComponent implements OnInit {
   }
 
 
-  collectCartImages(item:CartItem) {
-      this.cartImages = this.productImageService.getCartImages(item);  
-      return this.cartImages;
+  collectCartImages(item: CartItem) {
+    this.cartImages = this.productImageService.getCartImages(item);
+    return this.cartImages;
   }
+
+ 
 }

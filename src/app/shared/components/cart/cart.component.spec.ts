@@ -11,7 +11,7 @@ import { CartComponent } from './cart.component';
 describe('CartComponent', () => {
   let component: CartComponent;
   let fixture: ComponentFixture<CartComponent>;
-  let routerSpy = {navigate: jasmine.createSpy('navigate')};
+  const routerSpy = {navigate: jasmine.createSpy('navigate')};
 
 
   beforeEach(async () => {

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 import { ToastrService } from 'ngx-toastr';
-import { from } from 'rxjs';
+import { CognitoService } from 'src/app/auth/services/cognito.service';
 
 @Component({
   selector: 'app-change-password',
@@ -11,27 +12,27 @@ import { from } from 'rxjs';
 })
 export class ChangePasswordComponent implements OnInit {
   passwordForm!: FormGroup;
-  oldPassword!: string;
-  newPassword!: string;
-  showPassword: boolean = false;
-  showOldPassword: boolean = false;
-  name: string | undefined;
-  constructor(private fb: FormBuilder, private toastr: ToastrService,) {
-    this.initUser();
+  showPassword = false;
+  showOldPassword = false;
+  passError!: any;
+  loading!: boolean;
+
+
+  constructor(private fb: FormBuilder, private toastr: ToastrService, private router: Router, private cognitoService: CognitoService) {
+    this.loading = false;
     this.passwordForm = this.fb.group({
-      user: new FormControl(),
+      user: new FormControl('', [Validators.required, Validators.minLength(4)]),
       oldPassword: new FormControl(
         '',
         [
           Validators.required,
-          Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"),
+          Validators.minLength(8), Validators.maxLength(10)
         ]
       ),
       newPassword: new FormControl(
         '',
         [
           Validators.required,
-          Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"),
           Validators.minLength(8), Validators.maxLength(10)
         ],
 
@@ -39,8 +40,8 @@ export class ChangePasswordComponent implements OnInit {
     });
   }
 
-  setData() {
-    this.passwordForm.controls['user'].setValue(this.name)
+  ngOnInit(): void {
+    void this.initUser();
   }
 
   get f() {
@@ -55,45 +56,35 @@ export class ChangePasswordComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  ngOnInit(): void {
-    void this.initUser();
+  cancel() {
+    this.router.navigate(['/home']);
   }
 
-  initUser() {
-    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      if (user && user.attributes) {
-        this.name = user.attributes.name as string;
-      }
-    });
+  async initUser() {
+    const currentUser = await this.cognitoService.currentAuthenticatedUser()
+    this.passwordForm.patchValue({ user: currentUser.attributes.name });
   }
-  async onChangePassword() {
+
+  async onChangePassword(): Promise<void> {
 
     if (this.passwordForm.invalid) {
       return;
-    } 
+    }
 
     try {
       const user = await Auth.currentAuthenticatedUser()
-      let Values = this.passwordForm.value;
-      this.oldPassword = Values.oldPassword;
-      this.newPassword = Values.newPassword;
-      return await Auth.changePassword(user, this.oldPassword, this.newPassword);
-
+      const Values = this.passwordForm.value;
+      await Auth.changePassword(user, Values.oldPassword, Values.newPassword)
+      this.router.navigate(['/auth/sign-in']);
+      this.toastr.success('Successfully changed password', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
     } catch (e) {
+      this.passError = e;
       this.toastr.error('Error while saving', 'Error', {
         positionClass: 'toast-bottom-center',
       });
-      return false;
-
     }
-
   }
 
 }
-
-
-
-//FIXME 
-// Dont make server call when the validation fails
-// Use flex layout for alignment
-// Create Mixin

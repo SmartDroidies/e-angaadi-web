@@ -5,7 +5,7 @@ import { ProductListingComponent } from '../../components/product-listing/produc
 import { ViewProductComponent } from './view-product.component';
 
 describe('ViewProductComponent', () => {
-  let component: ViewProductComponent;
+  // let component: ViewProductComponent;
   let fixture: ComponentFixture<ViewProductComponent>;
 
   beforeEach(async () => {
@@ -17,7 +17,7 @@ describe('ViewProductComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ViewProductComponent);
-    component = fixture.componentInstance;
+    // component = fixture.componentInstance;
     fixture.detectChanges();
   });
 

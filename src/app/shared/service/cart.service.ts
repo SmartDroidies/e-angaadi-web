@@ -18,47 +18,61 @@ export class CartService {
     return this.http.get<CartItem[]>(environment.orderBaseUrl + '/cart', { params: params });
     //FIXME - Update the response into local storage
   }
-  updateCartItems(cartItem: CartItem[]): Observable<any> {
-    return this.http.post<any>(environment.orderBaseUrl + '/cart', cartItem);
+
+  updateCartItems(cartItem: CartItem[]): Observable<CartItem[]> {
+    return this.http.post<CartItem[]>(environment.orderBaseUrl + '/cart', cartItem);
   }
 
-  //FIXME - Handle the update
-  updateCart(product: Product, selectedUnit: number, quantity: number) {
+  updateCart(product: Product, selectedUnit: number, quantity: number, price: number) {
     const itemInCart = this.getCartItem(product.code, selectedUnit);
     if (itemInCart) {
       itemInCart.quantity = itemInCart.quantity + quantity;
+      itemInCart.synced = false;
+      // this.updateCartStorage(itemInCart);
       if (itemInCart.quantity == 0) {
         this.removeItemInCart(itemInCart);
+      } else {
+        this.updateCartStorage(itemInCart);
       }
     } else {
-      this.addToCart(this.toCartItem(product, selectedUnit, quantity));
+      this.updateCartStorage(this.toCartItem(product, selectedUnit, quantity, price));
     }
   }
 
-  //FIXME - Handle the remove
   removeItemInCart(itemInCart: CartItem) {
-    const cartItems = this.storageService.getUserCartItems();
-    for (let i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].code == itemInCart.code) {
-        cartItems.splice(i, 1);
-        break;
-      }
-    }
-  }
-
-  addToCart(cartItem: CartItem) {
     const userCart = this.storageService.getUserCartItems();
-    userCart.push(cartItem);
+    const itemIndex = userCart.findIndex(
+      (strCartItem) => strCartItem.code === itemInCart.code && strCartItem.unit === itemInCart.unit
+    );
+    if (itemIndex > -1) {
+      userCart.splice(itemIndex, 1);
+    }
     this.storageService.updateUserCart(userCart);
   }
 
-  toCartItem(product: Product, selectedUnit: number, quantity: number): CartItem {
+  updateCartStorage(cartItem: CartItem) {
+    const userCart = this.storageService.getUserCartItems();
+    //Replace the existing item or push new entry
+    //FIXME - Have to handle the remove condition
+    const itemIndex = userCart.findIndex(
+      (strCartItem) => strCartItem.code === cartItem.code && strCartItem.unit === cartItem.unit
+    );
+    if (itemIndex > -1) {
+      userCart[itemIndex] = cartItem;
+    } else {
+      userCart.push(cartItem);
+    }
+    this.storageService.updateUserCart(userCart);
+  }
+
+  toCartItem(product: Product, selectedUnit: number, quantity: number, price: number): CartItem {
     const cartItem = new CartItem(
       product.code,
       selectedUnit,
       quantity,
       product.title,
       product.submetric,
+      price,
       false,
       product.userId,
       product.key,
@@ -78,4 +92,5 @@ export class CartService {
   getCart(): CartItem[] {
     return this.storageService.getUserCartItems();
   }
+
 }

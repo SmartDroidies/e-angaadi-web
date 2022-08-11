@@ -10,8 +10,8 @@ import { SignInComponent } from 'src/app/auth/pages/sign-in/sign-in.component';
 describe('UserComponent', () => {
   let component: UserComponent;
   let fixture: ComponentFixture<UserComponent>;
-  let routerSpy = {navigate: jasmine.createSpy('navigate')};
-  let windowSpy = {window: jasmine.createSpy('window')};
+  const routerSpy = {navigate: jasmine.createSpy('navigate')};
+  const windowSpy = {window: jasmine.createSpy('window')};
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

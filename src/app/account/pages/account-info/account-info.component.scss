@@ -1,25 +1,38 @@
 @import 'src/styles/abstracts/_variables.scss';
 
-.sidenav-container {
+li {
+  list-style: none;
+}
+
+.side-nav-container{
   position: absolute;
   width: 100%;
-  top: 7rem;
-  bottom: 5rem;
-  left: 1rem;
+  top: 6rem;
+  bottom: 1rem;
+  right:1rem;
+}
+
+.menu-container {
+  width: 15rem;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 1rem 0;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: rgb(161, 153, 153);
+}
+
+.menu-contents li{
+  display: flex;
+  justify-content: center;
+  margin:1rem 0 1rem 0;
   cursor: pointer;
 }
 
-.nav-link {
-  display: flex;
-  font-size: $font-size-base;
-  margin: $margin-rem-50;
-}
 
 .nav-link:hover {
   color: $hover-color;
-}
-
-.header {
-  font-weight: bold;
-  display: flex;
 }

@@ -15,7 +15,7 @@
 }
 
 .footer {
-    @include box-footer-sign-in;
+    @include box-footer-sign-up;
 }
 
 .button {
@@ -35,20 +35,14 @@
     @include box-header-title;
 }
 
-.highlight-signup {
-    color: $link-color;
-    cursor: pointer;
-}
-
-.highlight-signup:hover {
-    color: $hover-color;
+.Highlight-signup {
+    color: orange;
     cursor: pointer;
 }
 
 .alert {
     @include alert-form-field;
 }
-
 .error-alert{
     @include error-alert-form-field;
 }

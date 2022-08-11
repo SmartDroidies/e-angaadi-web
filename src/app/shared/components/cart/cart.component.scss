@@ -33,3 +33,16 @@
   flex-direction: column;
   margin-top: $margin-rem-50;
 }
+
+.price {
+  font-weight: bold;
+  @include flex-content-left
+}
+
+.product-image {
+  @include thumbnail-img;
+}
+
+mat-list {
+  overflow: auto;
+}

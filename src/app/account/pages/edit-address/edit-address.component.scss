@@ -1,0 +1,57 @@
+@import 'src/styles/abstracts/_variables.scss';
+@import 'src/styles/abstracts/_mixins.scss';
+
+li {
+    list-style: none;
+}
+
+.container {
+    margin: 2rem;
+}
+
+.mat-divider {
+    width: 100%;
+}
+
+.header {
+    margin: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.title {
+    font-size: $font-size-base;
+    font-weight: 500;
+    margin: 1rem 0 1rem 0;
+}
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button li {
+    margin: 1rem;
+}
+
+.alert {
+    @include alert-form-field;
+}
+
+.form-center {
+    display: flex;
+    justify-content: center;
+}
+
+.form-column {
+    display: flex;
+    justify-content: column;
+}
+
+.error-alert {
+    @include error-alert-form-field;
+}
+
+::ng-deep .mat-form-field {
+    @include box-mat-form-field;
+}

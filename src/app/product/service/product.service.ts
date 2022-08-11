@@ -28,10 +28,10 @@ export class ProductService {
     return this.http.get<Product>(environment.productBaseUrl + '/item', { params: params });
   }
 
-  searchProduct(search: string): Observable<any> {
+  searchProduct(search: string): Observable<Product[]> {
     let params = new HttpParams();
     params = params.append('search', search);
-    return this.http.get<Product>(environment.productBaseUrl + '/search', { params: params });
+    return this.http.get<Product[]>(environment.productBaseUrl + '/search', { params: params });
   }
 
   getProductImages(): Observable<ProductImage[]> {

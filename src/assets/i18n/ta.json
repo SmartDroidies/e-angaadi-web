@@ -2,6 +2,16 @@
     "HOME": {
         "TITLE": "E-அங்காடி"
     },
+    "grain": {
+        "brown_rice": "பிரவுன் அரிசி",
+        "basmathi_rice": "பாஸ்மதி அரிசி",
+        "boiled_rice": "புழுங்கல் அரிசி",
+        "idly_rice": "இட்லி அரிசி",
+        "red_rice": "சிகப்பரிசி",
+        "raw_rice": "பச்சரிசி",
+        "ragi": "ராகி",
+        "wheat": "கோதுமை"
+    },
     "pulse": {
         "horse_gram": "கொள்ளு",
         "toor_dhal": "துவரம் பருப்பு",
@@ -15,10 +25,9 @@
         "greengram_dhal": "பச்சை பயறு",
         "kidney_dhal": "சிவப்பு காராமணி",
         "masoor_dhal": "மசூர் பருப்பு",
-        "black_urud_dhal": "கருப்பு உளுத்தம் பருப்பு"
-    },
-    "grain": {
-        "brown_rice": "பழுப்பு அரிசி",
-        "basmathi_rice": "பாசுமதி அரிசி"
+        "black_urud_dhal": "கருப்பு உளுத்தம் பருப்பு",
+        "kidney_dhal": "சிவப்பு காராமணி",
+        "masoor_dhal": "மைசூர் பருப்பு"
+
     }
-} 
+}

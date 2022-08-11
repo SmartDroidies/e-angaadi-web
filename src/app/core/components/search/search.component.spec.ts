@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SearchComponent } from './search.component';
 
 describe('SearchComponent', () => {
-  let component: SearchComponent;
+  // let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
 
   beforeEach(async () => {
@@ -17,7 +17,7 @@ describe('SearchComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchComponent);
-    component = fixture.componentInstance;
+    // component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
