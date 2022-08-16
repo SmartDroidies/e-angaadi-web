@@ -100,9 +100,9 @@ export class CartDetailComponent implements OnInit {
 
   // }
 
-  // emptyCart() {
-  //   return
-  // }
+  emptyCart() {
+    this.cartService.deleteCart();
+  }
 
   getTotal() {
     let total = 0;

@@ -92,5 +92,8 @@ export class CartService {
   getCart(): CartItem[] {
     return this.storageService.getUserCartItems();
   }
-
+  
+  deleteCart():any{
+    return this.storageService.deleteUserCart();
+  }
 }

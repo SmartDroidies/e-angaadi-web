@@ -24,5 +24,9 @@ export class StorageService {
     localStorage.setItem(this.C_USER_CART, JSON.stringify(userCart));
     this.cartBadgeService.reload();
   } 
-  
+
+  deleteUserCart(){
+    localStorage.removeItem(this.C_USER_CART);
+    this.cartBadgeService.reload();
+  }
 }
