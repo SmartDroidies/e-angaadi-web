@@ -38,9 +38,9 @@ export class ProfileComponent implements OnInit {
   async initUser() {
 
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-        this.EditForm.patchValue({ firstname: user.attributes.name });
-        this.EditForm.patchValue({ email: user.attributes.email });
-        this.EditForm.patchValue({ phonenumber: user.attributes.phone_number });
+      this.EditForm.patchValue({ firstname: user.attributes.name });
+      this.EditForm.patchValue({ email: user.attributes.email });
+      this.EditForm.patchValue({ phonenumber: user.attributes.phone_number });
     });
   }
 
@@ -55,13 +55,11 @@ export class ProfileComponent implements OnInit {
     }
 
     try {
-      (await this.cognitoService.updateUserAttributes(this.user)).toPromise()
-        .then(() => {
-          this.loading = false;
-          this.toastr.success('Successfully saved', 'Success', {
-            positionClass: 'toast-bottom-center',
-          });
-        })
+      (await this.cognitoService.updateUserAttributes(this.user))
+      this.loading = false;
+      this.toastr.success('Successfully saved', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
     } catch (e) {
       this.editError = e;
       this.toastr.error('Error while Edit', 'Error', {
