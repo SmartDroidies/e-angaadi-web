@@ -31,13 +31,10 @@ export class StorageService {
   updateUserCart(userCart: CartItem[]) {
     localStorage.setItem(this.C_USER_CART, JSON.stringify(userCart));
     this.cartBadgeService.reload();
-<<<<<<< HEAD
   } 
 
   deleteUserCart(){
     localStorage.removeItem(this.C_USER_CART);
     this.cartBadgeService.reload();
-=======
->>>>>>> save-later
   }
 }

@@ -105,14 +105,13 @@ export class CartService {
   getCart(): CartItem[] {
     return this.storageService.getUserCartItems();
   }
-<<<<<<< HEAD
+
   
   deleteCart():any{
     return this.storageService.deleteUserCart();
-=======
+  }
 
   getUserSavedItems(): CartItem[] {
     return this.storageService.getUserSavedItems();
->>>>>>> save-later
   }
 }
