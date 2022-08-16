@@ -1,12 +1,8 @@
 @import 'src/styles/abstracts/_variables.scss';
 @import 'src/styles/abstracts/_mixins.scss';
 
-li {
-    list-style: none;
-}
-
 .container {
-    margin: 2rem;
+    margin: $margin-rem-200;
 }
 
 .mat-divider {
@@ -14,44 +10,40 @@ li {
 }
 
 .header {
-    margin: 1rem;
-    font-size: 1.5rem;
-    font-weight: bold;
+    @include account-info-header;
 }
 
 .title {
-    font-size: $font-size-base;
-    font-weight: 500;
-    margin: 1rem 0 1rem 0;
+    @include account-info-title;
 }
 
-.button {
+::ng-deep .mat-form-field {
+    width: $margin-rem-2000;
+    margin: $margin-rem-100 0 $margin-rem-100 0;
+}
+
+::ng-deep textarea {
+    height: $height-rem-300;
+}
+
+.form-row {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-.button li {
-    margin: 1rem;
+.flex-end-button {
+    @include flex-content-end;
+}
+
+.action-button {
+    margin: $margin-rem-100;
 }
 
 .alert {
     @include alert-form-field;
 }
 
-.form-center {
-    display: flex;
-    justify-content: center;
-}
-
-.form-column {
-    display: flex;
-    justify-content: column;
-}
-
 .error-alert {
     @include error-alert-form-field;
-}
-
-::ng-deep .mat-form-field {
-    @include box-mat-form-field;
 }

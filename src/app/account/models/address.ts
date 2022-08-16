@@ -1,5 +1,5 @@
 export class Address {
-    userid!:string;
+    userId!: string;
     fullname!: string;
     phonenumber!: number;
     address!: string;
@@ -8,4 +8,6 @@ export class Address {
     city!: string;
     state!: string;
     pincode!: number;
+    id!: any;
+    default!:boolean;
 }

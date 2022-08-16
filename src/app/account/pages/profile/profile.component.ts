@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Auth } from 'aws-amplify';
 import { ToastrService } from 'ngx-toastr';
+import { from } from 'rxjs';
 import { CognitoUser } from 'src/app/auth/models/cognito-user';
 import { CognitoService } from 'src/app/auth/services/cognito.service';
 
@@ -34,10 +36,12 @@ export class ProfileComponent implements OnInit {
   }
 
   async initUser() {
-    const currentUser = await this.cognitoService.currentAuthenticatedUser()
-    this.EditForm.patchValue({ firstname: currentUser.attributes.name });
-    this.EditForm.patchValue({ email: currentUser.attributes.email });
-    this.EditForm.patchValue({ phonenumber: currentUser.attributes.phone_number });
+
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      this.EditForm.patchValue({ firstname: user.attributes.name });
+      this.EditForm.patchValue({ email: user.attributes.email });
+      this.EditForm.patchValue({ phonenumber: user.attributes.phone_number });
+    });
   }
 
   public async editUserData(): Promise<void> {
@@ -51,13 +55,11 @@ export class ProfileComponent implements OnInit {
     }
 
     try {
-      (await this.cognitoService.updateUserAttributes(this.user)).toPromise()
-        .then(() => {
-          this.loading = false;
-          this.toastr.success('Successfully saved', 'Success', {
-            positionClass: 'toast-bottom-center',
-          });
-        })
+      (await this.cognitoService.updateUserAttributes(this.user))
+      this.loading = false;
+      this.toastr.success('Successfully saved', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
     } catch (e) {
       this.editError = e;
       this.toastr.error('Error while Edit', 'Error', {

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Auth } from 'aws-amplify';
 import { ToastrService } from 'ngx-toastr';
-import { CognitoService } from 'src/app/auth/services/cognito.service';
+import { from } from 'rxjs';
 import { Address } from '../../models/address';
 import { UserdataService } from '../../service/userdata.service';
 
@@ -12,19 +13,18 @@ import { UserdataService } from '../../service/userdata.service';
   styleUrls: ['./edit-address.component.scss']
 })
 export class EditAddressComponent implements OnInit {
-
   addressForm!: FormGroup;
-  street!: string;
   loading!: boolean;
   editError!: any;
-  userId!: string;
-  addressData!:Address;
+  addressData!: Address;
+  id!: any;
+  saveButton = true;
 
   constructor(private userdataService: UserdataService,
-    private cognitoService: CognitoService,
     private fb: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) {
     this.addressForm = this.fb.group({
       fullname: [
@@ -38,7 +38,7 @@ export class EditAddressComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(10),
+          Validators.maxLength(10),
         ],
       ],
       address: [
@@ -77,7 +77,6 @@ export class EditAddressComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initUser();
     this.editAddress();
   }
 
@@ -85,15 +84,43 @@ export class EditAddressComponent implements OnInit {
     return this.addressForm.controls;
   }
 
-  async initUser() {
-    const currentUser = await this.cognitoService.currentAuthenticatedUser()
-    this.userId = currentUser.attributes.name;
-  }
 
   editAddress() {
-    this.userdataService.getAddress(this.userId).subscribe((address: Address[]) => {
-        return this.addressForm.patchValue(address);
+    this.activatedRoute.paramMap.subscribe((params) => {
+      if (params.get('id')) {
+        this.id = params.get('id');
+        this.saveButton = false;
+        this.getIdAddress();
+      }
     });
+  }
+
+  getIdAddress() {
+    this.userdataService.getIdAddress(this.id).subscribe((address) => { this.addressForm.patchValue(address); });
+  }
+
+  onUpdate() {
+    this.loading = true;
+    if (this.addressForm.invalid) {
+      return;
+    }
+    this.addressData = this.addressForm.value;
+    this.addressData.id = this.id;
+    this.userdataService.updateAddress(this.addressData).subscribe(
+      () => {
+        this.toastr.success('Address updated successfully', 'Updated', {
+          positionClass: 'toast-bottom-center',
+        });
+        this.router.navigate(['/account/account-info/address']);
+      },
+      (error) => {
+        this.toastr.error('Error while Upadting', 'Error', {
+          positionClass: 'toast-bottom-center',
+        });
+        this.loading = false;
+        this.editError = error;
+      }
+    );
   }
 
   onSave() {
@@ -101,25 +128,37 @@ export class EditAddressComponent implements OnInit {
     if (this.addressForm.invalid) {
       return;
     }
-    try {
-      this.addressData=this.addressForm.value;
-      this.addressData.userid=this.userId;
-      this.userdataService.addAddress(this.addressData).subscribe()
-      this.toastr.success('Product saved successfully', 'Success', {
-        positionClass: 'toast-bottom-center',
+
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      this.addressData = this.addressForm.value;
+      this.userdataService.getAddress(user.attributes.name).subscribe((address: Address[]) => {
+        if (address.length > 0) {
+          this.addressData.default = false;
+        } else {
+          this.addressData.default = false;
+        }
       });
-      return this.router.navigate(['/home/account-info']);
-    } catch (e) {
-      this.editError = e;
-      this.toastr.error('Error while saving', 'Error', {
-        positionClass: 'toast-bottom-center',
-      });
-      this.loading = false;
-    }
-    return false;
+      this.addressData.userId = user.attributes.name;
+      this.userdataService.saveAddress(this.addressData).subscribe(
+        () => {
+          this.toastr.success('Address saved successfully', 'Saved', {
+            positionClass: 'toast-bottom-center',
+          });
+          this.router.navigate(['/account/account-info/address']);
+        },
+        (error) => {
+          this.toastr.error('Error while Saving', 'Error', {
+            positionClass: 'toast-bottom-center',
+          });
+          this.loading = false;
+          this.editError = error;
+        }
+      );
+    });
   }
 
   async address() {
     await this.router.navigate(['/account/account-info/address']);
   }
+
 }
