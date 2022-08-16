@@ -104,6 +104,10 @@ export class CartDetailComponent implements OnInit {
     this.cartService.deleteCart();
   }
 
+  onDelete(cartItem:CartItem){
+    this.cartService.removeItemInCart(cartItem);
+  }
+
   getTotal() {
     let total = 0;
 
