@@ -8,9 +8,8 @@ describe('SaveLaterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SaveLaterComponent ]
-    })
-    .compileComponents();
+      declarations: [SaveLaterComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

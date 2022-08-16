@@ -1,21 +1,19 @@
-<div *ngIf="show===false" class="empty-message">"Your Cart Is Empty!"</div>
+<div *ngIf="showCartSection === false" class="empty-message">"Your Cart Is Empty!"</div>
 
-<div *ngIf="show===true" class="cart-view">
+<div *ngIf="showCartSection === true" class="cart-view">
   <h3 class="table-header">Items In Your Cart ({{getTotalQuantity()}})</h3>
   <div class="table-content">
     <table mat-table [dataSource]="items" class="mat-elevation-z8">
-      <ng-container matColumnDef="title" >
+      <ng-container matColumnDef="title">
         <th class="text-heading" mat-header-cell *matHeaderCellDef>Items</th>
         <td mat-cell *matCellDef="let item" class="cell-cart-item">
           <article class="row-image-info">
-            <div *ngIf="item.saved==false">
             <img class="product-image" *ngIf="collectCartImages(item)" src="{{cartImages.url}}">
             <div class="cart-item-info">
               <h4>{{item.key | translate}}</h4>
               <h5>{{item.title}}</h5>
               <p>{{item.unit+item.submetric}} / {{getSubTotal(item)|currency:'INR'}}</p>
             </div>
-          </div>
           </article>
         </td>
         <td mat-footer-cell *matFooterCellDef></td>
@@ -25,8 +23,7 @@
         <th class="text-heading" mat-header-cell *matHeaderCellDef>Quantity</th>
         <td mat-cell *matCellDef="let item" class="cell-quantity">
           <section>
-            <div *ngIf="item.saved==false"> 
-            <div class="quantity-fields" >
+            <div class="quantity-fields">
               <button mat-mini-fab color="primary" (click)=subUnit(item,item.unit,item.price)>
                 <mat-icon>remove</mat-icon>
               </button>
@@ -43,10 +40,9 @@
                 <mat-icon (click)="onSave(item)">save_alt</mat-icon>
               </button>
             </div>
-          </div>
           </section>
         </td>
-        
+
         <td mat-footer-cell *matFooterCellDef> </td>
 
       </ng-container>
@@ -56,16 +52,17 @@
           <div>Sub-Total</div>
         </th>
         <td mat-cell *matCellDef="let item" class="cell-total">
-          <div class="text-center" *ngIf="item.saved==false">{{getSubTotal(item)|currency:'INR'}}</div>
+          <div class="text-center">{{getSubTotal(item)|currency:'INR'}}</div>
         </td>
         <td mat-footer-cell *matFooterCellDef class="footer-cell-total">
-          <section   >
+          <section>
             <h4 class="total-summary">Sub-Total ({{getTotalQuantity()}} items) : {{getTotal() | currency:'INR'}} </h4>
             <div class="cart-action-buttons">
               <button class="cart-action" mat-raised-button color="primary">Empty Cart</button>
-              <button class="cart-action" mat-raised-button color="primary" (click)="onShopping()">Continue Shopping</button>
+              <button class="cart-action" mat-raised-button color="primary" (click)="onShopping()">Continue
+                Shopping</button>
               <button class="cart-action" mat-raised-button color="accent">Checkout</button>
-            </div>       
+            </div>
           </section>
         </td>
       </ng-container>
@@ -75,6 +72,6 @@
       <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
     </table>
   </div>
+</div>
 
 <app-save-later></app-save-later>
-</div>

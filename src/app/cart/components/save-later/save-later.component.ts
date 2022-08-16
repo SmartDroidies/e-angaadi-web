@@ -8,40 +8,36 @@ import { CartService } from 'src/app/shared/service/cart.service';
 @Component({
   selector: 'app-save-later',
   templateUrl: './save-later.component.html',
-  styleUrls: ['./save-later.component.scss']
+  styleUrls: ['./save-later.component.scss'],
 })
 export class SaveLaterComponent implements OnInit {
   items: CartItem[] = [];
   cartImages!: ProductImage;
 
-  constructor(private cartService: CartService,private productImageService: ProductImageService,private cartBadgeService: CartBadgeService) { }
+  constructor(
+    private cartService: CartService,
+    private productImageService: ProductImageService,
+    private cartBadgeService: CartBadgeService
+  ) {}
 
   ngOnInit(): void {
-    this.getCart();
-    this.cartBadgeService.change.subscribe(()=> {
-      this.getCart();
+    this.getSaved();
+    this.cartBadgeService.change.subscribe(() => {
+      this.getSaved();
     });
   }
 
- getCart(){
-
-    this.items = this.cartService.getCart();
-
+  getSaved() {
+    this.items = this.cartService.getUserSavedItems();
   }
 
-  onAdd(cartProduct:CartItem){
-    this.items.forEach((loopItem)=>{
-      if(loopItem.code === cartProduct.code && loopItem.unit === cartProduct.unit ){
-        loopItem.saved=false;
-        // this.items.push(loopItem);
-        window.localStorage.setItem('user_cart', JSON.stringify(this.items))
-      }
-    })
+  onAdd(cartItem: CartItem) {
+    this.cartService.updateCartSaveStatus(cartItem, false);
+    this.getSaved();
   }
 
   collectCartImages(item: CartItem) {
     this.cartImages = this.productImageService.getCartImages(item);
     return this.cartImages;
   }
-
 }

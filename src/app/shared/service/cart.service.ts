@@ -39,6 +39,18 @@ export class CartService {
     }
   }
 
+  updateCartSaveStatus(itemInCart: CartItem, saveStatus: boolean) {
+    itemInCart.saved = saveStatus;
+    this.updateCartStorage(itemInCart);
+    // this.items.forEach((loopItem)=>{
+    //   if(loopItem.code === cartProduct.code && loopItem.unit === cartProduct.unit ){
+    //     loopItem.saved=true;
+    //     // this.items.push(loopItem);
+    //     window.localStorage.setItem('user_cart', JSON.stringify(this.items))
+    //   }
+    // })
+  }
+
   removeItemInCart(itemInCart: CartItem) {
     const userCart = this.storageService.getUserCartItems();
     const itemIndex = userCart.findIndex(
@@ -94,4 +106,7 @@ export class CartService {
     return this.storageService.getUserCartItems();
   }
 
+  getUserSavedItems(): CartItem[] {
+    return this.storageService.getUserSavedItems();
+  }
 }
