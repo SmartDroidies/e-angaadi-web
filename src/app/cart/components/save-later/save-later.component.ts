@@ -36,6 +36,10 @@ export class SaveLaterComponent implements OnInit {
     this.getSaved();
   }
 
+  onRemove(cartItem:CartItem){
+    this.cartService.removeItemInCart(cartItem);
+  }
+
   collectCartImages(item: CartItem) {
     this.cartImages = this.productImageService.getCartImages(item);
     return this.cartImages;
