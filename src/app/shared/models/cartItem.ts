@@ -12,8 +12,9 @@ export class CartItem {
   synced!: boolean;
   key!: string;
   group!: string;
+  saved!:boolean;
 
-  constructor(code: string, selectedUnit: number, quantity: number, title: string, submetric: string, price: number, synced: boolean, userId: string, key: string, group: string) {
+  constructor(code: string, selectedUnit: number, quantity: number, title: string, submetric: string, price: number, synced: boolean, userId: string, key: string, group: string, saved:boolean) {
     this.code = code;
     this.unit = selectedUnit;
     this.quantity = quantity;
@@ -24,5 +25,6 @@ export class CartItem {
     this.key = key;
     this.group = group;
     this.price = price;
+    this.saved = saved;
   }
 }

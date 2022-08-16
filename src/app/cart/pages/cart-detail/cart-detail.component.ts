@@ -18,18 +18,24 @@ import { CartBadgeService } from 'src/app/shared/components/cart/cart-badge.serv
 export class CartDetailComponent implements OnInit {
   @Input() product!: Product;
   items: CartItem[] = [];
-  saved!: string;
-  show!: boolean;
-  signedIn = false;
+  showCartSection!: boolean;
   userId!: string;
   displayedColumns: string[] = ['title', 'quantity', 'total'];
   cartImages!: ProductImage;
   price!: number;
-  constructor(private cartService: CartService, private router: Router,private cartBadgeService: CartBadgeService, private ref: ChangeDetectorRef, private translate: TranslateService, private productImageService: ProductImageService) { }
+  saved!: boolean;
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private cartBadgeService: CartBadgeService,
+    private ref: ChangeDetectorRef,
+    private translate: TranslateService,
+    private productImageService: ProductImageService
+  ) {}
 
   ngOnInit(): void {
     this.getCart();
-    this.cartBadgeService.change.subscribe(()=> {
+    this.cartBadgeService.change.subscribe(() => {
       this.getCart();
     });
     this.showCart();
@@ -38,12 +44,14 @@ export class CartDetailComponent implements OnInit {
 
   getUpdateCart() {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      const userId = user.username;
-      this.cartService.getCartItems(userId).subscribe((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart)));
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+      const userId = user.username as string;
+      this.cartService
+        .getCartItems(userId)
+        .subscribe((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart)));
     });
-    
   }
-  getCart(){
+  getCart() {
     // this.getUpdateCart();
     this.items = this.cartService.getCart();
   }
@@ -68,18 +76,18 @@ export class CartDetailComponent implements OnInit {
 
   showCart() {
     if (this.items.length > 0) {
-      this.show = true;
-    }
-    else {
-      this.show = false;
+      this.showCartSection = true;
+    } else {
+      this.showCartSection = false;
     }
   }
 
-  addUnit(product: Product, selectedUnit: number, price:number) {
+  addUnit(product: Product, selectedUnit: number, price: number) {
     this.cartService.updateCart(product, selectedUnit, +1, price);
     this.getCart();
   }
-  subUnit(product: Product, selectedUnit: number, price:number) {
+
+  subUnit(product: Product, selectedUnit: number, price: number) {
     this.cartService.updateCart(product, selectedUnit, -1, price);
     this.getCart();
   }
@@ -90,15 +98,16 @@ export class CartDetailComponent implements OnInit {
     this.items.forEach((loopItem) => {
       if (loopItem.code === cartItem.code && loopItem.unit === cartItem.unit) {
         //FIXME - The price needs to be pulled from the service
-        subTotal = cartItem.price* cartItem.quantity;
+        subTotal = cartItem.price * cartItem.quantity;
       }
     });
     return subTotal;
   }
 
-  // onSave() {
-
-  // }
+  onSave(cartItem: CartItem) {
+    this.cartService.updateCartSaveStatus(cartItem, true);
+    this.getCart();
+  }
 
   emptyCart() {
     this.cartService.deleteCart();
@@ -117,7 +126,6 @@ export class CartDetailComponent implements OnInit {
     return total;
   }
 
-
   async onShopping() {
     await this.router.navigate(['/home']);
   }
@@ -130,11 +138,8 @@ export class CartDetailComponent implements OnInit {
     return totalQuantity;
   }
 
-
   collectCartImages(item: CartItem) {
     this.cartImages = this.productImageService.getCartImages(item);
     return this.cartImages;
   }
-
- 
 }
