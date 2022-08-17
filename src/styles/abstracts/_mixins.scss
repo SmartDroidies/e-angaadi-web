@@ -17,11 +17,10 @@
 }
 
 @mixin thumbnail-img {
-  width: $width-rem-400 ;
+  width: $width-rem-400;
   height: $height-rem-400;
   margin: $margin-rem-25 $margin-rem-50;
 }
-
 
 @mixin product-listing {
   display: flex;
@@ -86,7 +85,7 @@
 }
 
 @mixin box-footer-sign-in {
-  margin-top: $margin-rem-200 ;
+  margin-top: $margin-rem-200;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -94,14 +93,14 @@
 }
 
 @mixin box-footer-sign-up {
-  margin-top: $margin-rem-200 ;
+  margin-top: $margin-rem-200;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
 
 @mixin box-button {
-  margin: $margin-rem-75 ;
+  margin: $margin-rem-75;
   min-width: $width-rem-600;
   font-weight: $font-weight-bold;
   cursor: pointer;
@@ -135,7 +134,7 @@
 
 @mixin account-info-header {
   margin: $margin-rem-100;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
