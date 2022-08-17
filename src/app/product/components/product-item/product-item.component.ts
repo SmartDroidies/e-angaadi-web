@@ -20,6 +20,7 @@ export class ProductItemComponent implements OnInit {
   price!: number;
   signedIn = false;
   productImages!: any;
+  saveList = false;
 
   constructor(
     private cartService: CartService,
@@ -108,5 +109,9 @@ export class ProductItemComponent implements OnInit {
 
   selectedProductUnitQuantity() {
     return this.cartProductItem ? this.cartProductItem.quantity : 0;
+  }
+
+  toggleSaveList() {
+    this.saveList = !this.saveList;
   }
 }
