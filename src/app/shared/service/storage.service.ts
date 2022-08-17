@@ -10,6 +10,14 @@ export class StorageService {
 
   C_USER_CART = 'user_cart';
 
+  getUserItems():CartItem[]{
+    const cartItems = localStorage.getItem(this.C_USER_CART);
+    if (cartItems) {
+      return (JSON.parse(cartItems) as CartItem[]);
+    } else {
+      return [];
+    }}
+
   getUserCartItems(): CartItem[] {
     const cartItems = localStorage.getItem(this.C_USER_CART);
     if (cartItems) {
