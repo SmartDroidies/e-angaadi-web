@@ -63,7 +63,7 @@ export class CartService {
   }
 
   updateCartStorage(cartItem: CartItem) {
-    const userCart = this.storageService.getUserCartItems();
+    const userCart = this.storageService.getUserItems();
     //Replace the existing item or push new entry
     //FIXME - Have to handle the remove condition
     const itemIndex = userCart.findIndex(
