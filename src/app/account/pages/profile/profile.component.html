@@ -1,40 +1,40 @@
 <div class="container">
     <div class="header">Personal information</div>
-    <mat-divider class="mat-divider"></mat-divider>
+    <!-- <mat-divider class="mat-divider"></mat-divider> -->
     <form [formGroup]="EditForm">
-        <div class="label">Firstname*</div>
+        <div class="label">First Name *</div>
         <mat-form-field>
             <input matInput type="text" name="firstname" formControlName="firstname" />
             <div *ngIf="f.firstname.invalid && (f.firstname.dirty || f.firstname.touched)" class="alert">
                 <div *ngIf="f.firstname.errors?.required">
-                    firstname is required.
+                    First Name is required
                 </div>
                 <div *ngIf="f.firstname.errors?.minlength">
-                    firstname must be atleast 4 characters.
+                    First Name must have atleast 4 characters
                 </div>
             </div>
         </mat-form-field>
-        <div class="label">Email*</div>
+        <div class="label">E-Mail *</div>
         <mat-form-field>
             <input matInput type="email" name="email" formControlName="email" />
             <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="alert">
                 <div *ngIf="f.email.errors?.required">
-                    email is required.
+                    E-Mail is required.
                 </div>
                 <div *ngIf="f.email.errors?.minlength">
-                    email must be atleast 4 characters.
+                    E-Mail must be atleast 4 characters.
                 </div>
             </div>
         </mat-form-field>
-        <div class="label">Phonenumber*</div>
+        <div class="label">Phone Number *</div>
         <mat-form-field>
             <input matInput type="tel" name="phonenumber" formControlName="phonenumber" />
             <div *ngIf="f.phonenumber.invalid && (f.phonenumber.dirty || f.phonenumber.touched)" class="alert">
                 <div *ngIf="f.phonenumber.errors?.required">
-                    phonenumber is required.
+                    Phone Number is required
                 </div>
                 <div *ngIf="f.phonenumber.errors?.minlength">
-                    phonenumber must be atleast 4 characters.
+                    Phone Number must be atleast 4 characters
                 </div>
             </div>
         </mat-form-field>

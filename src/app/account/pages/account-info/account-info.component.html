@@ -1,18 +1,19 @@
-<mat-sidenav-container  class="side-nav-container">
+<mat-sidenav-container class="side-nav-container">
     <mat-sidenav mode="side" opened>
-        <ul class="menu-container">
-            <li class="menu-header">Orders</li>
+        <div class="menu-container">
+            <h3 class="menu-header">Orders</h3>
             <ul class="menu-contents">
                 <li class="nav-link">History</li>
-                <li class="nav-link">Favourite-List</li>
+                <li class="nav-link">Favorite List</li>
             </ul>
-            <li class="menu-header">Account-info</li>
+            <mat-divider> </mat-divider>
+            <h3 class="menu-header">Account Info</h3>
             <ul class="menu-contents">
                 <li class="nav-link" (click)="personalInformation()">Personal Information</li>
                 <li class="nav-link">Payment Information</li>
                 <li class="nav-link" (click)="address()">Address</li>
             </ul>
-        </ul>
+        </div>
     </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet></router-outlet>
