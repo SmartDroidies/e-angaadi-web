@@ -36,12 +36,8 @@ export class ProductItemComponent implements OnInit {
     if (this.selectedUnit) {
       this.loadProductUnitFromCart(this.selectedUnit);
     }
-    this.loadSavedFProductFromCart(this.saveList);
   }
 
-  loadSavedFProductFromCart(saveList: boolean) {
-    this.cartProductItem = this.cartProductItems.find((item) => item.saved === saveList);
-  }
 
   selectChip(item: MatChip, unit: number, price: number) {
     item.selected = !item.selected;
