@@ -111,7 +111,17 @@ export class ProductItemComponent implements OnInit {
     return this.cartProductItem ? this.cartProductItem.quantity : 0;
   }
 
-  toggleSaveList() {
-    this.saveList = !this.saveList;
+  SaveToList(product: Product) {
+    this.saveList = true;
+    const saveProduct=this.cartService.toCartItem(product, this.selectedUnit,0, this.price)
+    this.cartService.updateCartSaveStatus(saveProduct, true);
+    this.loadProductsFromCart();
+  }
+
+  removeFromList(product: Product) {
+    this.saveList = false;
+    const removeProduct=this.cartService.toCartItem(product, this.selectedUnit, 0, this.price)
+    this.cartService.updateCartSaveStatus(removeProduct, false);
+    this.loadProductsFromCart();
   }
 }
