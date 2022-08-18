@@ -15,7 +15,7 @@
 
 ::ng-deep .mat-form-field {
   width: $width-rem-1600;
-  height:$height-rem-400;
+  height: $height-rem-400;
   margin: 0 0 $margin-rem-50 0;
 }
 
@@ -35,6 +35,20 @@
   @include box-title-label;
 }
 
-form{
+form {
+  margin: $margin-rem-100;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.flex-end-button {
+  @include flex-content-end;
+}
+
+.action-button {
   margin: $margin-rem-100;
 }
