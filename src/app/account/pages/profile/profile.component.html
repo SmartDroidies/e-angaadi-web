@@ -8,6 +8,7 @@
                 <input matInput type="text" name="firstname" formControlName="firstname" />
             </mat-form-field>
             <div>
+
                 <mat-form-field>
                     <div class="label">E-Mail *</div>
                     <input matInput type="email" name="email" formControlName="email" />
@@ -20,24 +21,58 @@
                         </div>
                     </div>
                 </mat-form-field>
-                <mat-icon class="verification">
-                    dangerous
-                </mat-icon>
+                <mat-accordion>
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                            <button mat-icon-button color="warn" class="verification">
+                                <mat-icon title=" Not Verified">
+                                    dangerous
+                                </mat-icon>
+                            </button>
+                        </mat-expansion-panel-header>
+                        <p>This is the primary content of the panel.</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+                <!-- <button mat-icon-button color="primary" class="verification">
+                    <mat-icon title="Verified">
+                        verified
+                    </mat-icon>
+                </button> -->
             </div>
         </div>
         <div class="form-row">
-            <mat-form-field>
-                <div class="label">Phone Number *</div>
-                <input matInput type="tel" name="phonenumber" formControlName="phonenumber" />
-                <div *ngIf="f.phonenumber.invalid && (f.phonenumber.dirty || f.phonenumber.touched)" class="alert">
-                    <div *ngIf="f.phonenumber.errors?.required">
-                        Phone Number is required
+            <div>
+                <mat-form-field>
+                    <div class="label">Phone Number *</div>
+                    <input matInput type="tel" name="phonenumber" formControlName="phonenumber" />
+                    <div *ngIf="f.phonenumber.invalid && (f.phonenumber.dirty || f.phonenumber.touched)" class="alert">
+                        <div *ngIf="f.phonenumber.errors?.required">
+                            Phone Number is required
+                        </div>
+                        <div *ngIf="f.phonenumber.errors?.minlength">
+                            Phone Number must be atleast 4 characters
+                        </div>
                     </div>
-                    <div *ngIf="f.phonenumber.errors?.minlength">
-                        Phone Number must be atleast 4 characters
-                    </div>
-                </div>
-            </mat-form-field>
+                </mat-form-field>
+                <mat-accordion>
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                            <button mat-icon-button color="warn" class="verification">
+                                <mat-icon title="Not Verified">
+                                    dangerous
+                                </mat-icon>
+                            </button>
+                        </mat-expansion-panel-header>
+                        <p>This is the primary content of the panel.</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <!-- <button mat-icon-button color="primary" class="verification">
+                                <mat-icon title="Verified">
+                                    verified
+                                </mat-icon>
+                            </button> -->
+            </div>
         </div>
         <div class="error-alert">{{editError}}</div>
         <div class="flex-end-button">
