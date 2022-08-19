@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
       firstname: new FormControl({value: '', disabled: true}),
       email: new FormControl('', [Validators.required, Validators.minLength(4)]),
       phonenumber: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      code: new FormControl(''),
     });
   }
 
@@ -63,6 +64,74 @@ export class ProfileComponent implements OnInit {
     } catch (e) {
       this.editError = e;
       this.toastr.error('Error while Edit', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
+    }
+  }
+
+  public async VerifyEmail(): Promise<void> {
+    this.loading = true;
+    this.user.email = this.EditForm.value.email;
+
+    if (this.EditForm.invalid) {
+      return;
+    }
+
+    try {
+      (await this.cognitoService.verifyUserAttribute(this.user))
+      this.loading = false;
+      this.toastr.success('Successfully Code Sent to mail', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
+    } catch (e) {
+      this.editError = e;
+      this.toastr.error('Error while Sending code', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
+    }
+  }
+
+  public async VerifyNumber(): Promise<void> {
+    this.loading = true;
+    this.user.phone_number = this.EditForm.value.phone_number;
+
+    if (this.EditForm.invalid) {
+      return;
+    }
+
+    try {
+      (await this.cognitoService.verifyUserAttribute(this.user))
+      this.loading = false;
+      this.toastr.success('Successfully Code Sent to mobile number', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
+    } catch (e) {
+      this.editError = e;
+      this.toastr.error('Error while Sending code to mobile number', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
+    }
+  }
+
+  public async SubmitCode(): Promise<void> {
+    this.loading = true;
+    this.user.email = this.EditForm.value.email;
+    this.user.phone_number = this.EditForm.value.phone_number;
+
+
+    if (this.EditForm.invalid) {
+      return;
+    }
+
+    try {
+      (await this.cognitoService.verifyUserAttributeSubmit(this.user))
+      this.loading = false;
+      this.toastr.success('Successfully saved', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
+    } catch (e) {
+      this.editError = e;
+      this.toastr.error('Error while Saving', 'Error', {
         positionClass: 'toast-bottom-center',
       });
     }
