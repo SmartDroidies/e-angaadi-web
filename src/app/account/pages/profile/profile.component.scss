@@ -2,13 +2,11 @@
 @import 'src/styles/abstracts/_mixins.scss';
 
 .container {
-  margin: 2rem;
+  margin: $margin-rem-200;
 }
 
 .header {
-  margin: 1rem;
-  font-size: 1.5rem;
-  font-weight: bold;
+  @include account-info-header;
 }
 
 .mat-divider {
@@ -38,5 +36,5 @@
 }
 
 form{
-  margin: 1rem;
+  margin: $margin-rem-100;
 }

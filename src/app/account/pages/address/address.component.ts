@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CognitoService } from 'src/app/auth/services/cognito.service';
+import { Auth } from 'aws-amplify';
+import { ToastrService } from 'ngx-toastr';
+import { from } from 'rxjs';
 import { Address } from '../../models/address';
+import { setDefault } from '../../models/setdefault';
 import { UserdataService } from '../../service/userdata.service';
 
 @Component({
@@ -11,30 +14,72 @@ import { UserdataService } from '../../service/userdata.service';
 })
 export class AddressComponent {
   userId!: string;
-  addressDatas!:Address[];
+  addressDatas!: Address[];
+  editError!: any;
+  loading!: boolean;
+  sendDefault: setDefault = new setDefault;
 
-  constructor(private cognitoService: CognitoService,private router: Router,private userdataService: UserdataService) {}
+  constructor(private router: Router, private userdataService: UserdataService, private toastr: ToastrService) { }
 
- 
+
   ngOnInit(): void {
-    this.initUser();
     this.getAddress();
   }
 
-  async initUser() {
-    const currentUser = await this.cognitoService.currentAuthenticatedUser()
-    this.userId = currentUser.attributes.name;
+  async editAddress(id: string) {
+    await this.router.navigate(['/account/account-info/modify', id]);
   }
-  
-  async editAddress(){
-   await this.router.navigate(['/account/account-info/edit-address']);
+
+  async newAddress() {
+    await this.router.navigate(['/account/account-info/edit-address']);
   }
 
   getAddress() {
-    this.userdataService.getAddress(this.userId).subscribe((address: Address[]) => {
-        return this.addressDatas=address;
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      this.userdataService.getAddress(user.attributes.name).subscribe((address: Address[]) => {
+        return this.addressDatas = address;
+      });
     });
   }
+
+  onDelete(id: string) {
+    this.userdataService.deleteAddress(id).subscribe(
+      () => {
+        this.toastr.success('Deleted successfully', 'Deleted', {
+          positionClass: 'toast-bottom-center',
+        });
+        this.getAddress();
+      },
+      (error) => {
+        this.toastr.error('Error while Deleting', 'Error', {
+          positionClass: 'toast-bottom-center',
+        });
+        this.loading = false;
+        this.editError = error;
+      }
+    );
+  }
+
+  setDefault(id: any, userId: string) {
+    this.sendDefault.userId = userId;
+    this.sendDefault.id = id;
+    this.userdataService.updateDefaultAddress(this.sendDefault).subscribe(
+      () => {
+        this.toastr.success('Successfully done', 'Default', {
+          positionClass: 'toast-bottom-center',
+        });
+        this.getAddress();
+      },
+      (error) => {
+        this.toastr.error('Error while Default', 'Error', {
+          positionClass: 'toast-bottom-center',
+        });
+        this.loading = false;
+        this.editError = error;
+      }
+    );
+  }
+
 
 }
 
