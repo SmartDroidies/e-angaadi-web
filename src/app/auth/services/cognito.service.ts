@@ -64,23 +64,23 @@ export class CognitoService {
 
   public async verifyUserAttribute(user: CognitoUser): Promise<any> {
     const currentuser = await Auth.currentAuthenticatedUser();
-    if(user.email){
-    return Auth.verifyUserAttribute(currentuser, user.email);
+    if (user.email) {
+      return Auth.verifyUserAttribute(currentuser, user.email);
     }
-    else{
-    let  number = user.phone_number.toString();
-    return Auth.verifyUserAttribute(currentuser, number);
+    else {
+      let number = user.phone_number.toString();
+      return Auth.verifyUserAttribute(currentuser, number);
     }
   }
 
   public async verifyUserAttributeSubmit(user: CognitoUser): Promise<any> {
     const currentuser = await Auth.currentAuthenticatedUser();
-    if(user.email){
-    return Auth.verifyUserAttributeSubmit(currentuser, user.email,user.code);
+    if (user.email) {
+      return Auth.verifyUserAttributeSubmit(currentuser, user.email, user.code);
     }
-    else{
-      let  number = user.phone_number.toString();
-    return Auth.verifyUserAttributeSubmit(currentuser,number ,user.code);
+    else {
+      let number = user.phone_number.toString();
+      return Auth.verifyUserAttributeSubmit(currentuser, number, user.code);
     }
   }
 
