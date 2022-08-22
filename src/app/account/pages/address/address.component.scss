@@ -36,9 +36,3 @@ li {
 .default{
   font-size: $font-size-75;
 }
-
-::ng-deep .mat-form-field  {
-  width: $width-rem-1600;
-  height: $height-rem-400;
-  margin: 0 0 $margin-rem-50 0;
-}
