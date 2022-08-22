@@ -1,7 +1,3 @@
-<div *ngIf="showSaveSection === false" class="empty-message"></div>
-
-<div *ngIf="showSaveSection === true" >
-
 <div class="card-heading">Saved For Later</div>
 <div class="list-products">
   <mat-card *ngFor="let item of items">
@@ -15,5 +11,4 @@
       <button mat-raised-button class="remove-cart-button" color="primary" (click)="onRemove(item)">Remove</button>
     </mat-card-actions>
   </mat-card>
-</div>
 </div>

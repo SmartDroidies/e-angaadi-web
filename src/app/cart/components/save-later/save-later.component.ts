@@ -29,18 +29,11 @@ export class SaveLaterComponent implements OnInit {
     this.cartBadgeService.change.subscribe(() => {
       this.getSaved();
     });
-    this.showSave();
+    
   }
 
   getSaved() {
     this.items = this.cartService.getUserSavedItems();
-  }
-  showSave() {
-    if (this.items.length > 0) {
-      this.showSaveSection = true;
-    } else {
-      this.showSaveSection = false;
-    }
   }
   onAdd(cartItem: CartItem) {
     this.cartService.updateCartSaveStatus(cartItem, false);

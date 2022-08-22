@@ -35,6 +35,11 @@
   justify-content: center;
 }
 
+@mixin flex-left {
+  display: flex;
+  justify-content: left;
+}
+
 @mixin flex-evenly {
   display: flex;
   justify-content: space-evenly;

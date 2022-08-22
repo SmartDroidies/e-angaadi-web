@@ -8,8 +8,8 @@
 }
 
 .list-products {
-  @include flex-center;
-  @include product-listing;
+  margin-left:$margin-rem-300  ;
+  @include flex-left;
 }
 
 mat-card-title {
@@ -30,7 +30,7 @@ mat-card-actions {
 }
 
 .add-cart-button {
-  flex-basis: 70%;
+  flex-basis: 30%;
 }
 
 .remove-cart-button {
