@@ -4,7 +4,7 @@
     <form [formGroup]="EditForm">
         <mat-form-field class="form-field">
             <div class="label">User Name *</div>
-            <input matInput [disabled]="true" type="text" name="firstname" formControlName="firstname" />
+            <input matInput type="text" name="firstname" formControlName="username" />
         </mat-form-field>
         <mat-form-field class="form-field">
             <div class="label">First Name *</div>
@@ -23,72 +23,41 @@
                     </div>
                 </div>
             </mat-form-field>
-            <button mat-icon-button color="primary" class="verification">
+            <button mat-icon-button color="primary" *ngIf="userAttributes.email_verified" class="verification">
                 <mat-icon title="Verified">
                     verified
                 </mat-icon>
             </button>
+            <button mat-icon-button color="warn" *ngIf="!userAttributes.email_verified" class="verification">
+                <mat-icon title=" Not Verified">
+                    dangerous
+                </mat-icon>
+            </button>
         </div>
-        <!-- <mat-accordion>
-                <mat-expansion-panel hideToggle>
-                    <mat-expansion-panel-header>
-                        <button mat-icon-button color="warn" class="verification">
-                            <mat-icon title=" Not Verified">
-                                dangerous
-                            </mat-icon>
-                        </button>
-                    </mat-expansion-panel-header>
-                    <button mat-raised-button color="primary" (click)="VerifyEmail()">
-                        SendCode
-                    </button>
-                    <mat-form-field>
-                        <div class="label">Enter Code</div>
-                        <input matInput type="number" name="code" formControlName="code" />
-                    </mat-form-field>
-                    <button mat-raised-button color="primary" (click)="SubmitCode()">
-                        Submit
-                    </button>
-                </mat-expansion-panel>
-            </mat-accordion> -->
-
-        <mat-form-field class="form-field">
-            <div class="label">Phone Number *</div>
-            <input matInput type="tel" name="phonenumber" formControlName="phonenumber" />
-            <div *ngIf="f.phonenumber.invalid && (f.phonenumber.dirty || f.phonenumber.touched)" class="alert">
-                <div *ngIf="f.phonenumber.errors?.required">
-                    Phone Number is required
+        <div class="form-field">
+            <mat-form-field>
+                <div class="label">Phone Number *</div>
+                <input matInput type="tel" name="phonenumber" formControlName="phonenumber" />
+                <div *ngIf="f.phonenumber.invalid && (f.phonenumber.dirty || f.phonenumber.touched)" class="alert">
+                    <div *ngIf="f.phonenumber.errors?.required">
+                        Phone Number is required
+                    </div>
+                    <div *ngIf="f.phonenumber.errors?.minlength">
+                        Phone Number must be atleast 4 characters
+                    </div>
                 </div>
-                <div *ngIf="f.phonenumber.errors?.minlength">
-                    Phone Number must be atleast 4 characters
-                </div>
-            </div>
-        </mat-form-field>
-        <!-- <mat-accordion>
-            <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                    <button mat-icon-button color="warn" class="verification">
-                        <mat-icon title=" Not Verified">
-                            dangerous
-                        </mat-icon>
-                    </button>
-                </mat-expansion-panel-header>
-                <button mat-raised-button color="primary" (click)="VerifyNumber()">
-                    SendCode
-                </button>
-                <mat-form-field>
-                    <div class="label">Enter Code</div>
-                    <input matInput type="number" name="code" formControlName="code" />
-                </mat-form-field>
-                <button mat-raised-button color="primary" (click)="SubmitCode()">
-                    Submit
-                </button>
-            </mat-expansion-panel>
-        </mat-accordion> -->
-        <!-- <button mat-icon-button color="primary" class="verification">
-                                <mat-icon title="Verified">
-                                    verified
-                                </mat-icon>
-                            </button> -->
+            </mat-form-field>
+            <button mat-icon-button color="primary" *ngIf="userAttributes.phone_number_verified" class="verification">
+                <mat-icon title="Verified">
+                    verified
+                </mat-icon>
+            </button>
+            <button mat-icon-button color="warn" *ngIf="!userAttributes.phone_number_verified" class="verification">
+                <mat-icon title=" Not Verified">
+                    dangerous
+                </mat-icon>
+            </button>
+        </div>
         <div class="error-alert">{{editError}}</div>
         <div class="flex-end-button">
             <button class="action-button" (click)="initUser()" mat-raised-button color="primary">Reset</button>

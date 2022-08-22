@@ -47,12 +47,6 @@ form {
   display: inline-block;
 }
 
-// .form-row {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-evenly;
-// }
-
 .flex-end-button {
   @include flex-content-end;
 }

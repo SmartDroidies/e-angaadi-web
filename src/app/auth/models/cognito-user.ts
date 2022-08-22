@@ -8,5 +8,7 @@ export interface CognitoUser {
     phone_number:number;
     firstname:string;
     lastname:string;
+    email_verified:boolean;
+    phone_number_verified:boolean;
   }
   
