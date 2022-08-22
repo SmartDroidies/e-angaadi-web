@@ -23,10 +23,22 @@ li {
 }
 
 .margin-card {
-  min-width: $margin-rem-1600;
+  width: $width-rem-1700;
   margin: $margin-rem-25;
 }
 
 .address-warp{
-  @include product-listing;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.default{
+  font-size: $font-size-75;
+}
+
+::ng-deep .mat-form-field  {
+  width: $width-rem-1600;
+  height: $height-rem-400;
+  margin: 0 0 $margin-rem-50 0;
 }

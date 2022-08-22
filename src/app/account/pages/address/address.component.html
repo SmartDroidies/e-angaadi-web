@@ -7,8 +7,7 @@
   <div class="address-warp">
     <div *ngFor="let addressData of addressDatas">
       <mat-card class="margin-card">
-        <mat-card-subtitle *ngIf="addressData.default==true" >Default</mat-card-subtitle>
-        <mat-card-title>{{addressData.fullname}}</mat-card-title>
+        <mat-card-title>{{addressData.fullname}}<span *ngIf="addressData.default==true" class="default"> - Default</span></mat-card-title>
         <mat-card-content>
           <ul>
             <li>{{addressData.fullname}}</li>

@@ -16,15 +16,10 @@
 ::ng-deep .mat-form-field  {
   width: $width-rem-1600;
   height: $height-rem-400;
-  margin: 0 0 $margin-rem-50 0;
 }
 
 ::ng-deep .mat-form-field-underline {
   width: $width-rem-1600;
-}
-
-::ng-deep .mat-input-element {
-  @include box-mat-form-field-input;
 }
 
 .alert {

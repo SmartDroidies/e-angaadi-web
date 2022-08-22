@@ -5,31 +5,12 @@
     margin: $margin-rem-200;
 }
 
-.mat-divider {
-    width: 100%;
-}
-
 .header {
     @include account-info-header;
 }
 
 .title {
     @include account-info-title;
-}
-
-::ng-deep .mat-form-field {
-    width: $margin-rem-2000;
-    margin: $margin-rem-100 0 $margin-rem-100 0;
-}
-
-::ng-deep textarea {
-    height: $height-rem-300;
-}
-
-.form-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
 }
 
 .flex-end-button {
@@ -46,4 +27,16 @@
 
 .error-alert {
     @include error-alert-form-field;
+}
+
+form {
+    margin: $margin-rem-100;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.form-field {
+    min-width: 400px;
+    margin: $margin-rem-50 $margin-rem-200;
+    display: inline-block;
 }
