@@ -37,13 +37,21 @@
 
 form {
   margin: $margin-rem-100;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.form-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+.form-field {
+  min-width: 400px;
+  margin: $margin-rem-50 $margin-rem-200;
+  display: inline-block;
 }
+
+// .form-row {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-evenly;
+// }
 
 .flex-end-button {
   @include flex-content-end;
@@ -51,9 +59,4 @@ form {
 
 .action-button {
   margin: $margin-rem-100;
-}
-
-.verification{
-  float: right;
-  margin-top: 1.2rem;
 }
