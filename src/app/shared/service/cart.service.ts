@@ -52,7 +52,7 @@ export class CartService {
   }
 
   removeItemInCart(itemInCart: CartItem) {
-    const userCart = this.storageService.getUserCartItems();
+    const userCart = this.storageService.getUserItems();
     const itemIndex = userCart.findIndex(
       (strCartItem) => strCartItem.code === itemInCart.code && strCartItem.unit === itemInCart.unit
     );
@@ -107,9 +107,20 @@ export class CartService {
   }
 
   
-  deleteCart():any{
-    return this.storageService.deleteUserCart();
+  // deleteCart():any{
+  //   return this.storageService.deleteUserCart();
+  // }
+  deleteCart() {
+    const userCart = this.storageService.getUserItems();
+    const itemIndex = userCart.findIndex(
+      (strCartItem) => strCartItem.saved === false
+    );
+    // if (itemIndex > -1) {
+    //   userCart.splice(itemIndex, 1);
+    // }
+    this.storageService.updateUserCart(userCart);
   }
+
 
   getUserSavedItems(): CartItem[] {
     return this.storageService.getUserSavedItems();

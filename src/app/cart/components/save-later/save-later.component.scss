@@ -18,6 +18,8 @@ mat-card-title {
 }
 
 .card-heading {
+  @include flex-column;
+  margin-top: $margin-rem-100;
   font-size: $font-size-base;
   font-weight: bold;
   margin: $margin-rem-200 0 $margin-rem-100 $margin-rem-500;

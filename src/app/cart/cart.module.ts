@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { SaveLaterComponent } from './components/save-later/save-later.component';
+import { MatDividerModule } from '@angular/material/divider';
 @NgModule({
   declarations: [CartDetailComponent, SaveLaterComponent],
   imports: [
@@ -20,6 +21,8 @@ import { SaveLaterComponent } from './components/save-later/save-later.component
     MatButtonModule,
     MatIconModule,
     TranslateModule,
+    MatDividerModule
+
   ],
 })
 export class CartModule {}
