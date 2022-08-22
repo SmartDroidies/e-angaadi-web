@@ -23,8 +23,8 @@ export class ProfileComponent implements OnInit {
     this.loading = false;
     this.user = {} as CognitoUser;
     this.EditForm = this.fb.group({
-      username: new FormControl({ value: '', disabled: true }),
-      firstname: new FormControl({ value: '', disabled: true }),
+      username: new FormControl({ value: null, disabled: true }),
+      firstname: new FormControl({ value: null, disabled: true }),
       email: new FormControl('', [Validators.required, Validators.minLength(4)]),
       phonenumber: new FormControl('', [Validators.required, Validators.minLength(4)]),
       code: new FormControl(''),
