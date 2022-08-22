@@ -110,10 +110,11 @@ export class CartDetailComponent implements OnInit {
   }
 
   emptyCart() {
-    this.cartService.deleteCart();
+    this.cartService.emptyCart();
+    this.getCart();
   }
 
-  onDelete(cartItem:CartItem){
+  onDelete(cartItem: CartItem) {
     this.cartService.removeItemInCart(cartItem);
   }
 

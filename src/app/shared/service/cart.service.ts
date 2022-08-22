@@ -106,21 +106,13 @@ export class CartService {
     return this.storageService.getUserCartItems();
   }
 
-  
-  // deleteCart():any{
-  //   return this.storageService.deleteUserCart();
-  // }
-  deleteCart() {
+  emptyCart(): void {
     const userCart = this.storageService.getUserItems();
-    const itemIndex = userCart.findIndex(
-      (strCartItem) => strCartItem.saved === false
-    );
-    // if (itemIndex > -1) {
-    //   userCart.splice(itemIndex, 1);
-    // }
-    this.storageService.updateUserCart(userCart);
+    const userFilteredCart = userCart.filter((cartItem) => {
+      return cartItem.saved != undefined && cartItem.saved === true;
+    });
+    this.storageService.updateUserCart(userFilteredCart);
   }
-
 
   getUserSavedItems(): CartItem[] {
     return this.storageService.getUserSavedItems();
