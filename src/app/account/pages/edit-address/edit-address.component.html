@@ -3,7 +3,7 @@
     <form [formGroup]="addressForm">
         <mat-form-field class="form-field">
             <div class="title">Full name*</div>
-            <input matInput type="text" name="fullname" formControlName="fullname" />
+            <input matInput type="text" maxlength="150" name="fullname" formControlName="fullname" />
             <div *ngIf="f.fullname.invalid && (f.fullname.dirty || f.fullname.touched)" class="alert">
                 <div *ngIf="f.fullname.errors?.required">
                     Full name is required.
@@ -12,7 +12,7 @@
                     Full name should be atleast 3 letters.
                 </div>
                 <div *ngIf="f.fullname.errors?.maxlength">
-                    Full name should be within 100 letters.
+                    Full name should be within 150 letters.
                 </div>
                 <div *ngIf="f.fullname.errors?.pattern">
                     Full name must be Alphabetic.
@@ -21,7 +21,7 @@
         </mat-form-field>
         <mat-form-field class="form-field">
             <div class="title">Phone number*</div>
-            <input matInput type="tel" name="phonenumber" formControlName="phonenumber" />
+            <input matInput type="tel" maxlength="13" name="phonenumber" formControlName="phonenumber" />
             <div *ngIf="f.phonenumber.invalid && (f.phonenumber.dirty || f.phonenumber.touched)" class="alert">
                 <div *ngIf="f.phonenumber.errors?.required">
                     Phone number is required.
@@ -33,7 +33,7 @@
         </mat-form-field>
         <mat-form-field class="form-field">
             <div class="title">Flat, House no., Building, Company, Apartment*</div>
-            <textarea matInput type="url" name="address" formControlName="address"></textarea>
+            <textarea matInput maxlength="250" type="url" name="address" formControlName="address"></textarea>
             <div *ngIf="f.address.invalid && (f.address.dirty || f.address.touched)" class="alert">
                 <div *ngIf="f.address.errors?.required">
                     Flat, House no., Building, Company, Apartment is required.
@@ -48,7 +48,7 @@
         </mat-form-field>
         <mat-form-field class="form-field">
             <div class="title">Area, Street, Sector, Village*</div>
-            <textarea matInput type="url" name="area" formControlName="area"></textarea>
+            <textarea matInput maxlength="250" type="url" name="area" formControlName="area"></textarea>
             <div *ngIf="f.area.invalid && (f.area.dirty || f.area.touched)" class="alert">
                 <div *ngIf="f.area.errors?.required">
                     Area, Street, Sector, Village is required.
@@ -63,7 +63,7 @@
         </mat-form-field>
         <mat-form-field class="form-field">
             <div class="title">Landmark*</div>
-            <input matInput type="url" name="landmark" formControlName="landmark" />
+            <input matInput maxlength="250" type="url" name="landmark" formControlName="landmark" />
             <div *ngIf="f.landmark.invalid && (f.landmark.dirty || f.landmark.touched)" class="alert">
                 <div *ngIf="f.landmark.errors?.required">
                     Landmark is required.
@@ -78,7 +78,7 @@
         </mat-form-field>
         <mat-form-field class="form-field">
             <div class="title">Town/City*</div>
-            <input matInput type="text" name="city" formControlName="city" />
+            <input matInput maxlength="100" type="text" name="city" formControlName="city" />
             <div *ngIf="f.city.invalid && (f.city.dirty || f.city.touched)" class="alert">
                 <div *ngIf="f.city.errors?.required">
                     Town/City is required.
@@ -104,7 +104,7 @@
         </mat-form-field>
         <mat-form-field class="form-field">
             <div class="title">Pincode*</div>
-            <input matInput type="url" name="pincode" formControlName="pincode" />
+            <input matInput maxlength="6" type="url" name="pincode" formControlName="pincode" />
             <div *ngIf="f.pincode.invalid && (f.pincode.dirty || f.pincode.touched)" class="alert">
                 <div *ngIf="f.pincode.errors?.required">
                     Pincode is required.
