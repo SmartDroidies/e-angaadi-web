@@ -18,6 +18,7 @@ export class EditAddressComponent implements OnInit {
   editError!: any;
   addressData!: Address;
   id!: any;
+  states: string[] = [];
   saveButton = true;
 
   constructor(private userdataService: UserdataService,
@@ -40,8 +41,7 @@ export class EditAddressComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.maxLength(10),
-          Validators.pattern("^[0-9]*$")
+          Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")
         ],
       ],
       address: [
@@ -73,8 +73,7 @@ export class EditAddressComponent implements OnInit {
       Validators.maxLength(100),
       Validators.pattern("^[A-Za-z0-9_]*$")]
       ],
-      state: ['', [Validators.required,
-      Validators.minLength(3)]
+      state: ['', [Validators.required]
       ],
       pincode: ['', [Validators.required,
       Validators.minLength(6),
@@ -85,12 +84,18 @@ export class EditAddressComponent implements OnInit {
 
   ngOnInit(): void {
     this.editAddress();
+    this.getStates();
   }
 
   get f() {
     return this.addressForm.controls;
   }
-
+  
+  getStates(): void {
+    //Collect the product groups from service
+    this.userdataService.getAllStates()
+      .subscribe((statesData:string[]) => (this.states = statesData));
+  }
 
   editAddress() {
     this.activatedRoute.paramMap.subscribe((params) => {
