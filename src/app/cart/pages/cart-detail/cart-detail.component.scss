@@ -5,7 +5,7 @@
   width: 80%;
   align-items: center;
   margin: auto;
-  margin-bottom:$margin-rem-100; 
+  margin-bottom:$margin-rem-300; 
 }
 
 .table-header {
@@ -15,7 +15,7 @@
 
 .empty-message {
   @include flex-center;
-  margin: $margin-rem-100;
+  margin: $margin-rem-800;
   font-size: $font-size-200;
   margin-top: 12rem;
 }

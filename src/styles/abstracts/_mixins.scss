@@ -38,6 +38,7 @@
 @mixin flex-left {
   display: flex;
   justify-content: left;
+  flex-wrap: wrap;
 }
 
 @mixin flex-evenly {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 import { ProductImage } from 'src/app/product/models/product-image';
 import { ProductImageService } from 'src/app/product/service/product-image.service';
 import { CartBadgeService } from 'src/app/shared/components/cart/cart-badge.service';
@@ -21,7 +22,9 @@ export class SaveLaterComponent implements OnInit {
     private cartService: CartService,
     private productImageService: ProductImageService,
     private cartBadgeService: CartBadgeService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private toastr: ToastrService
+
   ) { }
 
   ngOnInit(): void {
@@ -42,6 +45,9 @@ export class SaveLaterComponent implements OnInit {
 
   onRemove(cartItem: CartItem) {
     this.cartService.removeItemInCart(cartItem);
+    this.toastr.success('Removed successfully', 'Removed', {
+      positionClass: 'toast-bottom-center',
+    });
   }
 
   collectCartImages(item: CartItem) {
