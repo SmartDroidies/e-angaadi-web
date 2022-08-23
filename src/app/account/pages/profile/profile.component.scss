@@ -9,10 +9,6 @@
   @include account-info-header;
 }
 
-.mat-divider {
-  width: 100%;
-}
-
 ::ng-deep .mat-form-field  {
   width: $width-rem-1600;
   height: $height-rem-400;

@@ -32,6 +32,8 @@ export class EditAddressComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(3),
+          Validators.maxLength(150),
+          Validators.pattern("^[A-Za-z_]*$")
         ],
       ],
       phonenumber: [
@@ -39,6 +41,7 @@ export class EditAddressComponent implements OnInit {
         [
           Validators.required,
           Validators.maxLength(10),
+          Validators.pattern("^[0-9]*$")
         ],
       ],
       address: [
@@ -46,7 +49,7 @@ export class EditAddressComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(15),
-          Validators.maxLength(200),
+          Validators.maxLength(250),
         ],
       ],
       area: [
@@ -54,7 +57,7 @@ export class EditAddressComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(15),
-          Validators.maxLength(200),
+          Validators.maxLength(250),
         ],
       ],
       landmark: [
@@ -62,17 +65,21 @@ export class EditAddressComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(3),
+          Validators.maxLength(250),
         ],
       ],
       city: ['', [Validators.required,
-      Validators.minLength(3)]
+      Validators.minLength(3),
+      Validators.maxLength(100),
+      Validators.pattern("^[A-Za-z0-9_]*$")]
       ],
       state: ['', [Validators.required,
       Validators.minLength(3)]
       ],
       pincode: ['', [Validators.required,
       Validators.minLength(6),
-      Validators.maxLength(6)]],
+      Validators.maxLength(6),
+      Validators.pattern("^[0-9]*$")]],
     });
   }
 
@@ -92,6 +99,13 @@ export class EditAddressComponent implements OnInit {
         this.saveButton = false;
         this.getIdAddress();
       }
+    });
+    this.initUser();
+  }
+  initUser() {
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      this.addressForm.patchValue({ fullname: user.attributes.name });
+      this.addressForm.patchValue({ phonenumber: user.attributes.phone_number });
     });
   }
 

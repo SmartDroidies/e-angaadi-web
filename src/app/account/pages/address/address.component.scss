@@ -5,10 +5,6 @@ li {
   list-style: none;
 }
 
-.mat-divider {
-  width: 100%;
-}
-
 .container {
   margin: $margin-rem-200;
 }
@@ -35,4 +31,10 @@ li {
 
 .default{
   font-size: $font-size-75;
+}
+
+.empty-address {
+  @include flex-center;
+  font-size: $font-size-200;
+  margin-top: 12rem;
 }
