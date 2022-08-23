@@ -62,28 +62,6 @@ export class CognitoService {
     return Auth.forgotPasswordSubmit(user.email, user.code, user.password);
   }
 
-  public async verifyUserAttribute(user: CognitoUser): Promise<any> {
-    const currentuser = await Auth.currentAuthenticatedUser();
-    if (user.email) {
-      return Auth.verifyUserAttribute(currentuser, user.email);
-    }
-    else {
-      let number = user.phone_number.toString();
-      return Auth.verifyUserAttribute(currentuser, number);
-    }
-  }
-
-  public async verifyUserAttributeSubmit(user: CognitoUser): Promise<any> {
-    const currentuser = await Auth.currentAuthenticatedUser();
-    if (user.email) {
-      return Auth.verifyUserAttributeSubmit(currentuser, user.email, user.code);
-    }
-    else {
-      let number = user.phone_number.toString();
-      return Auth.verifyUserAttributeSubmit(currentuser, number, user.code);
-    }
-  }
-
   public getUser(): Promise<any> {
     return Auth.currentUserInfo();
   }

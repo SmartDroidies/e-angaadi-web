@@ -48,9 +48,9 @@ export class ProfileComponent implements OnInit {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
       this.userAttributes = user.attributes;
       this.EditForm.patchValue({ username: user.username });
-      this.EditForm.patchValue({ firstname: user.attributes.name });
-      this.EditForm.patchValue({ email: user.attributes.email });
-      this.EditForm.patchValue({ phonenumber: user.attributes.phone_number });
+      this.EditForm.patchValue({ firstname: this.userAttributes.name });
+      this.EditForm.patchValue({ email: this.userAttributes.email });
+      this.EditForm.patchValue({ phonenumber: this.userAttributes.phone_number });
     });
   }
 
@@ -77,71 +77,4 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
-
-  public async VerifyEmail(): Promise<void> {
-    this.loading = true;
-    this.user.email = this.EditForm.value.email;
-
-    if (this.EditForm.invalid) {
-      return;
-    }
-
-    try {
-      await this.cognitoService.verifyUserAttribute(this.user);
-      this.loading = false;
-      this.toastr.success('Successfully Code Sent to mail', 'Success', {
-        positionClass: 'toast-bottom-center',
-      });
-    } catch (e) {
-      this.editError = e;
-      this.toastr.error('Error while Sending code', 'Error', {
-        positionClass: 'toast-bottom-center',
-      });
-    }
-  }
-
-  // public async VerifyNumber(): Promise<void> {
-  //   this.loading = true;
-  //   this.user.phone_number = this.EditForm.value.phone_number;
-
-  //   if (this.EditForm.invalid) {
-  //     return;
-  //   }
-
-  //   try {
-  //     (await this.cognitoService.verifyUserAttribute(this.user))
-  //     this.loading = false;
-  //     this.toastr.success('Successfully Code Sent to mobile number', 'Success', {
-  //       positionClass: 'toast-bottom-center',
-  //     });
-  //   } catch (e) {
-  //     this.editError = e;
-  //     this.toastr.error('Error while Sending code to mobile number', 'Error', {
-  //       positionClass: 'toast-bottom-center',
-  //     });
-  //   }
-  // }
-
-  // public async SubmitCode(): Promise<void> {
-  //   this.loading = true;
-  //   this.user.email = this.EditForm.value.email;
-  //   this.user.phone_number = this.EditForm.value.phone_number;
-
-  //   if (this.EditForm.invalid) {
-  //     return;
-  //   }
-
-  //   try {
-  //     (await this.cognitoService.verifyUserAttributeSubmit(this.user))
-  //     this.loading = false;
-  //     this.toastr.success('Successfully saved', 'Success', {
-  //       positionClass: 'toast-bottom-center',
-  //     });
-  //   } catch (e) {
-  //     this.editError = e;
-  //     this.toastr.error('Error while Saving', 'Error', {
-  //       positionClass: 'toast-bottom-center',
-  //     });
-  //   }
-  // }
 }
