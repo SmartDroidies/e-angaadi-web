@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Auth } from 'aws-amplify';
@@ -9,15 +13,14 @@ import { CognitoService } from 'src/app/auth/services/cognito.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
   loading!: boolean;
   user!: CognitoUser;
   EditForm!: FormGroup;
   editError!: any;
-  userAttributes!:CognitoUser;
-
+  userAttributes!: CognitoUser;
 
   constructor(private cognitoService: CognitoService, private fb: FormBuilder, private toastr: ToastrService) {
     this.loading = false;
@@ -25,7 +28,9 @@ export class ProfileComponent implements OnInit {
     this.EditForm = this.fb.group({
       username: new FormControl({ value: null, disabled: true }),
       firstname: new FormControl({ value: null, disabled: true }),
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       email: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       phonenumber: new FormControl('', [Validators.required, Validators.minLength(4)]),
       code: new FormControl(''),
     });
@@ -39,11 +44,10 @@ export class ProfileComponent implements OnInit {
     return this.EditForm.controls;
   }
 
-  async initUser() {
-
+  async initUser(): Promise<void> {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-      this.userAttributes=user.attributes;
-      this.EditForm.patchValue({ username: user.attributes.username });
+      this.userAttributes = user.attributes;
+      this.EditForm.patchValue({ username: user.username });
       this.EditForm.patchValue({ firstname: user.attributes.name });
       this.EditForm.patchValue({ email: user.attributes.email });
       this.EditForm.patchValue({ phonenumber: user.attributes.phone_number });
@@ -61,7 +65,7 @@ export class ProfileComponent implements OnInit {
     }
 
     try {
-      (await this.cognitoService.updateUserAttributes(this.user))
+      await this.cognitoService.updateUserAttributes(this.user);
       this.loading = false;
       this.toastr.success('Successfully saved', 'Success', {
         positionClass: 'toast-bottom-center',
@@ -83,7 +87,7 @@ export class ProfileComponent implements OnInit {
     }
 
     try {
-      (await this.cognitoService.verifyUserAttribute(this.user))
+      await this.cognitoService.verifyUserAttribute(this.user);
       this.loading = false;
       this.toastr.success('Successfully Code Sent to mail', 'Success', {
         positionClass: 'toast-bottom-center',
@@ -122,7 +126,6 @@ export class ProfileComponent implements OnInit {
   //   this.loading = true;
   //   this.user.email = this.EditForm.value.email;
   //   this.user.phone_number = this.EditForm.value.phone_number;
-
 
   //   if (this.EditForm.invalid) {
   //     return;
