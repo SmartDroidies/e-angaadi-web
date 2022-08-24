@@ -42,7 +42,8 @@ export class EditAddressComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")
+          Validators.minLength(10),
+          Validators.pattern("[0-9]{10}$")
         ],
       ],
       address: [
@@ -93,7 +94,8 @@ export class EditAddressComponent implements OnInit {
   }
   
   getStates(){
-    this.states= this.userdataService.getAllStates();
+    this.states=['tamilnadu','kerala']
+    // this.states= this.userdataService.getAllStates();
   }
 
   editAddress() {
@@ -106,6 +108,7 @@ export class EditAddressComponent implements OnInit {
     });
     this.initUser();
   }
+
   initUser() {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
       this.addressForm.patchValue({ fullname: user.attributes.name });
@@ -126,6 +129,7 @@ export class EditAddressComponent implements OnInit {
     }
     this.addressData = this.addressForm.value;
     this.addressData.id = this.id;
+    this.addressData.phonenumber=91+this.addressForm.value.phonenumber;
     this.userdataService.updateAddress(this.addressData).subscribe(
       () => {
         this.toastr.success('Address updated successfully', 'Updated', {
@@ -151,14 +155,8 @@ export class EditAddressComponent implements OnInit {
 
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
       this.addressData = this.addressForm.value;
-      this.userdataService.getAddress(user.attributes.name).subscribe((address: Address[]) => {
-        if (address.length > 0) {
-          this.addressData.default = false;
-        } else {
-          this.addressData.default = false;
-        }
-      });
       this.addressData.userId = user.attributes.name;
+      this.addressData.phonenumber=91+this.addressForm.value.phonenumber;
       this.userdataService.saveAddress(this.addressData).subscribe(
         () => {
           this.toastr.success('Address saved successfully', 'Saved', {

@@ -27,8 +27,11 @@
                 <div *ngIf="f.phonenumber.errors?.required">
                     Phone number is required.
                 </div>
+                <div *ngIf="f.phonenumber.errors?.minlength">
+                    Phone number should be 10 digit
+                </div>
                 <div *ngIf="f.phonenumber.errors?.pattern">
-                    Phone number should be 10 digit number
+                    Phone number should be numbers
                 </div>
             </div>
         </mat-form-field>
