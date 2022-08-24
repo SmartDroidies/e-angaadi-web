@@ -25,6 +25,10 @@ table {
 
 }
 
+td.mat-cell:last-of-type {
+  width:25rem;
+}
+
 ng-container {
   @include flex-evenly;
 }
@@ -124,6 +128,8 @@ ng-container {
     margin: $margin-rem-50;
   }
 }
+
+
 
 // .table-content {
 //   @include flex-center;
