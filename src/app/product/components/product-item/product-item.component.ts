@@ -38,7 +38,6 @@ export class ProductItemComponent implements OnInit {
     }
   }
 
-
   selectChip(item: MatChip, unit: number, price: number) {
     item.selected = !item.selected;
     this.selectedUnit = unit;
@@ -125,7 +124,7 @@ export class ProductItemComponent implements OnInit {
     if (this.selectedUnit) {
       this.saveList = false;
       const removeProduct = this.cartService.toCartItem(product, this.selectedUnit, 0, this.price)
-      this.cartService.updateCartSaveStatus(removeProduct, false);
+      this.cartService.removeItemInCart(removeProduct);
       this.loadProductsFromCart();
     } else {
       this.toastr.warning('Select unit before adding', 'Error');
