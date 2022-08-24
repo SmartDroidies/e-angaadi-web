@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { Product } from '../../models/product';
-import { ProductService } from '../../service/product.service';
 
 @Component({
   selector: 'app-product-item',
@@ -112,7 +111,7 @@ export class ProductItemComponent implements OnInit {
   SaveToList(product: Product) {
     if (this.selectedUnit) {
       this.saveList = true;
-      const saveProduct = this.cartService.toCartItem(product, this.selectedUnit,0, this.price)
+      const saveProduct = this.cartService.toCartItem(product, this.selectedUnit,+1, this.price)
       this.cartService.updateCartSaveStatus(saveProduct, true);
       this.loadProductsFromCart();
     } else {
