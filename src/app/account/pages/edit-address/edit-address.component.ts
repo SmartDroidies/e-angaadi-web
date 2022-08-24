@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 import { ToastrService } from 'ngx-toastr';
@@ -18,7 +18,7 @@ export class EditAddressComponent implements OnInit {
   editError!: any;
   addressData!: Address;
   id!: any;
-  states: string[] = [];
+  states:any;
   saveButton = true;
 
   constructor(private userdataService: UserdataService,
@@ -37,6 +37,7 @@ export class EditAddressComponent implements OnInit {
           Validators.pattern("^[A-Za-z_]*$")
         ],
       ],
+      countrycode:new FormControl({ value: '+91', disabled: true }),
       phonenumber: [
         '',
         [
@@ -91,10 +92,8 @@ export class EditAddressComponent implements OnInit {
     return this.addressForm.controls;
   }
   
-  getStates(): void {
-    //Collect the product groups from service
-    this.userdataService.getAllStates()
-      .subscribe((statesData:string[]) => (this.states = statesData));
+  getStates(){
+    this.states= this.userdataService.getAllStates();
   }
 
   editAddress() {
@@ -110,7 +109,9 @@ export class EditAddressComponent implements OnInit {
   initUser() {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
       this.addressForm.patchValue({ fullname: user.attributes.name });
-      this.addressForm.patchValue({ phonenumber: user.attributes.phone_number });
+      const getPhonenumber=user.attributes.phone_number;
+      const realNumber=getPhonenumber.slice(3, 13)
+      this.addressForm.patchValue({ phonenumber: realNumber });
     });
   }
 

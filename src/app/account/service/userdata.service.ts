@@ -42,8 +42,11 @@ export class UserdataService {
     return this.http.delete<any>(environment.orderBaseUrl + '/address', { params: params });
   }
 
-  getAllStates(): Observable<string[]> {
-    return this.http.get<string[]>(environment.orderBaseUrl + '/address/states');
+  getAllStates(){
+    this.http.get("assets/states/statelist.json").subscribe(data =>{
+      console.log(data);
+      return data;
+    })
   }
 }
 

@@ -21,7 +21,8 @@
         </mat-form-field>
         <mat-form-field class="form-field">
             <div class="title">Phone number*</div>
-            <input matInput type="tel" maxlength="13" name="phonenumber" formControlName="phonenumber" />
+            <input class="input-row-1" matInput  name="countrycode" formControlName="countrycode" />
+            <input class="input-row-2" matInput type="tel" maxlength="10" name="phonenumber" formControlName="phonenumber" />
             <div *ngIf="f.phonenumber.invalid && (f.phonenumber.dirty || f.phonenumber.touched)" class="alert">
                 <div *ngIf="f.phonenumber.errors?.required">
                     Phone number is required.
