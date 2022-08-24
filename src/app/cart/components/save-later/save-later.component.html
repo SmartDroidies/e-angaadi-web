@@ -3,17 +3,12 @@
   <mat-card *ngFor="let item of items">
     <img class="card-product-image" *ngIf="collectCartImages(item)" mat-card-image src="{{cartImages.url}}">
     <mat-card-content>
-      <mat-card-title>
-        <ul class="card-info">
-          <li>{{item.key | translate}}</li>
-          <li>{{item.title}}</li>
-          <li>{{item.unit+item.submetric}}</li>
-        </ul>
-      </mat-card-title>
+      <mat-card-title>{{item.key | translate}}</mat-card-title>
+      <mat-card-title>{{item.title | titlecase}}</mat-card-title>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button class="add-cart-button" color="primary" (click)="onAdd(item)">Move to Cart</button>
-      <button mat-raised-button class="remove-cart-button" color="primary">Remove</button>
+      <button mat-raised-button class="remove-cart-button" color="primary" (click)="onRemove(item)">Remove</button>
     </mat-card-actions>
   </mat-card>
 </div>

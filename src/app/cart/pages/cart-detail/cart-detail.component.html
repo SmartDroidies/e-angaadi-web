@@ -34,7 +34,7 @@
             </div>
             <div class="action-buttons">
               <button mat-icon-button aria-label="Delete item from cart">
-                <mat-icon>delete</mat-icon>
+                <mat-icon (click)="onDelete(item)">delete</mat-icon>
               </button>
               <button mat-icon-button aria-label="Save item for later">
                 <mat-icon (click)="onSave(item)">save_alt</mat-icon>
@@ -58,9 +58,11 @@
           <section>
             <h4 class="total-summary">Sub-Total ({{getTotalQuantity()}} items) : {{getTotal() | currency:'INR'}} </h4>
             <div class="cart-action-buttons">
-              <button class="cart-action" mat-raised-button color="primary">Empty Cart</button>
-              <button class="cart-action" mat-raised-button color="primary" (click)="onShopping()">Continue
-                Shopping</button>
+
+              <button class="cart-action" mat-raised-button color="primary" (click)="emptyCart()">Empty Cart</button>
+              <button class="cart-action" mat-raised-button color="primary" (click)="onShopping()">Continue Shopping</button>
+
+
               <button class="cart-action" mat-raised-button color="accent">Checkout</button>
             </div>
           </section>
@@ -73,5 +75,5 @@
     </table>
   </div>
 </div>
-
+<mat-divider></mat-divider>
 <app-save-later></app-save-later>

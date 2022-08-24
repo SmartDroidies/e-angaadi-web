@@ -52,7 +52,7 @@ export class CartService {
   }
 
   removeItemInCart(itemInCart: CartItem) {
-    const userCart = this.storageService.getUserCartItems();
+    const userCart = this.storageService.getUserItems();
     const itemIndex = userCart.findIndex(
       (strCartItem) => strCartItem.code === itemInCart.code && strCartItem.unit === itemInCart.unit
     );
@@ -104,6 +104,14 @@ export class CartService {
 
   getCart(): CartItem[] {
     return this.storageService.getUserCartItems();
+  }
+
+  emptyCart(): void {
+    const userCart = this.storageService.getUserItems();
+    const userFilteredCart = userCart.filter((cartItem) => {
+      return cartItem.saved != undefined && cartItem.saved === true;
+    });
+    this.storageService.updateUserCart(userFilteredCart);
   }
 
   getUserSavedItems(): CartItem[] {
