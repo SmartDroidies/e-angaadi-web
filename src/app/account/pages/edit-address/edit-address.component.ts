@@ -35,7 +35,7 @@ export class EditAddressComponent implements OnInit {
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(150),
-          Validators.pattern("^[A-Za-z_]*$")
+          Validators.pattern("^[A-Za-z_ ]*$")
         ],
       ],
       countrycode:new FormControl({ value: '+91', disabled: true }),
@@ -59,7 +59,7 @@ export class EditAddressComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(15),
+          Validators.minLength(3),
           Validators.maxLength(250),
         ],
       ],
@@ -74,7 +74,7 @@ export class EditAddressComponent implements OnInit {
       city: ['', [Validators.required,
       Validators.minLength(3),
       Validators.maxLength(100),
-      Validators.pattern("^[A-Za-z0-9_]*$")]
+      Validators.pattern("^[A-Za-z0-9_ ]*$")]
       ],
       state: ['', [Validators.required]
       ],

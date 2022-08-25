@@ -2,7 +2,7 @@
     <div class="header">Add Address</div>
     <form [formGroup]="addressForm">
         <mat-form-field class="form-field">
-            <div class="title">Full name*</div>
+            <div class="title">Full Name*</div>
             <input matInput type="text" maxlength="150" name="fullname" formControlName="fullname" />
             <div *ngIf="f.fullname.invalid && (f.fullname.dirty || f.fullname.touched)" class="alert">
                 <div *ngIf="f.fullname.errors?.required">
@@ -20,9 +20,10 @@
             </div>
         </mat-form-field>
         <mat-form-field class="form-field">
-            <div class="title">Phone number*</div>
-            <input class="input-row-1" matInput  name="countrycode" formControlName="countrycode" />
-            <input class="input-row-2" matInput type="tel" maxlength="10" name="phonenumber" formControlName="phonenumber" />
+            <div class="title">Phone Number*</div>
+            <input class="input-row-1" matInput name="countrycode" formControlName="countrycode" />
+            <input class="input-row-2" matInput type="tel" maxlength="10" name="phonenumber"
+                formControlName="phonenumber" />
             <div *ngIf="f.phonenumber.invalid && (f.phonenumber.dirty || f.phonenumber.touched)" class="alert">
                 <div *ngIf="f.phonenumber.errors?.required">
                     Phone number is required.
@@ -40,13 +41,13 @@
             <textarea matInput maxlength="250" type="url" name="address" formControlName="address"></textarea>
             <div *ngIf="f.address.invalid && (f.address.dirty || f.address.touched)" class="alert">
                 <div *ngIf="f.address.errors?.required">
-                    Flat, House no., Building, Company, Apartment is required.
+                    required.
                 </div>
                 <div *ngIf="f.address.errors?.minlength">
-                    Flat, House no., Building, Company, Apartment should be atleast 15 letters.
+                    should be atleast 15 letters.
                 </div>
                 <div *ngIf="f.address.errors?.maxlength">
-                    Flat, House no., Building, Company, Apartment must be within 250 letters.
+                    must be within 250 letters.
                 </div>
             </div>
         </mat-form-field>
@@ -55,13 +56,13 @@
             <textarea matInput maxlength="250" type="url" name="area" formControlName="area"></textarea>
             <div *ngIf="f.area.invalid && (f.area.dirty || f.area.touched)" class="alert">
                 <div *ngIf="f.area.errors?.required">
-                    Area, Street, Sector, Village is required.
+                    required.
                 </div>
                 <div *ngIf="f.area.errors?.minlength">
-                    Area, Street, Sector, Village should be atleast 15 letters.
+                    should be atleast 3 letters.
                 </div>
                 <div *ngIf="f.area.errors?.maxlength">
-                    Area, Street, Sector, Village must be within 250 letters.
+                    Must be within 250 letters.
                 </div>
             </div>
         </mat-form-field>
@@ -102,9 +103,9 @@
             <div class="title">State*</div>
             <mat-select name="state" formControlName="state" required>
                 <mat-option *ngFor="let state of states.states" [value]="state">
-                  {{ state }}
+                    {{ state }}
                 </mat-option>
-              </mat-select>
+            </mat-select>
         </mat-form-field>
         <mat-form-field class="form-field">
             <div class="title">Pincode*</div>
