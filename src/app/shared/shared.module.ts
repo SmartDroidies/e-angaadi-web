@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [CartComponent],
@@ -17,6 +18,7 @@ import { MatDividerModule } from '@angular/material/divider';
     CommonModule,
     MatIconModule,
     MatCardModule,
+    TranslateModule,
     ScrollingModule,
     MatListModule,
     MatButtonModule,
