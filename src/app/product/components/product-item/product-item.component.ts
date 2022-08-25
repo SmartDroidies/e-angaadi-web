@@ -21,10 +21,7 @@ export class ProductItemComponent implements OnInit {
   productImages!: any;
   saveList = false;
 
-  constructor(
-    private cartService: CartService,
-    private toastr: ToastrService,
-  ) { }
+  constructor(private cartService: CartService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.loadProductsFromCart();
@@ -108,10 +105,10 @@ export class ProductItemComponent implements OnInit {
     return this.cartProductItem ? this.cartProductItem.quantity : 0;
   }
 
-  SaveToList(product: Product) {
+  saveToList(product: Product) {
     if (this.selectedUnit) {
       this.saveList = true;
-      const saveProduct = this.cartService.toCartItem(product, this.selectedUnit,+1, this.price)
+      const saveProduct = this.cartService.toCartItem(product, this.selectedUnit, +1, this.price);
       this.cartService.updateCartSaveStatus(saveProduct, true);
       this.loadProductsFromCart();
     } else {
@@ -122,7 +119,7 @@ export class ProductItemComponent implements OnInit {
   removeFromList(product: Product) {
     if (this.selectedUnit) {
       this.saveList = false;
-      const removeProduct = this.cartService.toCartItem(product, this.selectedUnit, 0, this.price)
+      const removeProduct = this.cartService.toCartItem(product, this.selectedUnit, 0, this.price);
       this.cartService.removeItemInCart(removeProduct);
       this.loadProductsFromCart();
     } else {
