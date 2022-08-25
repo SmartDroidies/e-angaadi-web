@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 import { ToastrService } from 'ngx-toastr';
 import { from } from 'rxjs';
+import { ListStates } from 'src/app/auth/models/list-states';
 import { Address } from '../../models/address';
 import { UserdataService } from '../../service/userdata.service';
 
@@ -18,7 +19,7 @@ export class EditAddressComponent implements OnInit {
   editError!: any;
   addressData!: Address;
   id!: any;
-  states:any;
+  states!:ListStates;
   saveButton = true;
 
   constructor(private userdataService: UserdataService,
@@ -95,8 +96,9 @@ export class EditAddressComponent implements OnInit {
   }
   
   getStates(){
-    this.states=['tamilnadu','kerala']
-    // this.states= this.userdataService.getAllStates();
+    this.userdataService.getAllStates().subscribe(stateData =>{
+      this.states = stateData;
+    })
   }
 
   editAddress() {
@@ -119,7 +121,9 @@ export class EditAddressComponent implements OnInit {
   }
 
   getIdAddress() {
-    this.userdataService.getIdAddress(this.id).subscribe((address) => { 
+    this.userdataService.getIdAddress(this.id).subscribe((address) => {
+    const getPhonenumber=address['phonenumber'].toString().slice(2, 12);
+    address['phonenumber']= parseInt(getPhonenumber)
      this.addressForm.patchValue(address);
      });
   }
