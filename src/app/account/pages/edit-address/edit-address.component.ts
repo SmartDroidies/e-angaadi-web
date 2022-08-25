@@ -87,6 +87,7 @@ export class EditAddressComponent implements OnInit {
   ngOnInit(): void {
     this.editAddress();
     this.getStates();
+    this.initUser();
   }
 
   get f() {
@@ -106,7 +107,6 @@ export class EditAddressComponent implements OnInit {
         this.getIdAddress();
       }
     });
-    this.initUser();
   }
 
   initUser() {
@@ -119,7 +119,9 @@ export class EditAddressComponent implements OnInit {
   }
 
   getIdAddress() {
-    this.userdataService.getIdAddress(this.id).subscribe((address) => { this.addressForm.patchValue(address); });
+    this.userdataService.getIdAddress(this.id).subscribe((address) => { 
+     this.addressForm.patchValue(address);
+     });
   }
 
   onUpdate() {
