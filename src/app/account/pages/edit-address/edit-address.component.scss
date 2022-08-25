@@ -10,7 +10,7 @@
 }
 
 .title {
-    @include account-info-title;
+    @include box-title-label;
 }
 
 .flex-end-button {

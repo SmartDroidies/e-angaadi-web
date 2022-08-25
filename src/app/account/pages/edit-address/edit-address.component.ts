@@ -21,6 +21,7 @@ export class EditAddressComponent implements OnInit {
   id!: any;
   states!:ListStates;
   saveButton = true;
+  title: string = 'Add Address';
 
   constructor(private userdataService: UserdataService,
     private fb: FormBuilder,
@@ -44,7 +45,7 @@ export class EditAddressComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(10),
-          Validators.pattern("[0-9]{10}$")
+          Validators.pattern("^[0-9]*$")
         ],
       ],
       address: [
@@ -106,6 +107,7 @@ export class EditAddressComponent implements OnInit {
       if (params.get('id')) {
         this.id = params.get('id');
         this.saveButton = false;
+        this.title = 'Edit Address';
         this.getIdAddress();
       }
     });
