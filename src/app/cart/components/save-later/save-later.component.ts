@@ -45,7 +45,7 @@ export class SaveLaterComponent implements OnInit {
 
   onRemove(cartItem: CartItem) {
     this.cartService.removeItemInCart(cartItem);
-    this.toastr.success('Removed successfully', 'Removed', {
+    this.toastr.success('Item removed from saved list', 'Success', {
       positionClass: 'toast-bottom-center',
     });
   }
