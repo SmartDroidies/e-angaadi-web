@@ -22,6 +22,7 @@ export class EditAddressComponent implements OnInit {
   states!:ListStates;
   saveButton = true;
   title: string = 'Add Address';
+  selectedState!:string;
 
   constructor(private userdataService: UserdataService,
     private fb: FormBuilder,
@@ -128,6 +129,7 @@ export class EditAddressComponent implements OnInit {
     address['phonenumber']= parseInt(getPhonenumber)
      this.addressForm.patchValue(address);
      });
+     this.selectedState=this.addressForm.value.state;
   }
 
   onUpdate() {
