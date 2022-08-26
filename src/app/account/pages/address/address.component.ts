@@ -18,6 +18,7 @@ export class AddressComponent {
   editError!: any;
   loading!: boolean;
   sendDefault: setDefault = new setDefault;
+  showAddressData!: boolean
 
   constructor(private router: Router, private userdataService: UserdataService, private toastr: ToastrService) { }
 
@@ -37,9 +38,19 @@ export class AddressComponent {
   getAddress() {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
       this.userdataService.getAddress(user.attributes.name).subscribe((address: Address[]) => {
-        return this.addressDatas = address;
+        this.addressDatas = address;
+        this.showAddress();
+        return this.addressDatas;
       });
     });
+  }
+
+  showAddress() {
+    if (this.addressDatas.length > 0) {
+      this.showAddressData = true;
+    } else {
+      this.showAddressData = false;
+    }
   }
 
   onDelete(id: string) {

@@ -18,7 +18,7 @@ import { AccountInfoComponent } from './pages/account-info/account-info.componen
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { EditAddressComponent } from './pages/edit-address/edit-address.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [AccountInfoComponent, ProfileComponent, AddressComponent, ChangePasswordComponent, EditAddressComponent],
@@ -37,7 +37,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     HttpClientModule,
     ToastrModule.forRoot(),
     AccountRoutingModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatExpansionModule
   ],
 })
 export class AccountModule { }
