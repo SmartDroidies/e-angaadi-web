@@ -41,15 +41,10 @@ form {
     display: inline-block;
 }
 
-.countrycode {
-    float:left;
-    width:1rem;
-}
-
 .input-row-1{
-   width: 2rem;
+   width: $width-rem-200;
 }
 
 .input-row-2{
-    width :10rem;
+    width :$width-rem-1000;
 }
