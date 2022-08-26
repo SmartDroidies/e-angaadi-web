@@ -113,7 +113,7 @@ export class CartDetailComponent implements OnInit {
 
   emptyCart() {
     this.cartService.emptyCart();
-    this.toastr.success('Cart is Empty', 'Deleted', {
+    this.toastr.success('Cart Items removed', 'Success', {
       positionClass: 'toast-bottom-center',
     });
     this.getCart();
@@ -121,7 +121,7 @@ export class CartDetailComponent implements OnInit {
 
   onDelete(cartItem: CartItem) {
     this.cartService.removeItemInCart(cartItem);
-    this.toastr.success('Deleted successfully', 'Deleted', {
+    this.toastr.success('Item removed from cart', 'Success', {
       positionClass: 'toast-bottom-center',
     });
   }
