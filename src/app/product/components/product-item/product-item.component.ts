@@ -26,7 +26,7 @@ export class ProductItemComponent implements OnInit {
     private cartService: CartService,
     private toastr: ToastrService,
     private storageService: StorageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadProductsFromCart();
@@ -67,7 +67,9 @@ export class ProductItemComponent implements OnInit {
       this.loadProductsFromCart();
       this.isSavedItem();
     } else {
-      this.toastr.warning('Select unit before adding', 'Error');
+      this.toastr.warning('Select unit before adding', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
     }
   }
 
@@ -121,17 +123,15 @@ export class ProductItemComponent implements OnInit {
       this.cartService.updateCartSaveStatus(saveProduct, true);
       this.isSavedItem();
     } else {
-      this.toastr.warning('Select unit before adding', 'Error');
+      this.toastr.warning('Select unit before adding', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
     }
   }
 
   removeFromList(product: Product) {
-    if (this.selectedUnit) {
-      const removeProduct = this.cartService.toCartItem(product, this.selectedUnit, 0, this.price);
-      this.cartService.removeItemInCart(removeProduct);
-      this.isSavedItem();
-    } else {
-      this.toastr.warning('Select unit before adding', 'Error');
-    }
+    const removeProduct = this.cartService.toCartItem(product, this.selectedUnit, 0, this.price);
+    this.cartService.removeItemInCart(removeProduct);
+    this.isSavedItem();
   }
 }
