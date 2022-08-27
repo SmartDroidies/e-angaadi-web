@@ -5,10 +5,6 @@ li {
   list-style: none;
 }
 
-.mat-divider {
-  width: 100%;
-}
-
 .container {
   margin: $margin-rem-200;
 }
@@ -23,10 +19,22 @@ li {
 }
 
 .margin-card {
-  min-width: $margin-rem-1600;
+  width: $width-rem-1700;
   margin: $margin-rem-25;
 }
 
 .address-warp{
-  @include product-listing;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.default{
+  font-size: $font-size-75;
+}
+
+.empty-address {
+  @include flex-center;
+  font-size: $font-size-200;
+  margin-top: 12rem;
 }

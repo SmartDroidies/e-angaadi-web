@@ -31,7 +31,6 @@ export class CognitoService {
     return Auth.updateUserAttributes(currentuser, {
       email: user.email,
       phone_number: user.phone_number,
-      name: user.firstname,
     });
   }
 

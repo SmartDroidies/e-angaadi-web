@@ -1,14 +1,14 @@
 <div class="container">
   <div class="header">Address Details</div>
-  <mat-divider class="mat-divider"></mat-divider>
   <div class="address-button">
-    <button mat-raised-button color="primary" (click)="newAddress()">Add address</button>
+    <button mat-raised-button color="primary" (click)="newAddress()">Add Address</button>
   </div>
-  <div class="address-warp">
+  <div *ngIf="showAddressData === false" class="empty-address">"Your Address is Empty!"</div>
+  <div *ngIf="showAddressData === true" class="address-warp">
     <div *ngFor="let addressData of addressDatas">
       <mat-card class="margin-card">
-        <mat-card-subtitle *ngIf="addressData.default==true" >Default</mat-card-subtitle>
-        <mat-card-title>{{addressData.fullname}}</mat-card-title>
+        <mat-card-title>{{addressData.fullname}}<span *ngIf="addressData.default==true" class="default"> -
+            Default</span></mat-card-title>
         <mat-card-content>
           <ul>
             <li>{{addressData.fullname}}</li>
@@ -24,7 +24,8 @@
         <mat-card-actions>
           <button mat-raised-button color="primary" (click)="editAddress(addressData.id)">Edit</button>
           <button mat-raised-button color="primary" (click)="onDelete(addressData.id)">Delete</button>
-          <button mat-raised-button color="primary" *ngIf="addressData.default==false" (click)="setDefault(addressData.id,addressData.userId)">Set as Default</button>
+          <button mat-raised-button color="primary" *ngIf="addressData.default==false"
+            (click)="setDefault(addressData.id,addressData.userId)">Set as Default</button>
         </mat-card-actions>
       </mat-card>
     </div>

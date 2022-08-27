@@ -12,7 +12,7 @@
             <div class="cart-item-info">
               <h4>{{item.key | translate}}</h4>
               <h5>{{item.title}}</h5>
-              <p>{{item.unit+item.submetric}} / {{getSubTotal(item)|currency:'INR'}}</p>
+              <p> {{item.price|currency:'INR'}}/{{item.unit+item.submetric}}</p>
             </div>
           </article>
         </td>
