@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { CartService } from 'src/app/shared/service/cart.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 import { Product } from '../../models/product';
 
 @Component({
@@ -15,16 +16,18 @@ export class ProductItemComponent implements OnInit {
   @Input() product!: Product;
   selectedUnit!: number;
   cartProductItems!: CartItem[];
+  cartProductSavedItems!: CartItem[];
   cartProductItem: CartItem | undefined;
   price!: number;
   signedIn = false;
   productImages!: any;
   saveList = false;
 
-  constructor(private cartService: CartService, private toastr: ToastrService) {}
+  constructor(private cartService: CartService, private toastr: ToastrService, private storageService: StorageService) { }
 
   ngOnInit(): void {
     this.loadProductsFromCart();
+    this.isSaveditemsInCart();
   }
 
   loadProductsFromCart() {
@@ -32,6 +35,7 @@ export class ProductItemComponent implements OnInit {
     if (this.selectedUnit) {
       this.loadProductUnitFromCart(this.selectedUnit);
     }
+    this.isSaveditemsInCart();
   }
 
   selectChip(item: MatChip, unit: number, price: number) {
@@ -39,14 +43,11 @@ export class ProductItemComponent implements OnInit {
     this.selectedUnit = unit;
     this.loadProductUnitFromCart(unit);
     this.preparePrice(price);
+    this.isSaveditemsInCart();
   }
 
   preparePrice(clickedUnitPrice: number) {
     this.price = clickedUnitPrice;
-  }
-
-  loadProductUnitFromCart(unit: number) {
-    this.cartProductItem = this.cartProductItems.find((item) => item.unit === unit);
   }
 
   addUnit() {
@@ -61,6 +62,7 @@ export class ProductItemComponent implements OnInit {
     if (this.selectedUnit) {
       this.cartService.updateCart(product, this.selectedUnit, +1, this.price);
       this.loadProductsFromCart();
+      this.isSaveditemsInCart();
     } else {
       this.toastr.warning('Select unit before adding', 'Error');
     }
@@ -70,6 +72,7 @@ export class ProductItemComponent implements OnInit {
     if (this.selectedUnit) {
       this.cartService.updateCart(product, this.selectedUnit, -1, this.price);
       this.loadProductsFromCart();
+      this.isSaveditemsInCart();
     }
   }
 
@@ -78,27 +81,36 @@ export class ProductItemComponent implements OnInit {
     return cartProductUnitItem != null && cartProductUnitItem.quantity > 0 ? true : false;
   }
 
+  loadProductUnitFromCart(unit: number) {
+    this.cartProductItem = this.cartProductItems.find((item) => item.unit === unit);
+  }
+
+  isSaveditemsInCart() {
+    this.cartProductSavedItems = this.storageService.getUserSavedItems();
+    for (let i = 0; i < this.cartProductSavedItems.length; i++) {
+      if (this.product.code === this.cartProductSavedItems[i].code) {
+        if (this.cartProductSavedItems[i].saved) {
+          return this.saveList == true;
+        } else {
+          return this.saveList == false;
+        }
+      }
+    }
+    return this.saveList == false;
+  }
+
   isProductUnitInCart(unit: number) {
     const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === unit);
     return cartProductUnitItem != null ? true : false;
   }
 
   getCartItemQuantity(unit: number) {
-    // const allItems = this.cartService.getCart();
     const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === unit);
     if (cartProductUnitItem) {
       return cartProductUnitItem.quantity;
     } else {
       return null;
     }
-
-    // let qtyInCart = 0;
-    // allItems.forEach((item) => {
-    //   if (item.unit == currUnit) {
-    //     qtyInCart = item.quantity;
-    //   }
-    //   return qtyInCart;
-    // });
   }
 
   selectedProductUnitQuantity() {
@@ -110,7 +122,7 @@ export class ProductItemComponent implements OnInit {
       this.saveList = true;
       const saveProduct = this.cartService.toCartItem(product, this.selectedUnit, +1, this.price);
       this.cartService.updateCartSaveStatus(saveProduct, true);
-      this.loadProductsFromCart();
+      this.isSaveditemsInCart();
     } else {
       this.toastr.warning('Select unit before adding', 'Error');
     }
@@ -121,7 +133,7 @@ export class ProductItemComponent implements OnInit {
       this.saveList = false;
       const removeProduct = this.cartService.toCartItem(product, this.selectedUnit, 0, this.price);
       this.cartService.removeItemInCart(removeProduct);
-      this.loadProductsFromCart();
+      this.isSaveditemsInCart();
     } else {
       this.toastr.warning('Select unit before adding', 'Error');
     }
