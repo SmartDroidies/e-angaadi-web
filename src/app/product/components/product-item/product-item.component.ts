@@ -16,18 +16,21 @@ export class ProductItemComponent implements OnInit {
   @Input() product!: Product;
   selectedUnit!: number;
   cartProductItems!: CartItem[];
-  cartProductSavedItems!: CartItem[];
   cartProductItem: CartItem | undefined;
   price!: number;
   signedIn = false;
   productImages!: any;
-  saveList = false;
+  productInSavedList = false;
 
-  constructor(private cartService: CartService, private toastr: ToastrService, private storageService: StorageService) { }
+  constructor(
+    private cartService: CartService,
+    private toastr: ToastrService,
+    private storageService: StorageService
+  ) {}
 
   ngOnInit(): void {
     this.loadProductsFromCart();
-    this.isSaveditemsInCart();
+    this.isSavedItem();
   }
 
   loadProductsFromCart() {
@@ -35,7 +38,7 @@ export class ProductItemComponent implements OnInit {
     if (this.selectedUnit) {
       this.loadProductUnitFromCart(this.selectedUnit);
     }
-    this.isSaveditemsInCart();
+    this.isSavedItem();
   }
 
   selectChip(item: MatChip, unit: number, price: number) {
@@ -43,7 +46,7 @@ export class ProductItemComponent implements OnInit {
     this.selectedUnit = unit;
     this.loadProductUnitFromCart(unit);
     this.preparePrice(price);
-    this.isSaveditemsInCart();
+    this.isSavedItem();
   }
 
   preparePrice(clickedUnitPrice: number) {
@@ -62,7 +65,7 @@ export class ProductItemComponent implements OnInit {
     if (this.selectedUnit) {
       this.cartService.updateCart(product, this.selectedUnit, +1, this.price);
       this.loadProductsFromCart();
-      this.isSaveditemsInCart();
+      this.isSavedItem();
     } else {
       this.toastr.warning('Select unit before adding', 'Error');
     }
@@ -72,7 +75,7 @@ export class ProductItemComponent implements OnInit {
     if (this.selectedUnit) {
       this.cartService.updateCart(product, this.selectedUnit, -1, this.price);
       this.loadProductsFromCart();
-      this.isSaveditemsInCart();
+      this.isSavedItem();
     }
   }
 
@@ -85,18 +88,13 @@ export class ProductItemComponent implements OnInit {
     this.cartProductItem = this.cartProductItems.find((item) => item.unit === unit);
   }
 
-  isSaveditemsInCart() {
-    this.cartProductSavedItems = this.storageService.getUserSavedItems();
-    for (let i = 0; i < this.cartProductSavedItems.length; i++) {
-      if (this.product.code === this.cartProductSavedItems[i].code) {
-        if (this.cartProductSavedItems[i].saved) {
-          return this.saveList == true;
-        } else {
-          return this.saveList == false;
-        }
-      }
+  isSavedItem(): void {
+    const savedProductItems = this.storageService.getSavedItemByProduct(this.product.code);
+    if (savedProductItems.length > 0) {
+      this.productInSavedList = true;
+    } else {
+      this.productInSavedList = false;
     }
-    return this.saveList == false;
   }
 
   isProductUnitInCart(unit: number) {
@@ -119,10 +117,9 @@ export class ProductItemComponent implements OnInit {
 
   saveToList(product: Product) {
     if (this.selectedUnit) {
-      this.saveList = true;
       const saveProduct = this.cartService.toCartItem(product, this.selectedUnit, +1, this.price);
       this.cartService.updateCartSaveStatus(saveProduct, true);
-      this.isSaveditemsInCart();
+      this.isSavedItem();
     } else {
       this.toastr.warning('Select unit before adding', 'Error');
     }
@@ -130,10 +127,9 @@ export class ProductItemComponent implements OnInit {
 
   removeFromList(product: Product) {
     if (this.selectedUnit) {
-      this.saveList = false;
       const removeProduct = this.cartService.toCartItem(product, this.selectedUnit, 0, this.price);
       this.cartService.removeItemInCart(removeProduct);
-      this.isSaveditemsInCart();
+      this.isSavedItem();
     } else {
       this.toastr.warning('Select unit before adding', 'Error');
     }

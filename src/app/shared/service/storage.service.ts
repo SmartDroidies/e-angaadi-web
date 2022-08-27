@@ -10,13 +10,14 @@ export class StorageService {
 
   C_USER_CART = 'user_cart';
 
-  getUserItems():CartItem[]{
+  getUserItems(): CartItem[] {
     const cartItems = localStorage.getItem(this.C_USER_CART);
     if (cartItems) {
-      return (JSON.parse(cartItems) as CartItem[]);
+      return JSON.parse(cartItems) as CartItem[];
     } else {
       return [];
-    }}
+    }
+  }
 
   getUserCartItems(): CartItem[] {
     const cartItems = localStorage.getItem(this.C_USER_CART);
@@ -36,12 +37,18 @@ export class StorageService {
     }
   }
 
+  getSavedItemByProduct(code: string): CartItem[] {
+    const cartItems = this.getUserSavedItems();
+    const savedProductItem = cartItems.filter((item) => item.code == code);
+    return savedProductItem;
+  }
+
   updateUserCart(userCart: CartItem[]) {
     localStorage.setItem(this.C_USER_CART, JSON.stringify(userCart));
     this.cartBadgeService.reload();
-  } 
+  }
 
-  deleteUserCart(){
+  deleteUserCart() {
     localStorage.removeItem(this.C_USER_CART);
     this.cartBadgeService.reload();
   }

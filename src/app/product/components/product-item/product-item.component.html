@@ -27,15 +27,13 @@
                 <mat-icon>add</mat-icon>
             </button>
         </div>
-        <div *ngIf="isSaveditemsInCart()" >
-            <button *ngIf="saveList===false" (click)="saveToList(product)" color="accent"
-                class="list-cart-button" mat-flat-button>
+        <div *ngIf="!productInSavedList">
+            <button (click)="saveToList(product)" color="accent" class="list-cart-button" mat-flat-button>
                 <mat-icon>bookmark_border</mat-icon>
             </button>
         </div>
-        <div *ngIf="isSaveditemsInCart()">
-            <button *ngIf="saveList===true" (click)="removeFromList(product)" color="accent"
-                class="list-cart-button" mat-flat-button>
+        <div *ngIf="productInSavedList">
+            <button (click)="removeFromList(product)" color="accent" class="list-cart-button" mat-flat-button>
                 <mat-icon>bookmark_add</mat-icon>
             </button>
         </div>
