@@ -13,11 +13,45 @@
   margin-top: $margin-rem-100;
 }
 
+.empty-screen{
+  @include flex-column;
+  margin: $margin-rem-600;
+  
+}
+
+.cart-action {
+  margin-left: 33rem;
+  width: $width-rem-1000;
+  margin-top: $margin-rem-100;
+}
+
+.signin-action{
+  margin-left: 35rem;
+  width: $width-rem-1000;
+  margin-top: $margin-rem-100;
+}
+
+.cart-icon{
+  @include flex-center;
+}
+
+.icon-style{
+  font-size: 7rem;
+  height:  $height-rem-700;
+  width: $width-rem-700 ;
+}
+
 .empty-message {
   @include flex-center;
-  margin: $margin-rem-800;
   font-size: $font-size-200;
-  margin-top: 12rem;
+  margin-top: $margin-rem-100;
+  ;
+}
+
+.message{
+  @include flex-center;
+  margin-top: $margin-rem-100;
+  font-size: $font-size-base;
 }
 
 table {
@@ -131,71 +165,4 @@ ng-container {
 
 
 
-// .table-content {
-//   @include flex-center;
-// }
 
-// .text-center {
-//   @include flex-center;
-// }
-
-// .cart-heading {
-//   margin-top: $margin-rem-50 ;
-//   font-size: $font-size-base;
-//   font-weight: bold;
-// }
-
-// .row-action-button {
-//   justify-content: center;
-//   @include flex-row;
-// }
-
-// .row-action-button button {
-//   margin: 0.3rem;
-// }
-
-// .row-action-button li {
-//   margin: $margin-rem-50;
-// }
-
-// .cart-info li {
-//   margin: $margin-rem-50;
-//   align-items: center;
-//   font-size: $font-size-875;
-//   font-weight: $font-weight-bold;
-//   line-height: $line-height-150;
-// }
-
-// .card-product-image {
-//   width: $width-rem-2250;
-//   height: $height-rem-1500;
-//   margin: $margin-rem-100 $margin-rem-100 ;
-// }
-
-// .list-products {
-//   @include flex-center;
-//   @include product-listing;
-// }
-
-// mat-card-title {
-//   font-size: $font-size-875;
-//   font-weight: $font-weight-bold;
-// }
-
-// .card-heading {
-//   font-size: $font-size-base;
-//   font-weight: bold;
-//   margin: $margin-rem-200 0 $margin-rem-100 $margin-rem-500;
-// }
-
-// mat-card-actions {
-//   @include flex-center;
-// }
-
-// .add-cart-button {
-//   flex-basis: 70%;
-// }
-
-// .remove-cart-button {
-//   flex-basis: 30%;
-// }

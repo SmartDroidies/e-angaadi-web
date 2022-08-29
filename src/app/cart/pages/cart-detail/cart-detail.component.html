@@ -1,4 +1,17 @@
-<div *ngIf="showCartSection === false" class="empty-message">"Your Cart Is Empty!"</div>
+<div *ngIf="showCartSection === false && signedIn === true" class="empty-screen">
+ <div class="cart-icon">
+   <mat-icon class="icon-style" color="primary">shopping_cart</mat-icon>
+  </div>
+<div  class="empty-message">Your Cart Is Empty!</div>
+<div class="message">Continue Shopping to add items to your cart and start saving</div>
+<div class="cart-action"><button  mat-raised-button color="primary" (click)="onShopping()">Continue Shopping</button></div>
+</div>
+
+<div *ngIf="showCartSection === false && signedIn === false" class="empty-screen">
+ <div  class="empty-message">Your Cart Is Empty!</div>
+ <div class="message">Have an account? Sign in to see your cart</div>
+ <div class="signin-action"><button  mat-raised-button color="primary" (click)="signIn()">Sign in</button></div>
+ </div>
 
 <div *ngIf="showCartSection === true" class="cart-view">
   <h3 class="table-header">Items In Your Cart ({{getTotalQuantity()}})</h3>
