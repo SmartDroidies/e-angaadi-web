@@ -26,8 +26,8 @@ export class CartComponent implements OnInit {
     this.loadCartItem();
     this.cartBadgeService.change.subscribe(() => {
       this.loadCartItem();
-    });
     this.zeroQuantity();
+    });
   }
 
   loadCartItem(): void {
