@@ -14,11 +14,11 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class CartComponent implements OnInit {
   items: CartItem[] = [];
-  cartTotal = 0;
   badgeHidden!: boolean;
   signedIn = false;
   userId!: string;
   cartImages!: ProductImage;
+  emptyCart = false;
 
   constructor(private router: Router, private cartService: CartService, private translate: TranslateService, private cartBadgeService: CartBadgeService, private productImageService: ProductImageService) { }
 
@@ -27,7 +27,6 @@ export class CartComponent implements OnInit {
     this.cartBadgeService.change.subscribe(() => {
       this.loadCartItem();
     });
-
   }
 
   loadCartItem(): void {
@@ -84,4 +83,13 @@ export class CartComponent implements OnInit {
     this.cartImages = this.productImageService.getCartImages(item);
     return this.cartImages;
   }
+
+  zeroQuantity() {
+    if (this.items.length == 0) {
+      this.emptyCart = false;
+    } else {
+      this.emptyCart = true;
+    }
+  }
+
 }

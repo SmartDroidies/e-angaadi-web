@@ -22,6 +22,10 @@
   font-weight: bold;
 }
 
+.emptycart{
+  @include flex-center();
+}
+
 .cart-icon {
   @include icons-spacing();
 }
