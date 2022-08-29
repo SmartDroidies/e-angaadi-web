@@ -30,12 +30,6 @@ export class ProductListingComponent implements OnInit, OnChanges {
 
   loadCartItems() {
     this.cartItems = this.cartService.getCart(); 
-    // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-    //   if (this.signedIn === true) {
-    //     let userId = user.username;
-    //     this.cartService.getCartItems(userId).subscribe((userCartItems) => (this.cartItems = userCartItems));
-    //   }
-    // });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
