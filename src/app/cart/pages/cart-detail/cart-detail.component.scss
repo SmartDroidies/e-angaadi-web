@@ -35,13 +35,11 @@
 
   .cart-action {
     margin: $margin-rem-100;
-  }
-}
 
-.signin-action {
-  margin-left: 35rem;
-  width: $width-rem-1000;
-  margin-top: $margin-rem-100;
+    button {
+      margin: $margin-rem-50;
+    }
+  }
 }
 
 .icon-style {

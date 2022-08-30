@@ -10,9 +10,12 @@
 </div>
 
 <div *ngIf="showCartSection === false && signedIn === false" class="empty-screen">
-  <div class="empty-message">Your Cart Is Empty!</div>
+  <div class="empty-message">Your cart is empty</div>
   <div class="message">Have an account? Sign in to see your cart</div>
-  <div class="signin-action"><button mat-raised-button color="primary" (click)="signIn()">Sign in</button></div>
+  <div class="cart-action">
+    <button mat-raised-button color="primary" (click)="onShopping()">Continue Shopping</button>
+    <button mat-raised-button color="primary" (click)="signIn()">Sign in</button>
+  </div>
 </div>
 
 <div *ngIf="showCartSection === true" class="cart-view">
