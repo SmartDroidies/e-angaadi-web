@@ -4,8 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { CartService } from 'src/app/shared/service/cart.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 import { Product } from '../../models/product';
-import { ProductService } from '../../service/product.service';
 
 @Component({
   selector: 'app-product-item',
@@ -20,16 +20,17 @@ export class ProductItemComponent implements OnInit {
   price!: number;
   signedIn = false;
   productImages!: any;
+  productInSavedList = false;
 
   constructor(
     private cartService: CartService,
     private toastr: ToastrService,
-    private translate: TranslateService,
-    private productService: ProductService
-  ) {}
+    private storageService: StorageService
+  ) { }
 
   ngOnInit(): void {
     this.loadProductsFromCart();
+    this.isSavedItem();
   }
 
   loadProductsFromCart() {
@@ -37,6 +38,7 @@ export class ProductItemComponent implements OnInit {
     if (this.selectedUnit) {
       this.loadProductUnitFromCart(this.selectedUnit);
     }
+    this.isSavedItem();
   }
 
   selectChip(item: MatChip, unit: number, price: number) {
@@ -44,14 +46,11 @@ export class ProductItemComponent implements OnInit {
     this.selectedUnit = unit;
     this.loadProductUnitFromCart(unit);
     this.preparePrice(price);
+    this.isSavedItem();
   }
 
   preparePrice(clickedUnitPrice: number) {
     this.price = clickedUnitPrice;
-  }
-
-  loadProductUnitFromCart(unit: number) {
-    this.cartProductItem = this.cartProductItems.find((item) => item.unit === unit);
   }
 
   addUnit() {
@@ -66,8 +65,11 @@ export class ProductItemComponent implements OnInit {
     if (this.selectedUnit) {
       this.cartService.updateCart(product, this.selectedUnit, +1, this.price);
       this.loadProductsFromCart();
+      this.isSavedItem();
     } else {
-      this.toastr.warning('Select unit before adding', 'Error');
+      this.toastr.warning('Select unit before adding', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
     }
   }
 
@@ -75,6 +77,7 @@ export class ProductItemComponent implements OnInit {
     if (this.selectedUnit) {
       this.cartService.updateCart(product, this.selectedUnit, -1, this.price);
       this.loadProductsFromCart();
+      this.isSavedItem();
     }
   }
 
@@ -83,30 +86,52 @@ export class ProductItemComponent implements OnInit {
     return cartProductUnitItem != null && cartProductUnitItem.quantity > 0 ? true : false;
   }
 
+  loadProductUnitFromCart(unit: number) {
+    this.cartProductItem = this.cartProductItems.find((item) => item.unit === unit);
+  }
+
+  isSavedItem(): void {
+    const savedProductItems = this.storageService.getSavedItemByProduct(this.product.code);
+    if (savedProductItems.length > 0) {
+      this.productInSavedList = true;
+    } else {
+      this.productInSavedList = false;
+    }
+  }
+
   isProductUnitInCart(unit: number) {
     const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === unit);
     return cartProductUnitItem != null ? true : false;
   }
 
   getCartItemQuantity(unit: number) {
-    // const allItems = this.cartService.getCart();
     const cartProductUnitItem = this.cartProductItems.find((item) => item.unit === unit);
     if (cartProductUnitItem) {
       return cartProductUnitItem.quantity;
     } else {
       return null;
     }
-
-    // let qtyInCart = 0;
-    // allItems.forEach((item) => {
-    //   if (item.unit == currUnit) {
-    //     qtyInCart = item.quantity;
-    //   }
-    //   return qtyInCart;
-    // });
   }
 
   selectedProductUnitQuantity() {
     return this.cartProductItem ? this.cartProductItem.quantity : 0;
+  }
+
+  saveToList(product: Product) {
+    if (this.selectedUnit) {
+      const saveProduct = this.cartService.toCartItem(product, this.selectedUnit, +1, this.price);
+      this.cartService.updateCartSaveStatus(saveProduct, true);
+      this.isSavedItem();
+    } else {
+      this.toastr.warning('Select unit before adding', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
+    }
+  }
+
+  removeFromList(product: Product) {
+    const removeProduct = this.cartService.toCartItem(product, this.selectedUnit, 0, this.price);
+    this.cartService.removeItemInCart(removeProduct);
+    this.isSavedItem();
   }
 }

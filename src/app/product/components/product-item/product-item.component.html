@@ -2,7 +2,8 @@
 <mat-card class="product" role="listitem">
     <app-product-image [product]="product"></app-product-image>
     <mat-card-content>
-        <mat-card-title>{{product.key | translate}}<span class="price-cart-right">{{price| currency:'INR'}}</span></mat-card-title>
+        <mat-card-title>{{product.key | translate}}<span class="price-cart-right">{{price| currency:'INR'}}</span>
+        </mat-card-title>
         <mat-card-title>{{product.title | titlecase}}</mat-card-title>
         <mat-chip-list>
             <mat-chip *ngFor="let item of product.units" #lbl="matChip" (click)="selectChip(lbl, item.unit,item.price)">
@@ -26,8 +27,15 @@
                 <mat-icon>add</mat-icon>
             </button>
         </div>
-        <button class="list-cart-button" mat-icon-button>
-            <mat-icon>playlist_add</mat-icon>
-        </button>
+        <div *ngIf="!productInSavedList">
+            <button (click)="saveToList(product)" color="accent" class="list-cart-button" mat-flat-button>
+                <mat-icon>bookmark_border</mat-icon>
+            </button>
+        </div>
+        <div *ngIf="productInSavedList">
+            <button (click)="removeFromList(product)" color="accent" class="list-cart-button" mat-flat-button>
+                <mat-icon>bookmark_add</mat-icon>
+            </button>
+        </div>
     </mat-card-actions>
 </mat-card>
