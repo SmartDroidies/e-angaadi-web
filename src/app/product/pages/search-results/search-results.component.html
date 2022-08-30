@@ -1,5 +1,9 @@
+<div *ngIf="showTitle" class="search-result"> Search results for "{{searchWord}}"</div>
+<div *ngIf="!showTitle" class="no-result"> No result found for "{{searchWord}}"</div>
 <div class="products">
     <div class="product-container" *ngFor="let product of searchResults">
-        <app-product-item [product]="product"></app-product-item>
+        <div *ngIf="product.units">
+            <app-product-item [product]="product"></app-product-item>
+        </div>
     </div>
 </div>

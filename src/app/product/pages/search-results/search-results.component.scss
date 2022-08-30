@@ -2,9 +2,21 @@
 @import '/src/styles/abstracts/mixins';
 
 .products {
-    @include product-listing;
+  @include product-listing;
 }
 
 .product-container {
   margin: $margin-rem-25;
+}
+
+.no-result {
+  @include flex-center;
+  margin: $margin-rem-800;
+  font-size: $font-size-200;
+  margin-top: 12rem;
+}
+
+.search-result {
+  font-size: $font-size-200;
+  margin: 1rem 0 1rem 4rem;
 }

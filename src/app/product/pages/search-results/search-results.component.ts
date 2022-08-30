@@ -12,6 +12,7 @@ export class SearchResultsComponent implements OnInit {
 
   searchResults!: Product[];
   searchWord: string | null | undefined;
+  showTitle!: boolean;
 
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute) { }
 
@@ -26,7 +27,14 @@ export class SearchResultsComponent implements OnInit {
   }
 
   searchData(searchWord: string) {
-    this.productService.searchProduct(searchWord).subscribe((searchData) => (this.searchResults = searchData));
+    this.productService.searchProduct(searchWord).subscribe((searchData) => {
+      this.searchResults = searchData;
+      if (this.searchResults.length == 0) {
+        this.showTitle = false;
+      } else {
+        this.showTitle = true;
+      }
+    });
   }
 
 }

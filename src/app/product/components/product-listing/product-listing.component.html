@@ -1,5 +1,7 @@
 <div class="products">
     <div class="product-container" *ngFor="let product of productsByGroup">
-        <app-product-item [product]="product"></app-product-item>
+        <div *ngIf="product.units">
+            <app-product-item [product]="product"></app-product-item>
+        </div>
     </div>
 </div>
