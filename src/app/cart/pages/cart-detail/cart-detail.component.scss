@@ -5,7 +5,7 @@
   width: 80%;
   align-items: center;
   margin: auto;
-  margin-bottom:$margin-rem-300; 
+  margin-bottom: $margin-rem-300;
 }
 
 .table-header {
@@ -13,54 +13,49 @@
   margin-top: $margin-rem-100;
 }
 
-.empty-screen{
+.empty-screen {
   @include flex-column;
-  margin: $margin-rem-600;
-  
+  margin: $margin-rem-300;
+  padding: $pad-rem-100;
+  border: 1px solid grey;
+
+  div {
+    @include flex-center;
+  }
+
+  .empty-message {
+    font-size: $font-size-200;
+    margin: $margin-rem-100;
+  }
+
+  .message {
+    margin: $margin-rem-100;
+    font-size: $font-size-base;
+  }
+
+  .cart-action {
+    margin: $margin-rem-100;
+  }
 }
 
-.cart-action {
-  margin-left: 33rem;
-  width: $width-rem-1000;
-  margin-top: $margin-rem-100;
-}
-
-.signin-action{
+.signin-action {
   margin-left: 35rem;
   width: $width-rem-1000;
   margin-top: $margin-rem-100;
 }
 
-.cart-icon{
-  @include flex-center;
-}
-
-.icon-style{
+.icon-style {
   font-size: 7rem;
-  height:  $height-rem-700;
-  width: $width-rem-700 ;
-}
-
-.empty-message {
-  @include flex-center;
-  font-size: $font-size-200;
-  margin-top: $margin-rem-100;
-  ;
-}
-
-.message{
-  @include flex-center;
-  margin-top: $margin-rem-100;
-  font-size: $font-size-base;
+  height: $height-rem-700;
+  width: $width-rem-700;
 }
 
 table {
   width: 100%;
-
 }
 
 td.mat-cell:last-of-type {
-  width:25rem;
+  width: 25rem;
 }
 
 ng-container {
@@ -160,9 +155,6 @@ ng-container {
 
   .cart-action {
     margin: $margin-rem-50;
+    background-color: antiquewhite;
   }
 }
-
-
-
-
