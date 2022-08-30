@@ -10,10 +10,9 @@
   margin-left: $margin-rem-25;
 }
 
-.align-row{
+.align-row {
   display: flex;
   flex-direction: row;
-  
 }
 
 .cart-total {
@@ -22,8 +21,8 @@
   font-weight: bold;
 }
 
-.emptycart{
-  margin-left:2rem;
+.empty-cart {
+  margin: 1rem 2rem;
 }
 
 .cart-icon {
@@ -46,7 +45,7 @@
 
 .price {
   font-weight: bold;
- margin-left: $margin-rem-300;
+  margin-left: $margin-rem-300;
 }
 
 .product-image {

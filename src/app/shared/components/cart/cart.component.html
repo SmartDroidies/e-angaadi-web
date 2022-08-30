@@ -1,37 +1,40 @@
 <span mat-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
-    <mat-icon [matBadge]="getTotalQuantity()"  [matBadgeHidden]="badgeHidden" matBadgeColor="warn" class="cart-icon">add_shopping_cart</mat-icon>
-    <span class="cart-icon-text"><span class="mat-small">Cart</span></span>
+  <mat-icon [matBadge]="getTotalQuantity()" [matBadgeHidden]="badgeHidden" matBadgeColor="warn" class="cart-icon">
+    add_shopping_cart</mat-icon>
+  <span class="cart-icon-text"><span class="mat-small">Cart</span></span>
 </span>
 
 <mat-menu #menu="matMenu" [overlapTrigger]="false">
-    <div (mouseleave)="menuTrigger.closeMenu()">
+  <div (mouseleave)="menuTrigger.closeMenu()">
 
-       <div>
-        <mat-list>
-            <mat-list-item *ngFor="let item of items">
-              <img mat-card-image *ngIf="collectCartImages(item)" src="{{cartImages.url}}" class="product-image" />
-              <span>
-                <span mat-line>{{item.key | translate}} ({{item.unit+" "+item.submetric}})</span>
-                <span mat-line class="align-row">
-                  <span>Qty: {{ item.quantity }}</span>
-                  <span class="price">{{ getSubTotal(item) | currency:'INR'}}</span>
-                </span>
-              </span>
-              <mat-divider></mat-divider>
-            </mat-list-item>
-          </mat-list>
-       </div>
-
-        <footer class="footer">
-          <div *ngIf="emptyCart===false" class="emptycart">No items in your cart</div>
-            <div *ngIf="emptyCart===true">
-                <span class="total">Subtotal : </span>
-                <span class="quantity">({{getTotalQuantity()}} items)</span>
-                <span class="cart-total">{{getTotal()  | currency:'INR'}}</span>
-            </div>
-            <button class="button" mat-raised-button color="primary" (click)="onCart()">View
-                Cart & Checkout</button>
-        </footer>
-
+    <div>
+      <mat-list>
+        <mat-list-item *ngFor="let item of items">
+          <img mat-card-image *ngIf="collectCartImages(item)" src="{{cartImages.url}}" class="product-image" />
+          <span>
+            <span mat-line>{{item.key | translate}} ({{item.unit+" "+item.submetric}})</span>
+            <span mat-line class="align-row">
+              <span>Qty: {{ item.quantity }}</span>
+              <span class="price">{{ getSubTotal(item) | currency:'INR'}}</span>
+            </span>
+          </span>
+        </mat-list-item>
+      </mat-list>
     </div>
+
+    <div *ngIf="emptyCart===false" class="empty-cart">There are no items in your cart</div>
+
+    <mat-divider></mat-divider>
+
+
+    <footer class="footer">
+      <div *ngIf="emptyCart===true">
+        <span class="total">Subtotal : </span>
+        <span class="quantity">({{getTotalQuantity()}} items)</span>
+        <span class="cart-total">{{getTotal() | currency:'INR'}}</span>
+      </div>
+      <button class="button" mat-raised-button color="primary" (click)="onCart()">View Cart & Checkout</button>
+    </footer>
+
+  </div>
 </mat-menu>
