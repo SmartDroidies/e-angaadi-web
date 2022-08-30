@@ -55,7 +55,7 @@ export class SignInComponent {
             (this.cognitoService.signIn(this.user)).toPromise()
                 .then(() => {
                     this.cancel();
-                    this.toastr.success('Successfully Logged to your account', 'Loggedin', {
+                    this.toastr.success('Successfully logged into your account', 'Welcome', {
                         positionClass: 'toast-bottom-center',
                     });
                 }).catch((e) => {

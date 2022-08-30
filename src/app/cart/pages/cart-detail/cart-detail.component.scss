@@ -5,7 +5,7 @@
   width: 80%;
   align-items: center;
   margin: auto;
-  margin-bottom:$margin-rem-300; 
+  margin-bottom: $margin-rem-300;
 }
 
 .table-header {
@@ -13,20 +13,47 @@
   margin-top: $margin-rem-100;
 }
 
-.empty-message {
-  @include flex-center;
-  margin: $margin-rem-800;
-  font-size: $font-size-200;
-  margin-top: 12rem;
+.empty-screen {
+  @include flex-column;
+  margin: $margin-rem-300;
+  padding: $pad-rem-100;
+  border: 1px solid grey;
+
+  div {
+    @include flex-center;
+  }
+
+  .empty-message {
+    font-size: $font-size-200;
+    margin: $margin-rem-100;
+  }
+
+  .message {
+    margin: $margin-rem-100;
+    font-size: $font-size-base;
+  }
+
+  .cart-action {
+    margin: $margin-rem-100;
+
+    button {
+      margin: $margin-rem-50;
+    }
+  }
+}
+
+.icon-style {
+  font-size: 7rem;
+  height: $height-rem-700;
+  width: $width-rem-700;
 }
 
 table {
   width: 100%;
-
 }
 
 td.mat-cell:last-of-type {
-  width:25rem;
+  width: 25rem;
 }
 
 ng-container {
@@ -126,76 +153,6 @@ ng-container {
 
   .cart-action {
     margin: $margin-rem-50;
+    background-color: antiquewhite;
   }
 }
-
-
-
-// .table-content {
-//   @include flex-center;
-// }
-
-// .text-center {
-//   @include flex-center;
-// }
-
-// .cart-heading {
-//   margin-top: $margin-rem-50 ;
-//   font-size: $font-size-base;
-//   font-weight: bold;
-// }
-
-// .row-action-button {
-//   justify-content: center;
-//   @include flex-row;
-// }
-
-// .row-action-button button {
-//   margin: 0.3rem;
-// }
-
-// .row-action-button li {
-//   margin: $margin-rem-50;
-// }
-
-// .cart-info li {
-//   margin: $margin-rem-50;
-//   align-items: center;
-//   font-size: $font-size-875;
-//   font-weight: $font-weight-bold;
-//   line-height: $line-height-150;
-// }
-
-// .card-product-image {
-//   width: $width-rem-2250;
-//   height: $height-rem-1500;
-//   margin: $margin-rem-100 $margin-rem-100 ;
-// }
-
-// .list-products {
-//   @include flex-center;
-//   @include product-listing;
-// }
-
-// mat-card-title {
-//   font-size: $font-size-875;
-//   font-weight: $font-weight-bold;
-// }
-
-// .card-heading {
-//   font-size: $font-size-base;
-//   font-weight: bold;
-//   margin: $margin-rem-200 0 $margin-rem-100 $margin-rem-500;
-// }
-
-// mat-card-actions {
-//   @include flex-center;
-// }
-
-// .add-cart-button {
-//   flex-basis: 70%;
-// }
-
-// .remove-cart-button {
-//   flex-basis: 30%;
-// }

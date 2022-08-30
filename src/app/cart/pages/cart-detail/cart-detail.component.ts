@@ -20,6 +20,7 @@ export class CartDetailComponent implements OnInit {
   @Input() product!: Product;
   items: CartItem[] = [];
   showCartSection!: boolean;
+  signedIn = false;
   userId!: string;
   displayedColumns: string[] = ['title', 'quantity', 'total'];
   cartImages!: ProductImage;
@@ -41,6 +42,7 @@ export class CartDetailComponent implements OnInit {
       this.getCart();
     });
     this.showCart();
+    this.cartView();
     // this.updateCart();
   }
 
@@ -82,6 +84,16 @@ export class CartDetailComponent implements OnInit {
     } else {
       this.showCartSection = false;
     }
+  }
+
+  cartView(){
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+        this.signedIn = true;
+      });
+  }
+
+  async signIn() {
+    await this.router.navigate(['/auth/sign-in']);
   }
 
   addUnit(product: Product, selectedUnit: number, price: number) {

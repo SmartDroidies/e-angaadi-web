@@ -1,4 +1,22 @@
-<div *ngIf="showCartSection === false" class="empty-message">"Your Cart Is Empty!"</div>
+<div *ngIf="showCartSection === false && signedIn === true" class="empty-screen">
+  <div class="cart-icon">
+    <mat-icon class="icon-style" color="primary">shopping_cart</mat-icon>
+  </div>
+  <div class="empty-message">Your cart is empty</div>
+  <div class="message">Continue shopping to add items to your cart</div>
+  <div class="cart-action">
+    <button mat-raised-button color="primary" (click)="onShopping()">Continue Shopping</button>
+  </div>
+</div>
+
+<div *ngIf="showCartSection === false && signedIn === false" class="empty-screen">
+  <div class="empty-message">Your cart is empty</div>
+  <div class="message">Have an account? Sign in to see your cart</div>
+  <div class="cart-action">
+    <button mat-raised-button color="primary" (click)="onShopping()">Continue Shopping</button>
+    <button mat-raised-button color="primary" (click)="signIn()">Sign in</button>
+  </div>
+</div>
 
 <div *ngIf="showCartSection === true" class="cart-view">
   <h3 class="table-header">Items In Your Cart ({{getTotalQuantity()}})</h3>
@@ -60,7 +78,8 @@
             <div class="cart-action-buttons">
 
               <button class="cart-action" mat-raised-button color="primary" (click)="emptyCart()">Empty Cart</button>
-              <button class="cart-action" mat-raised-button color="primary" (click)="onShopping()">Continue Shopping</button>
+              <button class="cart-action" mat-raised-button color="primary" (click)="onShopping()">Continue
+                Shopping</button>
 
 
               <button class="cart-action" mat-raised-button color="accent">Checkout</button>
