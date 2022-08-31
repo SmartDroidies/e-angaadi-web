@@ -29,7 +29,7 @@ export class ProductListingComponent implements OnInit, OnChanges {
   }
 
   loadCartItems() {
-    this.cartItems = this.cartService.getCart(); 
+    this.cartItems = this.cartService.getCart();
     // from(Auth.currentAuthenticatedUser()).subscribe((user) => {
     //   if (this.signedIn === true) {
     //     let userId = user.username;
