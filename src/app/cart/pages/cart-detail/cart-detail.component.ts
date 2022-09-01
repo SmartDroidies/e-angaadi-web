@@ -37,6 +37,9 @@ export class CartDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCart();
+    this.cartBadgeService.change.subscribe(() => {
+      this.getCart();
+    });
     this.cartView();
     // this.updateCart();
   }
