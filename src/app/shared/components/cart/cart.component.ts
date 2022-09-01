@@ -32,12 +32,16 @@ export class CartComponent implements OnInit {
     this.loadCartItem();
     this.cartBadgeService.change.subscribe(() => {
       this.loadCartItem();
-      this.zeroQuantity();
     });
   }
 
   loadCartItem(): void {
     this.items = this.cartService.getCart();
+    if (this.items.length == 0) {
+      this.emptyCart = false;
+    } else {
+      this.emptyCart = true;
+    }
   }
 
   async onCart() {
@@ -91,11 +95,4 @@ export class CartComponent implements OnInit {
     return this.cartImages;
   }
 
-  zeroQuantity() {
-    if (this.items.length == 0) {
-      this.emptyCart = false;
-    } else {
-      this.emptyCart = true;
-    }
-  }
 }
