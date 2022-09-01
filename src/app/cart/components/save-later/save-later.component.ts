@@ -48,6 +48,7 @@ export class SaveLaterComponent implements OnInit {
     this.toastr.success('Item removed from saved list', 'Success', {
       positionClass: 'toast-bottom-center',
     });
+    this.getSaved();
   }
 
   collectCartImages(item: CartItem) {
