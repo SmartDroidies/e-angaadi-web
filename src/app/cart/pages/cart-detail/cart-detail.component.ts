@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ProductImageService } from 'src/app/product/service/product-image.service';
 import { ProductImage } from 'src/app/product/models/product-image';
 import { ToastrService } from 'ngx-toastr';
+import { CartBadgeService } from 'src/app/shared/components/cart/cart-badge.service';
 
 @Component({
   selector: 'app-cart-detail',
@@ -30,7 +31,8 @@ export class CartDetailComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private productImageService: ProductImageService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private cartBadgeService: CartBadgeService
   ) {}
 
   ngOnInit(): void {
@@ -127,6 +129,7 @@ export class CartDetailComponent implements OnInit {
     this.toastr.success('Item removed from cart', 'Success', {
       positionClass: 'toast-bottom-center',
     });
+    this.getCart();
   }
 
   getTotal() {
