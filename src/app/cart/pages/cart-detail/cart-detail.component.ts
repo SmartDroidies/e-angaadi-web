@@ -79,11 +79,13 @@ export class CartDetailComponent implements OnInit {
   // }
 
   showCart() {
+    this.cartBadgeService.change.subscribe(() => {
     if (this.items.length > 0) {
       this.showCartSection = true;
     } else {
       this.showCartSection = false;
     }
+  });
   }
 
   cartView(){
