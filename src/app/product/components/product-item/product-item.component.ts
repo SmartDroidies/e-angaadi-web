@@ -6,6 +6,7 @@ import { CartItem } from 'src/app/shared/models/cartItem';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { StorageService } from 'src/app/shared/service/storage.service';
 import { Product } from '../../models/product';
+import { UnitPrice } from '../../models/unit-price';
 
 @Component({
   selector: 'app-product-item',
@@ -31,6 +32,16 @@ export class ProductItemComponent implements OnInit {
   ngOnInit(): void {
     this.loadProductsFromCart();
     this.isSavedItem();
+    this.setDefaultUnit();
+  }
+
+  setDefaultUnit() {
+    if (this.product.default) {
+      this.selectedUnit = this.product.default;
+      const findProduct = this.product.units.find((item) => item.unit === this.selectedUnit);
+      const price = findProduct?.price;
+      this.selectChip(this.product, this.selectedUnit, price)
+    }
   }
 
   loadProductsFromCart() {
