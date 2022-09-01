@@ -1,5 +1,5 @@
 import { CartItem } from './../../../shared/models/cartItem';
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { Product } from 'src/app/product/models/product';
 import { Router } from '@angular/router';
@@ -8,7 +8,6 @@ import { from } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ProductImageService } from 'src/app/product/service/product-image.service';
 import { ProductImage } from 'src/app/product/models/product-image';
-import { CartBadgeService } from 'src/app/shared/components/cart/cart-badge.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -29,8 +28,6 @@ export class CartDetailComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private router: Router,
-    private cartBadgeService: CartBadgeService,
-    private ref: ChangeDetectorRef,
     private translate: TranslateService,
     private productImageService: ProductImageService,
     private toastr: ToastrService
@@ -38,10 +35,6 @@ export class CartDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCart();
-    this.cartBadgeService.change.subscribe(() => {
-      this.getCart();
-    });
-    this.showCart();
     this.cartView();
     // this.updateCart();
   }
@@ -55,9 +48,15 @@ export class CartDetailComponent implements OnInit {
         .subscribe((userCart) => window.localStorage.setItem('user_cart', JSON.stringify(userCart)));
     });
   }
+
   getCart() {
     // this.getUpdateCart();
     this.items = this.cartService.getCart();
+    if (this.items.length > 0) {
+      this.showCartSection = true;
+    } else {
+      this.showCartSection = false;
+    }
   }
 
   // updateCart() {
@@ -78,20 +77,10 @@ export class CartDetailComponent implements OnInit {
   //   });
   // }
 
-  showCart() {
-    this.cartBadgeService.change.subscribe(() => {
-    if (this.items.length > 0) {
-      this.showCartSection = true;
-    } else {
-      this.showCartSection = false;
-    }
-  });
-  }
-
-  cartView(){
+  cartView() {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
-        this.signedIn = true;
-      });
+      this.signedIn = true;
+    });
   }
 
   async signIn() {

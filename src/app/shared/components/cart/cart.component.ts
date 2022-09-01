@@ -20,13 +20,19 @@ export class CartComponent implements OnInit {
   cartImages!: ProductImage;
   emptyCart = false;
 
-  constructor(private router: Router, private cartService: CartService, private translate: TranslateService, private cartBadgeService: CartBadgeService, private productImageService: ProductImageService) { }
+  constructor(
+    private router: Router,
+    private cartService: CartService,
+    private translate: TranslateService,
+    private cartBadgeService: CartBadgeService,
+    private productImageService: ProductImageService
+  ) {}
 
   ngOnInit(): void {
     this.loadCartItem();
     this.cartBadgeService.change.subscribe(() => {
       this.loadCartItem();
-    this.zeroQuantity();
+      this.zeroQuantity();
     });
   }
 
@@ -92,5 +98,4 @@ export class CartComponent implements OnInit {
       this.emptyCart = true;
     }
   }
-
 }
