@@ -10,6 +10,7 @@ export class CategoryComponent implements OnInit {
   @Output() productGroupEvent = new EventEmitter<string>();
 
   productGroups: ProductGroup[] = [];
+  activeProductGroupCode: string | undefined = undefined;
 
   constructor(private productService: ProductService) {}
 
@@ -24,6 +25,11 @@ export class CategoryComponent implements OnInit {
   }
 
   onGroupChange(groupCode: string) {
+    this.activeProductGroupCode = groupCode;
     this.productGroupEvent.emit(groupCode);
+  }
+
+  isActive(currentProductGroup: ProductGroup): boolean {
+    return currentProductGroup.code == this.activeProductGroupCode ? true : false;
   }
 }

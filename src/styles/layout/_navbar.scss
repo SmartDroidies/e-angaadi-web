@@ -18,5 +18,11 @@
 
   li a:hover {
     color: $hover-color;
+    text-decoration: underline;
+  }
+
+  li a.active {
+    color: $hover-color;
+    text-decoration: underline;
   }
 }
