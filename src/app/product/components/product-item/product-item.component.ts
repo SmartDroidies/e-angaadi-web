@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatChip } from '@angular/material/chips';
-import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { CartService } from 'src/app/shared/service/cart.service';
@@ -17,7 +16,7 @@ export class ProductItemComponent implements OnInit {
   selectedUnit!: number;
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
-  price!: number;
+  price!: any;
   signedIn = false;
   productImages!: any;
   productInSavedList = false;
@@ -31,6 +30,19 @@ export class ProductItemComponent implements OnInit {
   ngOnInit(): void {
     this.loadProductsFromCart();
     this.isSavedItem();
+    this.setDefaultUnit();
+  }
+
+  setDefaultUnit() {
+    if (this.product.default) {
+      this.selectedUnit = this.product.default;
+      const findProduct = this.product.units.find((item) => item.unit === this.product.default);
+      this.price = findProduct?.price;
+      if (findProduct != undefined) {
+        findProduct.default = true;
+      }
+      this.loadProductsFromCart();
+    }
   }
 
   loadProductsFromCart() {

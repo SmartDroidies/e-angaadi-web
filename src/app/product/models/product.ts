@@ -12,6 +12,7 @@ export class Product {
   brand!: string;
   metric!: string;
   status?: string;
-  units?:  UnitPrice[];
+  units!: UnitPrice[];
   userId!: string;  //FIXME - This cannot be an attribute in product 
+  default!: number;
 }
