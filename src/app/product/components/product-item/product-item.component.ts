@@ -18,7 +18,7 @@ export class ProductItemComponent implements OnInit {
   selectedUnit!: number;
   cartProductItems!: CartItem[];
   cartProductItem: CartItem | undefined;
-  price!: number;
+  price!: any;
   signedIn = false;
   productImages!: any;
   productInSavedList = false;
@@ -38,9 +38,11 @@ export class ProductItemComponent implements OnInit {
   setDefaultUnit() {
     if (this.product.default) {
       this.selectedUnit = this.product.default;
-      const findProduct = this.product.units.find((item) => item.unit === this.selectedUnit);
-      const price = findProduct?.price;
-      this.selectChip(this.product, this.selectedUnit, price)
+      const findProduct = this.product.units.find((item) => item.unit === this.product.default);
+      this.price = findProduct?.price;
+      if (findProduct != undefined) {
+        findProduct.default = true;
+      }
     }
   }
 

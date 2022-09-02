@@ -6,7 +6,8 @@
         </mat-card-title>
         <mat-card-title>{{product.title | titlecase}}</mat-card-title>
         <mat-chip-list>
-            <mat-chip *ngFor="let item of product.units" #lbl="matChip" (click)="selectChip(lbl, item.unit,item.price)">
+            <mat-chip [selected]="item.default==true" *ngFor="let item of product.units" #lbl="matChip"
+                (click)="selectChip(lbl, item.unit,item.price)">
                 <button *ngIf="isProductUnitInCart(item.unit)" class="count-badge" min="0"
                     mat-mini-fab>{{getCartItemQuantity(item.unit)}}</button>
                 {{item.unit + ' ' + product.submetric}}
