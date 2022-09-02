@@ -1,12 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatChip } from '@angular/material/chips';
-import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/shared/models/cartItem';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { StorageService } from 'src/app/shared/service/storage.service';
 import { Product } from '../../models/product';
-import { UnitPrice } from '../../models/unit-price';
 
 @Component({
   selector: 'app-product-item',
@@ -43,6 +41,7 @@ export class ProductItemComponent implements OnInit {
       if (findProduct != undefined) {
         findProduct.default = true;
       }
+      this.loadProductsFromCart();
     }
   }
 
