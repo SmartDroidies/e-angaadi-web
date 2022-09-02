@@ -1,5 +1,6 @@
-<ul class="category-nav-list" >
+<ul class="category-nav-list">
     <li *ngFor="let productGroup of productGroups">
-        <a (click)="onGroupChange(productGroup.code)">{{productGroup.title}}</a>
+        <a (click)="onGroupChange(productGroup.code)"
+            [ngClass]="isActive(productGroup) ? 'active' : ''">{{productGroup.title}}</a>
     </li>
-</ul>    
+</ul>
