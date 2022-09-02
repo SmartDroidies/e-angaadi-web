@@ -20,18 +20,28 @@ export class CartComponent implements OnInit {
   cartImages!: ProductImage;
   emptyCart = false;
 
-  constructor(private router: Router, private cartService: CartService, private translate: TranslateService, private cartBadgeService: CartBadgeService, private productImageService: ProductImageService) { }
+  constructor(
+    private router: Router,
+    private cartService: CartService,
+    private translate: TranslateService,
+    private cartBadgeService: CartBadgeService,
+    private productImageService: ProductImageService
+  ) {}
 
   ngOnInit(): void {
     this.loadCartItem();
     this.cartBadgeService.change.subscribe(() => {
       this.loadCartItem();
-    this.zeroQuantity();
     });
   }
 
   loadCartItem(): void {
     this.items = this.cartService.getCart();
+    if (this.items.length == 0) {
+      this.emptyCart = false;
+    } else {
+      this.emptyCart = true;
+    }
   }
 
   async onCart() {
@@ -83,14 +93,6 @@ export class CartComponent implements OnInit {
   collectCartImages(item: CartItem) {
     this.cartImages = this.productImageService.getCartImages(item);
     return this.cartImages;
-  }
-
-  zeroQuantity() {
-    if (this.items.length == 0) {
-      this.emptyCart = false;
-    } else {
-      this.emptyCart = true;
-    }
   }
 
 }
