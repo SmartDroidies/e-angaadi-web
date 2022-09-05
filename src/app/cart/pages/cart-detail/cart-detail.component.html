@@ -18,6 +18,7 @@
   </div>
 </div>
 
+<div class="table-summary">
 <div *ngIf="showCartSection === true" class="cart-view">
   <h3 class="table-header">Items In Your Cart ({{getTotalQuantity()}})</h3>
   <div class="table-content">
@@ -93,6 +94,15 @@
       <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
     </table>
   </div>
+</div>
+<div class="order-summary" *ngIf="showCartSection === true">
+  <div class="heading">Order Summary</div>
+  <div class="summary-content">
+  <div>SubTotal ({{getTotalQuantity()}} items) : </div>
+  <div class="total-right">{{getTotal() | currency:'INR'}}</div>
+</div>
+<div class="delivery">Delivery</div>
+</div>
 </div>
 <mat-divider></mat-divider>
 <app-save-later></app-save-later>
