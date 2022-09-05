@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
       username: new FormControl({ value: null, disabled: true }),
       firstname: new FormControl({ value: null, disabled: true }),
       // eslint-disable-next-line @typescript-eslint/unbound-method
-      email: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")]),
+      email:['', [Validators.required, Validators.pattern("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")]],
       // eslint-disable-next-line @typescript-eslint/unbound-method
       phonenumber: [
         '',
@@ -39,7 +39,7 @@ export class ProfileComponent implements OnInit {
           Validators.pattern("^[0-9]*$")
         ],
       ],
-      countrycode:new FormControl({ value: '+91', disabled: true }),
+      countrycode: new FormControl({ value: '+91', disabled: true }),
       code: new FormControl(''),
     });
   }
@@ -58,8 +58,8 @@ export class ProfileComponent implements OnInit {
       this.EditForm.patchValue({ username: user.username });
       this.EditForm.patchValue({ firstname: this.userAttributes.name });
       this.EditForm.patchValue({ email: this.userAttributes.email });
-      const getPhonenumber=user.attributes.phone_number;
-      const realNumber=getPhonenumber.slice(3, 13)
+      const getPhonenumber = user.attributes.phone_number;
+      const realNumber = getPhonenumber.slice(3, 13)
       this.EditForm.patchValue({ phonenumber: realNumber });
     });
   }
@@ -68,7 +68,7 @@ export class ProfileComponent implements OnInit {
     this.loading = true;
     this.user.firstname = this.EditForm.value.firstname;
     this.user.email = this.EditForm.value.email;
-    this.EditForm.value.phonenumber=91+this.EditForm.value.phonenumber;
+    this.EditForm.value.phonenumber = 91 + this.EditForm.value.phonenumber;
     this.user.phone_number = this.EditForm.value.phonenumber;
 
 

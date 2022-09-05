@@ -6,7 +6,7 @@
             <input matInput type="text" name="firstname" formControlName="username" />
         </mat-form-field>
         <mat-form-field class="form-field">
-            <div class="label">First Name *</div>
+            <div class="label">Name *</div>
             <input matInput type="text" name="firstname" formControlName="firstname" />
         </mat-form-field>
         <div class="form-field">
@@ -37,7 +37,7 @@
             <mat-form-field>
                 <div class="label">Phone Number *</div>
                 <input class="input-row-1" matInput name="countrycode" formControlName="countrycode" />
-                <input class="input-row-2" matInput type="tel" name="phonenumber" formControlName="phonenumber" />
+                <input [disabled]="true" class="input-row-2" matInput type="tel" name="phonenumber" formControlName="phonenumber" />
                 <div *ngIf="f.phonenumber.invalid && (f.phonenumber.dirty || f.phonenumber.touched)" class="alert">
                     <div *ngIf="f.phonenumber.errors?.required">
                         Phone number is required.
