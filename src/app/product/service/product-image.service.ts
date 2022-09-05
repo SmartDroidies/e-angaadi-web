@@ -67,4 +67,19 @@ export class ProductImageService {
       return this.getCartImages(cart);
     }
   }
+
+  getCategoryImages(category: string): ProductImage {
+    const allCategoryImages = this.getAllProductImages();
+    if (allCategoryImages != null) {
+      let productImages: ProductImage[];
+      productImages = allCategoryImages[category];
+      if (productImages.length > 0) {
+        productImages.forEach(productImage => this.processUrl(productImage))
+      }
+      return productImages[0];
+    } else {
+      this.getAllProductImages();
+      return this.getCategoryImages(category);
+    }
+  }
 }

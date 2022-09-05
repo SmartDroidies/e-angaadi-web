@@ -5,12 +5,6 @@
   margin: $margin-rem-25;
 }
 
-.product-image {
-  @include img-style;
-  margin: $margin-rem-25;
-  height: 15rem;
-}
-
 ::ng-deep .mat-chip-list-wrapper {
   @include img-style;
 }

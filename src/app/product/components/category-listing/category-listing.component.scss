@@ -1,0 +1,22 @@
+@import 'src/styles/layout/_navbar.scss';
+@import '/src/styles/abstracts/variables';
+@import '/src/styles/abstracts/mixins';
+
+
+.category-card-list {
+    @include product-listing;
+}
+
+::ng-deep .mat-chip-list-wrapper {
+    @include img-style;
+}
+
+.image {
+    width: $width-rem-2250;
+    height: $height-rem-1500;
+    margin: $margin-rem-25;
+}
+
+.category-card-list-margin {
+    margin: $margin-rem-25;
+}

@@ -1,5 +1,7 @@
 @import 'src/styles/layout/_navbar.scss';
+@import '/src/styles/abstracts/variables';
+@import '/src/styles/abstracts/mixins';
 
 .category-nav-list {
-  @include category-navigation; 
+  @include category-navigation;
 }

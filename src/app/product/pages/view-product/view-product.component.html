@@ -1,4 +1,5 @@
 <div class="column-listing">
     <app-category class="category-listing" (productGroupEvent)="setProductGroup($event)"></app-category>
+    <app-category-listing *ngIf="showCategoryList" (productGroupEvent)="setProductGroup($event)"></app-category-listing>
     <app-product-listing class="product-listing" [productGroupCode]="productGroupCode"></app-product-listing>
 </div>

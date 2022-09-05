@@ -1,18 +1,21 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductGroup } from '../../models/product-group';
+import { ProductImage } from '../../models/product-image';
+import { ProductImageService } from '../../service/product-image.service';
 import { ProductService } from '../../service/product.service';
+
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss'],
+  selector: 'app-category-listing',
+  templateUrl: './category-listing.component.html',
+  styleUrls: ['./category-listing.component.scss']
 })
-export class CategoryComponent implements OnInit {
+export class CategoryListingComponent implements OnInit {
   @Output() productGroupEvent = new EventEmitter<string>();
 
   productGroups: ProductGroup[] = [];
-  activeProductGroupCode: string | undefined = undefined;
+  categoryImages!:ProductImage;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,private productImageService:ProductImageService) {}
 
   ngOnInit(): void {
     this.getProductGroups();
@@ -25,12 +28,12 @@ export class CategoryComponent implements OnInit {
   }
 
   onGroupChange(groupCode: string) {
-    this.activeProductGroupCode = groupCode;
     this.productGroupEvent.emit(groupCode);
   }
 
-  isActive(currentProductGroup: ProductGroup): boolean {
-    return currentProductGroup.code == this.activeProductGroupCode ? true : false;
+  collectCategoryImages(groupItems: string) {
+    this.categoryImages = this.productImageService.getCategoryImages(groupItems);
+    return this.categoryImages;
   }
 
 }
