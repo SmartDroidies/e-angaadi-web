@@ -134,6 +134,9 @@ export class ProductItemComponent implements OnInit {
       const saveProduct = this.cartService.toCartItem(product, this.selectedUnit, +1, this.price);
       this.cartService.updateCartSaveStatus(saveProduct, true);
       this.isSavedItem();
+       this.toastr.success('Item added to saved list', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
     } else {
       this.toastr.warning('Select unit before adding', 'Error', {
         positionClass: 'toast-bottom-center',
@@ -145,5 +148,8 @@ export class ProductItemComponent implements OnInit {
     const removeProduct = this.cartService.toCartItem(product, this.selectedUnit, 0, this.price);
     this.cartService.removeItemInCart(removeProduct);
     this.isSavedItem();
+    this.toastr.success('Item removed from saved list', 'Success', {
+      positionClass: 'toast-bottom-center',
+    });
   }
 }

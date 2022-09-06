@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Auth } from 'aws-amplify';
 import { ToastrService } from 'ngx-toastr';
+import { from } from 'rxjs';
 import { ProductImage } from 'src/app/product/models/product-image';
 import { ProductImageService } from 'src/app/product/service/product-image.service';
 import { CartBadgeService } from 'src/app/shared/components/cart/cart-badge.service';
@@ -16,7 +18,7 @@ export class SaveLaterComponent implements OnInit {
   items: CartItem[] = [];
   cartImages!: ProductImage;
   showSaveSection!: boolean;
-
+  signedIn=false;
 
   constructor(
     private cartService: CartService,
@@ -32,12 +34,24 @@ export class SaveLaterComponent implements OnInit {
     this.cartBadgeService.change.subscribe(() => {
       this.getSaved();
     });
-    
+    this.cartView();
   }
 
   getSaved() {
     this.items = this.cartService.getUserSavedItems();
+    if (this.items.length > 0) {
+      this.showSaveSection = true;
+    } else {
+      this.showSaveSection = false;
+    }
   }
+
+  cartView() {
+    from(Auth.currentAuthenticatedUser()).subscribe((user) => {
+      this.signedIn = true;
+    });
+  }
+  
   onAdd(cartItem: CartItem) {
     this.cartService.updateCartSaveStatus(cartItem, false);
     this.getSaved();
