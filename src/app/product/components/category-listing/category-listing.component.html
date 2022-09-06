@@ -1,10 +1,10 @@
 <div class="category-card-list">
     <div *ngFor="let productGroup of productGroups">
         <mat-card class="category-card-list-margin" (click)="onGroupChange(productGroup.code)">
-            <img class="image" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                alt="Photo of a Shiba Inu">
-            <!-- <img mat-card-image *ngIf="collectCategoryImages(productGroup.code)" src="{{categoryImages.url}}"
-                class="image" /> -->
+            <!-- <img class="image" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                alt="Photo of a Shiba Inu"> -->
+            <img mat-card-image *ngIf="collectCategoryImages(productGroup.code)" src="{{categoryImages.url}}"
+                class="image" />
             <mat-card-content>
                 <div>{{productGroup.title}}</div>
             </mat-card-content>

@@ -72,7 +72,12 @@ export class ProductImageService {
     const allCategoryImages = this.getAllProductImages();
     if (allCategoryImages != null) {
       let productImages: ProductImage[];
-      productImages = allCategoryImages[category];
+        if (allCategoryImages[category]) {
+        productImages = allCategoryImages[category];
+      }
+      else {
+        productImages = allCategoryImages['pulse'];
+      }
       if (productImages.length > 0) {
         productImages.forEach(productImage => this.processUrl(productImage))
       }
