@@ -157,33 +157,54 @@ ng-container {
   }
 }
 
-.table-summary{
+.table-summary {
   margin-left: $margin-rem-200;
   @include flex-row;
 }
 
 .order-summary {
-  margin: $margin-rem-400,;
-  border: $border-radius-1 solid black;
-  width: $width-rem-2100;
-  height: $height-rem-1500;
+  margin-top: $margin-rem-350;
+  width: $width-rem-2250;
+  margin-bottom: 2.5rem;
 
   .heading {
     font-weight: bold;
     font-size: $font-size-150 ;
-    margin: $margin-rem-100 ;
   }
-  .summary-content{
+
+  .summary-content {
     @include flex-row;
-    margin:$margin-rem-100 ;
-    font-size: $font-size-base;
-    
-    .total-right{
-      margin-left:$margin-rem-400 ;
+    margin-top: $margin-rem-300 ;
+
+    .total-right {
+      margin-left: $margin-rem-400 ;
     }
   }
-  .delivery{
-    margin:$margin-rem-100;
-    font-size: $font-size-base;
+
+  .shipping {
+    margin-top: $margin-rem-100 ;
+  }
+
+  .total {
+    @include flex-row;
+    margin-top: $margin-rem-100 ;
+
+    .total-right {
+      margin-left: $margin-rem-1350 ;
+    }
+  }
+
+  .mat-card-action {
+    @include flex-column;
+
+    .checkout {
+      margin: $margin-rem-100 ;
+
+    }
+
+    .shopping {
+      margin: $margin-rem-100 ;
+
+    }
   }
 }

@@ -19,90 +19,101 @@
 </div>
 
 <div class="table-summary">
-<div *ngIf="showCartSection === true" class="cart-view">
-  <h3 class="table-header">Items In Your Cart ({{getTotalQuantity()}})</h3>
-  <div class="table-content">
-    <table mat-table [dataSource]="items" class="mat-elevation-z8">
-      <ng-container matColumnDef="title">
-        <th class="text-heading" mat-header-cell *matHeaderCellDef>Items</th>
-        <td mat-cell *matCellDef="let item" class="cell-cart-item">
-          <article class="row-image-info">
-            <img class="product-image" *ngIf="collectCartImages(item)" src="{{cartImages.url}}">
-            <div class="cart-item-info">
-              <h4>{{item.key | translate}}</h4>
-              <h5>{{item.title}}</h5>
-              <p> {{item.price|currency:'INR'}}/{{item.unit+item.submetric}}</p>
-            </div>
-          </article>
-        </td>
-        <td mat-footer-cell *matFooterCellDef></td>
-      </ng-container>
+  <div *ngIf="showCartSection === true" class="cart-view">
+    <h3 class="table-header">Items In Your Cart ({{getTotalQuantity()}})</h3>
+    <div class="table-content">
+      <table mat-table [dataSource]="items" class="mat-elevation-z8">
+        <ng-container matColumnDef="title">
+          <th class="text-heading" mat-header-cell *matHeaderCellDef>Items</th>
+          <td mat-cell *matCellDef="let item" class="cell-cart-item">
+            <article class="row-image-info">
+              <img class="product-image" *ngIf="collectCartImages(item)" src="{{cartImages.url}}">
+              <div class="cart-item-info">
+                <h4>{{item.key | translate}}</h4>
+                <h5>{{item.title}}</h5>
+                <p> {{item.price|currency:'INR'}}/{{item.unit+item.submetric}}</p>
+              </div>
+            </article>
+          </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
 
-      <ng-container matColumnDef="quantity">
-        <th class="text-heading" mat-header-cell *matHeaderCellDef>Quantity</th>
-        <td mat-cell *matCellDef="let item" class="cell-quantity">
-          <section>
-            <div class="quantity-fields">
-              <button mat-mini-fab color="primary" (click)=subUnit(item,item.unit,item.price)>
-                <mat-icon>remove</mat-icon>
-              </button>
-              <button min="0" class="quantity-count">{{item.quantity}}</button>
-              <button mat-mini-fab color="primary" (click)=addUnit(item,item.unit,item.price)>
-                <mat-icon>add</mat-icon>
-              </button>
-            </div>
-            <div class="action-buttons">
-              <button mat-icon-button aria-label="Delete item from cart">
-                <mat-icon (click)="onDelete(item)">delete</mat-icon>
-              </button>
-              <button mat-icon-button aria-label="Save item for later">
-                <mat-icon (click)="onSave(item)">save_alt</mat-icon>
-              </button>
-            </div>
-          </section>
-        </td>
+        <ng-container matColumnDef="quantity">
+          <th class="text-heading" mat-header-cell *matHeaderCellDef>Quantity</th>
+          <td mat-cell *matCellDef="let item" class="cell-quantity">
+            <section>
+              <div class="quantity-fields">
+                <button mat-mini-fab color="primary" (click)=subUnit(item,item.unit,item.price)>
+                  <mat-icon>remove</mat-icon>
+                </button>
+                <button min="0" class="quantity-count">{{item.quantity}}</button>
+                <button mat-mini-fab color="primary" (click)=addUnit(item,item.unit,item.price)>
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <div class="action-buttons">
+                <button mat-icon-button aria-label="Delete item from cart">
+                  <mat-icon (click)="onDelete(item)">delete</mat-icon>
+                </button>
+                <button mat-icon-button aria-label="Save item for later">
+                  <mat-icon (click)="onSave(item)">save_alt</mat-icon>
+                </button>
+              </div>
+            </section>
+          </td>
 
-        <td mat-footer-cell *matFooterCellDef> </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
 
-      </ng-container>
+        </ng-container>
 
-      <ng-container matColumnDef="total">
-        <th class="text-heading" mat-header-cell *matHeaderCellDef>
-          <div>Sub-Total</div>
-        </th>
-        <td mat-cell *matCellDef="let item" class="cell-total">
-          <div class="text-center">{{getSubTotal(item)|currency:'INR'}}</div>
-        </td>
-        <td mat-footer-cell *matFooterCellDef class="footer-cell-total">
-          <section>
-            <h4 class="total-summary">Sub-Total ({{getTotalQuantity()}} items) : {{getTotal() | currency:'INR'}} </h4>
-            <div class="cart-action-buttons">
+        <ng-container matColumnDef="total">
+          <th class="text-heading" mat-header-cell *matHeaderCellDef>
+            <div>Sub-Total</div>
+          </th>
+          <td mat-cell *matCellDef="let item" class="cell-total">
+            <div class="text-center">{{getSubTotal(item)|currency:'INR'}}</div>
+          </td>
+          <td mat-footer-cell *matFooterCellDef class="footer-cell-total">
+            <section>
+              <h4 class="total-summary">Sub-Total ({{getTotalQuantity()}} items) : {{getTotal() | currency:'INR'}} </h4>
+              <div class="cart-action-buttons">
 
-              <button class="cart-action" mat-raised-button color="primary" (click)="emptyCart()">Empty Cart</button>
-              <button class="cart-action" mat-raised-button color="primary" (click)="onShopping()">Continue
-                Shopping</button>
+                <button class="cart-action" mat-raised-button color="primary" (click)="emptyCart()">Empty Cart</button>
+                <button class="cart-action" mat-raised-button color="primary" (click)="onShopping()">Continue
+                  Shopping</button>
 
 
-              <button class="cart-action" mat-raised-button color="accent">Checkout</button>
-            </div>
-          </section>
-        </td>
-      </ng-container>
+                <button class="cart-action" mat-raised-button color="accent">Checkout</button>
+              </div>
+            </section>
+          </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-    </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+      </table>
+    </div>
   </div>
-</div>
-<div class="order-summary" *ngIf="showCartSection === true">
-  <div class="heading">Order Summary</div>
-  <div class="summary-content">
-  <div>SubTotal ({{getTotalQuantity()}} items) : </div>
-  <div class="total-right">{{getTotal() | currency:'INR'}}</div>
-</div>
-<div class="delivery">Delivery</div>
-</div>
+  <mat-card class="order-summary" *ngIf="showCartSection === true">
+    <mat-card-content>
+      <mat-card-title class="heading">Order Summary</mat-card-title>
+      <div class="summary-content">
+        <mat-card-title>SubTotal ({{getTotalQuantity()}} items) : </mat-card-title>
+        <span class="total-right">{{getTotal() | currency:'INR'}}</span>
+      </div>
+      <mat-card-title class="shipping">Shipping</mat-card-title>
+      <div class="total">
+        <mat-card-title>Total:</mat-card-title>
+        <span class="total-right">{{getTotal() | currency:'INR'}}</span>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="mat-card-action">
+      <button class="checkout" mat-raised-button color="primary">Checkout</button>
+      <button class="shopping" mat-raised-button color="primary" (click)="onShopping()">Continue
+        Shopping</button>
+    </mat-card-actions>
+  </mat-card>
 </div>
 <mat-divider></mat-divider>
 <app-save-later></app-save-later>
