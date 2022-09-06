@@ -148,7 +148,7 @@ ng-container {
   .total-summary {
     margin-top: $margin-rem-100;
     text-align: center;
-    font-weight: 600;
+    font-weight: $font-weight-bold;
   }
 
   .cart-action {
@@ -165,7 +165,7 @@ ng-container {
 .order-summary {
   margin-top: $margin-rem-350;
   width: $width-rem-2250;
-  margin-bottom: 2.5rem;
+  margin-bottom: $margin-rem-250 ;
 
   .heading {
     font-weight: bold;
