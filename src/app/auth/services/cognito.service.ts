@@ -26,6 +26,24 @@ export class CognitoService {
     });
   }
 
+  public async verifyUserAttribute(user: CognitoUser): Promise<any> {
+    const currentuser = await Auth.currentAuthenticatedUser();
+    if (user.email) {
+      return Auth.verifyUserAttribute(currentuser, user.email);
+    } else {
+      return Auth.verifyUserAttribute(currentuser, user.phone_number);
+    }
+  }
+
+  public async verifyUserAttributeSubmit(user: CognitoUser): Promise<any> {
+    const currentuser = await Auth.currentAuthenticatedUser();
+    if (user.email) {
+      return Auth.verifyUserAttributeSubmit(currentuser, user.email,user.code);
+    } else {
+      return Auth.verifyUserAttributeSubmit(currentuser, user.phone_number,user.code);
+    }
+  }
+
   public async updateUserAttributes(user: CognitoUser): Promise<any> {
     const currentuser = await Auth.currentAuthenticatedUser();
     return Auth.updateUserAttributes(currentuser, {

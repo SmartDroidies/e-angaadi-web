@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   EditForm!: FormGroup;
   editError!: any;
   userAttributes!: CognitoUser;
+  panelOpenState = false;
 
   constructor(private cognitoService: CognitoService, private fb: FormBuilder, private toastr: ToastrService) {
     this.loading = false;
@@ -29,7 +30,7 @@ export class ProfileComponent implements OnInit {
       username: new FormControl({ value: null, disabled: true }),
       firstname: new FormControl({ value: null, disabled: true }),
       // eslint-disable-next-line @typescript-eslint/unbound-method
-      email:['', [Validators.required, Validators.pattern("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")]],
+      email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")]],
       // eslint-disable-next-line @typescript-eslint/unbound-method
       phonenumber: [
         '',
@@ -40,7 +41,7 @@ export class ProfileComponent implements OnInit {
         ],
       ],
       countrycode: new FormControl({ value: '+91', disabled: true }),
-      code: new FormControl(''),
+      code:[""],
     });
   }
 
@@ -68,7 +69,7 @@ export class ProfileComponent implements OnInit {
     this.loading = true;
     this.user.firstname = this.EditForm.value.firstname;
     this.user.email = this.EditForm.value.email;
-    this.EditForm.value.phonenumber = 91 + this.EditForm.value.phonenumber;
+    this.EditForm.value.phonenumber = '+91' + this.EditForm.value.phonenumber;
     this.user.phone_number = this.EditForm.value.phonenumber;
 
 
@@ -85,6 +86,57 @@ export class ProfileComponent implements OnInit {
     } catch (e) {
       this.editError = e;
       this.toastr.error('Error while Edit', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
+    }
+  }
+
+  public async verifyUserAttr(): Promise<void> {
+    this.loading = true;
+    this.user.email = this.EditForm.value.email;
+    this.EditForm.value.phonenumber = '+91' + this.EditForm.value.phonenumber;
+    this.user.phone_number = this.EditForm.value.phonenumber;
+
+    if (this.EditForm.invalid) {
+      return;
+    }
+
+    try {
+      await this.cognitoService.verifyUserAttribute(this.user);
+      this.loading = false;
+      this.toastr.success('Successfully code sent', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
+    } catch (e) {
+      this.editError = e;
+      this.toastr.error('Error while sending code', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
+    }
+  }
+
+
+  public async verifyUserAttrSubmit(): Promise<void> {
+    this.loading = true;
+    this.user.email = this.EditForm.value.email;
+    this.EditForm.value.phonenumber = '+91' + this.EditForm.value.phonenumber;
+    this.user.phone_number = this.EditForm.value.phonenumber;
+    this.user.code=this.EditForm.value.code;
+
+
+    if (this.EditForm.invalid) {
+      return;
+    }
+
+    try {
+      await this.cognitoService.verifyUserAttributeSubmit(this.user);
+      this.loading = false;
+      this.toastr.success('Successfully verified', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
+    } catch (e) {
+      this.editError = e;
+      this.toastr.error('Error while verifying', 'Error', {
         positionClass: 'toast-bottom-center',
       });
     }
