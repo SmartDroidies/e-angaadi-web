@@ -39,7 +39,7 @@
                         </button>
                     </mat-expansion-panel-header>
                     <div *ngIf="!userAttributes.email_verified">
-                        <button mat-raised-button color="primary" *ngIf="showSendCodeEmail" (click)="verifyUserEmail()">
+                        <button mat-raised-button color="accent" *ngIf="showSendCodeEmail" (click)="verifyUserEmail()">
                             Send code to Verify
                         </button>
                         <div *ngIf="!showSendCodeEmail">
@@ -50,7 +50,7 @@
                                 </mat-form-field>
                             </div>
                             <div class="flex-end-button">
-                                <button class="action-button" mat-raised-button color="primary"
+                                <button class="action-button" mat-raised-button color="accent"
                                     (click)="verifyUserEmail()">
                                     Resend
                                 </button>
@@ -103,7 +103,7 @@
                         </button>
                     </mat-expansion-panel-header>
                     <div *ngIf="!userAttributes.phone_number_verified">
-                        <button mat-raised-button color="primary" *ngIf="showSendCodePh" (click)="verifyUserPhNo()">
+                        <button mat-raised-button color="accent" *ngIf="showSendCodePh" (click)="verifyUserPhNo()">
                             Send code to Verify
                         </button>
                         <div *ngIf="!showSendCodePh">
@@ -114,7 +114,7 @@
                                 </mat-form-field>
                             </div>
                             <div class="flex-end-button">
-                                <button class="action-button" mat-raised-button color="primary"
+                                <button class="action-button" mat-raised-button color="accent"
                                     (click)="verifyUserPhNo()">
                                     Resend
                                 </button>
