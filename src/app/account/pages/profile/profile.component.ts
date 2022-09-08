@@ -93,7 +93,7 @@ export class ProfileComponent implements OnInit {
 
   public async verifyUserAttr(): Promise<void> {
     this.loading = true;
-    this.user.email = this.EditForm.value.email;
+    // this.user.email = this.EditForm.value.email;
     this.EditForm.value.phonenumber = '+91' + this.EditForm.value.phonenumber;
     this.user.phone_number = this.EditForm.value.phonenumber;
 

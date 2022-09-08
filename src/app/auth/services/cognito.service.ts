@@ -28,10 +28,11 @@ export class CognitoService {
 
   public async verifyUserAttribute(user: CognitoUser): Promise<any> {
     const currentuser = await Auth.currentAuthenticatedUser();
+    const phone_number= user.phone_number
     if (user.email) {
       return Auth.verifyUserAttribute(currentuser, user.email);
     } else {
-      return Auth.verifyUserAttribute(currentuser, user.phone_number);
+      return Auth.verifyUserAttribute(currentuser,phone_number);
     }
   }
 
