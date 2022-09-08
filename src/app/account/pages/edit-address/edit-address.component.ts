@@ -125,8 +125,8 @@ export class EditAddressComponent implements OnInit {
 
   getIdAddress() {
     this.userdataService.getIdAddress(this.id).subscribe((address) => {
-    const getPhonenumber=address['phonenumber'].toString().slice(2, 12);
-    address['phonenumber']= parseInt(getPhonenumber)
+    const getPhonenumber=address['phonenumber'].toString().slice(3, 13);
+    address['phonenumber']= getPhonenumber;
      this.addressForm.patchValue(address);
      });
      this.selectedState=this.addressForm.value.state;
@@ -139,7 +139,7 @@ export class EditAddressComponent implements OnInit {
     }
     this.addressData = this.addressForm.value;
     this.addressData.id = this.id;
-    this.addressData.phonenumber=91+this.addressForm.value.phonenumber;
+    this.addressData.phonenumber='+91'+this.addressForm.value.phonenumber;
     this.userdataService.updateAddress(this.addressData).subscribe(
       () => {
         this.toastr.success('Address updated successfully', 'Updated', {
@@ -166,7 +166,7 @@ export class EditAddressComponent implements OnInit {
     from(Auth.currentAuthenticatedUser()).subscribe((user) => {
       this.addressData = this.addressForm.value;
       this.addressData.userId = user.attributes.name;
-      this.addressData.phonenumber=91+this.addressForm.value.phonenumber;
+      this.addressData.phonenumber='+91'+this.addressForm.value.phonenumber;
       this.userdataService.saveAddress(this.addressData).subscribe(
         () => {
           this.toastr.success('Address saved successfully', 'Saved', {

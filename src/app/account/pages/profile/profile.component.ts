@@ -22,9 +22,13 @@ export class ProfileComponent implements OnInit {
   editError!: any;
   userAttributes!: CognitoUser;
   panelOpenState = false;
+  showSendCodePh!: boolean;
+  showSendCodeEmail!: boolean;
+
 
   constructor(private cognitoService: CognitoService, private fb: FormBuilder, private toastr: ToastrService) {
     this.loading = false;
+    this.showSendCodePh = true;
     this.user = {} as CognitoUser;
     this.EditForm = this.fb.group({
       username: new FormControl({ value: null, disabled: true }),
@@ -41,7 +45,7 @@ export class ProfileComponent implements OnInit {
         ],
       ],
       countrycode: new FormControl({ value: '+91', disabled: true }),
-      code:[""],
+      code: [""],
     });
   }
 
@@ -91,8 +95,9 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  public async verifyUserAttr(): Promise<void> {
+  public async verifyUserPhNo(): Promise<void> {
     this.loading = true;
+    this.showSendCodePh = false;
     // this.user.email = this.EditForm.value.email;
     this.EditForm.value.phonenumber = '+91' + this.EditForm.value.phonenumber;
     this.user.phone_number = this.EditForm.value.phonenumber;
@@ -104,24 +109,72 @@ export class ProfileComponent implements OnInit {
     try {
       await this.cognitoService.verifyUserAttribute(this.user);
       this.loading = false;
-      this.toastr.success('Successfully code sent', 'Success', {
+      this.toastr.success('Successfully code sent to phonenumber', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
+      // this.showSendCode = false;
+    } catch (e) {
+      this.editError = e;
+      this.toastr.error('Error while sending code to phonenumber', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
+    }
+  }
+  
+  public async verifyUserEmail(): Promise<void> {
+    this.loading = true;
+    this.showSendCodeEmail = false;
+    this.user.email = this.EditForm.value.email;
+
+    if (this.EditForm.invalid) {
+      return;
+    }
+
+    try {
+      await this.cognitoService.verifyUserAttribute(this.user);
+      this.loading = false;
+      this.toastr.success('Successfully code sent to e-mail', 'Success', {
+        positionClass: 'toast-bottom-center',
+      });
+      // this.showSendCodeEmail = false;
+    } catch (e) {
+      this.editError = e;
+      this.toastr.error('Error while sending code to e-mail', 'Error', {
+        positionClass: 'toast-bottom-center',
+      });
+    }
+  }
+  
+
+  public async verifyUserPhNoSubmit(): Promise<void> {
+    this.loading = true;
+    this.user.email = this.EditForm.value.email;
+    this.EditForm.value.phonenumber = '+91' + this.EditForm.value.phonenumber;
+    this.user.phone_number = this.EditForm.value.phonenumber;
+    this.user.code = this.EditForm.value.code;
+
+    if (this.EditForm.invalid) {
+      return;
+    }
+
+    try {
+      await this.cognitoService.verifyUserAttributeSubmit(this.user);
+      this.loading = false;
+      this.toastr.success('Successfully phonenumber verified', 'Success', {
         positionClass: 'toast-bottom-center',
       });
     } catch (e) {
       this.editError = e;
-      this.toastr.error('Error while sending code', 'Error', {
+      this.toastr.error('Error while verifying phonenumber', 'Error', {
         positionClass: 'toast-bottom-center',
       });
     }
   }
 
-
-  public async verifyUserAttrSubmit(): Promise<void> {
+  public async verifyUserEmailSubmit(): Promise<void> {
     this.loading = true;
     this.user.email = this.EditForm.value.email;
-    this.EditForm.value.phonenumber = '+91' + this.EditForm.value.phonenumber;
-    this.user.phone_number = this.EditForm.value.phonenumber;
-    this.user.code=this.EditForm.value.code;
+    this.user.code = this.EditForm.value.code;
 
 
     if (this.EditForm.invalid) {
@@ -131,12 +184,12 @@ export class ProfileComponent implements OnInit {
     try {
       await this.cognitoService.verifyUserAttributeSubmit(this.user);
       this.loading = false;
-      this.toastr.success('Successfully verified', 'Success', {
+      this.toastr.success('Successfully e-mail verified ', 'Success', {
         positionClass: 'toast-bottom-center',
       });
     } catch (e) {
       this.editError = e;
-      this.toastr.error('Error while verifying', 'Error', {
+      this.toastr.error('Error while verifying e-mail', 'Error', {
         positionClass: 'toast-bottom-center',
       });
     }

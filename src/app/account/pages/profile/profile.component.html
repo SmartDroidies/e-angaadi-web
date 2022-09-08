@@ -10,28 +10,62 @@
             <input matInput type="text" name="firstname" formControlName="firstname" />
         </mat-form-field>
         <div class="form-field">
-            <mat-form-field>
-                <div class="label">E-Mail *</div>
-                <input matInput type="email" name="email" formControlName="email" />
-                <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="alert">
-                    <div *ngIf="f.email.errors?.required">
-                        E-Mail is required.
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-form-field>
+                            <div class="label">E-Mail *</div>
+                            <input matInput type="email" name="email" formControlName="email" />
+                            <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="alert">
+                                <div *ngIf="f.email.errors?.required">
+                                    E-Mail is required.
+                                </div>
+                                <div *ngIf="f.email.errors?.pattern">
+                                    E-Mail is not Valid.
+                                </div>
+                            </div>
+                        </mat-form-field>
+                        <button mat-icon-button color="primary" *ngIf="userAttributes.email_verified"
+                            class="verification">
+                            <mat-icon title="Verified">
+                                verified
+                            </mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" *ngIf="!userAttributes.email_verified"
+                            class="verification">
+                            <mat-icon title=" Not Verified">
+                                dangerous
+                            </mat-icon>
+                        </button>
+                    </mat-expansion-panel-header>
+                    <div *ngIf="!userAttributes.email_verified">
+                        <button mat-raised-button color="primary" *ngIf="showSendCodeEmail" (click)="verifyUserEmail()">
+                            Send code to Verify
+                        </button>
+                        <div *ngIf="!showSendCodeEmail">
+                            <div>
+                                <mat-form-field>
+                                    <div class="label">Enter Code*</div>
+                                    <input matInput name="code" formControlName="code" />
+                                </mat-form-field>
+                            </div>
+                            <div class="flex-end-button">
+                                <button class="action-button" mat-raised-button color="primary"
+                                    (click)="verifyUserEmail()">
+                                    Resend
+                                </button>
+                                <button class="action-button" mat-raised-button color="primary"
+                                    (click)="verifyUserEmailSubmit()">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div *ngIf="f.email.errors?.pattern">
-                        E-Mail is not Valid.
+                    <div *ngIf="userAttributes.email_verified">
+                        Verified
                     </div>
-                </div>
-            </mat-form-field>
-            <button mat-icon-button color="primary" *ngIf="userAttributes.email_verified" class="verification">
-                <mat-icon title="Verified">
-                    verified
-                </mat-icon>
-            </button>
-            <button mat-icon-button color="warn" *ngIf="!userAttributes.email_verified" class="verification">
-                <mat-icon title=" Not Verified">
-                    dangerous
-                </mat-icon>
-            </button>
+                </mat-expansion-panel>
+            </mat-accordion>
         </div>
         <div class="form-field">
             <mat-accordion>
@@ -69,16 +103,27 @@
                         </button>
                     </mat-expansion-panel-header>
                     <div *ngIf="!userAttributes.phone_number_verified">
-                        <button mat-raised-button color="primary" (click)="verifyUserAttr()">
-                            Sendcode
+                        <button mat-raised-button color="primary" *ngIf="showSendCodePh" (click)="verifyUserPhNo()">
+                            Send code to Verify
                         </button>
-                        <mat-form-field>
-                            <div class="label">Enter Code*</div>
-                            <input matInput name="code" formControlName="code" />
-                        </mat-form-field>
-                        <button mat-raised-button color="primary">
-                            Submit
-                        </button>
+                        <div *ngIf="!showSendCodePh">
+                            <div>
+                                <mat-form-field>
+                                    <div class="label">Enter Code*</div>
+                                    <input matInput name="code" formControlName="code" />
+                                </mat-form-field>
+                            </div>
+                            <div class="flex-end-button">
+                                <button class="action-button" mat-raised-button color="primary"
+                                    (click)="verifyUserPhNo()">
+                                    Resend
+                                </button>
+                                <button class="action-button" mat-raised-button color="primary"
+                                    (click)="verifyUserPhNoSubmit()">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div *ngIf="userAttributes.phone_number_verified">
                         Verified

@@ -1,7 +1,7 @@
 export class Address {
     userId!: string;
     fullname!: string;
-    phonenumber!: number;
+    phonenumber!: string;
     address!: string;
     area!: string;
     landmark!: string;
