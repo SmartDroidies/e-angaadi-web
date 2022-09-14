@@ -32,7 +32,7 @@ export class SaveLaterComponent implements OnInit {
     this.cartBadgeService.change.subscribe(() => {
       this.getSaved();
     });
-    
+
   }
 
   getSaved() {
